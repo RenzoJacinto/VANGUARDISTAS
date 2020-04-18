@@ -1,7 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
-#include <stdio.h>"
+#include <stdio.h>
 #include <string>
 
 //The window we'll be rendering to
@@ -19,6 +19,12 @@ const int SCREEN_HEIGHT = 480;
 
 bool iniciarSDL()
 {
+    gWindow = NULL;
+
+    gScreenSurface = NULL;
+
+    gXOut = NULL;
+
 	//Initialization flag
 	bool success = true;
 

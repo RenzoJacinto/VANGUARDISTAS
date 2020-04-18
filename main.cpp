@@ -3,8 +3,8 @@ and may not be redistributed without written permission.*/
 
 //Using SDL and standard IO
 #include <SDL2/SDL.h>
-#include<SDL2/SDL_ttf.h>
-#include<SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <string>
 
