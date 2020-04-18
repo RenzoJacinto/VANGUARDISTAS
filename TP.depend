@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1587242015 source:/home/renzo/Documents/Taller/TP/main.cpp
+1587242831 source:/home/renzo/Documents/Taller/TP/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
@@ -7,9 +7,9 @@
 	<string>
 	"ManejoDeSDL.h"
 
-1587241562 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
+1587242858 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
 
-1587242140 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
+1587242889 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>

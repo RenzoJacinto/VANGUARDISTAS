@@ -13,6 +13,8 @@ SDL_Surface* gScreenSurface;
 //The image we will load and show on the screen
 SDL_Surface* gXOut;
 
+SDL_Event e;
+
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -24,6 +26,7 @@ bool iniciarSDL()
     gScreenSurface = NULL;
 
     gXOut = NULL;
+
 
 	//Initialization flag
 	bool success = true;
@@ -91,4 +94,14 @@ void aplicarImagen()
 void actualizarSuperficie()
 {
     SDL_UpdateWindowSurface( gWindow );
+}
+
+bool hayEventos()
+{
+    return SDL_PollEvent( &e ) != 0;
+}
+
+bool usuarioRequirioSalir()
+{
+    return e.type == SDL_QUIT;
 }

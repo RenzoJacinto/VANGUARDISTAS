@@ -1,7 +1,3 @@
-/*This source code copyrighted by Lazy Foo' Productions (2004-2020)
-and may not be redistributed without written permission.*/
-
-//Using SDL and standard IO
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
@@ -29,17 +25,14 @@ int main( int argc, char* args[] )
 			//Main loop flag
 			bool quit = false;
 
-			//Event handler
-			SDL_Event e;
-
 			//While application is running
 			while( !quit )
 			{
 				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
+				while( hayEventos() )
 				{
 					//User requests quit
-					if( e.type == SDL_QUIT )
+					if( usuarioRequirioSalir() )
 					{
 						quit = true;
 					}

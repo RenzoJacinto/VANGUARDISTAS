@@ -10,3 +10,7 @@ void cerrar();
 void aplicarImagen();
 
 void actualizarSuperficie();
+
+bool hayEventos();
+
+bool usuarioRequirioSalir();
