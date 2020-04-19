@@ -6,28 +6,31 @@
 #include <string>
 #include "Nave.h"
 #include "Fondo.h"
-
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
-
-//The window renderer
-SDL_Renderer* gRenderer = NULL;
-
-//Scene textures
-Fondo gDotTexture;
-Fondo gBGTexture;
+#include "ManejoDeSDL.h"
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 
-bool iniciarSDL()
+ManejoDeSDL::ManejoDeSDL()
+{
+    setScreenWidth(SCREEN_WIDTH);
+    setScreenHeight(SCREEN_HEIGHT);
+
+    //The window we'll be rendering to
+    setWindow(NULL);
+
+    //The window renderer
+    setRenderer(NULL);
+}
+
+bool ManejoDeSDL::iniciarSDL()
 {
 	//Initialization flag
 	bool success = true;
 
 	//Initialize SDL
-	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+	if( huboErrorAlIniciarSDL() )
 	{
 		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
 		success = false;
@@ -41,7 +44,7 @@ bool iniciarSDL()
 		}
 
 		//Create window
-		gWindow = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+		setWindow( SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN ) );
 		if( gWindow == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -50,7 +53,7 @@ bool iniciarSDL()
 		else
 		{
 			//Create vsynced renderer for window
-			gRenderer = SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			setRenderer( SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC ) );
 			if( gRenderer == NULL )
 			{
 				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -75,7 +78,7 @@ bool iniciarSDL()
 	return success;
 }
 
-bool cargarImagen()
+bool ManejoDeSDL::cargarImagen()
 {
 	//Loading success flag
 	bool success = true;
@@ -97,7 +100,7 @@ bool cargarImagen()
 	return success;
 }
 
-void cerrar()
+void ManejoDeSDL::cerrar()
 {
 	//Free loaded images
 	gDotTexture.free();
@@ -106,20 +109,17 @@ void cerrar()
 	//Destroy window
 	SDL_DestroyRenderer( gRenderer );
 	SDL_DestroyWindow( gWindow );
-	gWindow = NULL;
-	gRenderer = NULL;
+	setWindow(NULL);
+	setRenderer(NULL);
 
 	//Quit SDL subsystems
 	IMG_Quit();
 	SDL_Quit();
 }
 
-void proceso() {
+void ManejoDeSDL::proceso() {
             //Main loop flag
 			bool quit = false;
-
-			//Event handler
-			SDL_Event e;
 
 			//The dot that will be moving around on the screen
 			Nave dot;
@@ -128,13 +128,13 @@ void proceso() {
 			int scrollingOffset = 0;
 
 			//While application is running
-			while( !quit )
+			while( usuarioNoRequieraSalir(quit) )
 			{
 				//Handle events on queue
-				while( SDL_PollEvent( &e ) != 0 )
+				while( hayEventos() )
 				{
 					//User requests quit
-					if( e.type == SDL_QUIT )
+					if( eventoEsSalir() )
 					{
 						quit = true;
 					}
@@ -169,18 +169,62 @@ void proceso() {
             }
 }
 
-SDL_Renderer* getRenderer(){
+bool ManejoDeSDL::huboErrorAlIniciarSDL(){
+    return SDL_Init( SDL_INIT_VIDEO ) < 0;
+}
+
+void ManejoDeSDL::setWindow(SDL_Window* window){
+    gWindow = window;
+}
+
+void ManejoDeSDL::setRenderer(SDL_Renderer* renderer){
+    gRenderer = renderer;
+}
+
+SDL_Window* ManejoDeSDL::getWindow(){
+    return gWindow;
+}
+
+SDL_Renderer* ManejoDeSDL::getRenderer(){
     return gRenderer;
 }
 
-int getScreenWidth(){
-    return SCREEN_WIDTH;
+void ManejoDeSDL::setScreenWidth(int width){
+    screenWidth = width;
 }
 
-int getScreenHeight(){
-    return SCREEN_HEIGHT;
+void ManejoDeSDL::setScreenHeight(int height){
+    screenHeight = height;
 }
 
-Fondo getDotTexture(){
+int ManejoDeSDL::getScreenWidth(){
+    return screenWidth;
+}
+
+int ManejoDeSDL::getScreenHeight(){
+    return screenHeight;
+}
+
+Fondo ManejoDeSDL::getDotTexture(){
     return gDotTexture;
+}
+
+Fondo ManejoDeSDL::getBGTexture(){
+    return gBGTexture;
+}
+
+bool ManejoDeSDL::hayEventos(){
+    return SDL_PollEvent( &e ) != 0;
+}
+
+bool ManejoDeSDL::usuarioNoRequieraSalir(bool quit){
+    return !quit;
+}
+
+SDL_Event ManejoDeSDL::getEvento(){
+    return e;
+}
+
+bool ManejoDeSDL::eventoEsSalir(){
+    return e.type == SDL_QUIT;
 }

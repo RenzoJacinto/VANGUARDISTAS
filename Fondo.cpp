@@ -1,5 +1,6 @@
 #include "Fondo.h"
 #include "ManejoDeSDL.h"
+#include "global.h"
 
 Fondo::Fondo()
 {
@@ -35,7 +36,7 @@ bool Fondo::loadFromFile( std::string path )
 		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
 		//Create texture from surface pixels
-        newTexture = SDL_CreateTextureFromSurface( getRenderer(), loadedSurface );
+        newTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), loadedSurface );
 		if( newTexture == NULL )
 		{
 			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
@@ -99,7 +100,7 @@ void Fondo::render( int x, int y, SDL_Rect* clip, double angle, SDL_Point* cente
 	}
 
 	//Render to screen
-	SDL_RenderCopyEx( getRenderer(), mTexture, clip, &renderQuad, angle, center, flip );
+	SDL_RenderCopyEx( sdl.getRenderer(), mTexture, clip, &renderQuad, angle, center, flip );
 }
 
 int Fondo::getWidth()

@@ -8,29 +8,32 @@
 #include "ManejoDeSDL.h"
 #include "Nave.h"
 #include "Fondo.h"
+#include "global.h"
+
+ManejoDeSDL sdl;
 
 int main( int argc, char* args[] )
 {
 	//Start up SDL and create window
-	if( !iniciarSDL() )
+	if( !sdl.iniciarSDL() )
 	{
 		printf( "Failed to initialize!\n" );
 	}
 	else
 	{
 		//Load media
-		if( !cargarImagen() )
+		if( !sdl.cargarImagen() )
 		{
 			printf( "Failed to load media!\n" );
 		}
 		else
 		{
-            proceso();
+            sdl.proceso();
         }
     }
 
 	//Free resources and close SDL
-	cerrar();
+	sdl.cerrar();
 
 	return 0;
 }

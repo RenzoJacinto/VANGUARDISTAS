@@ -1,5 +1,6 @@
 #include "Nave.h"
 #include "ManejoDeSDL.h"
+#include "global.h"
 
 Nave::Nave()
 {
@@ -46,7 +47,7 @@ void Nave::move()
     mPosX += mVelX;
 
     //If the dot went too far to the left or right
-    if( ( mPosX < 0 ) || ( mPosX + DOT_WIDTH > getScreenWidth() ) )
+    if( ( mPosX < 0 ) || ( mPosX + DOT_WIDTH > sdl.getScreenWidth() ) )
     {
         //Move back
         mPosX -= mVelX;
@@ -56,7 +57,7 @@ void Nave::move()
     mPosY += mVelY;
 
     //If the dot went too far up or down
-    if( ( mPosY < 0 ) || ( mPosY + DOT_HEIGHT > getScreenHeight() ) )
+    if( ( mPosY < 0 ) || ( mPosY + DOT_HEIGHT > sdl.getScreenHeight() ) )
     {
         //Move back
         mPosY -= mVelY;
@@ -66,5 +67,5 @@ void Nave::move()
 void Nave::render()
 {
     //Show the dot
-	getDotTexture().render( mPosX, mPosY );
+	sdl.getDotTexture().render( mPosX, mPosY );
 }
