@@ -34,8 +34,12 @@
 		<Linker>
 			<Add option="-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
 		</Linker>
+		<Unit filename="Fondo.cpp" />
+		<Unit filename="Fondo.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
 		<Unit filename="ManejoDeSDL.h" />
+		<Unit filename="Nave.cpp" />
+		<Unit filename="Nave.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>

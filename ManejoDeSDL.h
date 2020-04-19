@@ -1,3 +1,5 @@
+#include "Fondo.h"
+
 //Inicia SDL y crea una ventana
 bool iniciarSDL();
 
@@ -7,10 +9,20 @@ bool cargarImagen();
 //Libera espacio en memoria y cierra SDL
 void cerrar();
 
-void aplicarImagen();
+void proceso();
 
-void actualizarSuperficie();
+SDL_Renderer* getRenderer();
 
-bool hayEventos();
+int getScreenWidth();
 
-bool usuarioRequirioSalir();
+int getScreenHeight();
+
+Fondo getDotTexture();
+
+//void aplicarImagen();
+//
+//void actualizarSuperficie();
+//
+//bool hayEventos();
+//
+//bool usuarioRequirioSalir();

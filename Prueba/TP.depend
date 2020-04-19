@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1587255345 source:/home/renzo/Documents/Taller/TP/Prueba/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"Nave.h"
+	"Fondo.h"
+
+1587256087 /home/renzo/Documents/Taller/TP/Prueba/ManejoDeSDL.h
+	"Fondo.h"
+
+1587255345 /home/renzo/Documents/Taller/TP/Prueba/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587255345 /home/renzo/Documents/Taller/TP/Prueba/Fondo.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587256032 source:/home/renzo/Documents/Taller/TP/Prueba/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"Nave.h"
+	"Fondo.h"
+
+1587255871 source:/home/renzo/Documents/Taller/TP/Prueba/Fondo.cpp
+	"Fondo.h"
+	"ManejoDeSDL.h"
+
+1587256063 source:/home/renzo/Documents/Taller/TP/Prueba/Nave.cpp
+	"Nave.h"
+	"ManejoDeSDL.h"
+

@@ -1,10 +1,13 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <string>
 
 #include "ManejoDeSDL.h"
+#include "Nave.h"
+#include "Fondo.h"
 
 int main( int argc, char* args[] )
 {
@@ -22,30 +25,9 @@ int main( int argc, char* args[] )
 		}
 		else
 		{
-			//Main loop flag
-			bool quit = false;
-
-			//While application is running
-			while( !quit )
-			{
-				//Handle events on queue
-				while( hayEventos() )
-				{
-					//User requests quit
-					if( usuarioRequirioSalir() )
-					{
-						quit = true;
-					}
-				}
-
-				//Apply the image
-				aplicarImagen();
-
-				//Update the surface
-				actualizarSuperficie();
-			}
-		}
-	}
+            proceso();
+        }
+    }
 
 	//Free resources and close SDL
 	cerrar();

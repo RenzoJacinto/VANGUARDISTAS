@@ -169,3 +169,19 @@ void proceso() {
             }
 }
 
+SDL_Renderer* getRenderer(){
+    return gRenderer;
+}
+
+int getScreenWidth(){
+    return SCREEN_WIDTH;
+}
+
+int getScreenHeight(){
+    return SCREEN_HEIGHT;
+}
+
+Fondo getDotTexture(){
+    return gDotTexture;
+}
+
