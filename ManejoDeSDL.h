@@ -1,10 +1,9 @@
 #ifndef MANEJODESDL_H_
 #define MANEJODESDL_H_
 
-#include "Fondo.h"
+#include "TextureW.h"
 
-class ManejoDeSDL
-{
+class ManejoDeSDL{
     public:
 
         ManejoDeSDL();
@@ -38,9 +37,6 @@ class ManejoDeSDL
 
         int getScreenHeight();
 
-        Fondo getDotTexture();
-
-        Fondo getBGTexture();
 
         //void aplicarImagen();
 
@@ -54,13 +50,16 @@ class ManejoDeSDL
 
         bool eventoEsSalir();
 
+        //nuevo para la aparcicion de la nave en pantalla con movimiento
+        void renderNave(int x, int y);
+
     private:
 
         int screenHeight, screenWidth;
 
         //Scene textures
-        Fondo gDotTexture;
-        Fondo gBGTexture;
+        TextureW gNaveTexture;
+        TextureW gBGTexture;
 
         //Event handler
         SDL_Event e;

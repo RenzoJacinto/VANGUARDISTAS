@@ -7,33 +7,19 @@
 
 #include "ManejoDeSDL.h"
 #include "Nave.h"
-#include "Fondo.h"
+#include "TextureW.h"
 #include "global.h"
 
 ManejoDeSDL sdl;
 
-int main( int argc, char* args[] )
-{
-	//Start up SDL and create window
-	if( !sdl.iniciarSDL() )
-	{
-		printf( "Failed to initialize!\n" );
-	}
-	else
-	{
-		//Load media
-		if( !sdl.cargarImagen() )
-		{
-			printf( "Failed to load media!\n" );
-		}
-		else
-		{
-            sdl.proceso();
-        }
+int main( int argc, char* args[] ){
+
+	if(!sdl.iniciarSDL()){
+		printf( "Error al inicializar SDL!\n" );
+	} else{
+		if( !sdl.cargarImagen() ) printf( "Error al cargar las imagenes!\n" );
+		else sdl.proceso();
     }
-
-	//Free resources and close SDL
 	sdl.cerrar();
-
 	return 0;
 }

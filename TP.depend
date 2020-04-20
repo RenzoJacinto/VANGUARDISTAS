@@ -102,3 +102,42 @@
 1587306834 /home/renzo/Documents/Taller/TP/global.h
 	"ManejoDeSDL.h"
 
+1587367320 source:/home/francisco/Taller/Fondo.cpp
+	"Fondo.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587367320 /home/francisco/Taller/ManejoDeSDL.h
+	"Fondo.h"
+
+1587367320 /home/francisco/Taller/global.h
+	"ManejoDeSDL.h"
+
+1587367320 source:/home/francisco/Taller/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"Nave.h"
+	"Fondo.h"
+	"global.h"
+
+1587367320 source:/home/francisco/Taller/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"Nave.h"
+	"Fondo.h"
+	"ManejoDeSDL.h"
+
+1587367320 source:/home/francisco/Taller/Nave.cpp
+	"Nave.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
