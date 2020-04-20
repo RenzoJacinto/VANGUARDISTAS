@@ -34,14 +34,17 @@
 		<Linker>
 			<Add option="-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
 		</Linker>
-		<Unit filename="Fondo.cpp" />
-		<Unit filename="Fondo.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
 		<Unit filename="ManejoDeSDL.h" />
 		<Unit filename="Nave.cpp" />
 		<Unit filename="Nave.h" />
+		<Unit filename="TextureW.cpp" />
+		<Unit filename="TextureW.h" />
 		<Unit filename="global.h" />
 		<Unit filename="main.cpp" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
