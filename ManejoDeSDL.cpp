@@ -7,6 +7,7 @@
 #include "Nave.h"
 #include "TextureW.h"
 #include "ManejoDeSDL.h"
+#include "BotonIniciar.h"
 
 //ACA HABRIA QUE CAMBIARLE A 800x600
 const int SCREEN_WIDTH = 640;
@@ -82,6 +83,20 @@ bool ManejoDeSDL::cargarImagen(){
 	return ok;
 }
 
+bool ManejoDeSDL::cargarImagenMenu(){
+	//Loading success flag
+	bool ok = true;
+
+    // Cargar la textura de la nave
+	if( !gMenuBGTexture.loadFromFile( "sprites/menuBG.png" ) ){
+		printf( "Error al cargar la imagen del fondo del menú!\n" );
+		ok = false;
+	}
+
+	return ok;
+
+}
+
 void ManejoDeSDL::cerrar(){
 	gNaveTexture.free();
 	gBGTexture.free();
@@ -95,6 +110,28 @@ void ManejoDeSDL::cerrar(){
 
 	IMG_Quit();
 	SDL_Quit();
+}
+
+void ManejoDeSDL::procesoMenu()
+{
+        bool quit = false;
+        BotonIniciar bt;
+        int scrollingOffset = 0;
+
+        // Mientras que siga corriendo la app
+        while( usuarioNoRequieraSalir(quit) ){
+            SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear( gRenderer );
+            gMenuBGTexture.render( 0, 0 );
+
+            //gBotonIniciarTexture.render(0, 0);
+
+            SDL_RenderPresent( gRenderer );
+            while( hayEventos() ){
+                if( eventoEsSalir() ) quit = true;
+                bt.handleEvent( e );
+				}
+        }
 }
 
 void ManejoDeSDL::proceso() {

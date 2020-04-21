@@ -17,8 +17,8 @@ int main( int argc, char* args[] ){
 	if(!sdl.iniciarSDL()){
 		printf( "Error al inicializar SDL!\n" );
 	} else{
-		if( !sdl.cargarImagen() ) printf( "Error al cargar las imagenes!\n" );
-		else sdl.proceso();
+		if( !sdl.cargarImagenMenu() ) printf( "Error al cargar las imagenes del Menú!\n" );
+		else sdl.procesoMenu();
     }
 	sdl.cerrar();
 	return 0;

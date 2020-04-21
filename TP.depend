@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1587306658 source:/home/renzo/Documents/Taller/TP/main.cpp
+1587501223 source:/home/renzo/Documents/Taller/TP/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -8,13 +8,13 @@
 	<string>
 	"ManejoDeSDL.h"
 	"Nave.h"
-	"Fondo.h"
+	"TextureW.h"
 	"global.h"
 
-1587306757 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
-	"Fondo.h"
+1587502572 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
+	"TextureW.h"
 
-1587306712 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
+1587502569 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -22,8 +22,9 @@
 	<stdio.h>
 	<string>
 	"Nave.h"
-	"Fondo.h"
+	"TextureW.h"
 	"ManejoDeSDL.h"
+	"BotonIniciar.h"
 
 1587306680 source:/home/renzo/Documents/Taller/TP/Fondo.cpp
 	"Fondo.h"
@@ -38,7 +39,7 @@
 	<stdio.h>
 	<string>
 
-1587306770 /home/renzo/Documents/Taller/TP/Nave.h
+1587498424 /home/renzo/Documents/Taller/TP/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -46,7 +47,7 @@
 	<stdio.h>
 	<string>
 
-1587306726 source:/home/renzo/Documents/Taller/TP/Nave.cpp
+1587498424 source:/home/renzo/Documents/Taller/TP/Nave.cpp
 	"Nave.h"
 	"ManejoDeSDL.h"
 	"global.h"
@@ -99,7 +100,7 @@
 	"Nave.h"
 	"ManejoDeSDL.h"
 
-1587306834 /home/renzo/Documents/Taller/TP/global.h
+1587498424 /home/renzo/Documents/Taller/TP/global.h
 	"ManejoDeSDL.h"
 
 1587367320 source:/home/francisco/Taller/Fondo.cpp
@@ -247,6 +248,177 @@
 	"global.h"
 
 1587424076 source:/home/rogger/Desktop/TrabajoV2/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587498424 /home/renzo/Documents/Taller/TP/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 source:/home/renzo/Documents/Taller/TP/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587498424 source:/home/renzo/Documents/Taller/TP/NaveAliada.cpp
+	"NaveAliada.h"
+
+1587498424 /home/renzo/Documents/Taller/TP/NaveAliada.h
+
+1587498424 source:/home/renzo/Documents/Taller/TP/naveEnemiga.cpp
+	"naveEnemiga.h"
+
+1587498424 /home/renzo/Documents/Taller/TP/naveEnemiga.h
+	"Nave.h"
+
+1587498424 source:/home/renzo/Documents/Taller/TP/NaveJugador.cpp
+	"NaveJugador.h"
+
+1587498424 /home/renzo/Documents/Taller/TP/NaveJugador.h
+	"NaveAliada.h"
+
+1587501877 source:/home/renzo/Documents/Taller/TP/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587501555 /home/renzo/Documents/Taller/TP/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587501223 source:/home/renzo/Documents/Taller/TPs/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"Nave.h"
+	"TextureW.h"
+	"global.h"
+
+1587502572 /home/renzo/Documents/Taller/TPs/ManejoDeSDL.h
+	"TextureW.h"
+
+1587498424 /home/renzo/Documents/Taller/TPs/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 /home/renzo/Documents/Taller/TPs/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 /home/renzo/Documents/Taller/TPs/global.h
+	"ManejoDeSDL.h"
+
+1587502569 source:/home/renzo/Documents/Taller/TPs/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"Nave.h"
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"BotonIniciar.h"
+
+1587501555 /home/renzo/Documents/Taller/TPs/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 source:/home/renzo/Documents/Taller/TPs/Nave.cpp
+	"Nave.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587498424 source:/home/renzo/Documents/Taller/TPs/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587501223 source:/home/renzo/Documents/Taller/TPS/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"Nave.h"
+	"TextureW.h"
+	"global.h"
+
+1587502572 /home/renzo/Documents/Taller/TPS/ManejoDeSDL.h
+	"TextureW.h"
+
+1587498424 /home/renzo/Documents/Taller/TPS/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 /home/renzo/Documents/Taller/TPS/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 /home/renzo/Documents/Taller/TPS/global.h
+	"ManejoDeSDL.h"
+
+1587502569 source:/home/renzo/Documents/Taller/TPS/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"Nave.h"
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"BotonIniciar.h"
+
+1587501555 /home/renzo/Documents/Taller/TPS/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587498424 source:/home/renzo/Documents/Taller/TPS/Nave.cpp
+	"Nave.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587498424 source:/home/renzo/Documents/Taller/TPS/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"

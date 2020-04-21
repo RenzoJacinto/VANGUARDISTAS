@@ -14,8 +14,12 @@ class ManejoDeSDL{
         //Carga una imagen
         bool cargarImagen();
 
+        bool cargarImagenMenu();
+
         //Libera espacio en memoria y cierra SDL
         void cerrar();
+
+        void procesoMenu();
 
         void proceso();
 
@@ -58,6 +62,7 @@ class ManejoDeSDL{
         int screenHeight, screenWidth;
 
         //Scene textures
+        TextureW gMenuBGTexture;
         TextureW gNaveTexture;
         TextureW gBGTexture;
 
