@@ -10,8 +10,8 @@
 #include "BotonIniciar.h"
 
 //ACA HABRIA QUE CAMBIARLE A 800x600
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 ManejoDeSDL::ManejoDeSDL(){
     setScreenWidth(SCREEN_WIDTH);
@@ -112,12 +112,9 @@ void ManejoDeSDL::cerrar(){
 	SDL_Quit();
 }
 
-void ManejoDeSDL::procesoMenu()
-{
+void ManejoDeSDL::procesoMenu(){
         bool quit = false;
         BotonIniciar bt;
-        int scrollingOffset = 0;
-
         // Mientras que siga corriendo la app
         while( usuarioNoRequieraSalir(quit) ){
             SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
@@ -130,7 +127,7 @@ void ManejoDeSDL::procesoMenu()
             while( hayEventos() ){
                 if( eventoEsSalir() ) quit = true;
                 bt.handleEvent( e );
-				}
+            }
         }
 }
 
