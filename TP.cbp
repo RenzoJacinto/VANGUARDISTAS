@@ -30,18 +30,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fexceptions" />
 		</Compiler>
-		<Linker>
-			<Add option="-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
-		</Linker>
 		<Unit filename="BotonIniciar.cpp" />
 		<Unit filename="BotonIniciar.h" />
+		<Unit filename="ManejoDeLog.cpp" />
+		<Unit filename="ManejoDeLog.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
 		<Unit filename="ManejoDeSDL.h" />
 		<Unit filename="Nave.cpp" />
 		<Unit filename="Nave.h" />
-		<Unit filename="NaveAliada.cpp" />
-		<Unit filename="NaveAliada.h" />
 		<Unit filename="NaveEnemiga.cpp" />
 		<Unit filename="NaveEnemiga.h" />
 		<Unit filename="NaveJugador.cpp" />
@@ -50,6 +48,7 @@
 		<Unit filename="TextureW.h" />
 		<Unit filename="colicionador.h" />
 		<Unit filename="global.h" />
+		<Unit filename="log.txt" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

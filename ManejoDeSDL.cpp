@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <string>
 
-//#include "Nave.h"
+#include "Nave.h"
+#include "NaveJugador.h"
+#include "NaveEnemiga.h"
 #include "TextureW.h"
 #include "ManejoDeSDL.h"
 #include "BotonIniciar.h"
-#include "NaveJugador.h"
-#include "NaveEnemiga.h"
 #include "colicionador.h"
 
 
@@ -160,11 +160,9 @@ void ManejoDeSDL::proceso() {
 
 	    bool quit = false;
 
-	    //Nave nave;
+        NaveJugador* jugador = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
 
-        NaveJugador* dot = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
-
-        NaveEnemiga* otherDot = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
+        NaveEnemiga* enemigo = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -190,14 +188,12 @@ void ManejoDeSDL::proceso() {
 	    while( usuarioNoRequieraSalir(quit) ) {
 		    while( hayEventos() ){
 		         if( eventoEsSalir() ) quit = true;
-			      dot->handleEvent( e );
+			      jugador->handleEvent( e );
 			 }
 
-			 //dot.mover( *otherDot );
-                	 dot->mover(otherDot);
+			jugador->mover(enemigo);
 
 			 //Scroll background
-
 			 scrollingOffsetBG -= 0.1;
 			 if( scrollingOffsetBG < -dataBG.w )
 			 {
@@ -222,11 +218,10 @@ void ManejoDeSDL::proceso() {
 			 gCiudadTexture.render(scrollingOffsetCity, 150, &dataCiudad);
 			 gCiudadTexture.render(scrollingOffsetCity + dataCiudad.w, 150, &dataCiudad);
 
-			 //dot.renderizar();
-			 dot->renderizar();
+			 jugador->renderizar();
 
-                	 otherDot->mover( dot );
-                         otherDot->renderizar();
+             enemigo->mover( jugador );
+             enemigo->renderizar();
 
 			 SDL_RenderPresent( gRenderer );
         }
