@@ -593,3 +593,98 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
+1587757232 source:/home/agustin/Desktop/taller1/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587757232 /home/agustin/Desktop/taller1/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587757831 /home/agustin/Desktop/taller1/ManejoDeSDL.h
+	"TextureW.h"
+
+1587757232 /home/agustin/Desktop/taller1/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587757232 /home/agustin/Desktop/taller1/global.h
+	"ManejoDeSDL.h"
+
+1587757232 source:/home/agustin/Desktop/taller1/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"TextureW.h"
+	"global.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+
+1587757765 /home/agustin/Desktop/taller1/NaveJugador.h
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587757232 /home/agustin/Desktop/taller1/NaveEnemiga.h
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587757232 /home/agustin/Desktop/taller1/colicionador.h
+
+1587757232 source:/home/agustin/Desktop/taller1/Nave.cpp
+
+1587757232 source:/home/agustin/Desktop/taller1/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587757232 source:/home/agustin/Desktop/taller1/NaveJugador.cpp
+	"NaveJugador.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587757232 source:/home/agustin/Desktop/taller1/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587757747 source:/home/agustin/Desktop/taller1/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"BotonIniciar.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"colicionador.h"
+

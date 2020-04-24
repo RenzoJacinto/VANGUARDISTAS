@@ -23,7 +23,7 @@ class NaveJugador
 		static const int DOT_HEIGHT = 20;
 
 		//Velocidad de la Nave del Jugador
-		static const int DOT_VEL = 2;
+		static const int DOT_VEL = 7;
 
         //Se inicializa la Nave en esas coordenadas
 		NaveJugador( int x, int y );

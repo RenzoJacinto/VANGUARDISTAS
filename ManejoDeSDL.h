@@ -69,6 +69,8 @@ class ManejoDeSDL{
         TextureW gNaveTexture;
         TextureW gEnemigoTexture;
         TextureW gBGTexture;
+        TextureW gCiudadTexture;
+        TextureW gPlanetaTexture;
 
         //Event handler
         SDL_Event e;

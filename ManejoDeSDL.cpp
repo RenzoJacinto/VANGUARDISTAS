@@ -15,8 +15,8 @@
 
 
 //ACA HABRIA QUE CAMBIARLE A 800x600
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600;
 
 ManejoDeSDL::ManejoDeSDL(){
     setScreenWidth(SCREEN_WIDTH);
@@ -90,6 +90,18 @@ bool ManejoDeSDL::cargarImagen(){
 		printf( "Error al cargar la imagen de fondo!\n" );
 		ok = false;
 	}
+
+	// Cargar la textura de la ciudad
+	if( !gCiudadTexture.loadFromFile( "sprites/ciudad.png" ) ){
+        printf( "Error al cargar la imagen de la ciudad" );
+        ok = false;
+	}
+
+	// Cargar la textura del planeta
+	if( !gPlanetaTexture.loadFromFile( "sprites/planeta.png" ) ){
+        printf( "Error al cargar la imagen del planeta" );
+        ok = false;
+	}
 	return ok;
 }
 
@@ -111,6 +123,8 @@ void ManejoDeSDL::cerrar(){
 	gNaveTexture.free();
 	gEnemigoTexture.free();
 	gBGTexture.free();
+	gCiudadTexture.free();
+	gPlanetaTexture.free();
 
 
 	SDL_DestroyRenderer( gRenderer );
@@ -144,43 +158,78 @@ void ManejoDeSDL::procesoMenu(){
 
 void ManejoDeSDL::proceso() {
 
-			bool quit = false;
+	    bool quit = false;
 
-			//Nave nave;
+	    //Nave nave;
 
-            NaveJugador* dot = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
+        NaveJugador* dot = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
 
-            NaveEnemiga* otherDot = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
+        NaveEnemiga* otherDot = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
 
-			int scrollingOffset = 0;
+	    double scrollingOffsetBG = 0;
+	    double scrollingOffsetCity = 0;
+        double tierraInicial = 850;
 
-			// Mientras que siga corriendo la app
-			while( usuarioNoRequieraSalir(quit) ){
-				while( hayEventos() ){
-					if( eventoEsSalir() ) quit = true;
-					dot->handleEvent( e );
-				}
+	    SDL_Rect dataCiudad;
+	    SDL_Rect dataPlaneta;
+	    SDL_Rect dataBG;
 
-				//dot.mover( *otherDot );
-                dot->mover(otherDot);
+	    dataBG.h = 600;
+	    dataBG.w = 800;
 
-				--scrollingOffset;
-				if( scrollingOffset < -gBGTexture.getWidth() ) scrollingOffset = 0;
+	    dataCiudad.h = 450;
+	    dataCiudad.w = 2048;
 
-				SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
-				SDL_RenderClear( gRenderer );
+        dataPlaneta.h = 400;
+	    dataPlaneta.w = 400;
 
-				gBGTexture.render( scrollingOffset, 0 );
-				gBGTexture.render( scrollingOffset + gBGTexture.getWidth(), 0 );
+	    //gDotTexture.setWidth(75);
+	    //gDotTexture.setHeight(32);
 
-				//dot.renderizar();
-				dot->renderizar();
+	    // Mientras que siga corriendo la app
+	    while( usuarioNoRequieraSalir(quit) ) {
+		    while( hayEventos() ){
+		         if( eventoEsSalir() ) quit = true;
+			      dot->handleEvent( e );
+			 }
 
-                otherDot->mover( dot );
-                otherDot->renderizar();
+			 //dot.mover( *otherDot );
+                	 dot->mover(otherDot);
 
-				SDL_RenderPresent( gRenderer );
-            }
+			 //Scroll background
+
+			 scrollingOffsetBG -= 0.1;
+			 if( scrollingOffsetBG < -dataBG.w )
+			 {
+				 scrollingOffsetBG = 0;
+			 }
+
+			 scrollingOffsetCity -= 5;
+		 	 if( scrollingOffsetCity < -dataCiudad.w )
+			 {
+				 scrollingOffsetCity = 0;
+			 }
+
+			 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+			 SDL_RenderClear( gRenderer );
+
+			 gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
+			 gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
+
+			 gPlanetaTexture.render(tierraInicial, -50);
+             tierraInicial -= 0.2;
+
+			 gCiudadTexture.render(scrollingOffsetCity, 150, &dataCiudad);
+			 gCiudadTexture.render(scrollingOffsetCity + dataCiudad.w, 150, &dataCiudad);
+
+			 //dot.renderizar();
+			 dot->renderizar();
+
+                	 otherDot->mover( dot );
+                         otherDot->renderizar();
+
+			 SDL_RenderPresent( gRenderer );
+        }
 }
 
 bool ManejoDeSDL::huboErrorAlIniciarSDL(){
