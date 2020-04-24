@@ -114,3 +114,119 @@
 	"BotonIniciar.h"
 	"colicionador.h"
 
+1587764913 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+
+1587764898 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
+	<iostream>
+	<fstream>
+
+1587764270 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
+	"Nave.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"global.h"
+	"colicionador.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.h
+	"TextureW.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
+
+1587764270 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+	"Nave.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587764270 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
+	"NaveJugador.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587765279 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587764639 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1587764698 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"global.h"
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+
+1587765208 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"BotonIniciar.h"
+	"colicionador.h"
+

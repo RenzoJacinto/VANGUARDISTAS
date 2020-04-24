@@ -19,15 +19,15 @@ bool TextureW::loadFromFile( std::string path ){
 
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 
-	if( loadedSurface == NULL ){
-		printf( "Unable to load image %s! SDL_image Error: %s\n", path.c_str(), IMG_GetError() );
+	if( loadedSurface == NULL && logger.seDebeInformarError() ){
+        logger.informar(IMG_GetError());
 	}
 	else{
 		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
         newTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), loadedSurface );
-		if( newTexture == NULL ){
-			printf( "Unable to create texture from %s! SDL Error: %s\n", path.c_str(), SDL_GetError() );
+		if( newTexture == NULL && logger.seDebeInformarError() ){
+            logger.informar(SDL_GetError());
 		} else{
 			mWidth = loadedSurface->w;
 			mHeight = loadedSurface->h;

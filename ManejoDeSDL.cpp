@@ -13,19 +13,13 @@
 #include "BotonIniciar.h"
 #include "colicionador.h"
 
-
-//ACA HABRIA QUE CAMBIARLE A 800x600
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 
 ManejoDeSDL::ManejoDeSDL(){
     setScreenWidth(SCREEN_WIDTH);
     setScreenHeight(SCREEN_HEIGHT);
-
-    //The window we'll be rendering to
     setWindow(NULL);
-
-    //The window renderer
     setRenderer(NULL);
 }
 
@@ -35,24 +29,24 @@ bool ManejoDeSDL::iniciarSDL(){
 
 	//Initialize SDL
 	if( huboErrorAlIniciarSDL() ){
-		printf( "SDL could not initialize! SDL Error: %s\n", SDL_GetError() );
+        if(logger.seDebeInformarError()) logger.informar(SDL_GetError());
 		ok = false;
 	}
 	else{
 		//Set texture filtering to linear
-		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) ) printf( "Warning: Linear texture filtering not enabled!" );
+		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) && logger.seDebeInformarError() ) logger.informar("Warning: Linear texture filtering not enabled!");
 
 		//Create window
 		setWindow( SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN ) );
 		if( gWindow == NULL ){
-			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
+			if(logger.seDebeInformarError()) logger.informar(SDL_GetError());
 			ok = false;
 		}
 		else{
 			//Create vsynced renderer for window
 			setRenderer( SDL_CreateRenderer( gWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC ) );
 			if( gRenderer == NULL ){
-				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+				if(logger.seDebeInformarError()) logger.informar(SDL_GetError());
 				ok = false;
 			}
 			else{
@@ -62,7 +56,7 @@ bool ManejoDeSDL::iniciarSDL(){
 				//Initialize PNG loading
 				int imgFlags = IMG_INIT_PNG;
 				if( !( IMG_Init( imgFlags ) & imgFlags ) ){
-					printf( "SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError() );
+					if(logger.seDebeInformarError()) logger.informar(IMG_GetError());
 					ok = false;
 				}
 			}
@@ -77,29 +71,29 @@ bool ManejoDeSDL::cargarImagen(){
 
     // Cargar la textura de la nave
 	if( !gNaveTexture.loadFromFile( "sprites/nave.png" ) ){
-		printf( "Error al cargar la imagen de la nave!\n" );
+        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la nave!");
 		ok = false;
 	}
 	// Cargar la textura de la nave
 	if( !gEnemigoTexture.loadFromFile( "sprites/enemigo.png" ) ){
-		printf( "Error al cargar la imagen de la nave!\n" );
+	    if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la nave!");
 		ok = false;
 	}
     // Cargar la textura del fondo
 	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
-		printf( "Error al cargar la imagen de fondo!\n" );
+        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de fondo!");
 		ok = false;
 	}
 
 	// Cargar la textura de la ciudad
 	if( !gCiudadTexture.loadFromFile( "sprites/ciudad.png" ) ){
-        printf( "Error al cargar la imagen de la ciudad" );
+        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la ciudad");
         ok = false;
 	}
 
 	// Cargar la textura del planeta
 	if( !gPlanetaTexture.loadFromFile( "sprites/planeta.png" ) ){
-        printf( "Error al cargar la imagen del planeta" );
+        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen del planeta");
         ok = false;
 	}
 	return ok;
@@ -111,7 +105,7 @@ bool ManejoDeSDL::cargarImagenMenu(){
 
     // Cargar la textura de la nave
 	if( !gMenuBGTexture.loadFromFile( "sprites/menuBG.png" ) ){
-		printf( "Error al cargar la imagen del fondo del menú!\n" );
+        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen del fondo del menú!");
 		ok = false;
 	}
 

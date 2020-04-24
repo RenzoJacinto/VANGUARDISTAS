@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string>
 
+#include "global.h"
 #include "ManejoDeSDL.h"
 #include "ManejoDeLog.h"
 
@@ -12,16 +13,11 @@ ManejoDeSDL sdl;
 ManejoDeLog logger;
 
 int main( int argc, char* args[] ){
-
-    if (!logger.iniciarLog()){
-        printf( "Error al inicializar el archivo de log!\n" );
-    }
-	if(!sdl.iniciarSDL()){
-		printf( "Error al inicializar SDL!\n" );
-	} else{
-		if( !sdl.cargarImagenMenu() ) printf( "Error al cargar las imagenes del Menú!\n" );
+    if (logger.iniciarLog() && sdl.iniciarSDL()){
+		if( !sdl.cargarImagenMenu() && logger.seDebeInformarError()) logger.informar("Error al cargar las imagenes del Menú!");
 		else sdl.procesoMenu();
     }
 	sdl.cerrar();
+	logger.cerrar();
 	return 0;
 }

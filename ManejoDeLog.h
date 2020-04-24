@@ -11,7 +11,11 @@ class ManejoDeLog{
 
         ManejoDeLog();
         bool iniciarLog();
-        void informar(char* update);
+        void informar(const char* update);
+        void cerrar();
+        bool seDebeInformarDebug();
+        bool seDebeInformarInfo();
+        bool seDebeInformarError();
 
     private:
 
@@ -23,3 +27,4 @@ class ManejoDeLog{
 };
 
 #endif
+

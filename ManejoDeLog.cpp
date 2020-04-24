@@ -12,8 +12,24 @@ bool ManejoDeLog::iniciarLog(){
     return true;
 }
 
-void ManejoDeLog::informar(char* update){
+void ManejoDeLog::informar(const char* update){
     archivo_log << update;
+    archivo_log << "\n";
 }
 
+void ManejoDeLog::cerrar(){
+    archivo_log.close();
+}
+
+bool ManejoDeLog::seDebeInformarDebug(){
+    return debug;
+}
+
+bool ManejoDeLog::seDebeInformarInfo(){
+    return info;
+}
+
+bool ManejoDeLog::seDebeInformarError(){
+    return error;
+}
 
