@@ -71,29 +71,24 @@ bool ManejoDeSDL::cargarImagen(){
 
     // Cargar la textura de la nave
 	if( !gNaveTexture.loadFromFile( "sprites/nave.png" ) ){
-        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la nave!");
 		ok = false;
 	}
 	// Cargar la textura de la nave
 	if( !gEnemigoTexture.loadFromFile( "sprites/enemigo.png" ) ){
-	    if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la nave!");
 		ok = false;
 	}
     // Cargar la textura del fondo
 	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
-        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de fondo!");
 		ok = false;
 	}
 
 	// Cargar la textura de la ciudad
 	if( !gCiudadTexture.loadFromFile( "sprites/ciudad.png" ) ){
-        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen de la ciudad");
         ok = false;
 	}
 
 	// Cargar la textura del planeta
 	if( !gPlanetaTexture.loadFromFile( "sprites/planeta.png" ) ){
-        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen del planeta");
         ok = false;
 	}
 	return ok;
@@ -105,7 +100,6 @@ bool ManejoDeSDL::cargarImagenMenu(){
 
     // Cargar la textura de la nave
 	if( !gMenuBGTexture.loadFromFile( "sprites/menuBG.png" ) ){
-        if(logger.seDebeInformarError()) logger.informar("Error al cargar la imagen del fondo del menú!");
 		ok = false;
 	}
 
