@@ -4,14 +4,19 @@
 #include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <string>
-#include "Nave.h"
+
+//#include "Nave.h"
 #include "TextureW.h"
 #include "ManejoDeSDL.h"
 #include "BotonIniciar.h"
+#include "NaveJugador.h"
+#include "NaveEnemiga.h"
+#include "colicionador.h"
+
 
 //ACA HABRIA QUE CAMBIARLE A 800x600
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 ManejoDeSDL::ManejoDeSDL(){
     setScreenWidth(SCREEN_WIDTH);
@@ -75,6 +80,11 @@ bool ManejoDeSDL::cargarImagen(){
 		printf( "Error al cargar la imagen de la nave!\n" );
 		ok = false;
 	}
+	// Cargar la textura de la nave
+	if( !gEnemigoTexture.loadFromFile( "sprites/enemigo.png" ) ){
+		printf( "Error al cargar la imagen de la nave!\n" );
+		ok = false;
+	}
     // Cargar la textura del fondo
 	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
 		printf( "Error al cargar la imagen de fondo!\n" );
@@ -99,6 +109,7 @@ bool ManejoDeSDL::cargarImagenMenu(){
 
 void ManejoDeSDL::cerrar(){
 	gNaveTexture.free();
+	gEnemigoTexture.free();
 	gBGTexture.free();
 
 
@@ -134,17 +145,25 @@ void ManejoDeSDL::procesoMenu(){
 void ManejoDeSDL::proceso() {
 
 			bool quit = false;
-			Nave nave;
+
+			//Nave nave;
+
+            NaveJugador* dot = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
+
+            NaveEnemiga* otherDot = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
+
 			int scrollingOffset = 0;
 
 			// Mientras que siga corriendo la app
 			while( usuarioNoRequieraSalir(quit) ){
 				while( hayEventos() ){
 					if( eventoEsSalir() ) quit = true;
-					nave.handleEvent( e );
+					dot->handleEvent( e );
 				}
 
-				nave.move();
+				//dot.mover( *otherDot );
+                dot->mover(otherDot);
+
 				--scrollingOffset;
 				if( scrollingOffset < -gBGTexture.getWidth() ) scrollingOffset = 0;
 
@@ -154,7 +173,11 @@ void ManejoDeSDL::proceso() {
 				gBGTexture.render( scrollingOffset, 0 );
 				gBGTexture.render( scrollingOffset + gBGTexture.getWidth(), 0 );
 
-				nave.render();
+				//dot.renderizar();
+				dot->renderizar();
+
+                otherDot->mover( dot );
+                otherDot->renderizar();
 
 				SDL_RenderPresent( gRenderer );
             }
@@ -214,4 +237,8 @@ bool ManejoDeSDL::eventoEsSalir(){
 
 void ManejoDeSDL::renderNave(int x, int y){
     gNaveTexture.render(x,y);
+}
+
+void ManejoDeSDL::renderEnemigo(int x, int y){
+    gEnemigoTexture.render(x,y);
 }

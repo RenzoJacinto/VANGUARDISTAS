@@ -1,9 +1,9 @@
-#ifndef NAVEJUGADOR_H
-#define NAVEJUGADOR_H
+#ifndef NAVEENEMIGA_H
+#define NAVEENEMIGA_H
 
 //#include "Nave.h"
-#include "NaveEnemiga.h"
 #include "NaveJugador.h"
+#include "NaveEnemiga.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
@@ -12,27 +12,21 @@
 #include <string>
 #include "colicionador.h"
 
-class NaveEnemiga;
+class NaveJugador;
 
-class NaveJugador
+class NaveEnemiga
 {
     public:
 
-        //Las dimensiones de la Nave del Jugador
-		static const int DOT_WIDTH = 20;
-		static const int DOT_HEIGHT = 20;
-
-		//Velocidad de la Nave del Jugador
-		static const int DOT_VEL = 2;
+        //Las dimensiones de la Nave del enemigo
+		static const int DOT_WIDTH = 40;
+		static const int DOT_HEIGHT = 40;
 
         //Se inicializa la Nave en esas coordenadas
-		NaveJugador( int x, int y );
+		NaveEnemiga( int x, int y );
 
-        //Toma las teclas oprimidas y ajusta la velocidad de la Nave
-		void handleEvent( SDL_Event& e );
-
-		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( NaveEnemiga* enemigo );
+		//Mueve la Nave considerando la posicion de la Nave del jugador
+		void mover( NaveJugador* jugador );
 
 		void renderizar();
 
@@ -48,14 +42,6 @@ class NaveJugador
 		int getPosY();
 
 		void setPosY(int n);
-
-        int getVelX();
-
-		void setVelX(int n);
-
-        int getVelY();
-
-		void setVelY(int n);
 
 		bool checkCollision( Circle& a, Circle& b );
 
@@ -74,4 +60,4 @@ class NaveJugador
 
 };
 
-#endif // NAVEJUGADOR_H
+#endif // NAVEENEMIGA_H

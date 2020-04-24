@@ -6,9 +6,11 @@
 #include <string>
 
 #include "ManejoDeSDL.h"
-#include "Nave.h"
+//#include "Nave.h"
 #include "TextureW.h"
 #include "global.h"
+#include "NaveJugador.h"
+#include "NaveEnemiga.h"
 
 ManejoDeSDL sdl;
 

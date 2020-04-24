@@ -57,6 +57,9 @@ class ManejoDeSDL{
         //nuevo para la aparcicion de la nave en pantalla con movimiento
         void renderNave(int x, int y);
 
+        void renderEnemigo(int x, int y);
+
+
     private:
 
         int screenHeight, screenWidth;
@@ -64,6 +67,7 @@ class ManejoDeSDL{
         //Scene textures
         TextureW gMenuBGTexture;
         TextureW gNaveTexture;
+        TextureW gEnemigoTexture;
         TextureW gBGTexture;
 
         //Event handler
