@@ -1,30 +1,31 @@
 # depslib dependency file v1.0
-1587501223 source:/home/renzo/Documents/Taller/TP/main.cpp
+1587759912 source:/home/renzo/Documents/Taller/TP/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	<stdio.h>
 	<string>
-	"ManejoDeSDL.h"
-	"Nave.h"
-	"TextureW.h"
 	"global.h"
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
 
-1587502572 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
+1587758545 /home/renzo/Documents/Taller/TP/ManejoDeSDL.h
 	"TextureW.h"
 
-1587502569 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
+1587758545 source:/home/renzo/Documents/Taller/TP/ManejoDeSDL.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	<stdio.h>
 	<string>
-	"Nave.h"
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"BotonIniciar.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"colicionador.h"
 
 1587306680 source:/home/renzo/Documents/Taller/TP/Fondo.cpp
 	"Fondo.h"
@@ -47,10 +48,7 @@
 	<stdio.h>
 	<string>
 
-1587498424 source:/home/renzo/Documents/Taller/TP/Nave.cpp
-	"Nave.h"
-	"ManejoDeSDL.h"
-	"global.h"
+1587758545 source:/home/renzo/Documents/Taller/TP/Nave.cpp
 
 1587305067 source:/home/renzo/Documents/Taller/v1/Fondo.cpp
 	"Fondo.h"
@@ -100,8 +98,9 @@
 	"Nave.h"
 	"ManejoDeSDL.h"
 
-1587498424 /home/renzo/Documents/Taller/TP/global.h
+1587759917 /home/renzo/Documents/Taller/TP/global.h
 	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
 
 1587367320 source:/home/francisco/Taller/Fondo.cpp
 	"Fondo.h"
@@ -247,7 +246,7 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587498424 /home/renzo/Documents/Taller/TP/TextureW.h
+1587758545 /home/renzo/Documents/Taller/TP/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -255,7 +254,7 @@
 	<stdio.h>
 	<string>
 
-1587498424 source:/home/renzo/Documents/Taller/TP/TextureW.cpp
+1587758545 source:/home/renzo/Documents/Taller/TP/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
@@ -271,18 +270,28 @@
 1587498424 /home/renzo/Documents/Taller/TP/naveEnemiga.h
 	"Nave.h"
 
-1587498424 source:/home/renzo/Documents/Taller/TP/NaveJugador.cpp
+1587758545 source:/home/renzo/Documents/Taller/TP/NaveJugador.cpp
 	"NaveJugador.h"
+	"ManejoDeSDL.h"
+	"global.h"
 
-1587498424 /home/renzo/Documents/Taller/TP/NaveJugador.h
-	"NaveAliada.h"
+1587758545 /home/renzo/Documents/Taller/TP/NaveJugador.h
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
 
-1587501877 source:/home/renzo/Documents/Taller/TP/BotonIniciar.cpp
+1587758545 source:/home/renzo/Documents/Taller/TP/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587501555 /home/renzo/Documents/Taller/TP/BotonIniciar.h
+1587758545 /home/renzo/Documents/Taller/TP/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -687,4 +696,31 @@
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"colicionador.h"
+
+1587758545 /home/renzo/Documents/Taller/TP/NaveEnemiga.h
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587758545 /home/renzo/Documents/Taller/TP/colicionador.h
+
+1587758545 source:/home/renzo/Documents/Taller/TP/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587760458 /home/renzo/Documents/Taller/TP/ManejoDeLog.h
+	<iostream>
+	<fstream>
+
+1587759821 source:/home/renzo/Documents/Taller/TP/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+	<iostream>
+	<fstream>
 

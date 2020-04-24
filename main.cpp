@@ -5,17 +5,17 @@
 #include <stdio.h>
 #include <string>
 
-#include "ManejoDeSDL.h"
-//#include "Nave.h"
-#include "TextureW.h"
 #include "global.h"
-#include "NaveJugador.h"
-#include "NaveEnemiga.h"
+#include "ManejoDeSDL.h"
+#include "ManejoDeLog.h"
 
 ManejoDeSDL sdl;
+ManejoDeLog logger;
 
 int main( int argc, char* args[] ){
-
+    if (!logger.iniciarLog()){
+        printf( "Error al inicializar el archivo de log!\n" );
+    }
 	if(!sdl.iniciarSDL()){
 		printf( "Error al inicializar SDL!\n" );
 	} else{
