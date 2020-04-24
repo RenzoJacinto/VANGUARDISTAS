@@ -2,8 +2,10 @@
 #include "ManejoDeSDL.h"
 #include "global.h"
 
+
 NaveJugador::NaveJugador( int x, int y )
 {
+
     //Initialize the offsets
     mPosX = x;
     mPosY = y;
@@ -81,84 +83,4 @@ void NaveJugador::renderizar()
 {
     //Show the dot
 	sdl.renderNave(getPosX() - getColicionador().r, getPosY()- getColicionador().r );
-	//gDotTexture.render( getPosX() - getColicionador().r, getPosY()- getColicionador().r );
-}
-
-Circle& NaveJugador::getColicionador()
-{
-	return mColicionador;
-}
-
-
-void NaveJugador::desplazarColicionador()
-{
-	//Align collider to center of dot
-	getColicionador().x = getPosX();
-	getColicionador().y = getPosY();
-}
-
-
-int NaveJugador::getPosX()
-{
-    return mPosX;
-}
-
-void NaveJugador::setPosX(int num)
-{
-    mPosX=num;
-}
-
-int NaveJugador::getPosY()
-{
-    return mPosY;
-}
-
-void NaveJugador::setPosY(int num)
-{
-    mPosY=num;
-}
-
-int NaveJugador::getVelX()
-{
-    return mVelX;
-}
-
-void NaveJugador::setVelX(int num)
-{
-    mVelX=num;
-}
-
-int NaveJugador::getVelY()
-{
-    return mVelY;
-}
-
-void NaveJugador::setVelY(int num)
-{
-    mVelY=num;
-}
-
-
-bool NaveJugador::checkCollision( Circle& a, Circle& b )
-{
-	//Calculate total radius squared
-	int totalRadiusSquared = a.r + b.r;
-	totalRadiusSquared = totalRadiusSquared * totalRadiusSquared;
-
-    //If the distance between the centers of the circles is less than the sum of their radii
-    if( distanceSquared( a.x, a.y, b.x, b.y ) < ( totalRadiusSquared ) )
-    {
-        //The circles have collided
-        return true;
-    }
-
-    //If not
-    return false;
-}
-
-double NaveJugador::distanceSquared( int x1, int y1, int x2, int y2 )
-{
-	int deltaX = x2 - x1;
-	int deltaY = y2 - y1;
-	return deltaX*deltaX + deltaY*deltaY;
 }

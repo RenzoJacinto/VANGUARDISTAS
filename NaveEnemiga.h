@@ -1,7 +1,7 @@
 #ifndef NAVEENEMIGA_H
 #define NAVEENEMIGA_H
 
-//#include "Nave.h"
+#include "Nave.h"
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
 #include <SDL2/SDL.h>
@@ -14,7 +14,7 @@
 
 class NaveJugador;
 
-class NaveEnemiga
+class NaveEnemiga: public Nave
 {
     public:
 
@@ -29,34 +29,6 @@ class NaveEnemiga
 		void mover( NaveJugador* jugador );
 
 		void renderizar();
-
-		Circle& getColicionador();
-
-		//Mueve el círculo de colisión en relación con el desplazamiento de la Nave
-		void desplazarColicionador();
-
-		int getPosX();
-
-		void setPosX(int n);
-
-		int getPosY();
-
-		void setPosY(int n);
-
-		bool checkCollision( Circle& a, Circle& b );
-
-		double distanceSquared( int x1, int y1, int x2, int y2 );
-
-    private:
-
-        //Las coordenadas X e Y de la Nave
-		int mPosX, mPosY;
-
-		//La velocidad de la Nave
-		int mVelX, mVelY;
-
-        //La Nave representada por un circula colisionador
-		Circle mColicionador;
 
 };
 

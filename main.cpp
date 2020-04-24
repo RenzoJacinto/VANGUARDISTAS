@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string>
 
-#include "global.h"
 #include "ManejoDeSDL.h"
 #include "ManejoDeLog.h"
 
@@ -13,6 +12,7 @@ ManejoDeSDL sdl;
 ManejoDeLog logger;
 
 int main( int argc, char* args[] ){
+
     if (!logger.iniciarLog()){
         printf( "Error al inicializar el archivo de log!\n" );
     }
