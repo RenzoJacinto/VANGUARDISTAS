@@ -142,7 +142,7 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/main.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -150,14 +150,15 @@
 	<stdio.h>
 	<string>
 	"ManejoDeSDL.h"
-	"Nave.h"
 	"TextureW.h"
 	"global.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.h
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.h
 	"TextureW.h"
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.h
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -167,27 +168,26 @@
 
 1587606940 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.h
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/global.h
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	<stdio.h>
 	<string>
-	"Nave.h"
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"BotonIniciar.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"colicionador.h"
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
-	"Nave.h"
-	"ManejoDeSDL.h"
-	"global.h"
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
@@ -418,7 +418,7 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.h
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -426,15 +426,15 @@
 	<stdio.h>
 	<string>
 
-1587605703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveAliada.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveAliada.cpp
 	"NaveAliada.h"
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveAliada.h
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveAliada.h
 
 1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/naveEnemiga.cpp
 	"naveEnemiga.h"
@@ -442,11 +442,21 @@
 1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/naveEnemiga.h
 	"Nave.h"
 
-1587603858 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
+	"ManejoDeSDL.h"
+	"global.h"
 
-1587603858 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
-	"NaveAliada.h"
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
 
 1587605703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS-MIO/BotonIniciar.cpp
 	"BotonIniciar.h"
@@ -562,6 +572,24 @@
 
 1587750251 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS-MIO/NaveJugador.cpp
 	"NaveJugador.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"colicionador.h"
+
+1587752198 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/colicionador.h
+
+1587752198 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
+	"NaveEnemiga.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
