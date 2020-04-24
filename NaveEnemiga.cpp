@@ -2,14 +2,13 @@
 #include "ManejoDeSDL.h"
 #include "global.h"
 
-NaveEnemiga::NaveEnemiga( int x, int y )
-{
+NaveEnemiga::NaveEnemiga( int x, int y ){
     //Initialize the offsets
     mPosX = x;
     mPosY = y;
 
 	//Set collision circle size
-	mColicionador.r = DOT_WIDTH / 2;
+	mColicionador.r = NAVE_WIDTH / 2;
 
     //Initialize the velocity
     mVelX = 0;
@@ -17,27 +16,23 @@ NaveEnemiga::NaveEnemiga( int x, int y )
 
 	//Move collider relative to the circle
 	desplazarColicionador();
+	if(!gNaveTexture.loadFromFile("sprites/enemigo.png")) logger.informar(SDL_GetError());
 }
 
 
-void NaveEnemiga::mover( NaveJugador* jugador )
-{
-    //Move the dot left or right
+void NaveEnemiga::mover( NaveJugador* jugador ){
+
     setPosX(getPosX()-1);
 	desplazarColicionador();
 
-    //If the dot collided or went too far to the left or right
-	if( checkCollision( getColicionador(), jugador->getColicionador() ) )
-    {
-        //Move back
+
+	if( checkCollision( getColicionador(), jugador->getColicionador() ) ){
         setPosX(getPosX()+1);
 		desplazarColicionador();
     }
 
 
-    if ( ( getPosX() - getColicionador().r < 0 ) || ( getPosX() + getColicionador().r > sdl.getScreenWidth() ) )
-    {
-        //Move back
+    if ( ( getPosX() - getColicionador().r < 0 ) || ( getPosX() + getColicionador().r > sdl.getScreenWidth() ) ){
         int posicionX = sdl.getScreenWidth() - 20;
         int posicionY = rand() % sdl.getScreenHeight();
         setPosX( posicionX );
@@ -59,9 +54,7 @@ void NaveEnemiga::mover( NaveJugador* jugador )
 }
 
 
-void NaveEnemiga::renderizar()
-{
-    //Show the dot
-	sdl.renderEnemigo(getPosX() - getColicionador().r, getPosY()- getColicionador().r);
+void NaveEnemiga::renderizar(){
+	gNaveTexture.render(getPosX() - getColicionador().r, getPosY()- getColicionador().r);
 }
 

@@ -19,11 +19,11 @@ class NaveJugador: public Nave
     public:
 
         //Las dimensiones de la Nave del Jugador
-		static const int DOT_WIDTH = 20;
-		static const int DOT_HEIGHT = 20;
+		static const int NAVE_WIDTH = 20;
+		static const int NAVE_HEIGHT = 20;
 
 		//Velocidad de la Nave del Jugador
-		static const int DOT_VEL = 2;
+		static const int NAVE_VEL = 2;
 
         //Se inicializa la Nave en esas coordenadas
 		NaveJugador( int x, int y );
@@ -35,6 +35,8 @@ class NaveJugador: public Nave
 		void mover( NaveEnemiga* enemigo );
 
 		void renderizar();
+
+		TextureW gNaveTexture;
 
 };
 

@@ -19,8 +19,10 @@ class NaveEnemiga: public Nave
     public:
 
         //Las dimensiones de la Nave del enemigo
-		static const int DOT_WIDTH = 40;
-		static const int DOT_HEIGHT = 40;
+		static const int NAVE_WIDTH = 40;
+		static const int NAVE_HEIGHT = 40;
+
+		TextureW gNaveTexture;
 
         //Se inicializa la Nave en esas coordenadas
 		NaveEnemiga( int x, int y );

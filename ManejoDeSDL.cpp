@@ -68,15 +68,6 @@ bool ManejoDeSDL::iniciarSDL(){
 bool ManejoDeSDL::cargarImagen(){
 	//Loading success flag
 	bool ok = true;
-
-    // Cargar la textura de la nave
-	if( !gNaveTexture.loadFromFile( "sprites/nave.png" ) ){
-		ok = false;
-	}
-	// Cargar la textura de la nave
-	if( !gEnemigoTexture.loadFromFile( "sprites/enemigo.png" ) ){
-		ok = false;
-	}
     // Cargar la textura del fondo
 	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
 		ok = false;
@@ -108,8 +99,6 @@ bool ManejoDeSDL::cargarImagenMenu(){
 }
 
 void ManejoDeSDL::cerrar(){
-	gNaveTexture.free();
-	gEnemigoTexture.free();
 	gBGTexture.free();
 	gCiudadTexture.free();
 	gPlanetaTexture.free();
@@ -148,7 +137,7 @@ void ManejoDeSDL::proceso() {
 
 	    bool quit = false;
 
-        NaveJugador* jugador = new NaveJugador( NaveJugador::DOT_WIDTH / 2, NaveJugador::DOT_HEIGHT / 2 );
+        NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 );
 
         NaveEnemiga* enemigo = new NaveEnemiga( SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 );
 
@@ -183,16 +172,11 @@ void ManejoDeSDL::proceso() {
 
 			 //Scroll background
 			 scrollingOffsetBG -= 0.1;
-			 if( scrollingOffsetBG < -dataBG.w )
-			 {
-				 scrollingOffsetBG = 0;
-			 }
+			 if( scrollingOffsetBG < -dataBG.w ) scrollingOffsetBG = 0;
+
 
 			 scrollingOffsetCity -= 5;
-		 	 if( scrollingOffsetCity < -dataCiudad.w )
-			 {
-				 scrollingOffsetCity = 0;
-			 }
+		 	 if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
 
 			 SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 			 SDL_RenderClear( gRenderer );
@@ -265,12 +249,4 @@ SDL_Event ManejoDeSDL::getEvento(){
 
 bool ManejoDeSDL::eventoEsSalir(){
     return e.type == SDL_QUIT;
-}
-
-void ManejoDeSDL::renderNave(int x, int y){
-    gNaveTexture.render(x,y);
-}
-
-void ManejoDeSDL::renderEnemigo(int x, int y){
-    gEnemigoTexture.render(x,y);
 }

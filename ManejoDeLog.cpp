@@ -1,5 +1,5 @@
 #include "ManejoDeLog.h"
-//#include <string>
+#include <string>
 
 ManejoDeLog::ManejoDeLog(){
     debug = true;
@@ -9,12 +9,18 @@ ManejoDeLog::ManejoDeLog(){
 
 bool ManejoDeLog::iniciarLog(){
     time_t ahora = time(0);
-    //const char* carpeta = "log/";
+
+    // junto strings para el nombre del archivo
+    std::string carpeta = "logs/";
     char* hora_actual = ctime(&ahora);
-    //std::string direccion = carpeta;
-    //direccion.append(hora_actual);
-    archivo_log.open (hora_actual, ios::out);
-    if (!archivo_log){ return false;}
+    string horaActual(hora_actual);
+    carpeta += horaActual;
+
+    const char* filename = carpeta.c_str();
+
+    archivo_log.open(filename, ios::out);
+
+    if (!archivo_log) return false;
     return true;
 }
 
@@ -38,4 +44,3 @@ bool ManejoDeLog::seDebeInformarInfo(){
 bool ManejoDeLog::seDebeInformarError(){
     return error;
 }
-
