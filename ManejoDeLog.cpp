@@ -25,8 +25,14 @@ bool ManejoDeLog::iniciarLog(){
 }
 
 void ManejoDeLog::informar(const char* update){
-    archivo_log << update;
-    archivo_log << "\n";
+    time_t ahora = time(0);
+    char* hora_actual = ctime(&ahora);
+    const char* espacio = " - ";
+    string guion(espacio);
+    string horaActual(hora_actual);
+    string sUpdate(update);
+    string hora = sUpdate + guion + horaActual;
+    archivo_log << hora.c_str();
 }
 
 void ManejoDeLog::cerrar(){

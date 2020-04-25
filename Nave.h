@@ -59,6 +59,8 @@ class Nave
         //La Nave representada por un circula colisionador
 		Circle mColicionador;
 
+		TextureW gNaveTexture;
+
 };
 
 #endif

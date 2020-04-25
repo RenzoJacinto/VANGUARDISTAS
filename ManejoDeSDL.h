@@ -32,11 +32,6 @@ class ManejoDeSDL{
 
         int getScreenHeight();
 
-        //void aplicarImagen();
-
-        //void actualizarSuperficie();
-
-        //nuevo para la aparcicion de la nave en pantalla con movimiento
         void renderNave(int x, int y);
 
         void renderEnemigo(int x, int y);

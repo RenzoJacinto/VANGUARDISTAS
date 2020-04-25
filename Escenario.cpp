@@ -1,6 +1,4 @@
 #include "Escenario.h"
-#include "global.h"
-#include "ManejoDeSDL.h"
 
 Escenario::Escenario(){}
 

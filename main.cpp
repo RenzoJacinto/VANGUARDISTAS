@@ -1,14 +1,4 @@
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
-#include <stdio.h>
-#include <string>
-
 #include "global.h"
-#include "ManejoDeSDL.h"
-#include "ManejoDeLog.h"
-#include "Escenario.h"
 #include "Menu.h"
 
 ManejoDeSDL sdl;

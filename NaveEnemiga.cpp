@@ -16,7 +16,7 @@ NaveEnemiga::NaveEnemiga( int x, int y ){
 
 	//Move collider relative to the circle
 	desplazarColicionador();
-	if(!gNaveTexture.loadFromFile("sprites/enemigo.png")) logger.informar(SDL_GetError());
+	if(!gNaveTexture.loadFromFile("sprites/enemigo.png") && logger.seDebeInformarError()) logger.informar(SDL_GetError());
 }
 
 
@@ -51,10 +51,5 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 //        mPosY -= mVelY;
 //		desplazarColicionador();
 //    }
-}
-
-
-void NaveEnemiga::renderizar(){
-	gNaveTexture.render(getPosX() - getColicionador().r, getPosY()- getColicionador().r);
 }
 

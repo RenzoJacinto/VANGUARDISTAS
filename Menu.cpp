@@ -12,7 +12,7 @@ bool Menu::cargarImagen(){
     // Cargar la textura de la nave
 	if( !gMenuBGTexture.loadFromFile( "sprites/menuBG.png" ) ){
 		ok = false;
-	}
+	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen menuBG.png");}
 
 	return ok;
 }
@@ -20,6 +20,7 @@ bool Menu::cargarImagen(){
 void Menu::procesar(){
     bool quit = false;
     BotonIniciar bt;
+    if (logger.seDebeInformarInfo()) logger.informar("Se mostró el menú");
     // Mientras que siga corriendo la app
     while( usuarioNoRequieraSalir(quit) ){
         SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );

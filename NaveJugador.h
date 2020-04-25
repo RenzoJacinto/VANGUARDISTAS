@@ -3,14 +3,7 @@
 
 #include "Nave.h"
 #include "NaveEnemiga.h"
-#include "NaveJugador.h"
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
-#include <stdio.h>
-#include <string>
-#include "colicionador.h"
 
 class NaveEnemiga;
 
@@ -33,11 +26,6 @@ class NaveJugador: public Nave
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		void mover( NaveEnemiga* enemigo );
-
-		void renderizar();
-
-		TextureW gNaveTexture;
-
 };
 
 #endif // NAVEJUGADOR_H

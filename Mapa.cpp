@@ -11,17 +11,18 @@ bool Mapa::cargarImagen(){
     // Cargar la textura del fondo
 	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
 		ok = false;
-	}
+	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen bg.png");}
 
 	// Cargar la textura de la ciudad
 	if( !gCiudadTexture.loadFromFile( "sprites/ciudad.png" ) ){
         ok = false;
-	}
+	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen ciudad.png");}
 
 	// Cargar la textura del planeta
 	if( !gPlanetaTexture.loadFromFile( "sprites/planeta.png" ) ){
         ok = false;
-	}
+	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen planeta.png");}
+
 	return ok;
 }
 
@@ -30,8 +31,10 @@ void Mapa::procesar(){
 	    bool quit = false;
 
         NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 );
+        if (logger.seDebeInformarDebug()) logger.informar("Se creó a la nave del jugador");
 
         NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 );
+        if (logger.seDebeInformarDebug()) logger.informar("Se creó nave enemiga");
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -48,6 +51,8 @@ void Mapa::procesar(){
 
 	    //gDotTexture.setWidth(75);
 	    //gDotTexture.setHeight(32);
+
+	    if (logger.seDebeInformarInfo()) logger.informar("Se mostró el mapa");
 
 	    // Mientras que siga corriendo la app
 	    while( usuarioNoRequieraSalir(quit) ) {
@@ -84,7 +89,9 @@ void Mapa::procesar(){
              enemigo->renderizar();
 
 			 SDL_RenderPresent( sdl.getRenderer() );
+
         }
+        if (logger.seDebeInformarInfo()) logger.informar("Se volvió al menu");
 }
 
 void Mapa::cerrar(){

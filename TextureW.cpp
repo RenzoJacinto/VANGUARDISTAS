@@ -1,5 +1,3 @@
-#include "TextureW.h"
-#include "ManejoDeSDL.h"
 #include "global.h"
 
 TextureW::TextureW(){

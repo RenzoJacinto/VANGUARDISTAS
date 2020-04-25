@@ -7,7 +7,9 @@ Nave::Nave() {}
 void Nave::mover(){}
 
 
-void Nave::renderizar(){}
+void Nave::renderizar(){
+	gNaveTexture.render(getPosX() - getColicionador().r, getPosY()- getColicionador().r);
+}
 
 
 int Nave::getPosX()

@@ -1,7 +1,5 @@
 #include "NaveJugador.h"
-#include "ManejoDeSDL.h"
 #include "global.h"
-
 
 NaveJugador::NaveJugador( int x, int y )
 {
@@ -19,7 +17,7 @@ NaveJugador::NaveJugador( int x, int y )
 
 	//Move collider relative to the circle
 	desplazarColicionador();
-	if(!gNaveTexture.loadFromFile("sprites/nave.png")) logger.informar(SDL_GetError());
+	if(!gNaveTexture.loadFromFile("sprites/nave.png") && logger.seDebeInformarError()) logger.informar(SDL_GetError());
 }
 
 
@@ -70,9 +68,4 @@ void NaveJugador::mover( NaveEnemiga* enemigo ){
         setPosY(getPosY()-getVelY());
 		desplazarColicionador();
     }
-}
-
-
-void NaveJugador::renderizar(){
-	gNaveTexture.render(getPosX() - getColicionador().r, getPosY()- getColicionador().r );
 }
