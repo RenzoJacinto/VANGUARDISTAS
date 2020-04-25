@@ -4,9 +4,9 @@
 Mapa::Mapa(){}
 
 void Mapa::procesar(){
-        cargarImagen("sprites/bg.png", gBGTexture);
-        cargarImagen("sprites/ciudad.png", gCiudadTexture);
-        cargarImagen("sprites/planeta.png", gPlanetaTexture);
+        cargarImagen("sprites/bg.png", &gBGTexture);
+        cargarImagen("sprites/ciudad.png", &gCiudadTexture);
+        cargarImagen("sprites/planeta.png", &gPlanetaTexture);
 
 	    bool quit = false;
 

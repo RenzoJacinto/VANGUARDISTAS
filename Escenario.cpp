@@ -3,9 +3,9 @@
 
 Escenario::Escenario(){}
 
-void Escenario::cargarImagen(const char* imagen, TextureW textura){
+void Escenario::cargarImagen(const char* imagen, TextureW* textura){
     // Cargar la textura de la nave
-	if( textura.loadFromFile(imagen) && logger.seDebeInformarInfo() ){
+	if( textura->loadFromFile(imagen) && logger.seDebeInformarInfo() ){
         std::string frase = "Se cargó la imagen ";
         string direccion(imagen);
         frase = frase + direccion;

@@ -197,7 +197,7 @@
 	"Escenario.h"
 	"global.h"
 
-1587846353 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
+1587847080 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 

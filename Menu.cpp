@@ -6,7 +6,7 @@
 Menu::Menu(){}
 
 void Menu::procesar(){
-    cargarImagen("sprites/menuBG.png", gMenuBGTexture);
+    cargarImagen("sprites/menuBG.png", &gMenuBGTexture);
     bool quit = false;
     BotonIniciar bt;
     if (logger.seDebeInformarInfo()) logger.informar("Se mostró el menú");
