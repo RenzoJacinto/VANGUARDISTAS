@@ -9,7 +9,6 @@ class Mapa: public Escenario
     public:
 
         Mapa();
-        bool cargarImagen();
         void procesar();
         void cerrar();
 

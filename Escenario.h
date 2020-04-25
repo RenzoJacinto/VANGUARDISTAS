@@ -2,13 +2,14 @@
 #define ESCENARIO_H_
 
 #include <SDL2/SDL.h>
+#include "TextureW.h"
 
 class Escenario{
 
     public:
 
         Escenario();
-        bool cargarImagen();
+        void cargarImagen(const char* imagen, TextureW textura);
         void procesar();
         bool usuarioNoRequieraSalir(bool quit);
         bool hayEventos();

@@ -3,30 +3,10 @@
 
 Mapa::Mapa(){}
 
-bool Mapa::cargarImagen(){
-
-	//Loading success flag
-	bool ok = true;
-
-    // Cargar la textura del fondo
-	if( !gBGTexture.loadFromFile( "sprites/bg.png" ) ){
-		ok = false;
-	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen bg.png");}
-
-	// Cargar la textura de la ciudad
-	if( !gCiudadTexture.loadFromFile( "sprites/ciudad.png" ) ){
-        ok = false;
-	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen ciudad.png");}
-
-	// Cargar la textura del planeta
-	if( !gPlanetaTexture.loadFromFile( "sprites/planeta.png" ) ){
-        ok = false;
-	}else{if (logger.seDebeInformarInfo()) logger.informar("Se cargó la imagen planeta.png");}
-
-	return ok;
-}
-
 void Mapa::procesar(){
+        cargarImagen("sprites/bg.png", gBGTexture);
+        cargarImagen("sprites/ciudad.png", gCiudadTexture);
+        cargarImagen("sprites/planeta.png", gPlanetaTexture);
 
 	    bool quit = false;
 
@@ -46,8 +26,14 @@ void Mapa::procesar(){
 	    dataBG.h = 600;
 	    dataBG.w = 800;
 
+	    dataBG.x = 0;
+	    dataBG.y = 0;
+
 	    dataCiudad.h = 450;
 	    dataCiudad.w = 2048;
+
+	    dataCiudad.x = 0;
+	    dataCiudad.y = 0;
 
 	    //gDotTexture.setWidth(75);
 	    //gDotTexture.setHeight(32);

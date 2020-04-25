@@ -8,7 +8,6 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
         // Cuando se apreta Enter
         if( e.key.keysym.sym == SDLK_RETURN){
             Mapa mapa = Mapa();
-            mapa.cargarImagen();
             mapa.procesar();
             mapa.cerrar();
         }

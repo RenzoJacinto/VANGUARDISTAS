@@ -6,7 +6,7 @@ ManejoDeLog logger;
 
 int main( int argc, char* args[] ){
     Menu menu = Menu();
-    if (logger.iniciarLog() && sdl.iniciarSDL() && menu.cargarImagen()) menu.procesar();
+    if (logger.iniciarLog() && sdl.iniciarSDL()) menu.procesar();
     menu.cerrar();
 	sdl.cerrar();
 	logger.cerrar();
