@@ -14,7 +14,7 @@ bool ManejoDeLog::iniciarLog(){
     std::string carpeta = "logs/";
     char* hora_actual = ctime(&ahora);
     string horaActual(hora_actual);
-    carpeta += horaActual;
+    carpeta = carpeta + horaActual;
 
     const char* filename = carpeta.c_str();
 
