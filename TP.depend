@@ -162,7 +162,7 @@
 	"Nave.h"
 	"NaveJugador.h"
 
-1587849095 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+1587851581 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	<SDL2/SDL.h>
