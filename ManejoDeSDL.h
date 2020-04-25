@@ -11,17 +11,8 @@ class ManejoDeSDL{
         //Inicia SDL y crea una ventana
         bool iniciarSDL();
 
-        //Carga una imagen
-        bool cargarImagen();
-
-        bool cargarImagenMenu();
-
         //Libera espacio en memoria y cierra SDL
         void cerrar();
-
-        void procesoMenu();
-
-        void proceso();
 
         bool huboErrorAlIniciarSDL();
 
@@ -41,18 +32,9 @@ class ManejoDeSDL{
 
         int getScreenHeight();
 
-
         //void aplicarImagen();
 
         //void actualizarSuperficie();
-
-        bool hayEventos();
-
-        bool usuarioNoRequieraSalir(bool quit);
-
-        SDL_Event getEvento();
-
-        bool eventoEsSalir();
 
         //nuevo para la aparcicion de la nave en pantalla con movimiento
         void renderNave(int x, int y);
@@ -63,17 +45,6 @@ class ManejoDeSDL{
     private:
 
         int screenHeight, screenWidth;
-
-        //Scene textures
-        TextureW gMenuBGTexture;
-        TextureW gNaveTexture;
-        TextureW gEnemigoTexture;
-        TextureW gBGTexture;
-        TextureW gCiudadTexture;
-        TextureW gPlanetaTexture;
-
-        //Event handler
-        SDL_Event e;
 
         SDL_Window* gWindow;
 

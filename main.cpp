@@ -8,14 +8,17 @@
 #include "global.h"
 #include "ManejoDeSDL.h"
 #include "ManejoDeLog.h"
+#include "Escenario.h"
+#include "Menu.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
+Menu menu;
 
 int main( int argc, char* args[] ){
     if (logger.iniciarLog() && sdl.iniciarSDL()){
-		if( !sdl.cargarImagenMenu() && logger.seDebeInformarError()) logger.informar("Error al cargar las imagenes del Menú!");
-		else sdl.procesoMenu();
+		if( !menu.cargarImagen() && logger.seDebeInformarError()) logger.informar("Error al cargar las imagenes del Menú!");
+		else menu.procesar();
     }
 	sdl.cerrar();
 	logger.cerrar();

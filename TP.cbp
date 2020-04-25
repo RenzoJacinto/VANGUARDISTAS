@@ -37,6 +37,8 @@
 		</Linker>
 		<Unit filename="BotonIniciar.cpp" />
 		<Unit filename="BotonIniciar.h" />
+		<Unit filename="Escenario.cpp" />
+		<Unit filename="Escenario.h" />
 		<Unit filename="ManejoDeLog.cpp" />
 		<Unit filename="ManejoDeLog.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
