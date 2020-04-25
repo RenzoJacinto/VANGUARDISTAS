@@ -10,12 +10,11 @@ class NaveEnemiga: public Nave
 {
     public:
 
+        NaveEnemiga( int x, int y, const char* imagen );
+
         //Las dimensiones de la Nave del enemigo
 		static const int NAVE_WIDTH = 40;
 		static const int NAVE_HEIGHT = 40;
-
-        //Se inicializa la Nave en esas coordenadas
-		NaveEnemiga( int x, int y );
 
 		//Mueve la Nave considerando la posicion de la Nave del jugador
 		void mover( NaveJugador* jugador );

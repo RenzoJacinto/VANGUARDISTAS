@@ -18,9 +18,6 @@ class NaveJugador: public Nave
 		//Velocidad de la Nave del Jugador
 		static const int NAVE_VEL = 2;
 
-        //Se inicializa la Nave en esas coordenadas
-		NaveJugador( int x, int y );
-
         //Toma las teclas oprimidas y ajusta la velocidad de la Nave
 		void handleEvent( SDL_Event& e );
 

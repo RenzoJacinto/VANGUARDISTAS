@@ -1,26 +1,6 @@
 #include "NaveJugador.h"
 #include "global.h"
 
-NaveJugador::NaveJugador( int x, int y )
-{
-
-    //Initialize the offsets
-    mPosX = x;
-    mPosY = y;
-
-	//Set collision circle size
-	mColicionador.r = NAVE_WIDTH / 2;
-
-    //Initialize the velocity
-    mVelX = 0;
-    mVelY = 0;
-
-	//Move collider relative to the circle
-	desplazarColicionador();
-	if(!gNaveTexture.loadFromFile("sprites/nave.png") && logger.seDebeInformarError()) logger.informar(SDL_GetError());
-}
-
-
 void NaveJugador::handleEvent( SDL_Event& e )
 {
     //If a key was pressed

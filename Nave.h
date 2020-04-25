@@ -16,7 +16,7 @@ class Nave
     public:
 
         //Se inicializa la Nave en esas coordenadas
-		Nave();
+		Nave( int x, int y, const char* imagen );
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		void mover();
@@ -60,6 +60,9 @@ class Nave
 		Circle mColicionador;
 
 		TextureW gNaveTexture;
+
+		static const int NAVE_WIDTH = 40;
+		static const int NAVE_HEIGHT = 40;
 
 };
 

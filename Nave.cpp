@@ -1,7 +1,23 @@
 #include "Nave.h"
 
 
-Nave::Nave() {}
+Nave::Nave( int x, int y, const char* imagen ){
+    //Initialize the offsets
+    mPosX = x;
+    mPosY = y;
+
+	//Set collision circle size
+	mColicionador.r = NAVE_WIDTH / 2;
+
+    //Initialize the velocity
+    mVelX = 0;
+    mVelY = 0;
+
+	//Move collider relative to the circle
+	desplazarColicionador();
+	//string img(imagen);
+	if(!gNaveTexture.loadFromFile(imagen) && logger.seDebeInformarError()) logger.informar(SDL_GetError());
+}
 
 
 void Nave::mover(){}

@@ -1,5 +1,7 @@
 #include "Mapa.h"
 #include "NaveJugador.h"
+#include "NaveEnemiga.h"
+#include "Nave.h"
 
 Mapa::Mapa(){}
 
@@ -10,10 +12,10 @@ void Mapa::procesar(){
 
 	    bool quit = false;
 
-        NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 );
+        NaveJugador* jugador = new Nave( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 , "sprites/nave.png");
         if (logger.seDebeInformarDebug()) logger.informar("Se creó a la nave del jugador");
 
-        NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 );
+        NaveEnemiga* enemigo = new Nave( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");
         if (logger.seDebeInformarDebug()) logger.informar("Se creó nave enemiga");
 
 	    double scrollingOffsetBG = 0;
