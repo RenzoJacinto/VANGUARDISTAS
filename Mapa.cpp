@@ -6,16 +6,17 @@
 Mapa::Mapa(){}
 
 void Mapa::procesar(){
+
         cargarImagen("sprites/bg.png", &gBGTexture);
         cargarImagen("sprites/ciudad.png", &gCiudadTexture);
         cargarImagen("sprites/planeta.png", &gPlanetaTexture);
 
 	    bool quit = false;
 
-        NaveJugador* jugador = new Nave( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 , "sprites/nave.png");
+        NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 , "sprites/nave.png");
         if (logger.seDebeInformarDebug()) logger.informar("Se creó a la nave del jugador");
 
-        NaveEnemiga* enemigo = new Nave( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");
+        NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");
         if (logger.seDebeInformarDebug()) logger.informar("Se creó nave enemiga");
 
 	    double scrollingOffsetBG = 0;

@@ -1,6 +1,10 @@
 #include "NaveJugador.h"
 #include "global.h"
 
+NaveJugador::NaveJugador( int x, int y, const char* imagen){
+    crearNave(x, y, imagen, NAVE_WIDTH);
+}
+
 void NaveJugador::handleEvent( SDL_Event& e )
 {
     //If a key was pressed
@@ -28,7 +32,6 @@ void NaveJugador::handleEvent( SDL_Event& e )
         }
     }
 }
-
 
 void NaveJugador::mover( NaveEnemiga* enemigo ){
     //Move the dot left or right

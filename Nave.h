@@ -16,10 +16,7 @@ class Nave
     public:
 
         //Se inicializa la Nave en esas coordenadas
-		Nave( int x, int y, const char* imagen );
-
-		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover();
+		void crearNave( int x, int y, const char* imagen , const int naveWidth);
 
 		void renderizar();
 
@@ -61,8 +58,8 @@ class Nave
 
 		TextureW gNaveTexture;
 
-		static const int NAVE_WIDTH = 40;
-		static const int NAVE_HEIGHT = 40;
+		static const int NAVE_WIDTH;
+		static const int NAVE_HEIGHT;
 
 };
 

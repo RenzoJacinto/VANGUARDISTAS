@@ -2,6 +2,10 @@
 #include "ManejoDeSDL.h"
 #include "global.h"
 
+NaveEnemiga::NaveEnemiga( int x, int y, const char* imagen ){
+    crearNave(x, y, imagen, NAVE_WIDTH);
+}
+
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
     setPosX(getPosX()-1);

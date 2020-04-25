@@ -11,6 +11,8 @@ class NaveJugador: public Nave
 {
     public:
 
+        NaveJugador( int x, int y, const char* imagen );
+
         //Las dimensiones de la Nave del Jugador
 		static const int NAVE_WIDTH = 20;
 		static const int NAVE_HEIGHT = 20;

@@ -122,10 +122,10 @@
 	<iostream>
 	<fstream>
 
-1587847871 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
+1587850424 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
 
-1587847991 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
+1587850425 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -153,7 +153,7 @@
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
 
-1587847882 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
+1587850304 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 	"ManejoDeSDL.h"
 	"global.h"
@@ -162,12 +162,12 @@
 	"Nave.h"
 	"NaveJugador.h"
 
-1587848441 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+1587849095 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	<SDL2/SDL.h>
 
-1587847694 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
+1587850342 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 	"global.h"
 
@@ -211,9 +211,11 @@
 	"global.h"
 	"ManejoDeSDL.h"
 
-1587847064 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
+1587849836 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
 	"Mapa.h"
 	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Nave.h"
 
 1587846384 /home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.h
 	"Escenario.h"
