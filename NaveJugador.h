@@ -18,7 +18,7 @@ class NaveJugador: public Nave
 		static const int NAVE_HEIGHT = 20;
 
 		//Velocidad de la Nave del Jugador
-		static const int NAVE_VEL = 2;
+		static const int NAVE_VEL = 7;
 
         //Toma las teclas oprimidas y ajusta la velocidad de la Nave
 		void handleEvent( SDL_Event& e );
