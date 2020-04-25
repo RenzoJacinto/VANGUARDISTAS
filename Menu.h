@@ -3,7 +3,6 @@
 
 #include "Escenario.h"
 #include "TextureW.h"
-#include "Mapa.h"
 
 class Menu: public Escenario
 {
