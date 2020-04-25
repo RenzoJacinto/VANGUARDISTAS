@@ -3,9 +3,7 @@
 #include "global.h"
 #include "ManejoDeSDL.h"
 
-Menu::Menu(){
-    mapa = Mapa();
-}
+Menu::Menu(){}
 
 bool Menu::cargarImagen(){
 	//Loading success flag

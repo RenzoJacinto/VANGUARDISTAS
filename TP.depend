@@ -114,7 +114,7 @@
 	"BotonIniciar.h"
 	"colicionador.h"
 
-1587774796 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
+1587779758 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 
@@ -147,10 +147,9 @@
 	<stdio.h>
 	<string>
 
-1587779102 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
+1587781051 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
-	"Menu.h"
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
 
@@ -193,11 +192,9 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587779114 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
+1587780964 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
-	"Menu.h"
 	"Mapa.h"
-	"global.h"
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
 	<SDL2/SDL.h>
@@ -207,7 +204,7 @@
 	<stdio.h>
 	<string>
 
-1587778361 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
+1587781073 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -220,7 +217,7 @@
 	"Escenario.h"
 	"Menu.h"
 
-1587779284 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
+1587780232 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -248,13 +245,13 @@
 	"TextureW.h"
 	"Mapa.h"
 
-1587779428 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
+1587781612 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"
 	"ManejoDeSDL.h"
 
-1587779414 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
+1587781499 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
 	"Mapa.h"
 	"NaveJugador.h"
 

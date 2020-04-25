@@ -13,13 +13,11 @@
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
-Menu menu;
 
 int main( int argc, char* args[] ){
-    if (logger.iniciarLog() && sdl.iniciarSDL()){
-		if( !menu.cargarImagen() && logger.seDebeInformarError()) logger.informar("Error al cargar las imagenes del Menú!");
-		else menu.procesar();
-    }
+    Menu menu = Menu();
+    if (logger.iniciarLog() && sdl.iniciarSDL() && menu.cargarImagen()) menu.procesar();
+    menu.cerrar();
 	sdl.cerrar();
 	logger.cerrar();
 	return 0;

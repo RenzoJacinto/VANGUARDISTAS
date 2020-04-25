@@ -38,7 +38,6 @@ void Mapa::procesar(){
         double tierraInicial = 850;
 
 	    SDL_Rect dataCiudad;
-	    SDL_Rect dataPlaneta;
 	    SDL_Rect dataBG;
 
 	    dataBG.h = 600;
@@ -46,9 +45,6 @@ void Mapa::procesar(){
 
 	    dataCiudad.h = 450;
 	    dataCiudad.w = 2048;
-
-        dataPlaneta.h = 400;
-	    dataPlaneta.w = 400;
 
 	    //gDotTexture.setWidth(75);
 	    //gDotTexture.setHeight(32);

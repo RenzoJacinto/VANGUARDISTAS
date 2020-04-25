@@ -37,7 +37,7 @@ bool ManejoDeSDL::iniciarSDL(){
 		if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) && logger.seDebeInformarError() ) logger.informar("Warning: Linear texture filtering not enabled!");
 
 		//Create window
-		setWindow( SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN ) );
+		setWindow( SDL_CreateWindow( "GLEY LANCER", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN ) );
 		if( gWindow == NULL ){
 			if(logger.seDebeInformarError()) logger.informar(SDL_GetError());
 			ok = false;
