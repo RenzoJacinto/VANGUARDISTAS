@@ -2,11 +2,11 @@
 #define NAVEENEMIGA_H
 
 #include "Nave.h"
-#include "NaveJugador.h"
 
 class NaveJugador;
 
-class NaveEnemiga: public Nave{
+class NaveEnemiga: public Nave {
+
     public:
 
         NaveEnemiga( int x, int y, const char* imagen );
@@ -18,6 +18,13 @@ class NaveEnemiga: public Nave{
 		//Mueve la Nave considerando la posicion de la Nave del jugador
 		void mover( NaveJugador* jugador );
 
+		void renderizar();
+
+		int getRadio();
+
+    private:
+
+        int radio;
 };
 
 #endif // NAVEENEMIGA_H

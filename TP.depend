@@ -1,10 +1,9 @@
 # depslib dependency file v1.0
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.cpp
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
-	"ManejoDeSDL.h"
-	"global.h"
+	"Mapa.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.h
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -12,10 +11,10 @@
 	<stdio.h>
 	<string>
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.h
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.h
 	"TextureW.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.h
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -23,31 +22,31 @@
 	<stdio.h>
 	<string>
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/global.h
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeLog.h
-	<iostream>
-	<fstream>
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeLog.h
+	"Logger.h"
 
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/main.cpp
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_mixer.h>
-	<stdio.h>
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/main.cpp
+	"global.h"
+	"Menu.h"
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeLog.cpp
+	"ManejoDeLog.h"
 	<string>
-	"ManejoDeSDL.h"
-	"ManejoDeLog.h"
+	"LoggerError.h"
+	"LoggerInfo.h"
+	"LoggerDebug.h"
+	"Logger.h"
 
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeLog.cpp
-	"ManejoDeLog.h"
-
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
+1587935489 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.h
+1587935423 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -56,63 +55,28 @@
 	<string>
 	"ManejoDeSDL.h"
 	"global.h"
-	"colicionador.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/colicionador.h
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/colicionador.h
 
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
+1587935338 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
-	"ManejoDeSDL.h"
-	"global.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
+1587935356 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
-	"NaveJugador.h"
-	"NaveEnemiga.h"
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_mixer.h>
-	<stdio.h>
-	<string>
-	"colicionador.h"
 
-1587761514 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
+1587935579 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
-	"NaveEnemiga.h"
-	"NaveJugador.h"
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_mixer.h>
-	<stdio.h>
-	<string>
-	"colicionador.h"
 
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
+1587935334 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
-	"ManejoDeSDL.h"
-	"global.h"
 
-1587761514 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587762212 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
-	<SDL2/SDL.h>
-	<SDL2/SDL_image.h>
-	<SDL2/SDL_ttf.h>
-	<SDL2/SDL_mixer.h>
-	<stdio.h>
-	<string>
-	"Nave.h"
-	"NaveJugador.h"
-	"NaveEnemiga.h"
-	"TextureW.h"
-	"ManejoDeSDL.h"
-	"BotonIniciar.h"
-	"colicionador.h"
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
+	"global.h"
 
 1587863342 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
 	"ManejoDeLog.h"
@@ -252,4 +216,59 @@
 
 1587861420 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.cpp
 	"LoggerInfo.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.h
+	"Escenario.h"
+	"TextureW.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Escenario.h
+	<SDL2/SDL.h>
+	"TextureW.h"
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Escenario.cpp
+	"Escenario.h"
+	"global.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Logger.h
+	<iostream>
+	<fstream>
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Logger.cpp
+	"Logger.h"
+	<iostream>
+	<fstream>
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerDebug.cpp
+	"LoggerDebug.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerDebug.h
+	"Logger.h"
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerError.cpp
+	"LoggerError.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerError.h
+	"Logger.h"
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerInfo.cpp
+	"LoggerInfo.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/LoggerInfo.h
+	"Logger.h"
+
+1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Menu.h
+	"Escenario.h"
+	"TextureW.h"
+
+1587917271 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.cpp
+	"Mapa.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Nave.h"
+
+1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Menu.cpp
+	"Menu.h"
+	"BotonIniciar.h"
+	"global.h"
+	"ManejoDeSDL.h"
 

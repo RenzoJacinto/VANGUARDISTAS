@@ -1,29 +1,28 @@
 #include "NaveEnemiga.h"
-#include "ManejoDeSDL.h"
-#include "global.h"
 
 NaveEnemiga::NaveEnemiga( int x, int y, const char* imagen ){
     crearNave(x, y, imagen, NAVE_WIDTH);
+    radio=NAVE_WIDTH/2;
 }
 
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
     setPosX(getPosX()-1);
-	desplazarColicionador();
+	//desplazarColicionador();
 
 
-	if( checkCollision( getColicionador(), jugador->getColicionador() ) ){
+	if( checkCollision( jugador , this ) ){
         setPosX(getPosX()+1);
-		desplazarColicionador();
+		//desplazarColicionador();
     }
 
 
-    if ( ( getPosX() - getColicionador().r < 0 ) || ( getPosX() + getColicionador().r > sdl.getScreenWidth() ) ){
+    if ( ( getPosX() - getRadio() < 0 ) || ( getPosX() + getRadio() > sdl.getScreenWidth() ) ){
         int posicionX = sdl.getScreenWidth() - 20;
         int posicionY = rand() % sdl.getScreenHeight();
         setPosX( posicionX );
         setPosY( posicionY );
-		desplazarColicionador();
+		//desplazarColicionador();
     }
 
 //    //Move the dot up or down
@@ -37,4 +36,12 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 //        mPosY -= mVelY;
 //		desplazarColicionador();
 //    }
+}
+
+void NaveEnemiga::renderizar(){
+	gNaveTexture.render(getPosX() - getRadio() , getPosY() - getRadio());
+}
+
+int NaveEnemiga::getRadio(){
+    return radio;
 }

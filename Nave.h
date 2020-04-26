@@ -9,7 +9,9 @@
 #include <string>
 #include "ManejoDeSDL.h"
 #include "global.h"
-#include "colicionador.h"
+
+class NaveJugador;
+class NaveEnemiga;
 
 class Nave{
 
@@ -17,8 +19,6 @@ class Nave{
 
         //Se inicializa la Nave en esas coordenadas
 		void crearNave( int x, int y, const char* imagen , const int naveWidth);
-
-		void renderizar();
 
 		int getPosX();
 
@@ -36,14 +36,9 @@ class Nave{
 
 		void setVelY(int n);
 
-		//Mueve el círculo de colisión en relación con el desplazamiento de la Nave
-		void desplazarColicionador();
-
-		Circle& getColicionador();
-
-		bool checkCollision( Circle& a, Circle& b );
-
 		double distanceSquared( int x1, int y1, int x2, int y2 );
+
+		bool checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo );
 
     protected:
 
@@ -53,15 +48,12 @@ class Nave{
 		//La velocidad de la Nave
 		int mVelX, mVelY;
 
-        //La Nave representada por un circula colisionador
-		Circle mColicionador;
-
-		TextureW gNaveTexture;
+        TextureW gNaveTexture;
 
 		static const int NAVE_WIDTH;
 		static const int NAVE_HEIGHT;
 
 };
 
-#endif
+#endif /* NAVE_H_ */
 

@@ -1,8 +1,9 @@
 #include "NaveJugador.h"
-#include "global.h"
 
 NaveJugador::NaveJugador( int x, int y, const char* imagen){
     crearNave(x, y, imagen, NAVE_WIDTH);
+    alto = NAVE_HEIGHT;
+    ancho = NAVE_WIDTH;
 }
 
 void NaveJugador::handleEvent( SDL_Event& e ){
@@ -31,19 +32,31 @@ void NaveJugador::handleEvent( SDL_Event& e ){
 void NaveJugador::mover( NaveEnemiga* enemigo ){
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
-	desplazarColicionador();
+	//desplazarColicionador();
 
-	if( ( getPosX() - getColicionador().r < 0 ) || ( getPosX() + getColicionador().r > sdl.getScreenWidth() )  || checkCollision( getColicionador(), enemigo->getColicionador() ) ){
+	if( ( getPosX() - (getAncho()/2) < 0 ) || ( getPosX() + (getAncho()/2) > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
         setPosX(getPosX()-getVelX());
-		desplazarColicionador();
+		//desplazarColicionador();
     }
 
     setPosY(getPosY()+getVelY());
-	desplazarColicionador();
+	//desplazarColicionador();
 
-    if( ( getPosY() - getColicionador().r < 0 ) || ( getPosY() + getColicionador().r > sdl.getScreenHeight() ) || checkCollision( getColicionador(), enemigo->getColicionador() ) ){
+    if( ( getPosY() - (getAncho()/2) < 0 ) || ( getPosY() + (getAncho()/2) > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
-		desplazarColicionador();
+		//desplazarColicionador();
     }
+}
+
+void NaveJugador::renderizar(){
+	gNaveTexture.render(getPosX() - (getAncho()/2), getPosY() - (getAncho()/2));
+}
+
+int NaveJugador::getAlto(){
+    return alto;
+}
+
+int NaveJugador::getAncho(){
+    return ancho;
 }
