@@ -18,8 +18,9 @@ class ManejoDeLog{
         void info(const char* update);
         void error(const char* update);
         void debug(const char* update);
+
     private:
-        Logger* logger = NULL;
+        Logger* logger = new Logger();
 };
 
 #endif

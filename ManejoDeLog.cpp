@@ -9,9 +9,10 @@ ManejoDeLog::ManejoDeLog(){}
 
 bool ManejoDeLog::crearLogger(int nivel, const char* filename){
     switch(nivel){
-        case nivelInfo: logger = new LoggerInfo(filename);
-        case nivelError: logger = new LoggerError(filename);
-        case nivelDebug: logger = new LoggerDebug(filename);
+        case nivelInfo: logger = new LoggerInfo(filename); break;
+        case nivelError: logger = new LoggerError(filename); break;
+        case nivelDebug: logger = new LoggerDebug(filename); break;
+        default: logger = NULL;
     }
     return logger != NULL;
 }

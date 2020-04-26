@@ -12,6 +12,7 @@
 #include "colicionador.h"
 
 class Nave{
+
     public:
 
         //Se inicializa la Nave en esas coordenadas

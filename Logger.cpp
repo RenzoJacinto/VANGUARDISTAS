@@ -1,15 +1,14 @@
 #include "Logger.h"
 #include <iostream>
 #include <fstream>
-
 using namespace std;
 
 Logger::Logger(){}
 
-void Logger::debug(const char* update){
-    escribir(update);
-}
+void Logger::debug(const char* update){}
+
 void Logger::info(const char* update){}
+
 void Logger::error(const char* update){}
 
 void Logger::escribir(const char* update){
@@ -31,3 +30,5 @@ bool Logger::abrirArchivo(const char* filename){
 void Logger::cerrarArchivo(){
     archivo_log.close();
 }
+
+

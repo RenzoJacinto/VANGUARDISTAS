@@ -5,9 +5,20 @@ ManejoDeSDL sdl;
 ManejoDeLog logger;
 
 int main( int argc, char* argv[] ){
-    if(argc != 2) logger.debug("Cantidad de parametros incorrecta");
+    //Si no se pasó un solo parámetro avisa al usuario
+    if(argc != 2){
+        printf("Cantidad de parámetros incorrecta");
+        return 0;
+    }
     Menu menu = Menu();
-    if (logger.iniciarLog(atoi(argv[1])) && sdl.iniciarSDL() && menu.cargarImagen()) menu.procesar();
+    //Si el parámetro pasado no es válido avisa al usuario
+    if (!logger.iniciarLog(atoi(argv[1]))){
+        printf("Parámetro inválido");
+        return 0;
+    }
+    //Si inicia sdl y la carga de imagenes satisfactoriamente procede a mostrar el menú
+    if (sdl.iniciarSDL() && menu.cargarImagen()) menu.procesar();
+    //Libera la memoria allocada
     menu.cerrar();
 	sdl.cerrar();
 	logger.cerrar();

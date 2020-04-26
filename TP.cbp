@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters="3" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -39,6 +40,14 @@
 		<Unit filename="BotonIniciar.h" />
 		<Unit filename="Escenario.cpp" />
 		<Unit filename="Escenario.h" />
+		<Unit filename="Logger.cpp" />
+		<Unit filename="Logger.h" />
+		<Unit filename="LoggerDebug.cpp" />
+		<Unit filename="LoggerDebug.h" />
+		<Unit filename="LoggerError.cpp" />
+		<Unit filename="LoggerError.h" />
+		<Unit filename="LoggerInfo.cpp" />
+		<Unit filename="LoggerInfo.h" />
 		<Unit filename="ManejoDeLog.cpp" />
 		<Unit filename="ManejoDeLog.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
