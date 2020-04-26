@@ -30,22 +30,19 @@ void NaveJugador::handleEvent( SDL_Event& e ){
 }
 
 void NaveJugador::mover( NaveEnemiga* enemigo ){
+
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
-	//desplazarColicionador();
 
 	if( ( getPosX() - (getAncho()/2) < 0 ) || ( getPosX() + (getAncho()/2) > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
         setPosX(getPosX()-getVelX());
-		//desplazarColicionador();
     }
 
     setPosY(getPosY()+getVelY());
-	//desplazarColicionador();
 
     if( ( getPosY() - (getAncho()/2) < 0 ) || ( getPosY() + (getAncho()/2) > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
-		//desplazarColicionador();
     }
 }
 

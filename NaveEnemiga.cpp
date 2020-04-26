@@ -8,12 +8,9 @@ NaveEnemiga::NaveEnemiga( int x, int y, const char* imagen ){
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
     setPosX(getPosX()-1);
-	//desplazarColicionador();
-
 
 	if( checkCollision( jugador , this ) ){
         setPosX(getPosX()+1);
-		//desplazarColicionador();
     }
 
 
@@ -22,9 +19,9 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
         int posicionY = rand() % sdl.getScreenHeight();
         setPosX( posicionX );
         setPosY( posicionY );
-		//desplazarColicionador();
     }
 
+        //Esta comentado por ahora, porque la nave solo se mueve en el eje X
 //    //Move the dot up or down
 //    mPosY += mVelY;
 //	desplazarColicionador();
