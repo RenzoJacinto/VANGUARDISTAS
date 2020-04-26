@@ -5,16 +5,29 @@
 
 Menu::Menu(){}
 
+bool Menu::cargarImagen(){
+	//Loading success flag
+	bool ok = true;
+
+    // Cargar la textura de la nave
+	if( !gMenuBGTexture.loadFromFile( "sprites/menuBG.png" ) ){
+		ok = false;
+	}else logger.info("Se cargó la imagen menuBG.png");
+
+	return ok;
+}
+
 void Menu::procesar(){
-    cargarImagen("sprites/menuBG.png", &gMenuBGTexture);
     bool quit = false;
     BotonIniciar bt;
-    if (logger.seDebeInformarInfo()) logger.informar("Se mostró el menú");
+    logger.info("Se mostró el menú");
     // Mientras que siga corriendo la app
     while( usuarioNoRequieraSalir(quit) ){
         SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( sdl.getRenderer() );
         gMenuBGTexture.render( 0, 0 );
+
+        //gBotonIniciarTexture.render(0, 0);
 
         SDL_RenderPresent( sdl.getRenderer() );
         while( hayEventos() ){

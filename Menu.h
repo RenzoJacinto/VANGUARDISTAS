@@ -8,6 +8,7 @@ class Menu: public Escenario
 {
     public:
         Menu();
+        bool cargarImagen();
         void procesar();
         void cerrar();
 

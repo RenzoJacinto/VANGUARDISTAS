@@ -1,3 +1,5 @@
+#include "TextureW.h"
+#include "ManejoDeSDL.h"
 #include "global.h"
 
 TextureW::TextureW(){
@@ -17,15 +19,14 @@ bool TextureW::loadFromFile( std::string path ){
 
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 
-	if( loadedSurface == NULL && logger.seDebeInformarError() ){
-        logger.informar(IMG_GetError());
-	}
-	else{
+	if( loadedSurface == NULL){
+        logger.error(IMG_GetError());
+	} else{
 		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
         newTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), loadedSurface );
-		if( newTexture == NULL && logger.seDebeInformarError() ){
-            logger.informar(SDL_GetError());
+		if( newTexture == NULL){
+            logger.error(SDL_GetError());
 		} else{
 			mWidth = loadedSurface->w;
 			mHeight = loadedSurface->h;

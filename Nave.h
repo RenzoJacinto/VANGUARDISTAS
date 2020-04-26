@@ -11,8 +11,7 @@
 #include "global.h"
 #include "colicionador.h"
 
-class Nave
-{
+class Nave{
     public:
 
         //Se inicializa la Nave en esas coordenadas
@@ -64,3 +63,4 @@ class Nave
 };
 
 #endif
+

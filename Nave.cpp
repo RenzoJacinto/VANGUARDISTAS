@@ -15,7 +15,7 @@ void Nave::crearNave( int x, int y, const char* imagen , const int naveWidth){
 	//Move collider relative to the circle
 	desplazarColicionador();
 
-	if(!gNaveTexture.loadFromFile(imagen) && logger.seDebeInformarError()) logger.informar(SDL_GetError());
+	if(!gNaveTexture.loadFromFile(imagen)) logger.error(SDL_GetError());
 }
 
 void Nave::renderizar(){
@@ -23,88 +23,64 @@ void Nave::renderizar(){
 }
 
 
-int Nave::getPosX()
-{
+int Nave::getPosX(){
     return mPosX;
 }
 
 
-void Nave::setPosX(int num)
-{
+void Nave::setPosX(int num){
     mPosX=num;
 }
 
 
-int Nave::getPosY()
-{
+int Nave::getPosY(){
     return mPosY;
 }
 
 
-void Nave::setPosY(int num)
-{
+void Nave::setPosY(int num){
     mPosY=num;
 }
 
 
-int Nave::getVelX()
-{
+int Nave::getVelX(){
     return mVelX;
 }
 
-
-void Nave::setVelX(int num)
-{
+void Nave::setVelX(int num){
     mVelX=num;
 }
 
-
-int Nave::getVelY()
-{
+int Nave::getVelY(){
     return mVelY;
 }
 
-
-void Nave::setVelY(int num)
-{
+void Nave::setVelY(int num){
     mVelY=num;
 }
 
-
-void Nave::desplazarColicionador()
-{
+void Nave::desplazarColicionador(){
 	//Align collider to center of dot
 	getColicionador().x = getPosX();
 	getColicionador().y = getPosY();
 }
 
-
-Circle& Nave::getColicionador()
-{
+Circle& Nave::getColicionador(){
 	return mColicionador;
 }
 
-
-bool Nave::checkCollision( Circle& a, Circle& b )
-{
+bool Nave::checkCollision( Circle& a, Circle& b ){
 	//Calculate total radius squared
 	int totalRadiusSquared = a.r + b.r;
 	totalRadiusSquared = totalRadiusSquared * totalRadiusSquared;
 
     //If the distance between the centers of the circles is less than the sum of their radii
-    if( distanceSquared( a.x, a.y, b.x, b.y ) < ( totalRadiusSquared ) )
-    {
-        //The circles have collided
-        return true;
-    }
+    if( distanceSquared( a.x, a.y, b.x, b.y ) < ( totalRadiusSquared ) ) return true;
 
-    //If not
     return false;
 }
 
-
-double Nave::distanceSquared( int x1, int y1, int x2, int y2 )
-{
+double Nave::distanceSquared( int x1, int y1, int x2, int y2 ){
 	int deltaX = x2 - x1;
 	int deltaY = y2 - y1;
 	return deltaX*deltaX + deltaY*deltaY;

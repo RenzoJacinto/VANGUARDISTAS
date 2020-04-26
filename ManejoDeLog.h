@@ -1,29 +1,25 @@
 #ifndef MANEJODELOG_H_
 #define MANEJODELOG_H_
 
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include  "Logger.h"
 
 class ManejoDeLog{
 
     public:
+        static const int nivelDebug = 3;
+        static const int nivelInfo = 2;
+        static const int nivelError = 1;
 
         ManejoDeLog();
-        bool iniciarLog();
-        void informar(const char* update);
+        bool crearLogger(int nivel, const char* filename);
+        bool iniciarLog(int nivel);
         void cerrar();
-        bool seDebeInformarDebug();
-        bool seDebeInformarInfo();
-        bool seDebeInformarError();
 
+        void info(const char* update);
+        void error(const char* update);
+        void debug(const char* update);
     private:
-
-        ofstream archivo_log;
-        bool debug;
-        bool info;
-        bool error;
-
+        Logger* logger = NULL;
 };
 
 #endif

@@ -6,8 +6,7 @@
 
 class NaveJugador;
 
-class NaveEnemiga: public Nave
-{
+class NaveEnemiga: public Nave{
     public:
 
         NaveEnemiga( int x, int y, const char* imagen );
@@ -22,3 +21,4 @@ class NaveEnemiga: public Nave
 };
 
 #endif // NAVEENEMIGA_H
+

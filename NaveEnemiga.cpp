@@ -38,4 +38,3 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 //		desplazarColicionador();
 //    }
 }
-

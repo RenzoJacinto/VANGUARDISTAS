@@ -4,20 +4,16 @@
 #include "Escenario.h"
 #include "TextureW.h"
 
-class Mapa: public Escenario
-{
+class Mapa: public Escenario{
     public:
-
         Mapa();
         void procesar();
         void cerrar();
 
     private:
-
         TextureW gBGTexture;
         TextureW gCiudadTexture;
         TextureW gPlanetaTexture;
-
 };
 
 #endif

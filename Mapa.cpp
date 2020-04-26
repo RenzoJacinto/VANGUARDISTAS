@@ -14,10 +14,10 @@ void Mapa::procesar(){
 	    bool quit = false;
 
         NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 , "sprites/nave.png");
-        if (logger.seDebeInformarDebug()) logger.informar("Se creó a la nave del jugador");
+        logger.debug("Se creó a la nave del jugador");
 
         NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");
-        if (logger.seDebeInformarDebug()) logger.informar("Se creó nave enemiga");
+        logger.debug("Se creó nave enemiga");
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -28,20 +28,15 @@ void Mapa::procesar(){
 
 	    dataBG.h = 600;
 	    dataBG.w = 800;
-
 	    dataBG.x = 0;
 	    dataBG.y = 0;
 
 	    dataCiudad.h = 450;
 	    dataCiudad.w = 2048;
-
 	    dataCiudad.x = 0;
 	    dataCiudad.y = 0;
 
-	    //gDotTexture.setWidth(75);
-	    //gDotTexture.setHeight(32);
-
-	    if (logger.seDebeInformarInfo()) logger.informar("Se mostró el mapa");
+	    logger.info("Se mostró el mapa");
 
 	    // Mientras que siga corriendo la app
 	    while( usuarioNoRequieraSalir(quit) ) {
@@ -80,7 +75,7 @@ void Mapa::procesar(){
 			 SDL_RenderPresent( sdl.getRenderer() );
 
         }
-        if (logger.seDebeInformarInfo()) logger.informar("Se volvió al menu");
+        logger.info("Se volvió al menu");
 }
 
 void Mapa::cerrar(){
@@ -88,5 +83,6 @@ void Mapa::cerrar(){
 	gCiudadTexture.free();
 	gPlanetaTexture.free();
 }
+
 
 
