@@ -4,10 +4,12 @@
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 
+static int CANTIDAD_PARAMETROS_VALIDOS = 1;
+
 int main( int argc, char* argv[] ){
     //Si no se pasó un solo parámetro avisa al usuario
-    if(argc != 2){
-        printf("Cantidad de parámetros incorrecta");
+    if(argc != CANTIDAD_PARAMETROS_VALIDOS+1){
+        printf("Cantidad de parámetros inválida");
         return 0;
     }
     Menu menu = Menu();
