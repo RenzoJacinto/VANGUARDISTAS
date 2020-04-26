@@ -41,7 +41,7 @@
 	"LoggerDebug.h"
 	"Logger.h"
 
-1587935489 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
+1587938290 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
@@ -58,16 +58,16 @@
 
 1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/colicionador.h
 
-1587935338 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
+1587937553 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1587935356 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
+1587936519 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
-1587935579 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
+1587937333 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 
-1587936238 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
+1587937476 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 
 1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
@@ -260,7 +260,7 @@
 	"Escenario.h"
 	"TextureW.h"
 
-1587917271 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.cpp
+1587936653 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.cpp
 	"Mapa.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"

@@ -34,20 +34,22 @@ void NaveJugador::mover( NaveEnemiga* enemigo ){
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
 
-	if( ( getPosX() - (getAncho()/2) < 0 ) || ( getPosX() + (getAncho()/2) > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
+	//if( ( getPosX() - (getAncho()/2) < 0 ) || ( getPosX() + (getAncho()/2) > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
+    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
+
         setPosX(getPosX()-getVelX());
     }
 
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() - (getAncho()/2) < 0 ) || ( getPosY() + (getAncho()/2) > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
+    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }
 }
 
 void NaveJugador::renderizar(){
-	gNaveTexture.render(getPosX() - (getAncho()/2), getPosY() - (getAncho()/2));
+	gNaveTexture.render(getPosX(), getPosY());
 }
 
 int NaveJugador::getAlto(){

@@ -13,7 +13,7 @@ void Mapa::procesar(){
 
 	    bool quit = false;
 
-        NaveJugador* jugador = new NaveJugador( NaveJugador::NAVE_WIDTH / 2, NaveJugador::NAVE_HEIGHT / 2 , "sprites/nave.png");
+        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4 , "sprites/nave.png");
         logger.debug("Se creó a la nave del jugador");
 
         NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");

@@ -13,9 +13,8 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
         setPosX(getPosX()+1);
     }
 
-
     if ( ( getPosX() - getRadio() < 0 ) || ( getPosX() + getRadio() > sdl.getScreenWidth() ) ){
-        int posicionX = sdl.getScreenWidth() - 20;
+        int posicionX = sdl.getScreenWidth() - 40;
         int posicionY = rand() % sdl.getScreenHeight();
         setPosX( posicionX );
         setPosY( posicionY );
@@ -36,7 +35,7 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 }
 
 void NaveEnemiga::renderizar(){
-	gNaveTexture.render(getPosX() - getRadio() , getPosY() - getRadio());
+	gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
 }
 
 int NaveEnemiga::getRadio(){

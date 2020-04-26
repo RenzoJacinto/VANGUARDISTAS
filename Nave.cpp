@@ -70,7 +70,7 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo )
     }
     else
     {
-        cX = jugador->getPosX();
+        cX = enemigo->getPosX();
     }
 
     //Find closest y offset
