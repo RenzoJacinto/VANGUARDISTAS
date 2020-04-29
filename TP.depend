@@ -115,7 +115,7 @@
 	<stdio.h>
 	<string>
 
-1588190090 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
+1588190213 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
@@ -125,7 +125,7 @@
 1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
+1588190874 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
 1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
@@ -400,9 +400,10 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1588188515 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1588191498 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
+	<stdio.h>
 
-1588190065 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+1588191507 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
 	"NaveEnemiga.h"
 

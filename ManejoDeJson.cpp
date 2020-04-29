@@ -1,4 +1,5 @@
 #include "ManejoDeJson.h"
+#include <stdio.h>
 
 ManejoDeJson::ManejoDeJson(){}
 
