@@ -78,7 +78,7 @@
 1587913703 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1587863342 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 	"LoggerError.h"
@@ -86,13 +86,15 @@
 	"LoggerDebug.h"
 	"Logger.h"
 
-1587862640 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
 	"Logger.h"
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
 
-1587862490 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -101,12 +103,11 @@
 	<string>
 	"ManejoDeSDL.h"
 	"global.h"
-	"colicionador.h"
 
-1587785037 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.h
 	"TextureW.h"
 
-1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -114,40 +115,35 @@
 	<stdio.h>
 	<string>
 
-1587781051 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
+1588190090 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
+	"ManejoDeJson.h"
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
-	"ManejoDeSDL.h"
-	"global.h"
 
-1587860400 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+	"Nave.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 
-1587860400 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
-	"Nave.h"
-	"NaveEnemiga.h"
-	<SDL2/SDL.h>
-
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
-	"NaveJugador.h"
-	"global.h"
-
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
-1587846481 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"Mapa.h"
 
-1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -155,66 +151,66 @@
 	<stdio.h>
 	<string>
 
-1587863724 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
 	"global.h"
 	"Menu.h"
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
-1587847080 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1587860400 /home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"
 	"ManejoDeSDL.h"
 
-1587860400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.cpp
 	"Mapa.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"Nave.h"
 
-1587860400 /home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.h
 	"Escenario.h"
 	"TextureW.h"
 
-1587862427 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
 	<iostream>
 	<fstream>
 
-1587861380 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.h
 	"Logger.h"
 
-1587861370 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.h
 	"Logger.h"
 
-1587861386 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.h
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.h
 	"Logger.h"
 
-1587862830 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
 	"Logger.h"
 	<iostream>
 	<fstream>
 
-1587861288 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.cpp
 	"LoggerDebug.h"
 
-1587861240 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.cpp
 	"LoggerError.h"
 
-1587861420 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.cpp
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.cpp
 	"LoggerInfo.h"
 
 1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.h
@@ -271,4 +267,142 @@
 	"BotonIniciar.h"
 	"global.h"
 	"ManejoDeSDL.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"Mapa.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/Mapa.h
+	"Escenario.h"
+	"TextureW.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/Escenario.h
+	<SDL2/SDL.h>
+	"TextureW.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/Escenario.cpp
+	"Escenario.h"
+	"global.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/global.h
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/ManejoDeSDL.h
+	"TextureW.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/ManejoDeLog.h
+	"Logger.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/Logger.h
+	<iostream>
+	<fstream>
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/Logger.cpp
+	"Logger.h"
+	<iostream>
+	<fstream>
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerDebug.cpp
+	"LoggerDebug.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerDebug.h
+	"Logger.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerError.cpp
+	"LoggerError.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerError.h
+	"Logger.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerInfo.cpp
+	"LoggerInfo.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/LoggerInfo.h
+	"Logger.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/main.cpp
+	"global.h"
+	"Menu.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/Menu.h
+	"Escenario.h"
+	"TextureW.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+	<string>
+	"LoggerError.h"
+	"LoggerInfo.h"
+	"LoggerDebug.h"
+	"Logger.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/ManejoDeSDL.cpp
+	"global.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/Mapa.cpp
+	"Mapa.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Nave.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/NaveJugador.h
+	"Nave.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"global.h"
+
+1588189741 /home/renzo/Documents/GitHub/VANGUARDISTAS2/NaveEnemiga.h
+	"Nave.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/Menu.cpp
+	"Menu.h"
+	"BotonIniciar.h"
+	"global.h"
+	"ManejoDeSDL.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/Nave.cpp
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/NaveJugador.cpp
+	"NaveJugador.h"
+
+1588189741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS2/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+
+1588188515 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+	"ManejoDeJson.h"
+
+1588190065 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+	"NaveEnemiga.h"
 
