@@ -1,9 +1,5 @@
 #include "NaveEnemiga.h"
 
-NaveEnemiga::NaveEnemiga( int x, int y, const char* imagen ){
-    crearNave(x, y, imagen, NAVE_WIDTH);
-    radio=NAVE_WIDTH/2;
-}
 
 void NaveEnemiga::mover( NaveJugador* jugador ){
 

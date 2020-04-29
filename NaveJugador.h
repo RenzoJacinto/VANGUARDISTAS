@@ -9,11 +9,14 @@ class NaveJugador: public Nave {
 
     public:
 
-        NaveJugador( int x, int y, const char* imagen );
+        NaveJugador( int x, int y);
 
         //Las dimensiones de la Nave del Jugador
 		static const int NAVE_WIDTH = 50;
 		static const int NAVE_HEIGHT = 20;
+
+		// Direccion de la imagen
+		const char* imagen = "sprites/nave.png";
 
 		//Velocidad de la Nave del Jugador
 		static const int NAVE_VEL = 5;

@@ -5,10 +5,9 @@
 #include <fstream>
 using namespace std;
 
-#include "json.hpp"
+//#include "json.hpp"
 
-class ManejoDeJson
-{
+class ManejoDeJson{
     public:
 
         ManejoDeJson();

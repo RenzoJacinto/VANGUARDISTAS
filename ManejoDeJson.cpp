@@ -8,7 +8,8 @@ bool ManejoDeJson::abrir_archivo(){
     if(!archivo_json){
         archivo_json.open("config/default.json", ios::in);
         if(!archivo_json) return false;
-    }return true;
+    }
+    return true;
 }
 
 int ManejoDeJson::get_nivel_de_log(){

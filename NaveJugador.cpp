@@ -1,7 +1,7 @@
 #include "NaveJugador.h"
 
-NaveJugador::NaveJugador( int x, int y, const char* imagen){
-    crearNave(x, y, imagen, NAVE_WIDTH);
+NaveJugador::NaveJugador( int x, int y){
+    crearNave(x, y, imagen);
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
 }

@@ -1,6 +1,7 @@
 #include "Mapa.h"
 #include "NaveJugador.h"
-#include "NaveEnemiga.h"
+#include "NaveEnemiga1.h"
+#include "NaveEnemiga2.h"
 #include "Nave.h"
 
 Mapa::Mapa(){}
@@ -13,11 +14,14 @@ void Mapa::procesar(){
 
 	    bool quit = false;
 
-        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4 , "sprites/nave.png");
+        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
 
-        NaveEnemiga* enemigo = new NaveEnemiga( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2 , "sprites/enemigo.png");
-        logger.debug("Se creó nave enemiga");
+        NaveEnemiga1* enemigo1 = new NaveEnemiga1( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2);
+        logger.debug("Se creó nave enemiga 1");
+
+        NaveEnemiga2* enemigo2 = new NaveEnemiga2( sdl.getScreenWidth() , sdl.getScreenHeight() / 2);
+        logger.debug("Se creó nave enemiga 2");
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -45,7 +49,7 @@ void Mapa::procesar(){
 			      jugador->handleEvent( e );
 			 }
 
-			jugador->mover(enemigo);
+			jugador->mover(enemigo1);
 
 			 //Scroll background
 			 scrollingOffsetBG -= 0.1;
@@ -69,8 +73,11 @@ void Mapa::procesar(){
 
 			 jugador->renderizar();
 
-             enemigo->mover( jugador );
-             enemigo->renderizar();
+             enemigo1->mover( jugador );
+             enemigo1->renderizar();
+
+             enemigo2->mover( jugador );
+             enemigo2->renderizar();
 
 			 SDL_RenderPresent( sdl.getRenderer() );
 
