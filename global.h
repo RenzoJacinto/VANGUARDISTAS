@@ -4,4 +4,4 @@
 
 extern ManejoDeSDL sdl;
 extern ManejoDeLog logger;
-//extern ManejoDeJson json;
+extern ManejoDeJson json;

@@ -3,6 +3,7 @@
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
+ManejoDeJson json;
 
 static int CANTIDAD_PARAMETROS_VALIDOS = 1;
 

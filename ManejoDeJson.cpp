@@ -3,11 +3,23 @@
 
 ManejoDeJson::ManejoDeJson(){}
 
+bool ManejoDeJson::abrir_archivo(){
+    archivo_json.open("config/configuracion.json", ios::in);
+    if(!archivo_json){
+        archivo_json.open("config/default.json", ios::in);
+        if(!archivo_json) return false;
+    }return true;
+}
+
 int ManejoDeJson::get_nivel_de_log(){
     return 0;
 }
 
-int ManejoDeJson::get_cantidad_enemigos(NaveEnemiga enemigo){
+int ManejoDeJson::get_cantidad_enemigos_enemigo1(){
+    return 0;
+}
+
+int ManejoDeJson::get_cantidad_enemigos_enemigo2(){
     return 0;
 }
 
