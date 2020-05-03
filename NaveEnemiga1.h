@@ -4,7 +4,7 @@
 #include "NaveEnemiga.h"
 
 class NaveEnemiga1: public NaveEnemiga {
-      public:
+    public:
 
         //Las dimensiones de la Nave del enemigo
 		static const int NAVE_WIDTH = 50;

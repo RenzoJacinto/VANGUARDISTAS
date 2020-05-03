@@ -34,9 +34,8 @@ void NaveJugador::mover( NaveEnemiga* enemigo ){
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
 
-	//if( ( getPosX() - (getAncho()/2) < 0 ) || ( getPosX() + (getAncho()/2) > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
     if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
-
+        // Vuelve a la anterior posicion
         setPosX(getPosX()-getVelX());
     }
 

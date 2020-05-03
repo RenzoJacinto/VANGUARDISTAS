@@ -15,6 +15,8 @@ class NaveEnemiga: public Nave {
 
 		int getRadio();
 
+    protected:
+
         int radio;
 };
 

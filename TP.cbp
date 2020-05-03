@@ -48,6 +48,8 @@
 		<Unit filename="LoggerError.h" />
 		<Unit filename="LoggerInfo.cpp" />
 		<Unit filename="LoggerInfo.h" />
+		<Unit filename="ManejoDeJson.cpp" />
+		<Unit filename="ManejoDeJson.h" />
 		<Unit filename="ManejoDeLog.cpp" />
 		<Unit filename="ManejoDeLog.h" />
 		<Unit filename="ManejoDeSDL.cpp" />
@@ -60,14 +62,20 @@
 		<Unit filename="Nave.h" />
 		<Unit filename="NaveEnemiga.cpp" />
 		<Unit filename="NaveEnemiga.h" />
+		<Unit filename="NaveEnemiga1.cpp" />
+		<Unit filename="NaveEnemiga1.h" />
+		<Unit filename="NaveEnemiga2.cpp" />
+		<Unit filename="NaveEnemiga2.h" />
 		<Unit filename="NaveJugador.cpp" />
 		<Unit filename="NaveJugador.h" />
 		<Unit filename="TextureW.cpp" />
 		<Unit filename="TextureW.h" />
-		<Unit filename="colicionador.h" />
 		<Unit filename="global.h" />
-		<Unit filename="log.txt" />
+		<Unit filename="json.hpp" />
 		<Unit filename="main.cpp" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
