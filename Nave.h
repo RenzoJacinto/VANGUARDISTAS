@@ -9,6 +9,7 @@
 #include <string>
 #include "ManejoDeSDL.h"
 #include "global.h"
+#include "list"
 
 class NaveJugador;
 class NaveEnemiga;
@@ -39,6 +40,8 @@ class Nave{
 		double distanceSquared( int x1, int y1, int x2, int y2 );
 
 		bool checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo );
+
+		bool encontrarEnemigos(NaveJugador* jugador, list<NaveEnemiga*> enemigos);
 
     protected:
 

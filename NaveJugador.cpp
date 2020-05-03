@@ -29,19 +29,21 @@ void NaveJugador::handleEvent( SDL_Event& e ){
     }
 }
 
-void NaveJugador::mover( NaveEnemiga* enemigo ){
+void NaveJugador::mover( list<NaveEnemiga*> enemigos ){
 
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
 
-    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
+//    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  || checkCollision( this , enemigo ) ){
+    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  ||  encontrarEnemigos( this, enemigos ) ){
         // Vuelve a la anterior posicion
         setPosX(getPosX()-getVelX());
     }
 
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
+//    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || checkCollision( this , enemigo ) ){
+    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || encontrarEnemigos( this, enemigos ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }
@@ -58,3 +60,5 @@ int NaveJugador::getAlto(){
 int NaveJugador::getAncho(){
     return ancho;
 }
+
+

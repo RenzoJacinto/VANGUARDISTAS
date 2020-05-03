@@ -3,6 +3,7 @@
 #include "NaveEnemiga1.h"
 #include "NaveEnemiga2.h"
 #include "Nave.h"
+#include <list>
 
 Mapa::Mapa(){}
 
@@ -17,11 +18,20 @@ void Mapa::procesar(){
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
 
-        NaveEnemiga1* enemigo1 = new NaveEnemiga1( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2);
-        logger.debug("Se creó nave enemiga 1");
+        list<NaveEnemiga*> enemigos;
 
-        NaveEnemiga2* enemigo2 = new NaveEnemiga2( sdl.getScreenWidth() , sdl.getScreenHeight() / 2);
-        logger.debug("Se creó nave enemiga 2");
+        for(int i = 1; i <= 5; i++)
+        {
+            NaveEnemiga1* enemigo = new NaveEnemiga1( rand() % sdl.getScreenWidth() , rand() % sdl.getScreenHeight() );
+            //logger.debug("Se creó nave enemiga ",i);
+            enemigos.push_back(enemigo);
+        }
+
+//        NaveEnemiga1* enemigo1 = new NaveEnemiga1( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2);
+//        logger.debug("Se creó nave enemiga 1");
+//
+//        NaveEnemiga2* enemigo2 = new NaveEnemiga2( sdl.getScreenWidth() , sdl.getScreenHeight() / 2);
+//        logger.debug("Se creó nave enemiga 2");
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -49,7 +59,8 @@ void Mapa::procesar(){
 			      jugador->handleEvent( e );
 			 }
 
-			jugador->mover(enemigo1);
+			jugador->mover(enemigos);
+			//jugador->mover(enemigo2);
 
 			 //Scroll background
 			 scrollingOffsetBG -= 0.1;
@@ -73,11 +84,12 @@ void Mapa::procesar(){
 
 			 jugador->renderizar();
 
-             enemigo1->mover( jugador );
-             enemigo1->renderizar();
-
-             enemigo2->mover( jugador );
-             enemigo2->renderizar();
+			list<NaveEnemiga*>::iterator pos;
+            for(pos = enemigos.begin(); pos != enemigos.end(); pos++)
+            {
+                (*pos)->mover( jugador );
+                (*pos)->renderizar();
+            }
 
 			 SDL_RenderPresent( sdl.getRenderer() );
 

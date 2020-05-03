@@ -85,3 +85,18 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
     return false;
 }
 
+//En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
+bool Nave::encontrarEnemigos( NaveJugador* jugador, list<NaveEnemiga*>  enemigos )
+{
+    bool colision = false;
+    list<NaveEnemiga*>::iterator pos;
+
+    for(pos = enemigos.begin();pos != enemigos.end();pos++)
+    {
+        colision = checkCollision( jugador , *pos );
+        if (colision) break;
+    }
+
+    return colision;
+}
+

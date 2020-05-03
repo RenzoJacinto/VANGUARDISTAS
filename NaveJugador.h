@@ -2,6 +2,7 @@
 #define NAVEJUGADOR_H
 
 #include "Nave.h"
+#include "list"
 
 class NaveEnemiga;
 
@@ -25,7 +26,7 @@ class NaveJugador: public Nave {
 		void handleEvent( SDL_Event& e );
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( NaveEnemiga* enemigo );
+		void mover( list<NaveEnemiga*>  enemigo );
 
 		void renderizar();
 
