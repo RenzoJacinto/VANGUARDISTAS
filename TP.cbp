@@ -62,10 +62,6 @@
 		<Unit filename="Nave.h" />
 		<Unit filename="NaveEnemiga.cpp" />
 		<Unit filename="NaveEnemiga.h" />
-		<Unit filename="NaveEnemiga1.cpp" />
-		<Unit filename="NaveEnemiga1.h" />
-		<Unit filename="NaveEnemiga2.cpp" />
-		<Unit filename="NaveEnemiga2.h" />
 		<Unit filename="NaveJugador.cpp" />
 		<Unit filename="NaveJugador.h" />
 		<Unit filename="TextureW.cpp" />

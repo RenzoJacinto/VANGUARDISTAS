@@ -47,7 +47,7 @@
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 
-1588523371 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.h
+1588525192 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -60,17 +60,17 @@
 
 1587913703 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/colicionador.h
 
-1588515628 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
+1588528197 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1588518332 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
+1588528243 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
 1588523400 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"list"
 
-1588523405 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
+1588528668 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 
 1588515628 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/TextureW.cpp
@@ -259,11 +259,10 @@
 	"Escenario.h"
 	"TextureW.h"
 
-1588521793 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.cpp
+1588528558 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.cpp
 	"Mapa.h"
 	"NaveJugador.h"
-	"NaveEnemiga1.h"
-	"NaveEnemiga2.h"
+	"NaveEnemiga.h"
 	"Nave.h"
 	<list>
 
@@ -586,19 +585,19 @@
 	<iostream>
 	<fstream>
 
-1588517955 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga1.h
+1588526830 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga1.h
 	"NaveEnemiga.h"
 
-1588518735 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.h
+1588526826 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.h
 	"NaveEnemiga.h"
 
 1588515627 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 
-1588515628 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga1.cpp
+1588526831 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga1.cpp
 	"NaveEnemiga1.h"
 
-1588515628 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.cpp
+1588526895 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.cpp
 	"NaveEnemiga2.h"
 

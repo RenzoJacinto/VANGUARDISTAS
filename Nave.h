@@ -52,10 +52,6 @@ class Nave{
 		int mVelX, mVelY;
 
         TextureW gNaveTexture;
-
-		static const int NAVE_WIDTH;
-		static const int NAVE_HEIGHT;
-
 };
 
 #endif /* NAVE_H_ */

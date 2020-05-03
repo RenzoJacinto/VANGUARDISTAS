@@ -8,6 +8,9 @@ class NaveJugador;
 class NaveEnemiga: public Nave {
 
     public:
+
+        NaveEnemiga(int x, int y);
+
 		//Mueve la Nave considerando la posicion de la Nave del jugador
 		void mover( NaveJugador* jugador );
 
@@ -15,9 +18,19 @@ class NaveEnemiga: public Nave {
 
 		int getRadio();
 
+		void seleccionarImagen();
+
+		const char* getImagen();
+
+		int getAltoImagen();
+
+		int getAnchoImagen();
+
     protected:
 
         int radio;
+
+        const char* imagen;
 };
 
 #endif // NAVEENEMIGA_H

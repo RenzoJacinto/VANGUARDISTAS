@@ -1,7 +1,6 @@
 #include "Mapa.h"
 #include "NaveJugador.h"
-#include "NaveEnemiga1.h"
-#include "NaveEnemiga2.h"
+#include "NaveEnemiga.h"
 #include "Nave.h"
 #include <list>
 
@@ -18,20 +17,16 @@ void Mapa::procesar(){
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
 
+        //Todo este bloque deberiamos declararlo en otro lado
         list<NaveEnemiga*> enemigos;
 
-        for(int i = 1; i <= 5; i++)
+        for(int i = 1; i <= 4; i++)
         {
-            NaveEnemiga1* enemigo = new NaveEnemiga1( rand() % sdl.getScreenWidth() , rand() % sdl.getScreenHeight() );
-            //logger.debug("Se creó nave enemiga ",i);
+            NaveEnemiga* enemigo = new NaveEnemiga( rand() % sdl.getScreenWidth() , rand() % sdl.getScreenHeight() );
+            logger.debug("Se creó una nave enemiga");
             enemigos.push_back(enemigo);
         }
-
-//        NaveEnemiga1* enemigo1 = new NaveEnemiga1( sdl.getScreenWidth() / 2 , sdl.getScreenHeight() / 2);
-//        logger.debug("Se creó nave enemiga 1");
-//
-//        NaveEnemiga2* enemigo2 = new NaveEnemiga2( sdl.getScreenWidth() , sdl.getScreenHeight() / 2);
-//        logger.debug("Se creó nave enemiga 2");
+        //Hasta aca
 
 	    double scrollingOffsetBG = 0;
 	    double scrollingOffsetCity = 0;
@@ -60,7 +55,6 @@ void Mapa::procesar(){
 			 }
 
 			jugador->mover(enemigos);
-			//jugador->mover(enemigo2);
 
 			 //Scroll background
 			 scrollingOffsetBG -= 0.1;
@@ -84,12 +78,14 @@ void Mapa::procesar(){
 
 			 jugador->renderizar();
 
-			list<NaveEnemiga*>::iterator pos;
-            for(pos = enemigos.begin(); pos != enemigos.end(); pos++)
-            {
+			 //Todo este bloque deberiamos declararlo en otro lado
+             list<NaveEnemiga*>::iterator pos;
+             for(pos = enemigos.begin(); pos != enemigos.end(); pos++)
+             {
                 (*pos)->mover( jugador );
                 (*pos)->renderizar();
-            }
+             }
+             //Hasta aca
 
 			 SDL_RenderPresent( sdl.getRenderer() );
 

@@ -1,5 +1,10 @@
 #include "NaveEnemiga.h"
 
+NaveEnemiga::NaveEnemiga( int x, int y){
+    seleccionarImagen();
+    crearNave(x, y, getImagen());
+    radio=getAltoImagen()/2;
+}
 
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
@@ -36,4 +41,39 @@ void NaveEnemiga::renderizar(){
 
 int NaveEnemiga::getRadio(){
     return radio;
+}
+
+void NaveEnemiga::seleccionarImagen(){
+
+    const char* ruta;
+    int seleccion = 1 + rand() % 3;
+
+    switch(seleccion) {
+
+    case 1 :
+      ruta = "sprites/enemigo1.png";
+      break;
+
+    case 2:
+      ruta = "sprites/enemigo2.png";
+      break;
+
+    default :
+        //Alguna otra imagen por default
+        break;
+    }
+
+    imagen = ruta;
+}
+
+const char* NaveEnemiga::getImagen(){
+    return imagen;
+}
+
+int NaveEnemiga::getAltoImagen(){
+	gNaveTexture.getHeight();
+}
+
+int NaveEnemiga::getAnchoImagen(){
+	gNaveTexture.getWidth();
 }
