@@ -20,7 +20,7 @@ void Mapa::procesar(){
         //Todo este bloque deberiamos declararlo en otro lado
         list<NaveEnemiga*> enemigos;
 
-        for(int i = 1; i <= 4; i++)
+        for(int i = 1; i <= 6; i++)
         {
             NaveEnemiga* enemigo = new NaveEnemiga( rand() % sdl.getScreenWidth() , rand() % sdl.getScreenHeight() );
             logger.debug("Se creó una nave enemiga");

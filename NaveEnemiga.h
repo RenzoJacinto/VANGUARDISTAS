@@ -31,6 +31,8 @@ class NaveEnemiga: public Nave {
         int radio;
 
         const char* imagen;
+
+        bool desplazamientoPositivo;
 };
 
 #endif // NAVEENEMIGA_H
