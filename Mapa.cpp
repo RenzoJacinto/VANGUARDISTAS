@@ -8,9 +8,13 @@ Mapa::Mapa(){}
 
 void Mapa::procesar(){
 
-        cargarImagen("sprites/bg.png", &gBGTexture);
-        cargarImagen("sprites/ciudad.png", &gCiudadTexture);
-        cargarImagen("sprites/planeta.png", &gPlanetaTexture);
+        const char* sMapaBG = json.get_sprite_MapaBG();
+        const char* sCiudad = json.get_sprite_Ciudad();
+        const char* sPlaneta = json.get_sprite_Planeta();
+
+        cargarImagen(sMapaBG, &gBGTexture);
+        cargarImagen(sCiudad, &gCiudadTexture);
+        cargarImagen(sPlaneta, &gPlanetaTexture);
 
 	    bool quit = false;
 

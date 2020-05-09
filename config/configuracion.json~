@@ -1,11 +1,9 @@
 {
-    "confuguracion":{
-	"log": 1,
         "stages":{
             	"menuBG":"sprites/menuBG.png",
                 "mapaBG":"sprites/bg.png",
                 "ciudad":"sprites/ciudad.png",
-                "planeta":"sprites/planeta.png",
+                "planeta":"sprites/planeta.png"
         },
         "enemigos":{
 		"enemigo1":{
@@ -19,5 +17,4 @@
             
         },
 	"jugador": "sprites/nave.png"	
-    }
 }
