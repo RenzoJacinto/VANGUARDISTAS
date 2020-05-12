@@ -10,7 +10,7 @@ bool Menu::cargarImagen(){
 	bool ok = true;
 
     // Cargar la textura de la nave
-    const char* sMenuBG = json.get_sprite_MenuBG();
+    const char* sMenuBG = json.get_sprite_menu();
 	if( !gMenuBGTexture.loadFromFile(sMenuBG) ){
 		ok = false;
 	}else logger.info("Se cargó la imagen menuBG.png");

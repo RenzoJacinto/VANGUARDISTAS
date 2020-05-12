@@ -1,5 +1,7 @@
 #include "ManejoDeJson.h"
 #include <stdio.h>
+#include "Mapa.h"
+#include <list>
 
 ManejoDeJson::ManejoDeJson(){}
 
@@ -13,7 +15,6 @@ bool ManejoDeJson::abrir_archivo(){
     }
     archivo_json >> j;
     archivo_json.close();
-    cargar_config();
     return true;
 }
 
@@ -23,96 +24,38 @@ bool ManejoDeJson::abrir_archivo_aux(const char* filename){
     return true;
 }
 
-void ManejoDeJson::cargar_config(){
-    for (auto& el : j.items()) {
-        //std::cout << el.key() << " : " << el.value() << "\n";
-        if(el.key() == "enemigos") cargar_enemigos(el.value());
-        if(el.key() == "log") config.log = el.value();
-        if(el.key() == "stages") cargar_stages(el.value());
-        if(el.key() == "jugador") config.jugador = el.value();
-    }
-
-}
-
-void ManejoDeJson::cargar_stages(json& j_aux){
-    for (auto& el : j_aux.items()) {
-        if(el.key() == "menuBG") config.menuBG = el.value();
-        if(el.key() == "mapaBG") config.mapaBG = el.value();
-        if(el.key() == "ciudad") config.ciudad = el.value();
-        if(el.key() == "planeta") config.planeta = el.value();
-    }
-}
-
-void ManejoDeJson::cargar_enemigo1(json& j_aux){
-    for (auto& el : j_aux.items()) {
-        if(el.key() == "cantidad") config.cant_enemigo1 = el.value();
-        if(el.key() == "sprite") config.sprite_enemigo1 = el.value();
-    }
-}
-
-void ManejoDeJson::cargar_enemigo2(json& j_aux){
-    for (auto& el : j_aux.items()) {
-        if(el.key() == "cantidad") config.cant_enemigo2 = el.value();
-        if(el.key() == "sprite") config.sprite_enemigo2 = el.value();
-    }
-}
-
-void ManejoDeJson::cargar_enemigos(json& j_aux){
-    for (auto& el : j_aux.items()) {
-        if(el.key() == "enemigo1") cargar_enemigo1(el.value());
-        if(el.key() == "enemigo2") cargar_enemigo2(el.value());
-    }
+const char* ManejoDeJson::get_sprite_menu(){
+    std::string menu = j.at("menu");
+    return menu.c_str();
 }
 
 int ManejoDeJson::get_nivel_de_log(){
-    return config.log;
+    return j.at("log");
 }
 
-int ManejoDeJson::get_cantidad_enemigos_enemigo1(){
-    return config.cant_enemigo1;
+int ManejoDeJson::get_cantidad_enemigos(){
+    return j.at("enemigos");
 }
 
-int ManejoDeJson::get_cantidad_enemigos_enemigo2(){
-    return config.cant_enemigo2;
+nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
+    for(auto& el : j_aux.items()) {
+        if(el.key() == key) return el.value();
+    }
+    return j_aux;
 }
 
-const char* ManejoDeJson::get_sprite_MenuBG(){
-    return config.menuBG.c_str();
-}
+const char* ManejoDeJson::get_sprite_mapa(const char* key, const char* sp){
 
-const char* ManejoDeJson::get_sprite_MapaBG(){
-    return config.mapaBG.c_str();
-}
+    json& j_aux = searchValue(j, "stages");
+    json& j_nivel = searchValue(j_aux, key);
 
-const char* ManejoDeJson::get_sprite_Ciudad(){
-    return config.ciudad.c_str();
-}
-
-const char* ManejoDeJson::get_sprite_Planeta(){
-    return config.planeta.c_str();
-}
-
-const char* ManejoDeJson::get_sprite_Nave_Jugador(){
-    return config.jugador.c_str();
-}
-
-const char* ManejoDeJson::get_sprite_Enemigo_Default(){
+    for(auto& el : j_nivel.items()) {
+        std::string sActual = el.value();
+        if(strstr(sActual.c_str(),sp)){
+            return sActual.c_str();
+        }
+    }
     return NULL;
 }
 
-const char* ManejoDeJson::get_sprite_Enemigo1(){
-    return config.sprite_enemigo1.c_str();
-}
-
-const char* ManejoDeJson::get_sprite_Enemigo2(){
-    return config.sprite_enemigo2.c_str();
-}
-
-const char* ManejoDeJson::get_sprite_Enemigo3(){
-    return NULL;
-}
-
-const char* ManejoDeJson::get_sprite_Enemigo4(){
-    return NULL;
-}
 

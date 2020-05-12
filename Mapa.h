@@ -4,16 +4,15 @@
 #include "Escenario.h"
 #include "TextureW.h"
 
+
 class Mapa: public Escenario{
     public:
         Mapa();
         void procesar();
-        void cerrar();
+        virtual void cargarNivel();
+        virtual void cerrar();
+        virtual void renderBackground();
 
-    private:
-        TextureW gBGTexture;
-        TextureW gCiudadTexture;
-        TextureW gPlanetaTexture;
 };
 
 #endif
