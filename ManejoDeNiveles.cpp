@@ -15,7 +15,7 @@ ManejoDeNiveles::ManejoDeNiveles(){
 
 void ManejoDeNiveles::procesar(){
 
-    list<Mapa*>::iterator nivel;
+    list<Nivel*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
         (*nivel)->cargarNivel();
         (*nivel)->procesar();

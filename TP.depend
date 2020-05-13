@@ -144,7 +144,7 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
+1589411465 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
@@ -188,7 +188,7 @@
 	"Nave.h"
 	<list>
 
-1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.h
+1589411157 /home/renzo/Documents/GitHub/VANGUARDISTAS/Mapa.h
 	"Escenario.h"
 	"TextureW.h"
 
@@ -608,17 +608,17 @@
 1588526895 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.cpp
 	"NaveEnemiga2.h"
 
-1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
+1589411611 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
 	<list>
-	"Mapa.h"
+	"Nivel.h"
 
-1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
+1589411627 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
 	"Nivel1.h"
 
-1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
-	"Mapa.h"
+1589411144 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+	"Nivel.h"
 	"TextureW.h"
 
 1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
@@ -628,14 +628,23 @@
 	"Nave.h"
 	<list>
 
-1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
-	"Mapa.h"
+1589411150 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
+	"Nivel.h"
 	"TextureW.h"
 
-1589410467 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1589410573 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"Nave.h"
 	<list>
+
+1589411856 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+	"Escenario.h"
+	"TextureW.h"
+
+1589411889 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
+	"Nivel.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
 

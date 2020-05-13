@@ -1,12 +1,10 @@
-#include "Mapa.h"
+#include "Nivel.h"
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
-#include "Nave.h"
-#include <list>
 
-Mapa::Mapa(){}
+Nivel::Nivel(){}
 
-void Mapa::procesar(){
+void Nivel::procesar(){
 
 	    bool quit = false;
 
@@ -53,11 +51,9 @@ void Mapa::procesar(){
         logger.info("Se volvió al menu");
 }
 
-void Mapa::cerrar(){}
+void Nivel::cerrar(){}
 
-void Mapa::cargarNivel(){}
+void Nivel::cargarNivel(){}
 
-void Mapa::renderBackground(){}
-
-
+void Nivel::renderBackground(){}
 

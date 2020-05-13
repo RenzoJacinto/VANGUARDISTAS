@@ -2,7 +2,7 @@
 #define MANEJODENIVELES_H_
 
 #include <list>
-#include "Mapa.h"
+#include "Nivel.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ class ManejoDeNiveles{
         void procesar();
 
     private:
-        std::list<Mapa*> niveles;
+        std::list<Nivel*> niveles;
 };
 
 #endif

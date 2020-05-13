@@ -1,10 +1,10 @@
 #ifndef NIVEL2H
 #define NIVEL2_H
 
-#include "Mapa.h"
+#include "Nivel.h"
 #include "TextureW.h"
 
-class Nivel2: public Mapa{
+class Nivel2: public Nivel{
     public:
         Nivel2();
         void cargarNivel();
