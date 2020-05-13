@@ -44,7 +44,7 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     return j_aux;
 }
 
-const char* ManejoDeJson::get_sprite_mapa(const char* key, const char* sp){
+const char* ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);

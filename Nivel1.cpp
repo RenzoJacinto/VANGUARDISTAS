@@ -7,7 +7,6 @@
 Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
-
     sMapaBG = json.get_sprite_mapa("nivel1", "bg");
     sCiudad = json.get_sprite_mapa("nivel1", "ciudad");
     sPlaneta = json.get_sprite_mapa("nivel1", "planeta");

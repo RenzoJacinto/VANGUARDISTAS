@@ -101,9 +101,9 @@ const char* NaveEnemiga::getImagen(){
 }
 
 int NaveEnemiga::getAltoImagen(){
-	gNaveTexture.getHeight();
+	return gNaveTexture.getHeight();
 }
 
 int NaveEnemiga::getAnchoImagen(){
-	gNaveTexture.getWidth();
+	return gNaveTexture.getWidth();
 }

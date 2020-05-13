@@ -22,7 +22,7 @@ class ManejoDeJson{
         int get_cantidad_enemigos();
 
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
-        const char* get_sprite_mapa(const char* key, const char* sp);
+        const char* get_sprite_mapa(char const* key, char const* sp);
 
     private:
 
