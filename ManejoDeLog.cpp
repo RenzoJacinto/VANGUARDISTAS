@@ -22,9 +22,10 @@ bool ManejoDeLog::iniciarLog(int nivel){
 
     // junto strings para el nombre del archivo
     std::string carpeta = "logs/";
+    std::string extension = ".txt";
     char* hora_actual = ctime(&ahora);
     string horaActual(hora_actual);
-    carpeta = carpeta + horaActual;
+    carpeta = carpeta + horaActual + extension;
 
     const char* filename = carpeta.c_str();
 
