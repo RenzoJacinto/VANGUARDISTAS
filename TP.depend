@@ -81,7 +81,7 @@
 1588699943 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
+1589409724 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 	"LoggerError.h"
@@ -611,4 +611,24 @@
 1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
 	<list>
 	"Mapa.h"
+
+1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
+	"ManejoDeNiveles.h"
+	<string>
+	"Nivel1.h"
+
+1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+	"Mapa.h"
+	"TextureW.h"
+
+1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
+	"Nivel2.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Nave.h"
+	<list>
+
+1589408077 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
+	"Mapa.h"
+	"TextureW.h"
 
