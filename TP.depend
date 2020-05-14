@@ -407,7 +407,7 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589414800 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1589416724 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	<list>
@@ -615,7 +615,7 @@
 	<string>
 	"Nivel1.h"
 
-1589411144 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+1589416989 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
 
@@ -630,7 +630,7 @@
 	"Nivel.h"
 	"TextureW.h"
 
-1589415210 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1589418623 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"

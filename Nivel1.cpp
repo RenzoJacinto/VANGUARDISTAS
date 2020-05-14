@@ -7,23 +7,27 @@
 Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
-    std::string bg = json.get_sprite_mapa("nivel1", "bg");
+    std::string bg = json.get_sprite_mapa("nivel1", "mapaBG");
     std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
     std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
+    std::string nube = json.get_sprite_mapa("nivel1", "nube");
     const char* sMapaBG = bg.c_str();
     const char* sCiudad = ciudad.c_str();
     const char* sPlaneta = planeta.c_str();
+    const char* sNube = nube.c_str();
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sCiudad, &gCiudadTexture);
     cargarImagen(sPlaneta, &gPlanetaTexture);
+    cargarImagen(sNube, &gNube);
 
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
     tierraInicial = 850;
+    scrollingOffsetNube = 0;
 
     dataBG.h = 600;
-    dataBG.w = 800;
+    dataBG.w = 2048;
     dataBG.x = 0;
     dataBG.y = 0;
 
@@ -31,6 +35,11 @@ void Nivel1::cargarNivel(){
     dataCiudad.w = 2048;
     dataCiudad.x = 0;
     dataCiudad.y = 0;
+
+    dataNube.h = 600;
+    dataNube.w = 800;
+    dataNube.x = 0;
+    dataNube.y = 0;
 }
 
 void Nivel1::cerrar(){
@@ -46,6 +55,9 @@ void Nivel1::renderBackground(){
 	scrollingOffsetCity -= 5;
     if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
 
+    scrollingOffsetNube -= 8;
+    if( scrollingOffsetNube < -dataNube.w ) scrollingOffsetNube = 0;
+
 	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );
 
@@ -57,4 +69,7 @@ void Nivel1::renderBackground(){
 
 	gCiudadTexture.render(scrollingOffsetCity, 150, &dataCiudad);
 	gCiudadTexture.render(scrollingOffsetCity + dataCiudad.w, 150, &dataCiudad);
+
+	gNube.render( scrollingOffsetNube, 0, &dataNube );
+	gNube.render( scrollingOffsetNube + dataNube.w, 0, &dataNube );
 }

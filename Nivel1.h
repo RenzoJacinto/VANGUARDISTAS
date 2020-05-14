@@ -17,17 +17,21 @@ class Nivel1: public Nivel{
         TextureW gBGTexture;
         TextureW gCiudadTexture;
         TextureW gPlanetaTexture;
+        TextureW gNube;
 
         SDL_Rect dataCiudad;
         SDL_Rect dataBG;
+        SDL_Rect dataNube;
 
         double scrollingOffsetBG;
         double scrollingOffsetCity;
         double tierraInicial;
+        double scrollingOffsetNube;
 
         const char* sMapaBG;
         const char* sPlaneta;
         const char* sCiudad;
+        const char* sNube;
 };
 
 #endif
