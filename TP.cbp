@@ -58,7 +58,6 @@
 		<Unit filename="ManejoDeSDL.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
-		<Unit filename="NIvel.h" />
 		<Unit filename="Nave.cpp" />
 		<Unit filename="Nave.h" />
 		<Unit filename="NaveEnemiga.cpp" />
