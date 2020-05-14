@@ -7,9 +7,12 @@
 Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
-    sMapaBG = json.get_sprite_mapa("nivel1", "bg");
-    sCiudad = json.get_sprite_mapa("nivel1", "ciudad");
-    sPlaneta = json.get_sprite_mapa("nivel1", "planeta");
+    std::string bg = json.get_sprite_mapa("nivel1", "bg");
+    std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
+    std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
+    const char* sMapaBG = bg.c_str();
+    const char* sCiudad = ciudad.c_str();
+    const char* sPlaneta = planeta.c_str();
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sCiudad, &gCiudadTexture);

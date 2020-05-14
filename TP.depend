@@ -175,7 +175,7 @@
 	"Escenario.h"
 	"TextureW.h"
 
-1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
+1589415083 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"
@@ -407,18 +407,16 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589410519 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1589414800 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
-	"Mapa.h"
 	<list>
 
-1589410501 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+1589414782 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
 	"json.hpp"
-	"Mapa.h"
 
 1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/json.hpp
 	<algorithm>
@@ -632,14 +630,14 @@
 	"Nivel.h"
 	"TextureW.h"
 
-1589410573 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1589415210 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"Nave.h"
 	<list>
 
-1589411856 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+1589415392 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
 	"Escenario.h"
 	"TextureW.h"
 

@@ -1,0 +1,13 @@
+Se inicializ贸 SDL - Wed May 13 21:07:13 2020
+Filtrado de textura lineal seteado - Wed May 13 21:07:13 2020
+Se cre贸 la ventana - Wed May 13 21:07:13 2020
+Se cre贸 vSync para la ventana - Wed May 13 21:07:13 2020
+Se inicializ贸 el renderizado de color - Wed May 13 21:07:13 2020
+Se inicializ贸 la carga de imagenes PNG - Wed May 13 21:07:13 2020
+Couldn't open `②ZU - Wed May 13 21:07:13 2020
+Se liber贸 memoria del renderizador - Wed May 13 21:07:13 2020
+Se liber贸 memoria de la ventana - Wed May 13 21:07:13 2020
+Se referenci贸 la ventana como nula - Wed May 13 21:07:13 2020
+Se referenci贸 el renderizador como nulo - Wed May 13 21:07:13 2020
+Se cerr贸 IMG - Wed May 13 21:07:13 2020
+Se cerr贸 SDL - Wed May 13 21:07:13 2020

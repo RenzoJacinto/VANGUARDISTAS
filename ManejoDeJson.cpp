@@ -1,6 +1,5 @@
 #include "ManejoDeJson.h"
 #include <stdio.h>
-#include "Mapa.h"
 #include <list>
 
 ManejoDeJson::ManejoDeJson(){}
@@ -24,9 +23,8 @@ bool ManejoDeJson::abrir_archivo_aux(const char* filename){
     return true;
 }
 
-const char* ManejoDeJson::get_sprite_menu(){
-    std::string menu = j.at("menu");
-    return menu.c_str();
+std::string ManejoDeJson::get_sprite_menu(){
+    return j.at("menu");
 }
 
 int ManejoDeJson::get_nivel_de_log(){
@@ -44,7 +42,7 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     return j_aux;
 }
 
-const char* ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
+std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
@@ -52,7 +50,7 @@ const char* ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
     for(auto& el : j_nivel.items()) {
         std::string sActual = el.value();
         if(strstr(sActual.c_str(),sp)){
-            return sActual.c_str();
+            return sActual;
         }
     }
     return NULL;

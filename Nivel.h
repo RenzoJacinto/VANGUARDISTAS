@@ -10,9 +10,9 @@ class Nivel: public Escenario {
 
         Nivel();
         void procesar();
-        void cerrar();
-        void cargarNivel();
-        void renderBackground();
+        virtual void cerrar();
+        virtual void cargarNivel();
+        virtual void renderBackground();
 
 };
 

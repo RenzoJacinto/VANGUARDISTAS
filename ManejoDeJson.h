@@ -6,7 +6,6 @@
 #include <string>
 
 #include "json.hpp"
-#include "Mapa.h"
 
 using namespace std;
 
@@ -17,12 +16,12 @@ class ManejoDeJson{
         bool abrir_archivo();
         bool abrir_archivo_aux(const char* filename);
 
-        const char* get_sprite_menu();
+        std::string get_sprite_menu();
         int get_nivel_de_log();
         int get_cantidad_enemigos();
 
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
-        const char* get_sprite_mapa(char const* key, char const* sp);
+        std::string get_sprite_mapa(char const* key, char const* sp);
 
     private:
 
