@@ -17,7 +17,7 @@ class NaveJugador: public Nave {
 		static const int NAVE_HEIGHT = 20;
 
 		// Direccion de la imagen
-		const char* imagen = "sprites/nave.png";
+		const char* imagen = "sprites/naves/jugador/nave.png";
 
 		//Velocidad de la Nave del Jugador
 		static const int NAVE_VEL = 5;

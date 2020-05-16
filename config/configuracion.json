@@ -2,19 +2,19 @@
 	"log": 3,
     "stages":{
             "nivel1":{
-                "mapaBG":"sprites/bg.png",
-                "ciudad":"sprites/ciudad.png",
-                "planeta":"sprites/planeta.png",
-                "nube":"sprites/nube.png"
+                "mapaBG":"sprites/niveles/nivel1/bg.png",
+                "ciudad":"sprites/niveles/nivel1/ciudad.png",
+                "planeta":"sprites/niveles/nivel1/planeta.png",
+                "nube":"sprites/niveles/nivel1/nube.png"
             },
             "nivel2":{
-                "mapaBG":"sprites/bg2.png",
-                "planeta2":"sprites/planeta2.png",
-                "planeta3":"sprites/planeta3.png",
-                "asteroides":"sprites/asteroides.png"
+                "mapaBG":"sprites/niveles/nivel2/bg2.png",
+                "planeta2":"sprites/niveles/nivel2/planeta2.png",
+                "planeta3":"sprites/niveles/nivel2/planeta3.png",
+                "asteroides":"sprites/niveles/nivel2/asteroides.png"
             }
 
     },
-	"menu": "sprites/menuBG.png",
+	"menu": "sprites/menu/menuBG.png",
     "enemigos": 50
 }

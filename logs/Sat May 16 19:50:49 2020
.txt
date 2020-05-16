@@ -1,0 +1,29 @@
+Se inicializó SDL - Sat May 16 19:50:49 2020
+Filtrado de textura lineal seteado - Sat May 16 19:50:49 2020
+Se creó la ventana - Sat May 16 19:50:49 2020
+Se creó vSync para la ventana - Sat May 16 19:50:49 2020
+Se inicializó el renderizado de color - Sat May 16 19:50:49 2020
+Se inicializó la carga de imagenes PNG - Sat May 16 19:50:49 2020
+Se cargó la imagen menuBG.png - Sat May 16 19:50:49 2020
+Se mostró el menú - Sat May 16 19:50:49 2020
+Se cargó la imagen sprites/niveles/nivel1/bg.png - Sat May 16 19:50:50 2020
+Se cargó la imagen sprites/niveles/nivel1/ciudad.png - Sat May 16 19:50:50 2020
+Se cargó la imagen sprites/niveles/nivel1/planeta.png - Sat May 16 19:50:50 2020
+Se cargó la imagen sprites/niveles/nivel1/nube.png - Sat May 16 19:50:50 2020
+Se creó a la nave del jugador - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Couldn't open J - Sat May 16 19:50:50 2020
+Couldn't open J - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Se creó una nave enemiga - Sat May 16 19:50:50 2020
+Se mostró el mapa - Sat May 16 19:50:50 2020
+Se volvió al menu - Sat May 16 19:50:56 2020
+Se liberó memoria del renderizador - Sat May 16 19:50:56 2020
+Se liberó memoria de la ventana - Sat May 16 19:50:56 2020
+Se referenció la ventana como nula - Sat May 16 19:50:56 2020
+Se referenció el renderizador como nulo - Sat May 16 19:50:56 2020
+Se cerró IMG - Sat May 16 19:50:56 2020
+Se cerró SDL - Sat May 16 19:50:56 2020

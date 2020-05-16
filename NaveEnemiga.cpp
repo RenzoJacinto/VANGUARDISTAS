@@ -69,22 +69,22 @@ void NaveEnemiga::seleccionarImagen(){
     switch(seleccion) {
 
     case 1 :
-      ruta = "sprites/enemigo1.png";
+      ruta = "sprites/naves/enemigas/enemigo1.png";
       desplazamientoPositivo=false;
       break;
 
     case 2:
-      ruta = "sprites/enemigo2.png";
+      ruta = "sprites/naves/enemigas/enemigo2.png";
       desplazamientoPositivo=false;
       break;
 
     case 3 :
-      ruta = "sprites/enemigo3.png";
+      ruta = "sprites/naves/enemigas/enemigo3.png";
       desplazamientoPositivo=true;
       break;
 
     case 4:
-      ruta = "sprites/enemigo4.png";
+      ruta = "sprites/naves/enemigas/enemigo4.png";
       desplazamientoPositivo=true;
       break;
 
