@@ -33,6 +33,11 @@ class NaveEnemiga: public Nave {
         const char* imagen;
 
         bool desplazamientoPositivo;
+
+        const char* sEnemigo1;
+        const char* sEnemigo2;
+        const char* sEnemigo3;
+        const char* sEnemigo4;
 };
 
 #endif // NAVEENEMIGA_H

@@ -22,6 +22,7 @@ class ManejoDeJson{
 
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
         std::string get_sprite_mapa(char const* key, char const* sp);
+        std::string get_sprite_nave(char const* key, char const* sp);
 
     private:
 

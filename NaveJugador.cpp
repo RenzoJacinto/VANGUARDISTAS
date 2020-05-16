@@ -1,7 +1,9 @@
 #include "NaveJugador.h"
 
 NaveJugador::NaveJugador( int x, int y){
-    crearNave(x, y, imagen);
+    std::string jugador = json.get_sprite_nave("jugador", "jugador");
+    const char* sJugador = jugador.c_str();
+    crearNave(x, y, sJugador);
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
 }

@@ -126,17 +126,17 @@
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
 
-1589410542 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
+1589669400 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
+1589670707 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
-1589669436 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+1589670051 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"list"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
+1589669638 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 
 1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
@@ -407,12 +407,12 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589416724 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1589669980 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	<list>
 
-1589414782 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+1589669742 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>

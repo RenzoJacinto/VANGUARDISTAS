@@ -57,4 +57,18 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
     return NULL;
 }
 
+std::string ManejoDeJson::get_sprite_nave(char const* key, char const* sp){
+    json& j_aux = searchValue(j, "naves");
+    json& j_nivel = searchValue(j_aux, key);
+
+    for(auto& el : j_nivel.items()) {
+        std::string sActualKey = el.key();
+        std::string sActualValue = el.value();
+        if(strstr(sActualKey.c_str(),sp)){
+            return sActualValue;
+        }
+    }
+    return NULL;
+}
+
 

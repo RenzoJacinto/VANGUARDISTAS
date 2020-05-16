@@ -15,6 +15,17 @@
             }
 
     },
+    "naves":{
+            "jugador":{
+                "jugador":"sprites/naves/jugador/nave.png"
+            },
+            "enemigas":{
+                "enemigo1":"sprites/naves/enemigas/enemigo1.png",
+                "enemigo2":"sprites/naves/enemigas/enemigow.png",
+                "enemigo3":"sprites/naves/enemigas/enemigo3.png",
+                "enemigo4":"sprites/naves/enemigas/enemigo4.png"
+            }
+    },
 	"menu": "sprites/menu/menuBG.png",
     "enemigos": 50
 }
