@@ -6,11 +6,11 @@
                 "ciudad":"sprites/ciudad.png",
                 "planeta":"sprites/planeta.png",
                 "nube":"sprites/nube.png"
-            }
+            },
             "nivel2":{
-                "mapaBG":"sprites/bg2.png"
-                "planeta2":"sprites/planeta2.png"
-                "planeta3":"sprites/planeta3.png"
+                "mapaBG":"sprites/bg2.png",
+                "planeta2":"sprites/planeta2.png",
+                "planeta3":"sprites/planeta3.png",
                 "asteroides":"sprites/asteroides.png"
             }
 
