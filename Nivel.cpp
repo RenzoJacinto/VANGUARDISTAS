@@ -32,7 +32,7 @@ void Nivel::procesar(){
 
 			jugador->mover(enemigos);
 
-			renderBackground();
+			quit = renderBackground();
 
             //Scroll background
             jugador->renderizar();
@@ -55,5 +55,5 @@ void Nivel::cerrar(){}
 
 void Nivel::cargarNivel(){}
 
-void Nivel::renderBackground(){}
+bool Nivel::renderBackground(){}
 

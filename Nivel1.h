@@ -11,7 +11,7 @@ class Nivel1: public Nivel{
         Nivel1();
         void cargarNivel();
         void cerrar();
-        void renderBackground();
+        bool renderBackground();
 
     private:
         TextureW gBGTexture;
@@ -30,12 +30,6 @@ class Nivel1: public Nivel{
         double tierraInicial;
         double scrollingOffsetNube1;
         double scrollingOffsetNube2;
-
-        const char* sMapaBG;
-        const char* sPlaneta;
-        const char* sCiudad;
-        const char* sNube1;
-        const char* sNube2;
 };
 
 #endif

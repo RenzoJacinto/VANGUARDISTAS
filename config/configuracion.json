@@ -1,18 +1,29 @@
 {
-	"log": 3,
+    "log": 3,
     "stages":{
             "nivel1":{
                 "mapaBG":"sprites/niveles/nivel1/bg.png",
                 "ciudad":"sprites/niveles/nivel1/ciudad.png",
                 "planeta":"sprites/niveles/nivel1/planeta.png",
                 "nube1":"sprites/niveles/nivel1/nube1.png",
-                "nube2":"sprites/niveles/nivel1/nube2.png"
+		"nube2":"sprites/niveles/nivel1/nube2.png"
             },
             "nivel2":{
                 "mapaBG":"sprites/niveles/nivel2/bg2.png",
-                "planeta2":"sprites/niveles/nivel2/planeta2.png",
-                "planeta3":"sprites/niveles/nivel2/planeta3.png",
-                "asteroides":"sprites/niveles/nivel2/asteroides.png"
+                "planeta2":"sprites/niveles/nivel2/planeta1.png",
+                "planeta3":"sprites/niveles/nivel2/planeta2.png",
+                "asteroides1":"sprites/niveles/nivel2/asteroides1.png",
+		"asteroides2":"sprites/niveles/nivel2/asteroides2.png"
+
+            },
+	    "nivel3":{
+                "mapaBG":"sprites/niveles/nivel3/bg.png",
+                "fondo1":"sprites/niveles/nivel3/fondo1.png",
+                "fondo2":"sprites/niveles/nivel3/fondo2.png",
+                "fondo3":"sprites/niveles/nivel3/fondo3.png",
+		"fondo4":"sprites/niveles/nivel3/fondo4.png",
+		"fondo5":"sprites/niveles/nivel3/fondo5.png",
+		"fondo6":"sprites/niveles/nivel3/fondo6.png"
             }
 
     },
@@ -27,6 +38,6 @@
                 "enemigo4":"sprites/naves/enemigas/enemigo4.png"
             }
     },
-	"menu": "sprites/menu/menuBG.png",
+    "menu": "sprites/menu/menuBG.png",
     "enemigos": 50
 }

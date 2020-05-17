@@ -9,12 +9,22 @@ class Nivel2: public Nivel{
         Nivel2();
         void cargarNivel();
         void cerrar();
-        void renderBackground();
+        bool renderBackground();
 
-    //private:
-        /*TextureW gBGTexture;
-        TextureW gCiudadTexture;
-        TextureW gPlanetaTexture;*/
+    private:
+        TextureW gBGTexture;
+        TextureW gPlaneta1Texture;
+        TextureW gPlaneta2Texture;
+        TextureW gAsteroides1Texture;
+        TextureW gAsteroides2Texture;
+
+        SDL_Rect dataAsteroides1;
+        SDL_Rect dataAsteroides2;
+
+        double scrollingOffsetPlaneta1;
+        double scrollingOffsetPlaneta2;
+        double scrollingOffsetAsteroides1;
+        double scrollingOffsetAsteroides2;
 
 };
 

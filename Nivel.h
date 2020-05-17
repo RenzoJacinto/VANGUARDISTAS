@@ -12,7 +12,7 @@ class Nivel: public Escenario {
         void procesar();
         virtual void cerrar();
         virtual void cargarNivel();
-        virtual void renderBackground();
+        virtual bool renderBackground();
 
 };
 

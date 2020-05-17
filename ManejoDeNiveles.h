@@ -15,6 +15,8 @@ class ManejoDeNiveles{
 
     private:
         std::list<Nivel*> niveles;
+
+        TextureW fin_nivel1;
 };
 
 #endif

@@ -7,11 +7,13 @@
 Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
+
     std::string bg = json.get_sprite_mapa("nivel1", "mapaBG");
     std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
     std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
     std::string nube1 = json.get_sprite_mapa("nivel1", "nube1");
     std::string nube2 = json.get_sprite_mapa("nivel1", "nube2");
+
     const char* sMapaBG = bg.c_str();
     const char* sCiudad = ciudad.c_str();
     const char* sPlaneta = planeta.c_str();
@@ -59,9 +61,12 @@ void Nivel1::cerrar(){
 	gNube2.free();
 }
 
-void Nivel1::renderBackground(){
+bool Nivel1::renderBackground(){
 
-    if( scrollingOffsetBG < -dataBG.w ) scrollingOffsetBG = 0;
+    if( scrollingOffsetBG < -dataBG.w ){
+        scrollingOffsetBG = 0;
+        return true;
+    }
 
 	scrollingOffsetCity -= 5;
     if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
@@ -87,4 +92,6 @@ void Nivel1::renderBackground(){
 	gNube1.render( scrollingOffsetNube1 + dataNube1.w, 0, &dataNube1 );
 	gNube2.render( scrollingOffsetNube2, 0, &dataNube2 );
 	gNube2.render( scrollingOffsetNube2 + dataNube2.w, 0, &dataNube2 );
+
+	return false;
 }
