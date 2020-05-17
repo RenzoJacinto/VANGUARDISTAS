@@ -5,7 +5,8 @@
                 "mapaBG":"sprites/niveles/nivel1/bg.png",
                 "ciudad":"sprites/niveles/nivel1/ciudad.png",
                 "planeta":"sprites/niveles/nivel1/planeta.png",
-                "nube":"sprites/niveles/nivel1/nube.png"
+                "nube1":"sprites/niveles/nivel1/nube1.png",
+                "nube2":"sprites/niveles/nivel1/nube2.png"
             },
             "nivel2":{
                 "mapaBG":"sprites/niveles/nivel2/bg2.png",
