@@ -6,14 +6,14 @@
                 "ciudad":"sprites/niveles/nivel1/ciudad.png",
                 "planeta":"sprites/niveles/nivel1/planeta.png",
                 "nube1":"sprites/niveles/nivel1/nube1.png",
-		"nube2":"sprites/niveles/nivel1/nube2.png"
+                "nube2":"sprites/niveles/nivel1/nube2.png"
             },
             "nivel2":{
                 "mapaBG":"sprites/niveles/nivel2/bg2.png",
-                "planeta2":"sprites/niveles/nivel2/planeta1.png",
-                "planeta3":"sprites/niveles/nivel2/planeta2.png",
+                "planeta1":"sprites/niveles/nivel2/planeta1.png",
+                "planeta2":"sprites/niveles/nivel2/planeta2.png",
                 "asteroides1":"sprites/niveles/nivel2/asteroides1.png",
-		"asteroides2":"sprites/niveles/nivel2/asteroides2.png"
+                "asteroides2":"sprites/niveles/nivel2/asteroides2.png"
 
             },
 	    "nivel3":{

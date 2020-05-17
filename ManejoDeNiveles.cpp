@@ -7,13 +7,13 @@
 
 
 ManejoDeNiveles::ManejoDeNiveles(){
-    Nivel1* mapa1 = new Nivel1();
+    //Nivel1* mapa1 = new Nivel1();
     Nivel2* mapa2 = new Nivel2();
 
-    niveles.push_back(mapa1);
+    //niveles.push_back(mapa1);
     niveles.push_back(mapa2);
 
-    fin_nivel1.loadFromFile("sprites/niveles/nivel1/final_nivel1.png");
+    //fin_nivel1.loadFromFile("sprites/niveles/nivel1/final_nivel1.png");
 }
 
 void ManejoDeNiveles::procesar(){

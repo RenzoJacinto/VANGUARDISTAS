@@ -606,42 +606,44 @@
 1588526895 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.cpp
 	"NaveEnemiga2.h"
 
-1589411611 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
+1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1589411627 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
+1589678454 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
+	<unistd.h>
 	"Nivel1.h"
+	"Nivel2.h"
 
-1589674300 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589408077 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
+1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
 	"Nivel2.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"Nave.h"
 	<list>
 
-1589411150 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
+1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589418623 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"Nave.h"
 	<list>
 
-1589415392 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
 	"Escenario.h"
 	"TextureW.h"
 
-1589411889 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
+1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
 	"Nivel.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
