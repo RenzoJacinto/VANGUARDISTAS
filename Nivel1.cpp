@@ -1,8 +1,5 @@
 #include "Nivel1.h"
-#include "NaveJugador.h"
-#include "NaveEnemiga.h"
-#include "Nave.h"
-#include <list>
+#include "global.h"
 
 Nivel1::Nivel1(){}
 
@@ -14,11 +11,15 @@ void Nivel1::cargarNivel(){
     std::string nube1 = json.get_sprite_mapa("nivel1", "nube1");
     std::string nube2 = json.get_sprite_mapa("nivel1", "nube2");
 
+    std::string finNivel = json.get_sprite_mapa("nivel1", "finNivel");
+
     const char* sMapaBG = bg.c_str();
     const char* sCiudad = ciudad.c_str();
     const char* sPlaneta = planeta.c_str();
     const char* sNube1 = nube1.c_str();
     const char* sNube2 = nube2.c_str();
+
+    const char* sFinNivel = finNivel.c_str();
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sCiudad, &gCiudadTexture);
@@ -26,10 +27,12 @@ void Nivel1::cargarNivel(){
     cargarImagen(sNube1, &gNube1);
     cargarImagen(sNube2, &gNube2);
 
+    cargarImagen(sFinNivel, &gFinNivel);
+
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
     tierraInicial = 850;
-    scrollingOffsetNube1 = 0;
+    scrollingOffsetNube1 = 120;
     scrollingOffsetNube2 = 0;
 
     dataBG.h = 600;
@@ -59,12 +62,16 @@ void Nivel1::cerrar(){
 	gPlanetaTexture.free();
 	gNube1.free();
 	gNube2.free();
+
+	gFinNivel.free();
 }
 
 bool Nivel1::renderBackground(){
 
+    scrollingOffsetBG -= 1;
     if( scrollingOffsetBG < -dataBG.w ){
         scrollingOffsetBG = 0;
+        gFinNivel.render(0,0);
         return true;
     }
 
@@ -73,7 +80,8 @@ bool Nivel1::renderBackground(){
 
     scrollingOffsetNube1 -= 8;
     if( scrollingOffsetNube1 < -dataNube1.w ) scrollingOffsetNube1 = 0;
-    scrollingOffsetNube2 -= 8;
+
+    scrollingOffsetNube2 -= 10;
     if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
 
 	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );

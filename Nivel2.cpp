@@ -1,8 +1,5 @@
 #include "Nivel2.h"
-#include "NaveJugador.h"
-#include "NaveEnemiga.h"
-#include "Nave.h"
-#include <list>
+#include "global.h"
 
 Nivel2::Nivel2(){}
 
@@ -13,11 +10,15 @@ void Nivel2::cargarNivel(){
     std::string asteroides1 = json.get_sprite_mapa("nivel2", "asteroides1");
     std::string asteroides2 = json.get_sprite_mapa("nivel2", "asteroides2");
 
+    std::string finNivel = json.get_sprite_mapa("nivel2", "finNivel");
+
     const char* sMapaBG = bg.c_str();
     const char* sPlaneta2= planeta2.c_str();
     const char* sPlaneta1 = planeta1.c_str();
     const char* sAsteroides1 = asteroides1.c_str();
     const char* sAsteroides2 = asteroides2.c_str();
+
+    const char* sFinNivel = finNivel.c_str();
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sPlaneta1, &gPlaneta1Texture);
@@ -25,8 +26,12 @@ void Nivel2::cargarNivel(){
     cargarImagen(sAsteroides1, &gAsteroides1Texture);
     cargarImagen(sAsteroides2, &gAsteroides2Texture);
 
-    scrollingOffsetPlaneta1 = 850;
-    scrollingOffsetPlaneta2 = 800;
+    cargarImagen(sFinNivel, &gFinNivel);
+
+    corte_nivel = 0;
+
+    scrollingOffsetPlaneta1 = 740;
+    scrollingOffsetPlaneta2 = 850;
 
     scrollingOffsetAsteroides1 = 0;
     scrollingOffsetAsteroides2 = 0;
@@ -48,11 +53,18 @@ void Nivel2::cerrar(){
 	gPlaneta2Texture.free();
 	gAsteroides1Texture.free();
 	gAsteroides2Texture.free();
+
+	gFinNivel.free();
 }
 
 bool Nivel2::renderBackground(){
 
-
+    corte_nivel -= 1;
+    if(corte_nivel < -gBGTexture.getWidth()){
+        corte_nivel = 0;
+        gFinNivel.render(0,0);
+        return true;
+    }
 	scrollingOffsetAsteroides1 -= 10;
     if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
 
@@ -64,16 +76,20 @@ bool Nivel2::renderBackground(){
 
 	gBGTexture.render(0, 0);
 
+	gPlaneta2Texture.render(scrollingOffsetPlaneta2, -500);
+    scrollingOffsetPlaneta2 -= 0.25;
+
+	gPlaneta1Texture.render(scrollingOffsetPlaneta1, -120);
+    scrollingOffsetPlaneta1 -= 0.15;
+
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2, 0, &dataAsteroides2 );
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2 + dataAsteroides2.w, 0, &dataAsteroides2 );
 
     gAsteroides1Texture.render(scrollingOffsetAsteroides1, 0, &dataAsteroides1);
 	gAsteroides1Texture.render(scrollingOffsetAsteroides1 + dataAsteroides1.w, 0, &dataAsteroides1);
 
-	gPlaneta2Texture.render(scrollingOffsetPlaneta2, -52);
-    scrollingOffsetPlaneta2 -= 0.15;
 
-	gPlaneta1Texture.render(scrollingOffsetPlaneta1, -74);
-    scrollingOffsetPlaneta1 -= 0.25;
+
+    return false;
 }
 

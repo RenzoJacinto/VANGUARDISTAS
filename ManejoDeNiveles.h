@@ -12,11 +12,11 @@ class ManejoDeNiveles{
 
         ManejoDeNiveles();
         void procesar();
+        void delay(int sec);
+        void cargarNiveles();
 
     private:
         std::list<Nivel*> niveles;
-
-        TextureW fin_nivel1;
 };
 
 #endif

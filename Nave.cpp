@@ -14,6 +14,10 @@ void Nave::crearNave( int x, int y, const char* imagen ){
     if(!gNaveTexture.loadFromFile(imagen)) logger.error(SDL_GetError());
 }
 
+void Nave::cerrarNave(){
+    gNaveTexture.free();
+}
+
 int Nave::getPosX(){
     return mPosX;
 }

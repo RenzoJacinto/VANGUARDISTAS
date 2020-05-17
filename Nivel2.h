@@ -18,8 +18,12 @@ class Nivel2: public Nivel{
         TextureW gAsteroides1Texture;
         TextureW gAsteroides2Texture;
 
+        TextureW gFinNivel;
+
         SDL_Rect dataAsteroides1;
         SDL_Rect dataAsteroides2;
+
+        double corte_nivel;
 
         double scrollingOffsetPlaneta1;
         double scrollingOffsetPlaneta2;

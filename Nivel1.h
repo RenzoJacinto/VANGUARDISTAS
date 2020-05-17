@@ -20,6 +20,8 @@ class Nivel1: public Nivel{
         TextureW gNube1;
         TextureW gNube2;
 
+        TextureW gFinNivel;
+
         SDL_Rect dataCiudad;
         SDL_Rect dataBG;
         SDL_Rect dataNube1;

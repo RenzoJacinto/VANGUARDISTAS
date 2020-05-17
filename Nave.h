@@ -21,6 +21,8 @@ class Nave{
         //Se inicializa la Nave en esas coordenadas
 		void crearNave( int x, int y, const char* imagen);
 
+		void cerrarNave();
+
 		int getPosX();
 
 		void setPosX(int n);
