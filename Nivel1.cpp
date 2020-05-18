@@ -31,7 +31,7 @@ void Nivel1::cargarNivel(){
 
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
-    tierraInicial = 850;
+    tierraInicial = 700;
     scrollingOffsetNube1 = 120;
     scrollingOffsetNube2 = 0;
 
@@ -68,7 +68,7 @@ void Nivel1::cerrar(){
 
 bool Nivel1::renderBackground(){
 
-    scrollingOffsetBG -= 1;
+    scrollingOffsetBG -= 0.5;
     if( scrollingOffsetBG < -dataBG.w ){
         scrollingOffsetBG = 0;
         gFinNivel.render(0,0);

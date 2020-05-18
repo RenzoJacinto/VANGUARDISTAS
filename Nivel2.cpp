@@ -30,8 +30,8 @@ void Nivel2::cargarNivel(){
 
     corte_nivel = 0;
 
-    scrollingOffsetPlaneta1 = 740;
-    scrollingOffsetPlaneta2 = 850;
+    scrollingOffsetPlaneta1 = 300;
+    scrollingOffsetPlaneta2 = 1000;
 
     scrollingOffsetAsteroides1 = 0;
     scrollingOffsetAsteroides2 = 0;
@@ -59,7 +59,7 @@ void Nivel2::cerrar(){
 
 bool Nivel2::renderBackground(){
 
-    corte_nivel -= 1;
+    corte_nivel -= 0.5;
     if(corte_nivel < -gBGTexture.getWidth()){
         corte_nivel = 0;
         gFinNivel.render(0,0);
@@ -76,11 +76,11 @@ bool Nivel2::renderBackground(){
 
 	gBGTexture.render(0, 0);
 
-	gPlaneta2Texture.render(scrollingOffsetPlaneta2, -500);
+	gPlaneta2Texture.render(scrollingOffsetPlaneta2, 100);
     scrollingOffsetPlaneta2 -= 0.25;
 
-	gPlaneta1Texture.render(scrollingOffsetPlaneta1, -120);
-    scrollingOffsetPlaneta1 -= 0.15;
+	gPlaneta1Texture.render(scrollingOffsetPlaneta1, 200);
+    scrollingOffsetPlaneta1 -= 0.20;
 
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2, 0, &dataAsteroides2 );
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2 + dataAsteroides2.w, 0, &dataAsteroides2 );
