@@ -9,6 +9,7 @@ void Nivel2::cargarNivel(){
     std::string planeta2 = json.get_sprite_mapa("nivel2", "planeta2");
     std::string asteroides1 = json.get_sprite_mapa("nivel2", "asteroides1");
     std::string asteroides2 = json.get_sprite_mapa("nivel2", "asteroides2");
+    std::string asteroides3 = json.get_sprite_mapa("nivel2", "asteroides3");
 
     std::string finNivel = json.get_sprite_mapa("nivel2", "finNivel");
 
@@ -17,6 +18,7 @@ void Nivel2::cargarNivel(){
     const char* sPlaneta1 = planeta1.c_str();
     const char* sAsteroides1 = asteroides1.c_str();
     const char* sAsteroides2 = asteroides2.c_str();
+    const char* sAsteroides3 = asteroides3.c_str();
 
     const char* sFinNivel = finNivel.c_str();
 
@@ -25,6 +27,7 @@ void Nivel2::cargarNivel(){
     cargarImagen(sPlaneta2, &gPlaneta2Texture);
     cargarImagen(sAsteroides1, &gAsteroides1Texture);
     cargarImagen(sAsteroides2, &gAsteroides2Texture);
+    cargarImagen(sAsteroides3, &gAsteroides3Texture);
 
     cargarImagen(sFinNivel, &gFinNivel);
 
@@ -35,6 +38,7 @@ void Nivel2::cargarNivel(){
 
     scrollingOffsetAsteroides1 = 0;
     scrollingOffsetAsteroides2 = 0;
+    scrollingOffsetAsteroides3 = 0;
 
     dataAsteroides1.h = 600;
     dataAsteroides1.w = 800;
@@ -42,9 +46,14 @@ void Nivel2::cargarNivel(){
     dataAsteroides1.y = 0;
 
     dataAsteroides2.h = 600;
-    dataAsteroides2.w = 800;
+    dataAsteroides2.w = 872;
     dataAsteroides2.x = 0;
     dataAsteroides2.y = 0;
+
+    dataAsteroides3.h = 600;
+    dataAsteroides3.w = 872;
+    dataAsteroides3.x = 0;
+    dataAsteroides3.y = 0;
 }
 
 void Nivel2::cerrar(){
@@ -53,6 +62,7 @@ void Nivel2::cerrar(){
 	gPlaneta2Texture.free();
 	gAsteroides1Texture.free();
 	gAsteroides2Texture.free();
+	gAsteroides3Texture.free();
 
 	gFinNivel.free();
 }
@@ -71,6 +81,9 @@ bool Nivel2::renderBackground(){
     scrollingOffsetAsteroides2 -= 5;
     if( scrollingOffsetAsteroides2 < -dataAsteroides2.w ) scrollingOffsetAsteroides2 = 0;
 
+    scrollingOffsetAsteroides3 -= 2.5;
+    if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
+
 	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );
 
@@ -81,6 +94,9 @@ bool Nivel2::renderBackground(){
 
 	gPlaneta1Texture.render(scrollingOffsetPlaneta1, 200);
     scrollingOffsetPlaneta1 -= 0.20;
+
+    gAsteroides3Texture.render( scrollingOffsetAsteroides3, 0, &dataAsteroides3 );
+	gAsteroides3Texture.render( scrollingOffsetAsteroides3 + dataAsteroides3.w, 0, &dataAsteroides3 );
 
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2, 0, &dataAsteroides2 );
 	gAsteroides2Texture.render( scrollingOffsetAsteroides2 + dataAsteroides2.w, 0, &dataAsteroides2 );
