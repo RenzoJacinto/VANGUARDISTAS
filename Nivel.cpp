@@ -66,5 +66,4 @@ void Nivel::cerrar(){}
 
 void Nivel::cargarNivel(){}
 
-bool Nivel::renderBackground(){}
-
+bool Nivel::renderBackground(){return true;}
