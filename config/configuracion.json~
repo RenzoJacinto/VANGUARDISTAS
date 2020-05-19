@@ -16,7 +16,7 @@
                 "asteroides1":"sprites/niveles/nivel2/asteroides1.png",
 		"asteroides2":"sprites/niveles/nivel2/asteroides2.png",
 		"asteroides3":"sprites/niveles/nivel2/asteroides3.png",
-		"finNivel":"sprites/niveles/nivel2/fin_nivel2.png"
+		"finNivel":"sprites/niveles/nivel1/fin_nivel2.png"
 
             },
 	    "nivel3":{
@@ -27,7 +27,7 @@
 		"fondo4":"sprites/niveles/nivel3/fondo4.png",
 		"fondo5":"sprites/niveles/nivel3/fondo5.png",
 		"fondo6":"sprites/niveles/nivel3/fondo6.png",
-		"finNivel":"sprites/niveles/nivel3/fin_nivel3.png"
+		"finNivel":"sprites/niveles/nivel1/fin_nivel3.png"
             }
 
     },

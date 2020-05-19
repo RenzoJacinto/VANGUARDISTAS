@@ -1,4 +1,4 @@
-#ifndef NIVEL2H
+#ifndef NIVEL2_H
 #define NIVEL2_H
 
 #include "Nivel.h"

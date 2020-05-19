@@ -68,7 +68,7 @@ void Nivel1::cerrar(){
 
 bool Nivel1::renderBackground(){
 
-    scrollingOffsetBG -= 0.5;
+    scrollingOffsetBG -= 3;
     if( scrollingOffsetBG < -dataBG.w ){
         scrollingOffsetBG = 0;
         gFinNivel.render(0,0);
@@ -84,8 +84,8 @@ bool Nivel1::renderBackground(){
     scrollingOffsetNube2 -= 10;
     if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
 
-	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-	SDL_RenderClear( sdl.getRenderer() );
+    /*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+	SDL_RenderClear( sdl.getRenderer() );*/
 
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );

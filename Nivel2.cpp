@@ -69,7 +69,7 @@ void Nivel2::cerrar(){
 
 bool Nivel2::renderBackground(){
 
-    corte_nivel -= 0.5;
+    corte_nivel -= 3;
     if(corte_nivel < -gBGTexture.getWidth()){
         corte_nivel = 0;
         gFinNivel.render(0,0);
@@ -84,8 +84,8 @@ bool Nivel2::renderBackground(){
     scrollingOffsetAsteroides3 -= 2.5;
     if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
 
-	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-	SDL_RenderClear( sdl.getRenderer() );
+	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+	SDL_RenderClear( sdl.getRenderer() );*/
 
 	gBGTexture.render(0, 0);
 
@@ -103,8 +103,6 @@ bool Nivel2::renderBackground(){
 
     gAsteroides1Texture.render(scrollingOffsetAsteroides1, 0, &dataAsteroides1);
 	gAsteroides1Texture.render(scrollingOffsetAsteroides1 + dataAsteroides1.w, 0, &dataAsteroides1);
-
-
 
     return false;
 }

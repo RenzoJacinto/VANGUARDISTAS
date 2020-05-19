@@ -94,10 +94,10 @@ void Nivel3::cerrar(){
 
 bool Nivel3::renderBackground(){
 
-    bool fin = parallax();
+    if(parallax()) return true;
 
-	SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-	SDL_RenderClear( sdl.getRenderer() );
+	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+	SDL_RenderClear( sdl.getRenderer() ); */
 
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
@@ -120,12 +120,12 @@ bool Nivel3::renderBackground(){
 	gFondo6Texture.render( scrollingOffsetFondo6, 0, &dataFondo6 );
 	gFondo6Texture.render( scrollingOffsetFondo6 + dataFondo6.w, 0, &dataFondo6 );
 
-    return fin;
+    return false;
 }
 
 bool Nivel3::parallax(){
 
-    scrollingOffsetBG -= 0.5;
+    scrollingOffsetBG -= 3;
     if(scrollingOffsetBG < -dataBG.w){
         scrollingOffsetBG = 0;
         gFinNivel.render(0,0);

@@ -22,7 +22,7 @@ void Nivel::procesar(){
         }
         //Hasta aca
 
-	    logger.info("Se mostró el mapa");
+	    //logger.info("Se mostró el mapa");
 
 	    // Mientras que siga corriendo la app
 	    while( usuarioNoRequieraSalir(quit) && ! fin_mapa) {
@@ -33,6 +33,8 @@ void Nivel::procesar(){
 
 			jugador->mover(enemigos);
 
+            SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear( sdl.getRenderer() );
 			fin_mapa = renderBackground();
 
 			if(!fin_mapa){
@@ -47,8 +49,7 @@ void Nivel::procesar(){
                 }
                 //Hasta aca
 			}
-
-            SDL_RenderPresent( sdl.getRenderer() );
+			SDL_RenderPresent( sdl.getRenderer() );
 
         }
 
