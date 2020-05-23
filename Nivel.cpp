@@ -5,11 +5,19 @@
 
 Nivel::Nivel(){}
 
+int current_time_nanoseconds(){
+    struct timespec tm;
+    clock_gettime(CLOCK_REALTIME, &tm);
+    return tm.tv_nsec;
+}
+
 int Nivel::get_width(){
+    srand( current_time_nanoseconds() * 1000000000);
     return rand() % sdl.getScreenWidth();
 }
 
 int Nivel::get_height(){
+    srand( current_time_nanoseconds() * 1000000000);
     return rand() % sdl.getScreenHeight();
 }
 
