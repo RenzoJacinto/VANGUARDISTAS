@@ -8,6 +8,7 @@
 
 class Temporizador
 {
+
     public:
 
         void iniciar()

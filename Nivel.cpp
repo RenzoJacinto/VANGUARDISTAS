@@ -14,7 +14,6 @@ void Nivel::procesar(){
 	    Temporizador temporizador;
 	    temporizador.iniciar();
 
-
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
 
