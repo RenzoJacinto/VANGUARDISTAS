@@ -45,9 +45,8 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
 
     for(auto& el : j_nivel.items()) {
         std::string sActualKey = el.key();
-        std::string sActualValue = el.value();
         if(strstr(sActualKey.c_str(),sp)){
-            return sActualValue;
+            return el.value();
         }
     }
     return NULL;
