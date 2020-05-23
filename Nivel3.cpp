@@ -126,7 +126,7 @@ bool Nivel3::renderBackground(){
 bool Nivel3::parallax(){
 
     scrollingOffsetBG -= 3;
-    if(scrollingOffsetBG < -dataBG.w){
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
         scrollingOffsetBG = 0;
         gFinNivel.render(0,0);
         return true;

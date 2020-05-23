@@ -68,21 +68,7 @@ void Nivel1::cerrar(){
 
 bool Nivel1::renderBackground(){
 
-    scrollingOffsetBG -= 3;
-    if( scrollingOffsetBG < -dataBG.w ){
-        scrollingOffsetBG = 0;
-        gFinNivel.render(0,0);
-        return true;
-    }
-
-	scrollingOffsetCity -= 5;
-    if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
-
-    scrollingOffsetNube1 -= 8;
-    if( scrollingOffsetNube1 < -dataNube1.w ) scrollingOffsetNube1 = 0;
-
-    scrollingOffsetNube2 -= 10;
-    if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
+    if(parallax()) return true;
 
     /*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );*/
@@ -102,4 +88,26 @@ bool Nivel1::renderBackground(){
 	gNube2.render( scrollingOffsetNube2 + dataNube2.w, 0, &dataNube2 );
 
 	return false;
+}
+
+
+bool Nivel1::parallax(){
+
+    scrollingOffsetBG -= 3;
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
+        scrollingOffsetBG = 0;
+        gFinNivel.render(0,0);
+        return true;
+    }
+
+	scrollingOffsetCity -= 5;
+    if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
+
+    scrollingOffsetNube1 -= 8;
+    if( scrollingOffsetNube1 < -dataNube1.w ) scrollingOffsetNube1 = 0;
+
+    scrollingOffsetNube2 -= 10;
+    if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
+
+    return false;
 }

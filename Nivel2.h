@@ -5,11 +5,14 @@
 #include "TextureW.h"
 
 class Nivel2: public Nivel{
+
     public:
         Nivel2();
         void cargarNivel();
         void cerrar();
         bool renderBackground();
+
+        bool parallax();
 
     private:
         TextureW gBGTexture;
@@ -25,7 +28,7 @@ class Nivel2: public Nivel{
         SDL_Rect dataAsteroides2;
         SDL_Rect dataAsteroides3;
 
-        double corte_nivel;
+        double scrollingOffsetBG;
 
         double scrollingOffsetPlaneta1;
         double scrollingOffsetPlaneta2;

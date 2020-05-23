@@ -31,7 +31,7 @@ void Nivel2::cargarNivel(){
 
     cargarImagen(sFinNivel, &gFinNivel);
 
-    corte_nivel = 0;
+    scrollingOffsetBG = 0;
 
     scrollingOffsetPlaneta1 = 300;
     scrollingOffsetPlaneta2 = 1000;
@@ -69,20 +69,7 @@ void Nivel2::cerrar(){
 
 bool Nivel2::renderBackground(){
 
-    corte_nivel -= 3;
-    if(corte_nivel < -gBGTexture.getWidth()){
-        corte_nivel = 0;
-        gFinNivel.render(0,0);
-        return true;
-    }
-	scrollingOffsetAsteroides1 -= 10;
-    if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
-
-    scrollingOffsetAsteroides2 -= 5;
-    if( scrollingOffsetAsteroides2 < -dataAsteroides2.w ) scrollingOffsetAsteroides2 = 0;
-
-    scrollingOffsetAsteroides3 -= 2.5;
-    if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
+    if(parallax()) return true;
 
 	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );*/
@@ -107,3 +94,24 @@ bool Nivel2::renderBackground(){
     return false;
 }
 
+
+bool Nivel2::parallax(){
+
+    scrollingOffsetBG -= 3;
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
+        scrollingOffsetBG = 0;
+        gFinNivel.render(0,0);
+        return true;
+    }
+
+	scrollingOffsetAsteroides1 -= 10;
+    if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
+
+    scrollingOffsetAsteroides2 -= 5;
+    if( scrollingOffsetAsteroides2 < -dataAsteroides2.w ) scrollingOffsetAsteroides2 = 0;
+
+    scrollingOffsetAsteroides3 -= 2.5;
+    if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
+
+    return false;
+}

@@ -7,11 +7,12 @@
 class Nivel1: public Nivel{
 
     public:
-
         Nivel1();
         void cargarNivel();
         void cerrar();
         bool renderBackground();
+
+        bool parallax();
 
     private:
         TextureW gBGTexture;
@@ -28,6 +29,7 @@ class Nivel1: public Nivel{
         SDL_Rect dataNube2;
 
         double scrollingOffsetBG;
+
         double scrollingOffsetCity;
         double tierraInicial;
         double scrollingOffsetNube1;
