@@ -31,22 +31,6 @@ int ManejoDeJson::get_nivel_de_log(){
     return j.at("log");
 }
 
-int ManejoDeJson::get_cantidad_enemigo_1(){
-    return j.at("cantidad_enemigo_1");
-}
-
-int ManejoDeJson::get_cantidad_enemigo_2(){
-    return j.at("cantidad_enemigo_2");
-}
-
-int ManejoDeJson::get_cantidad_enemigo_3(){
-    return j.at("cantidad_enemigo_3");
-}
-
-int ManejoDeJson::get_cantidad_enemigo_4(){
-    return j.at("cantidad_enemigo_4");
-}
-
 nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     for(auto& el : j_aux.items()) {
         if(el.key() == key) return el.value();
@@ -67,6 +51,20 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
         }
     }
     return NULL;
+}
+
+int ManejoDeJson::get_cantidad_enemigo(char const* key, char const* sp){
+
+    json& j_aux = searchValue(j, "stages");
+    json& j_nivel = searchValue(j_aux, key);
+
+    for(auto& el : j_nivel.items()) {
+        std::string sActualKey = el.key();
+        if(strstr(sActualKey.c_str(),sp)){
+            return el.value();
+        }
+    }
+    return 0;
 }
 
 std::string ManejoDeJson::get_sprite_nave(char const* key, char const* sp){

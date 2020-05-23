@@ -18,13 +18,9 @@ class ManejoDeJson{
 
         std::string get_sprite_menu();
         int get_nivel_de_log();
-        int get_cantidad_enemigo_1();
-        int get_cantidad_enemigo_2();
-        int get_cantidad_enemigo_3();
-        int get_cantidad_enemigo_4();
-
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
         std::string get_sprite_mapa(char const* key, char const* sp);
+        int get_cantidad_enemigo(char const* key, char const* sp);
         std::string get_sprite_nave(char const* key, char const* sp);
 
     private:

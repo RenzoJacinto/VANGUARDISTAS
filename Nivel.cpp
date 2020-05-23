@@ -15,7 +15,7 @@ int Nivel::get_height(){
 
 list<NaveEnemiga*> Nivel::crear_enemigos(){
         list<NaveEnemiga*> enemigos;
-        int cantidad_enemigos_1 = json.get_cantidad_enemigo_1();
+        int cantidad_enemigos_1 = json.get_cantidad_enemigo("nivel1", "cantidad_enemigo_1");
         std::string enemigo1 = json.get_sprite_nave("enemigas", "enemigo1");
         const char* sEnemigo1 = enemigo1.c_str();
         for(int i = 1; i <= cantidad_enemigos_1; i++){
@@ -23,7 +23,7 @@ list<NaveEnemiga*> Nivel::crear_enemigos(){
             logger.debug("Se creó una nave enemiga 1");
             enemigos.push_back(enemigo);
         }
-        int cantidad_enemigos_2 = json.get_cantidad_enemigo_2();
+        int cantidad_enemigos_2 = json.get_cantidad_enemigo("nivel2", "cantidad_enemigo_2");
         std::string enemigo2 = json.get_sprite_nave("enemigas", "enemigo2");
         const char* sEnemigo2 = enemigo2.c_str();
         for(int i = 1; i <= cantidad_enemigos_2; i++){
@@ -31,7 +31,7 @@ list<NaveEnemiga*> Nivel::crear_enemigos(){
             logger.debug("Se creó una nave enemiga 2");
             enemigos.push_back(enemigo);
         }
-        int cantidad_enemigos_3 = json.get_cantidad_enemigo_3();
+        int cantidad_enemigos_3 = json.get_cantidad_enemigo("nivel3", "cantidad_enemigo_3");
         std::string enemigo3 = json.get_sprite_nave("enemigas", "enemigo3");
         const char* sEnemigo3 = enemigo3.c_str();
         for(int i = 1; i <= cantidad_enemigos_3; i++){
@@ -39,7 +39,7 @@ list<NaveEnemiga*> Nivel::crear_enemigos(){
             logger.debug("Se creó una nave enemiga 3");
             enemigos.push_back(enemigo);
         }
-        int cantidad_enemigos_4 = json.get_cantidad_enemigo_4();
+        int cantidad_enemigos_4 = json.get_cantidad_enemigo("nivel4", "cantidad_enemigo_4");
         std::string enemigo4 = json.get_sprite_nave("enemigas", "enemigo4");
         const char* sEnemigo4 = enemigo4.c_str();
         for(int i = 1; i <= cantidad_enemigos_4; i++){
