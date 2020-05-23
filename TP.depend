@@ -81,7 +81,7 @@
 1590246140 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1589409724 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 	"LoggerError.h"
@@ -89,15 +89,15 @@
 	"LoggerDebug.h"
 	"Logger.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
 	"Logger.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
+1589855870 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -108,10 +108,10 @@
 	"global.h"
 	"list"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.h
 	"TextureW.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -119,36 +119,36 @@
 	<stdio.h>
 	<string>
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
 
 1587764270 /home/renzo/Documents/GitHub/VANGUARDISTAS/colicionador.h
 
-1589670768 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
+1590258364 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1589670707 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
+1590258357 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
-1589670051 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"list"
 
-1589669638 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.cpp
 	"NaveJugador.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589411465 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -156,26 +156,26 @@
 	<stdio.h>
 	<string>
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/main.cpp
 	"global.h"
 	"Menu.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 
-1589415083 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
+1589848742 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"
@@ -192,31 +192,31 @@
 	"Escenario.h"
 	"TextureW.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
 	<iostream>
 	<fstream>
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.h
 	"Logger.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.h
 	"Logger.h"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.h
 	"Logger.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
 	"Logger.h"
 	<iostream>
 	<fstream>
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.cpp
 	"LoggerDebug.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerError.cpp
 	"LoggerError.h"
 
-1589069781 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerInfo.cpp
 	"LoggerInfo.h"
 
 1588699943 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Mapa.h
@@ -407,18 +407,17 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1589669980 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1590258144 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
-	<list>
 
-1589669742 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+1590258159 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
 	"json.hpp"
 
-1589069781 /home/renzo/Documents/GitHub/VANGUARDISTAS/json.hpp
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/json.hpp
 	<algorithm>
 	<cassert>
 	<ciso646>
@@ -609,47 +608,46 @@
 1588526895 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.cpp
 	"NaveEnemiga2.h"
 
-1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1589678454 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
-	<unistd.h>
+	<time.h>
+	<ctime>
 	"Nivel1.h"
 	"Nivel2.h"
+	"Nivel3.h"
 
-1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
+1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
 	"Nivel2.h"
-	"NaveJugador.h"
-	"NaveEnemiga.h"
-	"Nave.h"
-	<list>
+	"global.h"
 
-1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
+1589855076 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
-	"NaveJugador.h"
-	"NaveEnemiga.h"
-	"Nave.h"
-	<list>
+	"global.h"
 
-1589678098 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+1590258469 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+	<list>
+	"NaveEnemiga.h"
 	"Escenario.h"
 	"TextureW.h"
 
-1589678098 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
+1590258520 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
 	"Nivel.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
+	"Temporizador.h"
 
 1590246140 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeNiveles.h
 	<list>
@@ -875,6 +873,20 @@
 	<string>
 
 1590246140 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nivel3.cpp
+	"Nivel3.h"
+	"global.h"
+
+1589855076 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.h
+	"Nivel.h"
+	"TextureW.h"
+
+1590255875 /home/renzo/Documents/GitHub/VANGUARDISTAS/Temporizador.h
+	<iostream>
+	<chrono>
+	<ctime>
+	<cmath>
+
+1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
 

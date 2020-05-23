@@ -1,6 +1,6 @@
 #include "ManejoDeJson.h"
 #include <stdio.h>
-#include <list>
+
 
 ManejoDeJson::ManejoDeJson(){}
 
@@ -31,8 +31,20 @@ int ManejoDeJson::get_nivel_de_log(){
     return j.at("log");
 }
 
-int ManejoDeJson::get_cantidad_enemigos(){
-    return j.at("enemigos");
+int ManejoDeJson::get_cantidad_enemigo_1(){
+    return j.at("cantidad_enemigo_1");
+}
+
+int ManejoDeJson::get_cantidad_enemigo_2(){
+    return j.at("cantidad_enemigo_2");
+}
+
+int ManejoDeJson::get_cantidad_enemigo_3(){
+    return j.at("cantidad_enemigo_3");
+}
+
+int ManejoDeJson::get_cantidad_enemigo_4(){
+    return j.at("cantidad_enemigo_4");
 }
 
 nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){

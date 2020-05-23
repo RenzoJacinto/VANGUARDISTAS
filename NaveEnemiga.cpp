@@ -1,16 +1,7 @@
 #include "NaveEnemiga.h"
 
-NaveEnemiga::NaveEnemiga( int x, int y){
-    std::string enemigo1 = json.get_sprite_nave("enemigas", "enemigo1");
-    sEnemigo1 = enemigo1.c_str();
-    std::string enemigo2 = json.get_sprite_nave("enemigas", "enemigo2");
-    sEnemigo2 = enemigo2.c_str();
-    std::string enemigo3 = json.get_sprite_nave("enemigas", "enemigo3");
-    sEnemigo3 = enemigo3.c_str();
-    std::string enemigo4 = json.get_sprite_nave("enemigas", "enemigo4");
-    sEnemigo4 = enemigo4.c_str();
-    seleccionarImagen();
-    crearNave(x, y, getImagen());
+NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
+    crearNave(x, y, sprite);
     radio=getAltoImagen()/2;
 }
 
@@ -67,40 +58,6 @@ void NaveEnemiga::renderizar(){
 
 int NaveEnemiga::getRadio(){
     return radio;
-}
-
-void NaveEnemiga::seleccionarImagen(){
-
-    const char* ruta;
-    int seleccion = 1 + rand() % 5;
-    switch(seleccion) {
-
-    case 1 :
-      ruta = sEnemigo1;
-      desplazamientoPositivo=false;
-      break;
-
-    case 2:
-      ruta = sEnemigo2;
-      desplazamientoPositivo=false;
-      break;
-
-    case 3 :
-      ruta = sEnemigo3;
-      desplazamientoPositivo=true;
-      break;
-
-    case 4:
-      ruta = sEnemigo4;
-      desplazamientoPositivo=true;
-      break;
-
-    default :
-        //Alguna otra imagen por default
-        break;
-    }
-
-    imagen = ruta;
 }
 
 const char* NaveEnemiga::getImagen(){

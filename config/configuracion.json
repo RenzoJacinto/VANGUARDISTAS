@@ -43,5 +43,8 @@
             }
     },
     "menu": "sprites/menu/menuBG.png",
-    "enemigos": 50
+    "cantidad_enemigo_1":2,
+    "cantidad_enemigo_2":2,
+    "cantidad_enemigo_3":2,
+    "cantidad_enemigo_4":2
 }
