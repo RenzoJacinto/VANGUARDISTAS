@@ -620,19 +620,19 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
+1590261478 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
+1590261478 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 
-1589855076 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
+1590261478 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel2.h
 	"Nivel.h"
 	"TextureW.h"
 
-1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
+1590261478 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel1.cpp
 	"Nivel1.h"
 	"global.h"
 
@@ -877,7 +877,7 @@
 	"Nivel3.h"
 	"global.h"
 
-1589855076 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.h
+1590261478 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.h
 	"Nivel.h"
 	"TextureW.h"
 
@@ -887,7 +887,13 @@
 	<ctime>
 	<cmath>
 
-1589855076 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.cpp
+1590261478 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
+
+1589848205 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Configuracion.cpp
+	"Configuracion.h"
+
+1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Configuracion.h
+	<string>
 

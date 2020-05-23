@@ -42,8 +42,9 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
+    json& j_sprites = searchValue(j_nivel, "sprites");
 
-    for(auto& el : j_nivel.items()) {
+    for(auto& el : j_sprites.items()) {
         std::string sActualKey = el.key();
         if(strstr(sActualKey.c_str(),sp)){
             return el.value();
@@ -56,8 +57,9 @@ int ManejoDeJson::get_cantidad_enemigo(char const* key, char const* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
+    json& j_enemigos = searchValue(j_nivel, "enemigos");
 
-    for(auto& el : j_nivel.items()) {
+    for(auto& el : j_enemigos.items()) {
         std::string sActualKey = el.key();
         if(strstr(sActualKey.c_str(),sp)){
             return el.value();
