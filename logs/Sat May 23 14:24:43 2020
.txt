@@ -1,0 +1,64 @@
+Se inicializó SDL - Sat May 23 14:24:43 2020
+Filtrado de textura lineal seteado - Sat May 23 14:24:43 2020
+Se creó la ventana - Sat May 23 14:24:43 2020
+Se creó vSync para la ventana - Sat May 23 14:24:43 2020
+Se inicializó el renderizado de color - Sat May 23 14:24:43 2020
+Se inicializó la carga de imagenes PNG - Sat May 23 14:24:43 2020
+Se cargó la imagen menuBG.png - Sat May 23 14:24:43 2020
+Se mostró el menú - Sat May 23 14:24:43 2020
+Se cargó la imagen sprites/niveles/nivel1/bg.png - Sat May 23 14:24:44 2020
+Se cargó la imagen sprites/niveles/nivel1/ciudad.png - Sat May 23 14:24:44 2020
+Se cargó la imagen sprites/niveles/nivel1/planeta.png - Sat May 23 14:24:44 2020
+Se cargó la imagen sprites/niveles/nivel1/nube1.png - Sat May 23 14:24:44 2020
+Se cargó la imagen sprites/niveles/nivel1/nube3.png - Sat May 23 14:24:44 2020
+Se creó a la nave del jugador - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Couldn't open J - Sat May 23 14:24:44 2020
+Couldn't open J - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Se creó una nave enemiga - Sat May 23 14:24:44 2020
+Se volvió al menu - Sat May 23 14:24:49 2020
+Se cargó la imagen sprites/niveles/nivel2/bg2.png - Sat May 23 14:24:54 2020
+Se cargó la imagen sprites/niveles/nivel2/planeta1.png - Sat May 23 14:24:54 2020
+Se cargó la imagen sprites/niveles/nivel2/planeta2.png - Sat May 23 14:24:54 2020
+Se cargó la imagen sprites/niveles/nivel2/asteroides1.png - Sat May 23 14:24:54 2020
+Se cargó la imagen sprites/niveles/nivel2/asteroides2.png - Sat May 23 14:24:54 2020
+Se creó a la nave del jugador - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Couldn't open � - Sat May 23 14:24:54 2020
+Couldn't open � - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Se creó una nave enemiga - Sat May 23 14:24:54 2020
+Se volvió al menu - Sat May 23 14:24:59 2020
+Se cargó la imagen sprites/niveles/nivel3/bg.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo1.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo2.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo3.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo4.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo5.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fondo6.png - Sat May 23 14:25:04 2020
+Se cargó la imagen sprites/niveles/nivel3/fin_nivel3.png - Sat May 23 14:25:04 2020
+Se creó a la nave del jugador - Sat May 23 14:25:04 2020
+Couldn't open � - Sat May 23 14:25:04 2020
+Couldn't open � - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Couldn't open � - Sat May 23 14:25:04 2020
+Couldn't open � - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Se creó una nave enemiga - Sat May 23 14:25:04 2020
+Se volvió al menu - Sat May 23 14:25:08 2020
+Se liberó memoria del renderizador - Sat May 23 14:25:13 2020
+Se liberó memoria de la ventana - Sat May 23 14:25:13 2020
+Se referenció la ventana como nula - Sat May 23 14:25:13 2020
+Se referenció el renderizador como nulo - Sat May 23 14:25:13 2020
+Se cerró IMG - Sat May 23 14:25:13 2020
+Se cerró SDL - Sat May 23 14:25:13 2020

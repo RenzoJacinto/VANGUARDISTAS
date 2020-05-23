@@ -1,6 +1,7 @@
 #include "Nivel.h"
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
+#include "Temporizador.h"
 
 Nivel::Nivel(){}
 
@@ -8,6 +9,11 @@ void Nivel::procesar(){
 
 	    bool quit = false;
 	    bool fin_mapa = false;
+
+	    //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
+	    Temporizador temporizador;
+	    temporizador.iniciar();
+
 
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
@@ -24,8 +30,8 @@ void Nivel::procesar(){
 
 	    //logger.info("Se mostró el mapa");
 
-	    // Mientras que siga corriendo la app
-	    while( usuarioNoRequieraSalir(quit) && ! fin_mapa) {
+	    // Mientras que siga corriendo la app               //Puse solo 5 segundos para probar
+	    while( usuarioNoRequieraSalir(quit) && !fin_mapa && (temporizador.transcurridoEnSegundos() < 5) ) {
 		    while( hayEventos() ){
 		         if( eventoEsSalir() ) quit = true;
 			      jugador->handleEvent( e );
