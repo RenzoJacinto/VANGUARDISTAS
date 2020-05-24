@@ -2,7 +2,7 @@
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
 
-void Nave::crearNave( int x, int y, const char* imagen ){
+bool Nave::crearNave( int x, int y, const char* imagen ){
     //Initialize the offsets
     mPosX = x;
     mPosY = y;
@@ -11,7 +11,11 @@ void Nave::crearNave( int x, int y, const char* imagen ){
     mVelX = 0;
     mVelY = 0;
 
-    if(!gNaveTexture.loadFromFile(imagen)) logger.error(SDL_GetError());
+    if(!gNaveTexture.loadFromFile(imagen)){
+        logger.error(SDL_GetError());
+        return false;
+    }
+    return true;
 }
 
 void Nave::cerrarNave(){
@@ -90,10 +94,10 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 }
 
 //En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
-bool Nave::encontrarEnemigos( NaveJugador* jugador, list<NaveEnemiga*>  enemigos )
+bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos )
 {
     bool colision = false;
-    list<NaveEnemiga*>::iterator pos;
+    vector<NaveEnemiga*>::iterator pos;
 
     for(pos = enemigos.begin();pos != enemigos.end();pos++)
     {

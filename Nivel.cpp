@@ -1,67 +1,41 @@
 #include "Nivel.h"
+#include "Nave.h"
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
 #include "Temporizador.h"
+#include "global.h"
 
 Nivel::Nivel(){}
 
-int current_time_nanoseconds(){
-    struct timespec tm;
-    clock_gettime(CLOCK_REALTIME, &tm);
-    return tm.tv_nsec;
-}
+vector<NaveEnemiga*> Nivel::crear_enemigos(){
+    vector<NaveEnemiga*> enemigos(cantidad_enemigos);
+    for(int i=0; i<cantidad_enemigos; i++){
 
-int Nivel::get_width(){
-    srand( current_time_nanoseconds() * 1000000000);
-    return rand() % sdl.getScreenWidth();
-}
+        // Elige un enemigo random
+        std::string sprite = "enemigo";
+        int enemigo_random = 1 + rand() % 4;
+        sprite += std::to_string(enemigo_random);
 
-int Nivel::get_height(){
-    srand( current_time_nanoseconds() * 1000000000);
-    return rand() % sdl.getScreenHeight();
-}
+        // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
+        int y = rand() % (sdl.getScreenHeight() + 1);
+        // SUPONGO EL BORDE DE RESPAWN COMO +/-100
+        // CASO ENEMIGOS 1 y 2: sup = 800 + 100
+        int x = sdl.getScreenWidth() + rand() % 101;
 
-list<NaveEnemiga*> Nivel::crear_enemigos(){
-        list<NaveEnemiga*> enemigos;
-        int cantidad_enemigos_1 = json.get_cantidad_enemigo("nivel1", "cantidad_enemigo_1");
-        std::string enemigo1 = json.get_sprite_nave("enemigas", "enemigo1");
-        const char* sEnemigo1 = enemigo1.c_str();
-        for(int i = 1; i <= cantidad_enemigos_1; i++){
-            NaveEnemiga* enemigo = new NaveEnemiga(get_width(), get_height(), sEnemigo1);
-            logger.debug("Se creó una nave enemiga 1");
-            enemigos.push_back(enemigo);
-        }
-        int cantidad_enemigos_2 = json.get_cantidad_enemigo("nivel2", "cantidad_enemigo_2");
-        std::string enemigo2 = json.get_sprite_nave("enemigas", "enemigo2");
-        const char* sEnemigo2 = enemigo2.c_str();
-        for(int i = 1; i <= cantidad_enemigos_2; i++){
-            NaveEnemiga* enemigo = new NaveEnemiga(get_width(), get_height(), sEnemigo2);
-            logger.debug("Se creó una nave enemiga 2");
-            enemigos.push_back(enemigo);
-        }
-        int cantidad_enemigos_3 = json.get_cantidad_enemigo("nivel3", "cantidad_enemigo_3");
-        std::string enemigo3 = json.get_sprite_nave("enemigas", "enemigo3");
-        const char* sEnemigo3 = enemigo3.c_str();
-        for(int i = 1; i <= cantidad_enemigos_3; i++){
-            NaveEnemiga* enemigo = new NaveEnemiga(get_width(), get_height(), sEnemigo3);
-            logger.debug("Se creó una nave enemiga 3");
-            enemigos.push_back(enemigo);
-        }
-        int cantidad_enemigos_4 = json.get_cantidad_enemigo("nivel4", "cantidad_enemigo_4");
-        std::string enemigo4 = json.get_sprite_nave("enemigas", "enemigo4");
-        const char* sEnemigo4 = enemigo4.c_str();
-        for(int i = 1; i <= cantidad_enemigos_4; i++){
-            NaveEnemiga* enemigo = new NaveEnemiga(get_width(), get_height(), sEnemigo4);
-            logger.debug("Se creó una nave enemiga 4");
-            enemigos.push_back(enemigo);
-        }
-        return enemigos;
+        // CASO ENEMIGOS 3 y 4: inf = -100
+        if(enemigo_random == 4 || enemigo_random == 3) x = -100 + rand() % 101;
+
+        std::string sNave = json.get_sprite_nave("enemigas", sprite.c_str());
+        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sNave.c_str());
+
+        enemigos[i]=enemigo;
+    }
+    return enemigos;
 }
 
 void Nivel::procesar(){
 
 	    bool quit = false;
-	    bool fin_mapa = false;
 
 	    //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
 	    Temporizador temporizador;
@@ -70,12 +44,13 @@ void Nivel::procesar(){
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
         logger.debug("Se creó a la nave del jugador");
 
-        list<NaveEnemiga*> enemigos = crear_enemigos();
-
-	    logger.info("Se creó el arreglo de enemigos");
+        vector<NaveEnemiga*> enemigos = crear_enemigos();
+        float tiempo_por_enemigos = 240/cantidad_enemigos;
+        int tiempo_nivel = 0;
+        int renderizados = 1;
 
 	    // Mientras que siga corriendo la app               //Puse solo 5 segundos para probar
-	    while( usuarioNoRequieraSalir(quit) && !fin_mapa && (temporizador.transcurridoEnSegundos() < 5) ) {
+	    while( usuarioNoRequieraSalir(quit) && (tiempo_nivel < 240) ) {
 		    while( hayEventos() ){
 		         if( eventoEsSalir() ) quit = true;
 			      jugador->handleEvent( e );
@@ -85,35 +60,38 @@ void Nivel::procesar(){
 
             SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
             SDL_RenderClear( sdl.getRenderer() );
-			fin_mapa = renderBackground();
+			renderBackground();
 
-			if(!fin_mapa){
-                 //Scroll background
-                jugador->renderizar();
+            //render jugador
+            jugador->renderizar();
 
-                //Todo este bloque deberiamos declararlo en otro lado
-                list<NaveEnemiga*>::iterator pos;
-                for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
-                    (*pos)->mover( jugador );
-                    (*pos)->renderizar();
-                }
-                //Hasta aca
-			}
+            //Todo este bloque deberiamos declararlo en otro lado
+            for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
+                enemigos[i]->mover(jugador);
+                enemigos[i]->renderizar();
+            }
+
+            tiempo_nivel = temporizador.transcurridoEnSegundos();
+            if(tiempo_nivel/renderizados > tiempo_por_enemigos) renderizados++;
+
+            //Hasta aca
+
 			SDL_RenderPresent( sdl.getRenderer() );
-
         }
-
+        vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
         jugador->cerrarNave();
-        list<NaveEnemiga*>::iterator pos;
         for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
             (*pos)->cerrarNave();
         }
         logger.info("Finalizó el nivel");
+        gFinNivel.render(0,0);
+        SDL_RenderPresent( sdl.getRenderer() );
+        logger.info("Se renderizo el final del nivel");
 }
 
 void Nivel::cerrar(){}
 
 void Nivel::cargarNivel(){}
 
-bool Nivel::renderBackground(){return true;}
+void Nivel::renderBackground(){}

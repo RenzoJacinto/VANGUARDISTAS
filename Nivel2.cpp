@@ -4,6 +4,9 @@
 Nivel2::Nivel2(){}
 
 void Nivel2::cargarNivel(){
+
+    cantidad_enemigos = json.get_cantidad_enemigo("nivel2");
+
     std::string bg = json.get_sprite_mapa("nivel2", "mapaBG");
     std::string planeta1 = json.get_sprite_mapa("nivel2", "planeta1");
     std::string planeta2 = json.get_sprite_mapa("nivel2", "planeta2");
@@ -67,9 +70,9 @@ void Nivel2::cerrar(){
 	gFinNivel.free();
 }
 
-bool Nivel2::renderBackground(){
+void Nivel2::renderBackground(){
 
-    if(parallax()) return true;
+    parallax();
 
 	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );*/
@@ -90,19 +93,13 @@ bool Nivel2::renderBackground(){
 
     gAsteroides1Texture.render(scrollingOffsetAsteroides1, 0, &dataAsteroides1);
 	gAsteroides1Texture.render(scrollingOffsetAsteroides1 + dataAsteroides1.w, 0, &dataAsteroides1);
-
-    return false;
 }
 
 
-bool Nivel2::parallax(){
+void Nivel2::parallax(){
 
     scrollingOffsetBG -= 3;
-    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
-        scrollingOffsetBG = 0;
-        gFinNivel.render(0,0);
-        return true;
-    }
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
 	scrollingOffsetAsteroides1 -= 10;
     if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
@@ -112,6 +109,4 @@ bool Nivel2::parallax(){
 
     scrollingOffsetAsteroides3 -= 2.5;
     if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
-
-    return false;
 }

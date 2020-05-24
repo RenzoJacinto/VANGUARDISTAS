@@ -1,42 +1,32 @@
 #include "NaveEnemiga.h"
 
 NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
-    crearNave(x, y, sprite);
+    if(crearNave(x, y, sprite)){
+        std::string sp(sprite);
+        std::string mensaje = "Se creo el enemigo con imagen: " + sp;
+        logger.debug(mensaje.c_str());
+    }
+    if(x<=0) desplazamiento = 1;
+    else desplazamiento = -1;
+
     radio=getAltoImagen()/2;
 }
 
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
-    if (!desplazamientoPositivo) {
+    setPosX(getPosX()+desplazamiento);
 
-        setPosX(getPosX()-1);
-
-        if( checkCollision( jugador , this ) ){
-        setPosX(getPosX()+1);
-        }
-
-        if ( getPosX() - getRadio() < 0 ) {
-            int posicionX = sdl.getScreenWidth();
-            int posicionY = rand() % sdl.getScreenHeight();
-            setPosX( posicionX );
-            setPosY( posicionY );
-        }
-
-    } else {
-
-        setPosX(getPosX()+1);
-
-        if( checkCollision( jugador , this ) ){
-            setPosX(getPosX()-1);
-        }
-
-        if ( getPosX() + getRadio() > sdl.getScreenWidth() ){
-            int posicionX = 0;
-            int posicionY = rand() % sdl.getScreenHeight();
-            setPosX( posicionX );
-            setPosY( posicionY );
-        }
+    if( checkCollision( jugador , this ) ){
+        setPosX(getPosX()-desplazamiento);
     }
+    /*
+    if ( getPosX() - getRadio() < 0 ) {
+        int posicionX = sdl.getScreenWidth();
+        int posicionY = rand() % sdl.getScreenHeight();
+        setPosX( posicionX );
+        setPosY( posicionY );
+    }*/
+
 
         //Esta comentado por ahora, porque la nave solo se mueve en el eje X
 //    //Move the dot up or down
@@ -53,7 +43,9 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 }
 
 void NaveEnemiga::renderizar(){
-	gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
+    if(getPosX() >= 0 && getPosX() <= 800){
+        gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
+	}
 }
 
 int NaveEnemiga::getRadio(){

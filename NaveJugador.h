@@ -23,7 +23,7 @@ class NaveJugador: public Nave {
 		void handleEvent( SDL_Event& e );
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( list<NaveEnemiga*>  enemigo );
+		void mover( vector<NaveEnemiga*>  enemigo );
 
 		void renderizar();
 

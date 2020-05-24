@@ -38,7 +38,7 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     return j_aux;
 }
 
-std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
+std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
@@ -53,19 +53,12 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, char const* sp){
     return NULL;
 }
 
-int ManejoDeJson::get_cantidad_enemigo(char const* key, char const* sp){
+int ManejoDeJson::get_cantidad_enemigo(char const* key){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
-    json& j_enemigos = searchValue(j_nivel, "enemigos");
 
-    for(auto& el : j_enemigos.items()) {
-        std::string sActualKey = el.key();
-        if(strstr(sActualKey.c_str(),sp)){
-            return el.value();
-        }
-    }
-    return 0;
+    return j_nivel.at("enemigos");
 }
 
 std::string ManejoDeJson::get_sprite_nave(char const* key, char const* sp){

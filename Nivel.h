@@ -11,13 +11,16 @@ class Nivel: public Escenario {
     public:
 
         Nivel();
-        int get_width();
-        int get_height();
-        list<NaveEnemiga*> crear_enemigos();
+        vector<NaveEnemiga*> crear_enemigos();
         void procesar();
         virtual void cerrar();
         virtual void cargarNivel();
-        virtual bool renderBackground();
+        virtual void renderBackground();
+
+        static const int TIEMPO_NIVEL_SEGS = 240;
+    protected:
+        int cantidad_enemigos;
+        TextureW gFinNivel;
 
 };
 

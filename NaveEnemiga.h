@@ -30,7 +30,8 @@ class NaveEnemiga: public Nave {
 
         const char* imagen;
 
-        bool desplazamientoPositivo;
+        // izq->der = 1 ; der->izq = -1
+        int desplazamiento;
 
         const char* sEnemigo1;
         const char* sEnemigo2;

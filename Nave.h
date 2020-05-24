@@ -19,7 +19,7 @@ class Nave{
     public:
 
         //Se inicializa la Nave en esas coordenadas
-		void crearNave( int x, int y, const char* imagen);
+		bool crearNave( int x, int y, const char* imagen);
 
 		void cerrarNave();
 
@@ -43,7 +43,7 @@ class Nave{
 
 		bool checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo );
 
-		bool encontrarEnemigos(NaveJugador* jugador, list<NaveEnemiga*> enemigos);
+		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
 
     protected:
 

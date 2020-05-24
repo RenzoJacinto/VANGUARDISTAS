@@ -5,6 +5,8 @@ Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
 
+    cantidad_enemigos = json.get_cantidad_enemigo("nivel1");
+
     std::string bg = json.get_sprite_mapa("nivel1", "mapaBG");
     std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
     std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
@@ -66,9 +68,9 @@ void Nivel1::cerrar(){
 	gFinNivel.free();
 }
 
-bool Nivel1::renderBackground(){
+void Nivel1::renderBackground(){
 
-    if(parallax()) return true;
+    parallax();
 
     /*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() );*/
@@ -86,19 +88,13 @@ bool Nivel1::renderBackground(){
 	gNube1.render( scrollingOffsetNube1 + dataNube1.w, 0, &dataNube1 );
 	gNube2.render( scrollingOffsetNube2, 0, &dataNube2 );
 	gNube2.render( scrollingOffsetNube2 + dataNube2.w, 0, &dataNube2 );
-
-	return false;
 }
 
 
-bool Nivel1::parallax(){
+void Nivel1::parallax(){
 
     scrollingOffsetBG -= 3;
-    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
-        scrollingOffsetBG = 0;
-        gFinNivel.render(0,0);
-        return true;
-    }
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
 	scrollingOffsetCity -= 5;
     if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
@@ -109,5 +105,4 @@ bool Nivel1::parallax(){
     scrollingOffsetNube2 -= 10;
     if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
 
-    return false;
 }

@@ -4,6 +4,9 @@
 Nivel3::Nivel3(){}
 
 void Nivel3::cargarNivel(){
+
+    cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
+
     std::string bg = json.get_sprite_mapa("nivel3", "mapaBG");
     std::string fondo1 = json.get_sprite_mapa("nivel3", "fondo1");
     std::string fondo2 = json.get_sprite_mapa("nivel3", "fondo2");
@@ -92,9 +95,9 @@ void Nivel3::cerrar(){
 	gFinNivel.free();
 }
 
-bool Nivel3::renderBackground(){
+void Nivel3::renderBackground(){
 
-    if(parallax()) return true;
+    parallax();
 
 	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 	SDL_RenderClear( sdl.getRenderer() ); */
@@ -119,18 +122,12 @@ bool Nivel3::renderBackground(){
 
 	gFondo6Texture.render( scrollingOffsetFondo6, 0, &dataFondo6 );
 	gFondo6Texture.render( scrollingOffsetFondo6 + dataFondo6.w, 0, &dataFondo6 );
-
-    return false;
 }
 
-bool Nivel3::parallax(){
+void Nivel3::parallax(){
 
-    scrollingOffsetBG -= 3;
-    if( scrollingOffsetBG < -gBGTexture.getWidth() ){
-        scrollingOffsetBG = 0;
-        gFinNivel.render(0,0);
-        return true;
-    }
+    scrollingOffsetBG -= 0.1;
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 250;
 
     scrollingOffsetFondo1 -= 15;
     if( scrollingOffsetFondo1 < -dataFondo1.w ) scrollingOffsetFondo1 = 0;
@@ -149,6 +146,4 @@ bool Nivel3::parallax(){
 
     scrollingOffsetFondo6 -= 7.5;
     if( scrollingOffsetFondo6 < -dataFondo6.w ) scrollingOffsetFondo6 = 0;
-
-    return false;
 }

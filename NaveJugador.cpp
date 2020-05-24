@@ -3,7 +3,12 @@
 NaveJugador::NaveJugador( int x, int y){
     std::string jugador = json.get_sprite_nave("jugador", "jugador");
     const char* sJugador = jugador.c_str();
-    crearNave(x, y, sJugador);
+    if(!crearNave(x, y, sJugador)){
+        jugador = json.get_sprite_nave("jugador", "default");
+        sJugador = jugador.c_str();
+        logger.debug("La imagen de la nave no fue encontrada, lo cual se cargo una por defecto");
+        crearNave(x, y, sJugador);
+    }
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
 }
@@ -31,7 +36,7 @@ void NaveJugador::handleEvent( SDL_Event& e ){
     }
 }
 
-void NaveJugador::mover( list<NaveEnemiga*> enemigos ){
+void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());

@@ -10,9 +10,9 @@ class Nivel3: public Nivel{
         Nivel3();
         void cargarNivel();
         void cerrar();
-        bool renderBackground();
+        void renderBackground();
 
-        bool parallax();
+        void parallax();
 
     private:
         TextureW gBGTexture;
@@ -23,7 +23,7 @@ class Nivel3: public Nivel{
         TextureW gFondo5Texture;
         TextureW gFondo6Texture;
 
-        TextureW gFinNivel;
+        //TextureW gFinNivel;
 
         SDL_Rect dataBG;
         SDL_Rect dataFondo1;
