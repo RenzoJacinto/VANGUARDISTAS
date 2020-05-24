@@ -45,12 +45,12 @@ void Nivel::procesar(){
         logger.debug("Se creó a la nave del jugador");
 
         vector<NaveEnemiga*> enemigos = crear_enemigos();
-        float tiempo_por_enemigos = 240/cantidad_enemigos;
+        float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
         int tiempo_nivel = 0;
         int renderizados = 1;
 
-	    // Mientras que siga corriendo la app               //Puse solo 5 segundos para probar
-	    while( usuarioNoRequieraSalir(quit) && (tiempo_nivel < 240) ) {
+	    // Mientras que siga corriendo la app
+	    while( usuarioNoRequieraSalir(quit) && tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
 		    while( hayEventos() ){
 		         if( eventoEsSalir() ) quit = true;
 			      jugador->handleEvent( e );
