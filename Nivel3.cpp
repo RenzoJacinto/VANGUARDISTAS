@@ -7,25 +7,15 @@ void Nivel3::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
 
-    std::string bg = json.get_sprite_mapa("nivel3", "mapaBG");
-    std::string fondo1 = json.get_sprite_mapa("nivel3", "fondo1");
-    std::string fondo2 = json.get_sprite_mapa("nivel3", "fondo2");
-    std::string fondo3 = json.get_sprite_mapa("nivel3", "fondo3");
-    std::string fondo4 = json.get_sprite_mapa("nivel3", "fondo4");
-    std::string fondo5 = json.get_sprite_mapa("nivel3", "fondo5");
-    std::string fondo6 = json.get_sprite_mapa("nivel3", "fondo6");
+    const char* sMapaBG = json.get_sprite_mapa("nivel3", "mapaBG");
+    const char* sFondo1 = json.get_sprite_mapa("nivel3", "fondo1");
+    const char* sFondo2 = json.get_sprite_mapa("nivel3", "fondo2");
+    const char* sFondo3 = json.get_sprite_mapa("nivel3", "fondo3");
+    const char* sFondo4 = json.get_sprite_mapa("nivel3", "fondo4");
+    const char* sFondo5 = json.get_sprite_mapa("nivel3", "fondo5");
+    const char* sFondo6 = json.get_sprite_mapa("nivel3", "fondo6");
 
-    std::string finNivel = json.get_sprite_mapa("nivel3", "finNivel");
-
-    const char* sMapaBG = bg.c_str();
-    const char* sFondo1= fondo1.c_str();
-    const char* sFondo2= fondo2.c_str();
-    const char* sFondo3= fondo3.c_str();
-    const char* sFondo4= fondo4.c_str();
-    const char* sFondo5= fondo5.c_str();
-    const char* sFondo6= fondo6.c_str();
-
-    const char* sFinNivel = finNivel.c_str();
+    const char* sFinNivel = json.get_sprite_mapa("nivel3", "finNivel");
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sFondo1, &gFondo1Texture);
@@ -98,9 +88,6 @@ void Nivel3::cerrar(){
 void Nivel3::renderBackground(){
 
     parallax();
-
-	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-	SDL_RenderClear( sdl.getRenderer() ); */
 
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );

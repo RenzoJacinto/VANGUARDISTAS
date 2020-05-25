@@ -10,26 +10,24 @@
 using namespace std;
 
 class ManejoDeJson{
-
     public:
 
         ManejoDeJson();
         bool abrir_archivo();
         bool abrir_archivo_aux(const char* filename);
 
-        std::string get_sprite_menu();
+        const char* get_sprite_menu();
         int get_nivel_de_log();
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
-        std::string get_sprite_mapa(char const* key, char const* sp);
-        int get_cantidad_enemigo(char const* key);
-        std::string get_sprite_nave(char const* key, char const* sp);
+        const char* get_sprite_mapa(const char* key, const char* sp);
+        int get_cantidad_enemigo(const char* key);
+        const char* get_sprite_nave(const char* key, const char* sp);
 
     private:
 
         ifstream archivo_json;
         using json = nlohmann::json;
         json j;
-
 };
 
 #endif

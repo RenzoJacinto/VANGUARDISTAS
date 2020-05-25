@@ -23,8 +23,6 @@ class Nivel3: public Nivel{
         TextureW gFondo5Texture;
         TextureW gFondo6Texture;
 
-        //TextureW gFinNivel;
-
         SDL_Rect dataBG;
         SDL_Rect dataFondo1;
         SDL_Rect dataFondo2;

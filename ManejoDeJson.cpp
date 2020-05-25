@@ -1,6 +1,7 @@
 #include "ManejoDeJson.h"
 #include <stdio.h>
 
+
 ManejoDeJson::ManejoDeJson(){}
 
 bool ManejoDeJson::abrir_archivo(){
@@ -22,8 +23,9 @@ bool ManejoDeJson::abrir_archivo_aux(const char* filename){
     return true;
 }
 
-std::string ManejoDeJson::get_sprite_menu(){
-    return j.at("menu");
+const char* ManejoDeJson::get_sprite_menu(){
+    std::string menu = j.at("menu");
+    return menu.c_str();
 }
 
 int ManejoDeJson::get_nivel_de_log(){
@@ -37,22 +39,17 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     return j_aux;
 }
 
-std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
+const char* ManejoDeJson::get_sprite_mapa(const char* key, const char* sp){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
     json& j_sprites = searchValue(j_nivel, "sprites");
 
-    for(auto& el : j_sprites.items()) {
-        std::string sActualKey = el.key();
-        if(strstr(sActualKey.c_str(),sp)){
-            return el.value();
-        }
-    }
-    return NULL;
+    std::string sprite = j_sprites.at(sp);
+    return sprite.c_str();
 }
 
-int ManejoDeJson::get_cantidad_enemigo(char const* key){
+int ManejoDeJson::get_cantidad_enemigo(const char* key){
 
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
@@ -60,18 +57,12 @@ int ManejoDeJson::get_cantidad_enemigo(char const* key){
     return j_nivel.at("enemigos");
 }
 
-std::string ManejoDeJson::get_sprite_nave(char const* key, char const* sp){
+const char* ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
     json& j_aux = searchValue(j, "naves");
     json& j_nivel = searchValue(j_aux, key);
 
-    for(auto& el : j_nivel.items()) {
-        std::string sActualKey = el.key();
-        std::string sActualValue = el.value();
-        if(strstr(sActualKey.c_str(),sp)){
-            return sActualValue;
-        }
-    }
-    return NULL;
+    std::string sprite = j_nivel.at(sp);
+    return sprite.c_str();
 }
 
 

@@ -7,23 +7,14 @@ void Nivel2::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel2");
 
-    std::string bg = json.get_sprite_mapa("nivel2", "mapaBG");
-    std::string planeta1 = json.get_sprite_mapa("nivel2", "planeta1");
-    std::string planeta2 = json.get_sprite_mapa("nivel2", "planeta2");
-    std::string asteroides1 = json.get_sprite_mapa("nivel2", "asteroides1");
-    std::string asteroides2 = json.get_sprite_mapa("nivel2", "asteroides2");
-    std::string asteroides3 = json.get_sprite_mapa("nivel2", "asteroides3");
+    const char* sMapaBG = json.get_sprite_mapa("nivel2", "mapaBG");
+    const char* sPlaneta1 = json.get_sprite_mapa("nivel2", "planeta1");
+    const char* sPlaneta2 = json.get_sprite_mapa("nivel2", "planeta2");
+    const char* sAsteroides1 = json.get_sprite_mapa("nivel2", "asteroides1");
+    const char* sAsteroides2 = json.get_sprite_mapa("nivel2", "asteroides2");
+    const char* sAsteroides3 = json.get_sprite_mapa("nivel2", "asteroides3");
 
-    std::string finNivel = json.get_sprite_mapa("nivel2", "finNivel");
-
-    const char* sMapaBG = bg.c_str();
-    const char* sPlaneta2= planeta2.c_str();
-    const char* sPlaneta1 = planeta1.c_str();
-    const char* sAsteroides1 = asteroides1.c_str();
-    const char* sAsteroides2 = asteroides2.c_str();
-    const char* sAsteroides3 = asteroides3.c_str();
-
-    const char* sFinNivel = finNivel.c_str();
+    const char* sFinNivel = json.get_sprite_mapa("nivel2", "finNivel");
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sPlaneta1, &gPlaneta1Texture);
@@ -33,8 +24,6 @@ void Nivel2::cargarNivel(){
     cargarImagen(sAsteroides3, &gAsteroides3Texture);
 
     cargarImagen(sFinNivel, &gFinNivel);
-
-    scrollingOffsetBG = 0;
 
     scrollingOffsetPlaneta1 = 300;
     scrollingOffsetPlaneta2 = 1000;
@@ -74,9 +63,6 @@ void Nivel2::renderBackground(){
 
     parallax();
 
-	/*SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-	SDL_RenderClear( sdl.getRenderer() );*/
-
 	gBGTexture.render(0, 0);
 
 	gPlaneta2Texture.render(scrollingOffsetPlaneta2, 100);
@@ -97,9 +83,6 @@ void Nivel2::renderBackground(){
 
 
 void Nivel2::parallax(){
-
-    scrollingOffsetBG -= 3;
-    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
 	scrollingOffsetAsteroides1 -= 10;
     if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
