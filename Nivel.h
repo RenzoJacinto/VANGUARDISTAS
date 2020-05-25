@@ -17,8 +17,10 @@ class Nivel: public Escenario {
         virtual void cargarNivel();
         virtual void renderBackground();
 
-        static const int TIEMPO_NIVEL_SEGS = 240;
+        static const int TIEMPO_NIVEL_SEGS = 10;
+
     protected:
+
         int cantidad_enemigos;
         TextureW gFinNivel;
 

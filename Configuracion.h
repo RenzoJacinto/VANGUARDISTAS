@@ -1,12 +1,11 @@
 #ifndef CONFIGURACION_H_
 #define CONFIGURACION_H_
-
-using namespace std;
-
 #include <string>
 
 class Configuracion{
+
     public:
+
         Configuracion();
 
         std::string menuBG;
@@ -23,6 +22,7 @@ class Configuracion{
         std::string jugador;
 
         int log;
+
 };
 
 #endif

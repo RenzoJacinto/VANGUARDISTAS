@@ -1,7 +1,6 @@
 #include "ManejoDeJson.h"
 #include <stdio.h>
 
-
 ManejoDeJson::ManejoDeJson(){}
 
 bool ManejoDeJson::abrir_archivo(){

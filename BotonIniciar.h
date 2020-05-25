@@ -11,12 +11,11 @@
 class BotonIniciar
 {
     public:
+
         BotonIniciar();
 
         void handleEvent( SDL_Event& e );
 
-        //void render();
-
 };
 
-    #endif // BOTON_INICIAR_H_
+#endif // BOTON_INICIAR_H_

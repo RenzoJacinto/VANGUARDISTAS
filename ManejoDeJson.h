@@ -10,6 +10,7 @@
 using namespace std;
 
 class ManejoDeJson{
+
     public:
 
         ManejoDeJson();
@@ -28,6 +29,7 @@ class ManejoDeJson{
         ifstream archivo_json;
         using json = nlohmann::json;
         json j;
+
 };
 
 #endif
