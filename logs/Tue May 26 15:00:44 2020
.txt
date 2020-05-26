@@ -1,0 +1,13 @@
+DEBUG: Se inicializ贸 SDL - Tue May 26 15:00:44 2020
+DEBUG: Filtrado de textura lineal seteado - Tue May 26 15:00:44 2020
+DEBUG: Se cre贸 la ventana - Tue May 26 15:00:45 2020
+DEBUG: Se cre贸 vSync para la ventana - Tue May 26 15:00:45 2020
+DEBUG: Se inicializ贸 el renderizado de color - Tue May 26 15:00:45 2020
+DEBUG: Se inicializ贸 la carga de imagenes PNG - Tue May 26 15:00:45 2020
+ERROR: Couldn't open �/哢 - Tue May 26 15:00:45 2020
+DEBUG: Se liber贸 memoria del renderizador - Tue May 26 15:00:45 2020
+DEBUG: Se liber贸 memoria de la ventana - Tue May 26 15:00:45 2020
+DEBUG: Se referenci贸 la ventana como nula - Tue May 26 15:00:45 2020
+DEBUG: Se referenci贸 el renderizador como nulo - Tue May 26 15:00:45 2020
+DEBUG: Se cerr贸 IMG - Tue May 26 15:00:45 2020
+DEBUG: Se cerr贸 SDL - Tue May 26 15:00:45 2020
