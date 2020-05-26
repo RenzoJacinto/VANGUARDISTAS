@@ -38,8 +38,6 @@
 		</Linker>
 		<Unit filename="BotonIniciar.cpp" />
 		<Unit filename="BotonIniciar.h" />
-		<Unit filename="Configuracion.cpp" />
-		<Unit filename="Configuracion.h" />
 		<Unit filename="Escenario.cpp" />
 		<Unit filename="Escenario.h" />
 		<Unit filename="Logger.cpp" />
@@ -80,6 +78,9 @@
 		<Unit filename="global.h" />
 		<Unit filename="json.hpp" />
 		<Unit filename="main.cpp" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

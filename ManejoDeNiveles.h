@@ -11,6 +11,7 @@ class ManejoDeNiveles{
     public:
 
         ManejoDeNiveles();
+        void cerrar_niveles(list<Nivel*> niveles);
         void procesar();
         void delay(int sec);
         void cargarNiveles();

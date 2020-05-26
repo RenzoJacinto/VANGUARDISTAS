@@ -12,7 +12,8 @@ class Nivel: public Escenario {
 
         Nivel();
         vector<NaveEnemiga*> crear_enemigos();
-        void procesar();
+        bool procesar();
+        void finalizar();
         virtual void cerrar();
         virtual void cargarNivel();
         virtual void renderBackground();

@@ -18,8 +18,19 @@ void ManejoDeNiveles::procesar(){
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
         (*nivel)->cargarNivel();
-        (*nivel)->procesar();
+        if((*nivel)->procesar()) {
+            cerrar_niveles(niveles);
+            break;
+        }
+        (*nivel)->finalizar();
         delay(5);
+        (*nivel)->cerrar();
+    }
+}
+
+void ManejoDeNiveles::cerrar_niveles(list<Nivel*> niveles) {
+    list<Nivel*>::iterator nivel;
+    for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
         (*nivel)->cerrar();
     }
 }

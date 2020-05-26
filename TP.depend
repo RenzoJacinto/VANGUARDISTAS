@@ -899,3 +899,363 @@
 1589848205 /home/renzo/Documents/GitHub/VANGUARDISTAS/Configuracion.h
 	<string>
 
+1590469565 source:/home/agustin/Desktop/taier/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeNiveles.h"
+
+1590469565 /home/agustin/Desktop/taier/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1590508038 /home/agustin/Desktop/taier/ManejoDeNiveles.h
+	<list>
+	"Nivel.h"
+
+1590508059 /home/agustin/Desktop/taier/Nivel.h
+	<list>
+	"NaveEnemiga.h"
+	"Escenario.h"
+	"TextureW.h"
+
+1590469565 /home/agustin/Desktop/taier/NaveEnemiga.h
+	"Nave.h"
+
+1590469565 /home/agustin/Desktop/taier/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"global.h"
+	"list"
+
+1590469565 /home/agustin/Desktop/taier/ManejoDeSDL.h
+	"TextureW.h"
+
+1590469565 /home/agustin/Desktop/taier/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1590469566 /home/agustin/Desktop/taier/global.h
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+	"ManejoDeJson.h"
+
+1590469565 /home/agustin/Desktop/taier/ManejoDeLog.h
+	"Logger.h"
+
+1590469565 /home/agustin/Desktop/taier/Logger.h
+	<iostream>
+	<fstream>
+
+1590469565 /home/agustin/Desktop/taier/ManejoDeJson.h
+	<iostream>
+	<fstream>
+	<string>
+	"json.hpp"
+
+1590469566 /home/agustin/Desktop/taier/json.hpp
+	<algorithm>
+	<cassert>
+	<ciso646>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<utility>
+	<algorithm>
+	<array>
+	<ciso646>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<exception>
+	<stdexcept>
+	<string>
+	<cstddef>
+	<utility>
+	<stdint.h>
+	<stdint.h>
+	<cstdlib>
+	<ciso646>
+	<cstddef>
+	<type_traits>
+	<ciso646>
+	<limits>
+	<type_traits>
+	<utility>
+	<iterator>
+	<type_traits>
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<array>
+	<ciso646>
+	<cstddef>
+	<cstdint>
+	<string>
+	<algorithm>
+	<ciso646>
+	<iterator>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<cstddef>
+	<iterator>
+	<string>
+	<tuple>
+	<algorithm>
+	<array>
+	<cassert>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<array>
+	<cassert>
+	<cstddef>
+	<cstdio>
+	<cstring>
+	<istream>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<type_traits>
+	<utility>
+	<cassert>
+	<cstddef>
+	<string>
+	<utility>
+	<vector>
+	<cstdint>
+	<utility>
+	<string>
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<cassert>
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<cstddef>
+	<limits>
+	<ciso646>
+	<iterator>
+	<type_traits>
+	<cstddef>
+	<iterator>
+	<utility>
+	<algorithm>
+	<cassert>
+	<cctype>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<initializer_list>
+	<utility>
+	<algorithm>
+	<array>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<algorithm>
+	<cstddef>
+	<ios>
+	<iterator>
+	<memory>
+	<ostream>
+	<string>
+	<vector>
+	<algorithm>
+	<array>
+	<cassert>
+	<ciso646>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<type_traits>
+	<utility>
+	<array>
+	<cassert>
+	<ciso646>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+
+1590469565 /home/agustin/Desktop/taier/Escenario.h
+	<SDL2/SDL.h>
+	"TextureW.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Escenario.cpp
+	"Escenario.h"
+	"global.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Logger.cpp
+	"Logger.h"
+	<iostream>
+	<fstream>
+
+1590508144 source:/home/agustin/Desktop/taier/LoggerDebug.cpp
+	"LoggerDebug.h"
+
+1590469565 /home/agustin/Desktop/taier/LoggerDebug.h
+	"Logger.h"
+
+1590508144 source:/home/agustin/Desktop/taier/LoggerError.cpp
+	"LoggerError.h"
+
+1590469565 /home/agustin/Desktop/taier/LoggerError.h
+	"Logger.h"
+
+1590508144 source:/home/agustin/Desktop/taier/LoggerInfo.cpp
+	"LoggerInfo.h"
+
+1590469565 /home/agustin/Desktop/taier/LoggerInfo.h
+	"Logger.h"
+
+1590469566 source:/home/agustin/Desktop/taier/main.cpp
+	"global.h"
+	"Menu.h"
+
+1590469565 /home/agustin/Desktop/taier/Menu.h
+	"Escenario.h"
+	"TextureW.h"
+
+1590469565 source:/home/agustin/Desktop/taier/ManejoDeJson.cpp
+	"ManejoDeJson.h"
+	<stdio.h>
+
+1590469565 source:/home/agustin/Desktop/taier/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+	<string>
+	"LoggerError.h"
+	"LoggerInfo.h"
+	"LoggerDebug.h"
+	"Logger.h"
+
+1590507997 source:/home/agustin/Desktop/taier/ManejoDeNiveles.cpp
+	"ManejoDeNiveles.h"
+	<string>
+	<time.h>
+	<ctime>
+	"Nivel1.h"
+	"Nivel2.h"
+	"Nivel3.h"
+
+1590469565 /home/agustin/Desktop/taier/Nivel1.h
+	"Nivel.h"
+	"TextureW.h"
+
+1590469565 /home/agustin/Desktop/taier/Nivel2.h
+	"Nivel.h"
+	"TextureW.h"
+
+1590469565 /home/agustin/Desktop/taier/Nivel3.h
+	"Nivel.h"
+	"TextureW.h"
+
+1590469565 source:/home/agustin/Desktop/taier/ManejoDeSDL.cpp
+	"global.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Menu.cpp
+	"Menu.h"
+	"BotonIniciar.h"
+	"global.h"
+	"ManejoDeSDL.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Nave.cpp
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+
+1590469565 /home/agustin/Desktop/taier/NaveJugador.h
+	"Nave.h"
+	"list"
+
+1590469565 source:/home/agustin/Desktop/taier/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+
+1590469565 source:/home/agustin/Desktop/taier/NaveJugador.cpp
+	"NaveJugador.h"
+
+1590507973 source:/home/agustin/Desktop/taier/Nivel.cpp
+	"Nivel.h"
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Temporizador.h"
+	"global.h"
+
+1590469565 /home/agustin/Desktop/taier/Temporizador.h
+	<iostream>
+	<chrono>
+	<ctime>
+	<cmath>
+
+1590469565 source:/home/agustin/Desktop/taier/Nivel1.cpp
+	"Nivel1.h"
+	"global.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Nivel2.cpp
+	"Nivel2.h"
+	"global.h"
+
+1590469565 source:/home/agustin/Desktop/taier/Nivel3.cpp
+	"Nivel3.h"
+	"global.h"
+
+1590469565 source:/home/agustin/Desktop/taier/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+

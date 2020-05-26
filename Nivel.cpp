@@ -33,7 +33,7 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(){
     return enemigos;
 }
 
-void Nivel::procesar(){
+bool Nivel::procesar(){
 
 	    bool quit = false;
 
@@ -84,11 +84,16 @@ void Nivel::procesar(){
         for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
             (*pos)->cerrarNave();
         }
-        logger.info("Finalizó el nivel");
-        gFinNivel.render(0,0);
-        SDL_RenderPresent( sdl.getRenderer() );
-        logger.info("Se renderizo el final del nivel");
+        return quit;
 }
+
+void Nivel::finalizar() {
+    logger.info("Finalizó el nivel");
+    gFinNivel.render(0,0);
+    SDL_RenderPresent( sdl.getRenderer() );
+    logger.info("Se renderizo el final del nivel");
+}
+
 
 void Nivel::cerrar(){}
 
