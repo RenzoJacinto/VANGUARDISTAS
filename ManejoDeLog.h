@@ -11,8 +11,8 @@ class ManejoDeLog{
         static const int nivelError = 1;
 
         ManejoDeLog();
-        bool crearLogger(int nivel, const char* filename);
-        bool iniciarLog(int nivel);
+        bool crearLogger(int nivel);
+        void iniciarLog();
         void cerrar();
 
         void info(const char* update);
@@ -21,6 +21,7 @@ class ManejoDeLog{
 
     private:
         Logger* logger = new Logger();
+        std::string filename;
 };
 
 #endif

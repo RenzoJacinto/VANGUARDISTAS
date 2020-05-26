@@ -7,13 +7,21 @@ void Nivel1::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel1");
 
-    const char* sMapaBG = json.get_sprite_mapa("nivel1", "mapaBG");
-    const char* sCiudad = json.get_sprite_mapa("nivel1", "ciudad");
-    const char* sPlaneta = json.get_sprite_mapa("nivel1", "planeta");
-    const char* sNube1 = json.get_sprite_mapa("nivel1", "nube1");
-    const char* sNube2 = json.get_sprite_mapa("nivel1", "nube2");
+    std::string bg = json.get_sprite_mapa("nivel1", "mapaBG");
+    std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
+    std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
+    std::string nube1 = json.get_sprite_mapa("nivel1", "nube1");
+    std::string nube2 = json.get_sprite_mapa("nivel1", "nube2");
 
-    const char* sFinNivel = json.get_sprite_mapa("nivel1", "finNivel");
+    std::string finNivel = json.get_sprite_mapa("nivel1", "finNivel");
+
+    const char* sMapaBG = bg.c_str();
+    const char* sCiudad = ciudad.c_str();
+    const char* sPlaneta = planeta.c_str();
+    const char* sNube1 = nube1.c_str();
+    const char* sNube2 = nube2.c_str();
+
+    const char* sFinNivel = finNivel.c_str();
 
     cargarImagen(sMapaBG, &gBGTexture);
     cargarImagen(sCiudad, &gCiudadTexture);

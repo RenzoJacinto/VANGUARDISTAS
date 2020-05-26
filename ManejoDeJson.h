@@ -15,16 +15,16 @@ class ManejoDeJson{
         ManejoDeJson();
         bool abrir_archivo();
         bool abrir_archivo_aux(const char* filename);
+
+        //para todos
+        nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
+
+        //para los de config
         std::string get_sprite_menu();
         int get_nivel_de_log();
-        nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
         std::string get_sprite_mapa(char const* key, char const* sp);
         int get_cantidad_enemigo(char const* key);
         std::string get_sprite_nave(char const* key, char const* sp);
-
-        std::string get_sprite_mapa_default(char const* key, char const* sp);
-        int get_cantidad_enemigo_default(char const* key);
-        std::string get_sprite_nave_default(char const* key, char const* sp);
 
     private:
 

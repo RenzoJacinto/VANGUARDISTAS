@@ -5,19 +5,25 @@
 #include "LoggerDebug.h"
 #include "Logger.h"
 
-ManejoDeLog::ManejoDeLog(){}
-
-bool ManejoDeLog::crearLogger(int nivel, const char* filename){
-    switch(nivel){
-        case nivelInfo: logger = new LoggerInfo(filename); break;
-        case nivelError: logger = new LoggerError(filename); break;
-        case nivelDebug: logger = new LoggerDebug(filename); break;
-        default: logger = NULL;
-    }
-    return logger != NULL;
+ManejoDeLog::ManejoDeLog(){
+    iniciarLog();
+    logger = new LoggerDebug(filename.c_str());
 }
 
-bool ManejoDeLog::iniciarLog(int nivel){
+bool ManejoDeLog::crearLogger(int nivel){
+    bool ok = true;
+    logger->cerrarArchivo();
+    free(logger);
+    switch(nivel){
+        case nivelInfo: logger = new LoggerInfo(filename.c_str()); break;
+        case nivelError: logger = new LoggerError(filename.c_str()); break;
+        case nivelDebug: logger = new LoggerDebug(filename.c_str()); break;
+        default: logger = new LoggerDebug(filename.c_str()); ok = false; break;
+    }
+    return ok;
+}
+
+void ManejoDeLog::iniciarLog(){
     time_t ahora = time(0);
 
     // junto strings para el nombre del archivo
@@ -27,9 +33,7 @@ bool ManejoDeLog::iniciarLog(int nivel){
     string horaActual(hora_actual);
     carpeta = carpeta + horaActual + extension;
 
-    const char* filename = carpeta.c_str();
-
-    return crearLogger(nivel, filename);
+    filename = carpeta;
 }
 
 void ManejoDeLog::info(const char* update){

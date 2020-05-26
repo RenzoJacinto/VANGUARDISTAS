@@ -22,7 +22,7 @@ void Logger::escribir(const char* update){
     archivo_log << hora.c_str();
 }
 bool Logger::abrirArchivo(const char* filename){
-    archivo_log.open(filename, ios::out);
+    archivo_log.open(filename, ios::app);
     if(!archivo_log) return false;
     return true;
 }
