@@ -2,7 +2,7 @@
 	"log": 3,
     	"stages":{
         	"nivel1":{
-                	"enemigos": 5,
+                	"enemigos": 35,
                 	"sprites":{
 		            	"mapaBG":"sprites/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/niveles/nivel1/ciudad.png",
@@ -13,7 +13,7 @@
 			}
             	},
            	"nivel2":{
-                	"enemigos": 5,
+                	"enemigos": 20,
                 	"sprites":{
 				"mapaBG":"sprites/niveles/nivel2/bg2.png",
 				"planeta1":"sprites/niveles/nivel2/planeta1.png",
@@ -25,7 +25,7 @@
                 	}
             	},
 	    	"nivel3":{
-                	"enemigos": 5,
+                	"enemigos": 15,
                 	"sprites":{
 		        	"mapaBG":"sprites/niveles/nivel3/bg.png",
 		        	"fondo1":"sprites/niveles/nivel3/fondo1.png",

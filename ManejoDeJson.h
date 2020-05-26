@@ -26,10 +26,16 @@ class ManejoDeJson{
         int get_cantidad_enemigo(char const* key);
         std::string get_sprite_nave(char const* key, char const* sp);
 
+        //Para los de default
+        std::string get_sprite_menu_default();
+        int get_nivel_de_log_default();
+        std::string get_sprite_mapa_default(char const* key, char const* sp);
+        int get_cantidad_enemigo_default(char const* key);
+        std::string get_sprite_nave_default(char const* key, char const* sp);
+
     private:
 
         ifstream archivo_json;
-        ifstream arhivo_default;
         using json = nlohmann::json;
         json j;
         json def;

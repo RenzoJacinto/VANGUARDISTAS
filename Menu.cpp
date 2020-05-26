@@ -13,6 +13,9 @@ bool Menu::cargarImagen(){
     std::string menu = json.get_sprite_menu();
     const char* sMenuBG = menu.c_str();
 	if( !gMenuBGTexture.loadFromFile(sMenuBG) ){
+        logger.error("No se encontro la imagen del menu, se cargo una por defecto");
+        menu = json.get_sprite_menu_default();
+        gMenuBGTexture.loadFromFile(menu.c_str());
 		ok = false;
 	} else logger.info("Se cargó la imagen menuBG.png");
 

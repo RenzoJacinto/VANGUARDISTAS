@@ -3,14 +3,21 @@
 
 Escenario::Escenario(){}
 
-void Escenario::cargarImagen(const char* imagen, TextureW* textura){
+void Escenario::cargarImagen(const char* nivel, const char* sprite, TextureW* textura){
+
+    std::string imagen = json.get_sprite_mapa(nivel, sprite);
     // Cargar la textura de la nave
-	if( textura->loadFromFile(imagen)){
+	if( textura->loadFromFile(imagen.c_str())){
         std::string frase = "Se cargó la imagen ";
         string direccion(imagen);
         frase = frase + direccion;
         const char* update = frase.c_str();
         logger.info(update);
+    } else{
+        imagen = json.get_sprite_mapa_default(nivel, sprite);
+        std::string mensaje = "No se encontro el sprite: " + imagen + ", se cargo una por defecto";
+        logger.error(mensaje.c_str());
+        textura->loadFromFile(imagen.c_str());
     }
 }
 

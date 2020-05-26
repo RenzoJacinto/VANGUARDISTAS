@@ -6,37 +6,20 @@ Nivel3::Nivel3(){}
 void Nivel3::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
+    if(cantidad_enemigos == 0){
+        logger.error("Cantidad de enemigos del nivel3 inexistente, se cargo una por defecto");
+        cantidad_enemigos = json.get_cantidad_enemigo_default("nivel3");
+    }
 
-    std::string bg = json.get_sprite_mapa("nivel3", "mapaBG");
-    std::string fondo1 = json.get_sprite_mapa("nivel3", "fondo1");
-    std::string fondo2 = json.get_sprite_mapa("nivel3", "fondo2");
-    std::string fondo3 = json.get_sprite_mapa("nivel3", "fondo3");
-    std::string fondo4 = json.get_sprite_mapa("nivel3", "fondo4");
-    std::string fondo5 = json.get_sprite_mapa("nivel3", "fondo5");
-    std::string fondo6 = json.get_sprite_mapa("nivel3", "fondo6");
+    cargarImagen("nivel3", "mapaBG", &gBGTexture);
+    cargarImagen("nivel3", "fondo1", &gFondo1Texture);
+    cargarImagen("nivel3", "fondo2", &gFondo2Texture);
+    cargarImagen("nivel3", "fondo3", &gFondo3Texture);
+    cargarImagen("nivel3", "fondo4", &gFondo4Texture);
+    cargarImagen("nivel3", "fondo5", &gFondo5Texture);
+    cargarImagen("nivel3", "fondo6", &gFondo6Texture);
 
-    std::string finNivel = json.get_sprite_mapa("nivel3", "finNivel");
-
-    const char* sMapaBG = bg.c_str();
-    const char* sFondo1 = fondo1.c_str();
-    const char* sFondo2 = fondo2.c_str();
-    const char* sFondo3 = fondo3.c_str();
-    const char* sFondo4 = fondo4.c_str();
-    const char* sFondo5 = fondo5.c_str();
-    const char* sFondo6 = fondo6.c_str();
-
-    const char* sFinNivel = finNivel.c_str();
-
-    cargarImagen(sMapaBG, &gBGTexture);
-    cargarImagen(sFondo1, &gFondo1Texture);
-    cargarImagen(sFondo2, &gFondo2Texture);
-    cargarImagen(sFondo3, &gFondo3Texture);
-    cargarImagen(sFondo4, &gFondo4Texture);
-    cargarImagen(sFondo5, &gFondo5Texture);
-    cargarImagen(sFondo6, &gFondo6Texture);
-
-    cargarImagen(sFinNivel, &gFinNivel);
-
+    cargarImagen("nivel3", "finNivel", &gFinNivel);
 
     scrollingOffsetBG = 0;
 

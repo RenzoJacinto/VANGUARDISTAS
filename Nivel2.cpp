@@ -6,33 +6,19 @@ Nivel2::Nivel2(){}
 void Nivel2::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel2");
+    if(cantidad_enemigos == 0){
+        logger.error("Cantidad de enemigos del nivel2 inexistente, se cargo una por defecto");
+        cantidad_enemigos = json.get_cantidad_enemigo_default("nivel2");
+    }
 
-    std::string bg = json.get_sprite_mapa("nivel2", "mapaBG");
-    std::string planeta1 = json.get_sprite_mapa("nivel2", "planeta1");
-    std::string planeta2 = json.get_sprite_mapa("nivel2", "planeta2");
-    std::string asteroides1 = json.get_sprite_mapa("nivel2", "asteroides1");
-    std::string asteroides2 = json.get_sprite_mapa("nivel2", "asteroides2");
-    std::string asteroides3 = json.get_sprite_mapa("nivel2", "asteroides3");
+    cargarImagen("nivel2", "mapaBG", &gBGTexture);
+    cargarImagen("nivel2", "planeta1", &gPlaneta1Texture);
+    cargarImagen("nivel2", "planeta2", &gPlaneta2Texture);
+    cargarImagen("nivel2", "asteroides1", &gAsteroides1Texture);
+    cargarImagen("nivel2", "asteroides2", &gAsteroides2Texture);
+    cargarImagen("nivel2", "asteroides3", &gAsteroides3Texture);
 
-    std::string finNivel = json.get_sprite_mapa("nivel2", "finNivel");
-
-    const char* sMapaBG = bg.c_str();
-    const char* sPlaneta1 = planeta1.c_str();
-    const char* sPlaneta2 = planeta2.c_str();
-    const char* sAsteroides1 = asteroides1.c_str();
-    const char* sAsteroides2 = asteroides2.c_str();
-    const char* sAsteroides3 = asteroides3.c_str();
-
-    const char* sFinNivel = finNivel.c_str();
-
-    cargarImagen(sMapaBG, &gBGTexture);
-    cargarImagen(sPlaneta1, &gPlaneta1Texture);
-    cargarImagen(sPlaneta2, &gPlaneta2Texture);
-    cargarImagen(sAsteroides1, &gAsteroides1Texture);
-    cargarImagen(sAsteroides2, &gAsteroides2Texture);
-    cargarImagen(sAsteroides3, &gAsteroides3Texture);
-
-    cargarImagen(sFinNivel, &gFinNivel);
+    cargarImagen("nivel2", "finNivel", &gFinNivel);
 
     scrollingOffsetPlaneta1 = 300;
     scrollingOffsetPlaneta2 = 1000;

@@ -1,0 +1,53 @@
+{
+	"log": 3,
+    	"stages":{
+        	"nivel1":{
+                	"enemigos": 35,
+                	"sprites":{
+		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.pngAAA",
+		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
+		            	"planeta":"sprites/usuario/niveles/nivel1/planeta.png",
+		            	"nube1":"sprites/usuario/niveles/nivel1/nube1.png",
+			    	"nube2":"sprites/usuario/niveles/nivel1/nube3.png",
+			    	"finNivel":"sprites/usuario/niveles/nivel1/fin_nivel1.png"
+			}
+            	},
+           	"nivel2":{
+                	"enemigos": 20,
+                	"sprites":{
+				"mapaBG":"sprites/usuario/niveles/nivel2/bg2.png",
+				"planeta1":"sprites/usuario/niveles/nivel2/planeta1.png",
+				"planeta2":"sprites/usuario/niveles/nivel2/planeta2.png",
+				"asteroides1":"sprites/usuario/niveles/nivel2/asteroides1.png",
+				"asteroides2":"sprites/usuario/niveles/nivel2/asteroides2.png",
+				"asteroides3":"sprites/usuario/niveles/nivel2/asteroides3.png",
+				"finNivel":"sprites/usuario/niveles/nivel2/fin_nivel2.png"
+                	}
+            	},
+	    	"nivel3":{
+                	"enemigos": 15,
+                	"sprites":{
+		        	"mapaBG":"sprites/usuario/niveles/nivel3/bg.png",
+		        	"fondo1":"sprites/usuario/niveles/nivel3/fondo1.png",
+		        	"fondo2":"sprites/usuario/niveles/nivel3/fondo2.png",
+		       		"fondo3":"sprites/usuario/niveles/nivel3/fondo3.png",
+				"fondo4":"sprites/usuario/niveles/nivel3/fondo4.png",
+				"fondo5":"sprites/usuario/niveles/nivel3/fondo5.png",
+				"fondo6":"sprites/usuario/niveles/nivel3/fondo6.png",
+				"finNivel":"sprites/usuario/niveles/nivel3/fin_nivel3.png"
+                	}
+           	}
+    	},
+    	"naves":{
+        	"jugador":{
+		        "jugador":"sprites/usuario/naves/jugador/nave.png"
+            	},
+            	"enemigas":{
+		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",
+		        "enemigo2":"sprites/usuario/naves/enemigas/enemigo2.png",
+		        "enemigo3":"sprites/usuario/naves/enemigas/enemigo3.png",
+		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
+		}
+    	},
+    	"menu": "sprites/usuario/menu/menuBG.png"
+}

@@ -1,14 +1,8 @@
 #include "NaveJugador.h"
 
 NaveJugador::NaveJugador( int x, int y){
-    std::string jugador = json.get_sprite_nave("jugador", "jugador");
-    const char* sJugador = jugador.c_str();
-    if(!crearNave(x, y, sJugador)){
-        jugador = json.get_sprite_nave("jugador", "default");
-        sJugador = jugador.c_str();
-        logger.debug("La imagen de la nave no fue encontrada, lo cual se cargo una por defecto");
-        crearNave(x, y, sJugador);
-    }
+    if(crearNave(x, y, "jugador", "jugador")) logger.info("Se creo la nave jugador");
+
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
 }

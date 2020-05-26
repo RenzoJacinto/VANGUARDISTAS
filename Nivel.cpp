@@ -25,8 +25,7 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(){
         // CASO ENEMIGOS 3 y 4: inf = -100
         if(enemigo_random == 4 || enemigo_random == 3) x = -100 + rand() % 101;
 
-        std::string sNave = json.get_sprite_nave("enemigas", sprite.c_str());
-        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sNave.c_str());
+        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
 
         enemigos[i]=enemigo;
     }

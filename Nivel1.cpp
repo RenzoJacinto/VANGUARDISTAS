@@ -6,30 +6,18 @@ Nivel1::Nivel1(){}
 void Nivel1::cargarNivel(){
 
     cantidad_enemigos = json.get_cantidad_enemigo("nivel1");
+    if(cantidad_enemigos == 0){
+        logger.error("Cantidad de enemigos del nivel1 inexistente, se cargo una por defecto");
+        cantidad_enemigos = json.get_cantidad_enemigo_default("nivel1");
+    }
 
-    std::string bg = json.get_sprite_mapa("nivel1", "mapaBG");
-    std::string ciudad = json.get_sprite_mapa("nivel1", "ciudad");
-    std::string planeta = json.get_sprite_mapa("nivel1", "planeta");
-    std::string nube1 = json.get_sprite_mapa("nivel1", "nube1");
-    std::string nube2 = json.get_sprite_mapa("nivel1", "nube2");
+    cargarImagen("nivel1", "mapaBG", &gBGTexture);
+    cargarImagen("nivel1", "ciudad", &gCiudadTexture);
+    cargarImagen("nivel1", "planeta", &gPlanetaTexture);
+    cargarImagen("nivel1", "nube1", &gNube1);
+    cargarImagen("nivel1", "nube2", &gNube2);
 
-    std::string finNivel = json.get_sprite_mapa("nivel1", "finNivel");
-
-    const char* sMapaBG = bg.c_str();
-    const char* sCiudad = ciudad.c_str();
-    const char* sPlaneta = planeta.c_str();
-    const char* sNube1 = nube1.c_str();
-    const char* sNube2 = nube2.c_str();
-
-    const char* sFinNivel = finNivel.c_str();
-
-    cargarImagen(sMapaBG, &gBGTexture);
-    cargarImagen(sCiudad, &gCiudadTexture);
-    cargarImagen(sPlaneta, &gPlanetaTexture);
-    cargarImagen(sNube1, &gNube1);
-    cargarImagen(sNube2, &gNube2);
-
-    cargarImagen(sFinNivel, &gFinNivel);
+    cargarImagen("nivel1", "finNivel", &gFinNivel);
 
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;

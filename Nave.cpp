@@ -1,8 +1,9 @@
 #include "Nave.h"
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
+#include "global.h"
 
-bool Nave::crearNave( int x, int y, const char* imagen ){
+bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     //Initialize the offsets
     mPosX = x;
     mPosY = y;
@@ -11,9 +12,13 @@ bool Nave::crearNave( int x, int y, const char* imagen ){
     mVelX = 0;
     mVelY = 0;
 
+    std::string imagen = json.get_sprite_nave(tipo, subtipo);
+
     if(!gNaveTexture.loadFromFile(imagen)){
         logger.error(SDL_GetError());
-        return false;
+        std::string imagen_def = json.get_sprite_nave_default(tipo,subtipo);
+        logger.error("La imagen de la nave no fue encontrada, lo cual se cargo una por defecto");
+        gNaveTexture.loadFromFile(imagen_def.c_str());
     }
     return true;
 }

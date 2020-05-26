@@ -19,7 +19,7 @@ class Nave{
     public:
 
         //Se inicializa la Nave en esas coordenadas
-		bool crearNave( int x, int y, const char* imagen);
+		bool crearNave( int x, int y, const char* tipo, const char* subtipo);
 
 		void cerrarNave();
 
