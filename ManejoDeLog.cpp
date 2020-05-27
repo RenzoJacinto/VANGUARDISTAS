@@ -7,7 +7,7 @@
 
 ManejoDeLog::ManejoDeLog(){
     iniciarLog();
-    logger = new LoggerDebug(filename.c_str());
+    logger = new LoggerError(filename.c_str());
 }
 
 bool ManejoDeLog::crearLogger(int nivel){
@@ -18,7 +18,7 @@ bool ManejoDeLog::crearLogger(int nivel){
         case nivelInfo: logger = new LoggerInfo(filename.c_str()); break;
         case nivelError: logger = new LoggerError(filename.c_str()); break;
         case nivelDebug: logger = new LoggerDebug(filename.c_str()); break;
-        default: logger = new LoggerDebug(filename.c_str()); ok = false; break;
+        default: logger = new LoggerError(filename.c_str()); ok = false; break;
     }
     return ok;
 }

@@ -17,13 +17,13 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(){
         sprite += std::to_string(enemigo_random);
 
         // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
-        int y = rand() % (sdl.getScreenHeight() + 1);
+        int y = 80 + rand() % (sdl.getScreenHeight() - 159);
         // SUPONGO EL BORDE DE RESPAWN COMO +/-100
         // CASO ENEMIGOS 1 y 2: sup = 800 + 100
-        int x = sdl.getScreenWidth() + rand() % 101;
+        int x = sdl.getScreenWidth() + rand() % 31;
 
         // CASO ENEMIGOS 3 y 4: inf = -100
-        if(enemigo_random == 4 || enemigo_random == 3) x = -100 + rand() % 101;
+        if(enemigo_random == 4 || enemigo_random == 3) x = -31 + rand() % 31;
 
         NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
 
@@ -44,8 +44,8 @@ bool Nivel::procesar(){
         logger.debug("Se creó a la nave del jugador");
 
         vector<NaveEnemiga*> enemigos = crear_enemigos();
-        float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
-        int tiempo_nivel = 0;
+        double tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
+        double tiempo_nivel = 0;
         int renderizados = 1;
 
 	    // Mientras que siga corriendo la app
@@ -77,6 +77,7 @@ bool Nivel::procesar(){
 
 			SDL_RenderPresent( sdl.getRenderer() );
         }
+
         vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
         jugador->cerrarNave();

@@ -13,7 +13,8 @@ bool ManejoDeJson::abrir_archivo(){
     } else {
         try{archivo_json >> j;}
         catch(nlohmann::detail::parse_error){
-            logger.error("El archivo configuracion.json ");
+            logger.error("El archivo de configuracion.json esta incompleto");
+            abrio_config = false;
         }
         archivo_json.close();
         logger.debug("Se cargo el archivo de configuracion de json");
