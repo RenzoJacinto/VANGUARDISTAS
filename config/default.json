@@ -40,7 +40,7 @@
     	},
     	"naves":{
         	"jugador":{
-		        "jugador":"sprites/default/naves/jugador/nave_default.png"
+		        "jugador":"sprites/default/naves/jugador/default_nave.png"
             	},
             	"enemigas":{
 		        "enemigo1":"sprites/default/naves/enemigas/enemigo1.png",
