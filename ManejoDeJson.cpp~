@@ -12,11 +12,12 @@ bool ManejoDeJson::abrir_archivo(){
         logger.error("No se encuentra el archivo en la direccion config/configuracion.json");
     } else {
         try{archivo_json >> j;}
-        catch(nlohmann::detail::parse_error ){
+        catch(nlohmann::detail::parse_error){
             logger.error("El archivo de configuracion.json esta incompleto");
             abrio_config = false;
         }
         archivo_json.close();
+        logger.debug("Se cargo el archivo de configuracion de json");
     }
     if(!abrir_archivo_aux("config/default.json")){
         logger.error("No se encuentra el archivo en la direccion config/default.json");
@@ -29,6 +30,7 @@ bool ManejoDeJson::abrir_archivo(){
 
         if(!abrio_config) j = def;
         archivo_json.close();
+        logger.debug("Se cargo el archivo de default de json");
     }
 
     return true;
@@ -46,10 +48,6 @@ std::string ManejoDeJson::get_sprite_menu(){
         logger.error("No se encuentra el menu");
         return def.at("menu");
     }
-     catch(nlohmann::detail::type_error){
-        logger.error("El sprite del menu debe ser un string y es un numero");
-        return get_sprite_menu_default();
-    }
 }
 
 int ManejoDeJson::get_nivel_de_log(){
@@ -57,10 +55,6 @@ int ManejoDeJson::get_nivel_de_log(){
     catch (nlohmann::detail::out_of_range) {
         logger.error("No se encuentra el log");
         return def.at("log");
-    }
-    catch(nlohmann::detail::type_error){
-        logger.error("El nivel de log debe ser un numero y es un string");
-        return get_nivel_de_log_default();
     }
 }
 
@@ -80,14 +74,7 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
     json& j_nivel = searchValue(j_aux, key);
     json& j_sprites = searchValue(j_nivel, "sprites");
 
-    try{return  j_sprites.at(sp);}
-    catch(nlohmann::detail::type_error){
-        string sKey(key);
-        string sSP(sp);
-        std::string mensaje = "En stages y en el nivel " + sKey + " el sprite " + sSP + "debe ser un string y es un numero";
-        logger.error(mensaje.c_str());
-        return get_sprite_mapa_default(key, sp);
-    }
+    return j_sprites.at(sp);
 }
 
 int ManejoDeJson::get_cantidad_enemigo(const char* key){
@@ -95,13 +82,7 @@ int ManejoDeJson::get_cantidad_enemigo(const char* key){
     json& j_aux = searchValue(j, "stages");
     json& j_nivel = searchValue(j_aux, key);
 
-    try{return j_nivel.at("enemigos");}
-    catch(nlohmann::detail::type_error){
-        string sKey(key);
-        std::string mensaje = "En stages y en el nivel " + sKey + " la cantidad de enemigos debe ser un numero y es un string";
-        logger.error(mensaje.c_str());
-        return get_cantidad_enemigo_default(key);
-    }
+    return j_nivel.at("enemigos");
 }
 
 std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
@@ -109,14 +90,7 @@ std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
     json& j_aux = searchValue(j, "naves");
     json& j_nivel = searchValue(j_aux, key);
 
-    try{return  j_nivel.at(sp);}
-    catch(nlohmann::detail::type_error){
-        string sKey(key);
-        string sSP(sp);
-        std::string mensaje = "En naves y en la nave " + sKey + " el sprite " + sSP + "debe ser un string y es un numero";
-        logger.error(mensaje.c_str());
-        return get_sprite_nave_default(key, sp);
-    }
+    return j_nivel.at(sp);
 }
 
 // PARA LOS DE DEFAULT (SOLO LLAMADAS EN CASOS DE ERROR)
