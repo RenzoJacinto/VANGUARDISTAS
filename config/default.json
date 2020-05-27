@@ -2,7 +2,7 @@
 	"log": 3,
     	"stages":{
         	"nivel1":{
-                	"enemigos": ,
+                	"enemigos": 30,
                 	"sprites":{
 		            	"mapaBG":"sprites/default/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/default/niveles/nivel1/ciudad.png",
