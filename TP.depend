@@ -598,7 +598,7 @@
 1588526826 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/NaveEnemiga2.h
 	"NaveEnemiga.h"
 
-1590544803 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeJson.cpp
+1590548317 source:/home/gonzalo/Taller de Prog I/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
@@ -654,7 +654,7 @@
 	<list>
 	"Nivel.h"
 
-1590544951 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nivel.h
+1590550105 /home/gonzalo/Taller de Prog I/VANGUARDISTAS/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
