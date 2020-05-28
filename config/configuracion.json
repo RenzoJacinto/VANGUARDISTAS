@@ -10,7 +10,7 @@
 		            	"nube1":"sprites/usuario/niveles/nivel1/nube1.png",
 			    	"nube2":"sprites/usuario/niveles/nivel1/nube3.png",
 			    	"finNivel":"sprites/usuario/niveles/nivel1/fin_nivel1.png"
-			}	
+			}
             	},
            	"nivel2":{
                 	"enemigos": 15,
