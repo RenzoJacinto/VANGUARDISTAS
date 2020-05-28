@@ -77,9 +77,6 @@
 		<Unit filename="global.h" />
 		<Unit filename="json.hpp" />
 		<Unit filename="main.cpp" />
-		<Extensions>
-			<code_completion />
-			<debugger />
-		</Extensions>
+		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -93,7 +93,7 @@
 1590621397 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeLog.h
 	"Logger.h"
 
-1590621397 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
+1590671634 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
@@ -134,7 +134,7 @@
 1590388956 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveEnemiga.h
 	"Nave.h"
 
-1590621397 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
+1590671634 /home/renzo/Documents/GitHub/VANGUARDISTAS/NaveJugador.h
 	"Nave.h"
 	"list"
 
@@ -165,7 +165,7 @@
 1590267753 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeSDL.cpp
 	"global.h"
 
-1590621397 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
+1590671634 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
@@ -194,7 +194,7 @@
 	"Escenario.h"
 	"TextureW.h"
 
-1590267753 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
+1590671883 /home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.h
 	<iostream>
 	<fstream>
 
@@ -207,7 +207,7 @@
 1590267753 /home/renzo/Documents/GitHub/VANGUARDISTAS/LoggerDebug.h
 	"Logger.h"
 
-1590627488 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
+1590672428 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Logger.cpp
 	"Logger.h"
 	<iostream>
 	<fstream>
@@ -413,12 +413,12 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1590621397 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
+1590671634 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
 
-1590621397 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
+1590671634 /home/renzo/Documents/GitHub/VANGUARDISTAS/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
@@ -644,13 +644,13 @@
 	"Nivel1.h"
 	"global.h"
 
-1590515644 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
+1590671634 /home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
 	"TextureW.h"
 
-1590621397 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
+1590671634 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"

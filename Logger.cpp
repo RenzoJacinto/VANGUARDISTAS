@@ -15,7 +15,7 @@ void Logger::info(const char* update){}
 
 void Logger::error(const char* update){}
 
-void Logger::escribir(const char* update){
+std::string Logger::get_time(){
     char buffer[26];
     int millisec;
     struct tm* tm_info;
@@ -34,13 +34,18 @@ void Logger::escribir(const char* update){
     strftime(buffer, 26, "%d/%m/%Y %H:%M:%S.", tm_info);
     std::string horaActual(buffer);
     std:string ms = std::to_string(millisec);
+    ms = std::string(3 - ms.length(), '0') + ms;
+    return horaActual + ms;
+}
 
+void Logger::escribir(const char* update){
+    std::string horaActual = get_time();
+    string sUpdate(update);
     const char* espacio = " - ";
     const char* new_line = "\n";
     string guion(espacio);
-    string sUpdate(update);
     string newLine(new_line);
-    string hora = horaActual + ms + guion + sUpdate + newLine;
+    string hora = horaActual + guion + sUpdate + newLine;
     archivo_log << hora.c_str();
 }
 bool Logger::abrirArchivo(const char* filename){
