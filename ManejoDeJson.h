@@ -33,6 +33,9 @@ class ManejoDeJson{
         int get_cantidad_enemigo_default(char const* key);
         std::string get_sprite_nave_default(char const* key, char const* sp);
 
+        //Para errores de encontrar sprite
+        std::string get_imagen_default(const char* sp);
+
     private:
 
         ifstream archivo_json;

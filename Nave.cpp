@@ -15,7 +15,7 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     std::string imagen = json.get_sprite_nave(tipo, subtipo);
 
     if(!gNaveTexture.loadFromFile(imagen)){
-        std::string imagen_def = json.get_sprite_nave_default(tipo,subtipo);
+        std::string imagen_def = json.get_imagen_default("nave");
         logger.error("La imagen de la nave no fue encontrada, lo cual se cargo una por defecto");
         gNaveTexture.loadFromFile(imagen_def.c_str());
     }

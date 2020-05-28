@@ -14,8 +14,8 @@ void Escenario::cargarImagen(const char* nivel, const char* sprite, TextureW* te
         const char* update = frase.c_str();
         logger.info(update);
     } else{
-        imagen = json.get_sprite_mapa_default(nivel, sprite);
         std::string mensaje = "No se encontro el sprite: " + imagen + ", se cargo una por defecto";
+        imagen = json.get_imagen_default("escenario");
         logger.error(mensaje.c_str());
         textura->loadFromFile(imagen.c_str());
     }

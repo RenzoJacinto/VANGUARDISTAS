@@ -69,16 +69,19 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
         if(el.key() == key) return el.value();
     }
     string clave(key);
-    std::string mensaje = "No se encontro la clave: " + clave;
+    std::string mensaje = "No se encontro la clave: " + clave + ", se abre el archivo default.json";
     logger.error(mensaje.c_str());
-    return searchValue(def, key);
+    return def;
 }
 
 std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
 
     json& j_aux = searchValue(j, "stages");
+    if(j_aux == def) return get_sprite_mapa_default(key, sp);
     json& j_nivel = searchValue(j_aux, key);
+    if(j_nivel == def) return get_sprite_mapa_default(key, sp);
     json& j_sprites = searchValue(j_nivel, "sprites");
+    if(j_sprites == def) return get_sprite_mapa_default(key, sp);
 
     try{return  j_sprites.at(sp);}
     catch(nlohmann::detail::type_error){
@@ -93,7 +96,9 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
 int ManejoDeJson::get_cantidad_enemigo(const char* key){
 
     json& j_aux = searchValue(j, "stages");
+    if(j_aux == def) return get_cantidad_enemigo_default(key);
     json& j_nivel = searchValue(j_aux, key);
+    if(j_nivel == def) return get_cantidad_enemigo_default(key);
 
     try{return j_nivel.at("enemigos");}
     catch(nlohmann::detail::type_error){
@@ -107,9 +112,11 @@ int ManejoDeJson::get_cantidad_enemigo(const char* key){
 std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
 
     json& j_aux = searchValue(j, "naves");
-    json& j_nivel = searchValue(j_aux, key);
+    if(j_aux == def) return get_sprite_nave_default(key, sp);
+    json& j_nave = searchValue(j_aux, key);
+    if(j_nave == def) return get_sprite_nave_default(key, sp);
 
-    try{return  j_nivel.at(sp);}
+    try{return  j_nave.at(sp);}
     catch(nlohmann::detail::type_error){
         string sKey(key);
         string sSP(sp);
@@ -119,7 +126,7 @@ std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
     }
 }
 
-// PARA LOS DE DEFAULT (SOLO LLAMADAS EN CASOS DE ERROR)
+// PARA LOS DE DEFAULT (SOLO LLAMADAS EN CASOS DE ERROR DE CLAVE)
 
 std::string ManejoDeJson::get_sprite_mapa_default(char const* key, const char* sp){
 
@@ -153,3 +160,10 @@ std::string ManejoDeJson::get_sprite_menu_default(){
 int ManejoDeJson::get_nivel_de_log_default(){
     return def.at("log");
 }
+
+// PARA LLAMADAS DE ERROR DE ENCONTRAR SPRITE
+std::string ManejoDeJson::get_imagen_default(const char* sp){
+    json& j_aux = searchValue(def, "default");
+    return j_aux.at(sp);
+}
+
