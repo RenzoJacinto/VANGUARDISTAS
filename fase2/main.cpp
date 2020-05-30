@@ -1,13 +1,17 @@
 #include "global.h"
 #include "Menu.h"
+#include "Server.h"
+#include "Client.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
+Estado* estado;
 
 static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 
 int obtener_nivel_de_log(int cant_parametros, char* parametros[]);
+int obtener_estado_aplicacion();
 
 int main( int argc, char* argv[] ){
 
@@ -22,6 +26,12 @@ int main( int argc, char* argv[] ){
     //Si el parámetro pasado no es válido avisa al usuario
     if (!logger.crearLogger(nivel_log)){
         logger.error("Nivel de log inexistente");
+        logger.cerrar();
+        return 0;
+    }
+
+    if (obtener_estado_aplicacion() == -1){
+        logger.error("No se pasó bien el estado de la aplicación");
         logger.cerrar();
         return 0;
     }
@@ -58,4 +68,17 @@ int obtener_nivel_de_log(int cant_parametros, char* parametros[]){
         else nivel_log = log_param;
     }
     return nivel_log;
+}
+
+int obtener_estado_aplicacion(){
+    std::string estado_json = json.get_estado_aplicacion();
+    if (strcmp(estado_json.c_str(), "server") == 0){
+        estado = new Server();
+        return 0;
+    }else if(strcmp(estado_json.c_str(), "client") == 0){
+        estado = new Client();
+        return 0;
+    }else{
+        return -1;
+    }
 }

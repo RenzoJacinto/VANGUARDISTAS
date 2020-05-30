@@ -1,11 +1,12 @@
 {
 	"log": 3,
+	"estado":"server",
     	"stages":{
         	"nivel1":{
-                	"enemigos": 35,
+                	"enemigos": 5,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
-		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
+		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudada.png",
 		            	"planeta":"sprites/usuario/niveles/nivel1/planeta.png",
 		            	"nube1":"sprites/usuario/niveles/nivel1/nube1.png",
 			    	"nube2":"sprites/usuario/niveles/nivel1/nube3.png",
@@ -13,7 +14,7 @@
 			}
             	},
            	"nivel2":{
-                	"enemigos": 20,
+                	"enemigos": 2,
                 	"sprites":{
 				"mapaBG":"sprites/usuario/niveles/nivel2/bg2.png",
 				"planeta1":"sprites/usuario/niveles/nivel2/planeta1.png",
@@ -25,7 +26,7 @@
                 	}
             	},
 	    	"nivel3":{
-                	"enemigos": 15,
+                	"enemigos": 3,
                 	"sprites":{
 		        	"mapaBG":"sprites/usuario/niveles/nivel3/bg.png",
 		        	"fondo1":"sprites/usuario/niveles/nivel3/fondo1.png",
@@ -40,7 +41,7 @@
     	},
     	"naves":{
         	"jugador":{
-		        "jugador":"sprites/usuario/naves/jugador/nave.png"
+		        "jugador":"sprites/usuario/naves/jugador/navea.png"
             	},
             	"enemigas":{
 		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",
@@ -52,6 +53,6 @@
     	"menu": "sprites/usuario/menu/menuBG.png",
 	"default": {
 		"nave": "sprites/default/nave.png",
-		"escenario": "sprites/default/fondo.png"
+		"escenario": "sprites/default/planeta1.png"
 	}
 }

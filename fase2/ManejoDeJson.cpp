@@ -167,3 +167,15 @@ std::string ManejoDeJson::get_imagen_default(const char* sp){
     return j_aux.at(sp);
 }
 
+std::string ManejoDeJson::get_estado_aplicacion(){
+    try { return j.at("estado"); }
+    catch (nlohmann::detail::out_of_range) {
+        logger.error("No se encuentra el estado de la aplicación");
+        return def.at("estado");
+    }
+    catch(nlohmann::detail::type_error){
+        logger.error("El estado debe ser un string y es un número");
+        return def.at("estado");
+    }
+}
+

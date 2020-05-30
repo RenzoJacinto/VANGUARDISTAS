@@ -36,6 +36,8 @@ class ManejoDeJson{
         //Para errores de encontrar sprite
         std::string get_imagen_default(const char* sp);
 
+        std::string get_estado_aplicacion();
+
     private:
 
         ifstream archivo_json;
