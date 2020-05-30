@@ -6,12 +6,12 @@
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
-Estado* estado;
+Estado estado;
 
 static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 
 int obtener_nivel_de_log(int cant_parametros, char* parametros[]);
-int obtener_estado_aplicacion();
+int obtener_estado_aplicacion(int* args);
 
 int main( int argc, char* argv[] ){
 
@@ -30,8 +30,15 @@ int main( int argc, char* argv[] ){
         return 0;
     }
 
-    if (obtener_estado_aplicacion() == -1){
+    int args[3];
+    if (obtener_estado_aplicacion(args) == -1){
         logger.error("No se pasó bien el estado de la aplicación");
+        logger.cerrar();
+        return 0;
+    }
+
+    if (estado.inicializar(args) == 1){
+        logger.error("Error en la conexión entre servidor y cliente");
         logger.cerrar();
         return 0;
     }
@@ -70,13 +77,16 @@ int obtener_nivel_de_log(int cant_parametros, char* parametros[]){
     return nivel_log;
 }
 
-int obtener_estado_aplicacion(){
+int obtener_estado_aplicacion(int* args){
     std::string estado_json = json.get_estado_aplicacion();
     if (strcmp(estado_json.c_str(), "server") == 0){
-        estado = new Server();
+        estado = *new Server();
+        args[1] = json.get_puerto();
         return 0;
     }else if(strcmp(estado_json.c_str(), "client") == 0){
-        estado = new Client();
+        estado = *new Client();
+        args[1] = json.get_ip();
+        args[2] = json.get_puerto();
         return 0;
     }else{
         return -1;

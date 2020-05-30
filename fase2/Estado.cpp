@@ -2,4 +2,4 @@
 
 Estado::Estado(){}
 
-void inicializar(){}
+int Estado::inicializar(int* args){}

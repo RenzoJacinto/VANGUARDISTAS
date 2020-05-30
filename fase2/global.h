@@ -6,4 +6,4 @@
 extern ManejoDeSDL sdl;
 extern ManejoDeLog logger;
 extern ManejoDeJson json;
-extern Estado* estado;
+extern Estado estado;

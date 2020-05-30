@@ -46,7 +46,7 @@
 	<stdio.h>
 	<string>
 
-1590857129 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
+1590858154 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
@@ -59,7 +59,7 @@
 	<iostream>
 	<fstream>
 
-1590856004 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
+1590859098 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
@@ -233,7 +233,14 @@
 	<limits>
 	<type_traits>
 
-1590856540 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
+1590859173 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<stdbool.h>
 
 1590621397 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Escenario.h
 	<SDL2/SDL.h>
@@ -252,7 +259,7 @@
 	<time.h>
 	<math.h>
 
-1590515644 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/LoggerDebug.cpp
+1590858679 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/LoggerDebug.cpp
 	"LoggerDebug.h"
 
 1590267753 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/LoggerDebug.h
@@ -359,23 +366,29 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
-1590855994 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
+1590859085 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
 
-1590856587 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
+1590859178 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1590856757 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1590859650 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 
-1590856806 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
+1590859290 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
 	"Estado.h"
 
-1590856730 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1590859274 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 
-1590856812 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
+1590859282 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
 	"Estado.h"
+
+1590858625 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/main.cpp
+	"global.h"
+	"Menu.h"
+	"Server.h"
+	"Client.h"
 

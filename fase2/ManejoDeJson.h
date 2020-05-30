@@ -37,6 +37,8 @@ class ManejoDeJson{
         std::string get_imagen_default(const char* sp);
 
         std::string get_estado_aplicacion();
+        int get_puerto();
+        int get_ip();
 
     private:
 

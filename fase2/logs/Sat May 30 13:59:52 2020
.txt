@@ -1,0 +1,14 @@
+30/05/2020 13:59:52.601 - DEBUG: Se inicializó SDL
+30/05/2020 13:59:52.601 - DEBUG: Filtrado de textura lineal seteado
+30/05/2020 13:59:52.684 - DEBUG: Se creó la ventana
+30/05/2020 13:59:52.769 - DEBUG: Se creó vSync para la ventana
+30/05/2020 13:59:52.769 - DEBUG: Se inicializó el renderizado de color
+30/05/2020 13:59:52.769 - DEBUG: Se inicializó la carga de imagenes PNG
+30/05/2020 13:59:52.801 - INFO: Se cargó la imagen menuBG.png
+30/05/2020 13:59:52.801 - INFO: Se mostró el menú
+30/05/2020 13:59:54.388 - DEBUG: Se liberó memoria del renderizador
+30/05/2020 13:59:54.389 - DEBUG: Se liberó memoria de la ventana
+30/05/2020 13:59:54.389 - DEBUG: Se referenció la ventana como nula
+30/05/2020 13:59:54.389 - DEBUG: Se referenció el renderizador como nulo
+30/05/2020 13:59:54.389 - DEBUG: Se cerró IMG
+30/05/2020 13:59:54.392 - DEBUG: Se cerró SDL

@@ -179,3 +179,27 @@ std::string ManejoDeJson::get_estado_aplicacion(){
     }
 }
 
+int ManejoDeJson::get_puerto(){
+    try { return j.at("puerto"); }
+    catch (nlohmann::detail::out_of_range) {
+        logger.error("No se encuentra el puerto");
+        return def.at("puerto");
+    }
+    catch(nlohmann::detail::type_error){
+        logger.error("El puerto debe ser un número y no un string");
+        return def.at("puerto");
+    }
+}
+
+int ManejoDeJson::get_ip(){
+    try { return j.at("ip"); }
+    catch (nlohmann::detail::out_of_range) {
+        logger.error("No se encuentra el ip");
+        return def.at("ip");
+    }
+    catch(nlohmann::detail::type_error){
+        logger.error("El ip debe ser un numero y no un string");
+        return def.at("ip");
+    }
+}
+
