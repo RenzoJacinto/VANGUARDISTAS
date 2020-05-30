@@ -1,6 +1,8 @@
 {
 	"log": 3,
-	"estado":"server",
+	"estado":"client",
+	"puerto":5555,
+	"ip":190274682,
     	"stages":{
         	"nivel1":{
                 	"enemigos": 5,
