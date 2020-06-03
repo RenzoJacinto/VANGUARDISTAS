@@ -3,7 +3,12 @@
 #include "global.h"
 #include "ManejoDeSDL.h"
 
-Menu::Menu(){}
+Menu::Menu(){
+    dataMenu.h = 600;
+    dataMenu.w = 800;
+    dataMenu.x = 0;
+    dataMenu.y = 0;
+}
 
 bool Menu::cargarImagen(){
 	//Loading success flag
@@ -31,7 +36,7 @@ void Menu::procesar(){
     while( usuarioNoRequieraSalir(quit) ){
         SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( sdl.getRenderer() );
-        gMenuBGTexture.render( 0, 0 );
+        gMenuBGTexture.render( 0, 0, &dataMenu );
 
         //gBotonIniciarTexture.render(0, 0);
 

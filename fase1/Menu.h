@@ -13,7 +13,7 @@ class Menu: public Escenario
         void cerrar();
 
     private:
-
+        SDL_Rect dataMenu;
         TextureW gMenuBGTexture;
 };
 
