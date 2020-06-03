@@ -637,7 +637,7 @@
 	"global.h"
 	"Menu.h"
 
-1590267753 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Menu.h
+1591224012 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 
@@ -678,7 +678,7 @@
 1590267753 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/ManejoDeSDL.cpp
 	"global.h"
 
-1591217569 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Menu.cpp
+1591224012 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"

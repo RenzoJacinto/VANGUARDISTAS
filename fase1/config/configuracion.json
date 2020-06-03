@@ -9,7 +9,7 @@
 		            	"planeta":"sprites/usuario/niveles/nivel1/planeta.png",
 		            	"nube1":"sprites/usuario/niveles/nivel1/nube1.png",
 			    	"nube2":"sprites/usuario/niveles/nivel1/nube3.png",
-			    	"finNivel":"sprites/usuario/niveles/nivel1/fin_nivel11.png"
+			    	"finNivel":"sprites/usuario/niveles/nivel1/fin_nivel1.png"
 			}
             	},
            	"nivel2":{
@@ -49,5 +49,5 @@
 		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
 		}
     	},
-    	"menu": "sprites/usuario/menu/menuBG1.png"
+    	"menu": "sprites/usuario/menu/menuBG.png"
 }
