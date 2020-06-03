@@ -1,15 +1,19 @@
 #include "NaveEnemiga.h"
 
 NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
+    std::string sp(sprite);
+    std::string mensaje =  ">>>> CARGANDO LA NAVE " + sp + " ....";
+    logger.info(mensaje.c_str());
     if(crearNave(x, y, "enemigas", sprite)){
-        std::string sp(sprite);
-        std::string mensaje = "Se creo el enemigo con imagen: " + sp;
-        logger.info(mensaje.c_str());
+        mensaje = "Se creo el " + sp;
+        logger.debug(mensaje.c_str());
     }
     if(x<=0) desplazamiento = 1;
     else desplazamiento = -1;
 
     radio=getAltoImagen()/2;
+    mensaje = "<<<< SE CARGO LA NAVE " + sp;
+    logger.info(mensaje.c_str());
 }
 
 void NaveEnemiga::mover( NaveJugador* jugador ){

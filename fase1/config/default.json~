@@ -54,5 +54,5 @@
 		"nave": "sprites/default/nave.png",
 		"escenario": "sprites/default/fondo.png"
 	},
-	"error": "errorKey"
+	"error": 1
 }

@@ -5,11 +5,15 @@ Nivel1::Nivel1(){}
 
 void Nivel1::cargarNivel(){
 
+    logger.info(">>>> CARGANDO EL NIVEL 1 ....");
+
     cantidad_enemigos = json.get_cantidad_enemigo("nivel1");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel1 inexistente, se cargo una por defecto");
         cantidad_enemigos = json.get_cantidad_enemigo_default("nivel1");
     }
+    std::string mensaje = "Se cargo la cantidad de enemigos: " + std::to_string(cantidad_enemigos);
+    logger.debug(mensaje.c_str());
 
     cargarImagen("nivel1", "mapaBG", &gBGTexture);
     cargarImagen("nivel1", "ciudad", &gCiudadTexture);
@@ -44,6 +48,8 @@ void Nivel1::cargarNivel(){
     dataNube2.w = 800;
     dataNube2.x = 0;
     dataNube2.y = 0;
+
+    logger.info("<<<< SE CARGO EL NIVEL 1");
 }
 
 void Nivel1::cerrar(){
