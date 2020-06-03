@@ -9,11 +9,11 @@ bool ManejoDeJson::abrir_archivo(){
     bool abrio_config = true;
     if(!abrir_archivo_aux("config/configuracion.json")){
         abrio_config = false;
-        logger.error("No se encuentra el archivo en la direccion config/configuracion.json");
+        logger.error("No se encuentra el archivo en la direccion config/configuracion.json, se usa un archivo de configuracion default");
     } else {
         try{archivo_json >> j;}
         catch(nlohmann::detail::parse_error ){
-            logger.error("El archivo de configuracion.json esta incompleto");
+            logger.error("El archivo de configuracion.json tiene un error de parseo, se utiliza un archivo de configuracion default");
             abrio_config = false;
         }
         archivo_json.close();
@@ -43,7 +43,7 @@ bool ManejoDeJson::abrir_archivo_aux(const char* filename){
 std::string ManejoDeJson::get_sprite_menu(){
     try { return j.at("menu"); }
     catch (nlohmann::detail::out_of_range) {
-        logger.error("No se encuentra el menu");
+        logger.error("No se encuentra la clave menu");
         return def.at("menu");
     }
      catch(nlohmann::detail::type_error){
@@ -55,7 +55,7 @@ std::string ManejoDeJson::get_sprite_menu(){
 int ManejoDeJson::get_nivel_de_log(){
     try { return j.at("log"); }
     catch (nlohmann::detail::out_of_range) {
-        logger.error("No se encuentra el log");
+        logger.error("No se encuentra la clave log");
         return def.at("log");
     }
     catch(nlohmann::detail::type_error){
@@ -68,61 +68,98 @@ nlohmann::json& ManejoDeJson::searchValue(json& j_aux, const char* key){
     for(auto& el : j_aux.items()) {
         if(el.key() == key) return el.value();
     }
-    string clave(key);
-    std::string mensaje = "No se encontro la clave: " + clave + ", se abre el archivo default.json";
-    logger.error(mensaje.c_str());
     return def;
 }
 
 std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
-
+    string sKey(key);
+    string sSP(sp);
     json& j_aux = searchValue(j, "stages");
-    if(j_aux == def) return get_sprite_mapa_default(key, sp);
+    if(j_aux == def) {
+        std::string mensaje = "No se encontro la clave stages, entonces no se puede encontrar " + sSP + ". Se buscara " + sSP + " en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_sprite_mapa_default(key, sp);
+    }
     json& j_nivel = searchValue(j_aux, key);
-    if(j_nivel == def) return get_sprite_mapa_default(key, sp);
+    if(j_nivel == def) {
+        std::string mensaje = "No se encontro la clave " + sKey + ", entonces no se puede encontrar " + sSP +". Se buscara " + sSP + " en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_sprite_mapa_default(key, sp);
+    }
     json& j_sprites = searchValue(j_nivel, "sprites");
-    if(j_sprites == def) return get_sprite_mapa_default(key, sp);
+    if(j_sprites == def) {
+        std::string mensaje = "No se encontro la clave sprites en " + sKey + ", entonces no se puede encontrar " + sSP +". Se buscara " + sSP + " en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_sprite_mapa_default(key, sp);
+    }
 
     try{return  j_sprites.at(sp);}
     catch(nlohmann::detail::type_error){
-        string sKey(key);
-        string sSP(sp);
         std::string mensaje = "En stages y en el nivel " + sKey + " el sprite " + sSP + "debe ser un string y es un numero";
         logger.error(mensaje.c_str());
-        return get_sprite_mapa_default(key, sp);
+        return get_imagen_default("escenario");
+    }
+    catch (nlohmann::detail::out_of_range) {
+        std::string mensaje = "No se encontro la clave " + sSP + " en " + sKey + ", se carga un sprite por defecto";
+        logger.error(mensaje.c_str());
+        return get_imagen_default("escenario");
     }
 }
 
 int ManejoDeJson::get_cantidad_enemigo(const char* key){
-
+    string sKey(key);
     json& j_aux = searchValue(j, "stages");
-    if(j_aux == def) return get_cantidad_enemigo_default(key);
+    if(j_aux == def) {
+        std::string mensaje = "No se encontro la clave stages, entonces no se puede encontrar la cantidad de enemigos. Se buscara la misma en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_cantidad_enemigo_default(key);
+    }
     json& j_nivel = searchValue(j_aux, key);
-    if(j_nivel == def) return get_cantidad_enemigo_default(key);
+    if(j_nivel == def) {
+        std::string mensaje = "No se encontro la clave " + sKey + " entonces no se puede encontrar la cantidad de enemigos. Se buscara la misma en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_cantidad_enemigo_default(key);
+    }
 
     try{return j_nivel.at("enemigos");}
     catch(nlohmann::detail::type_error){
-        string sKey(key);
-        std::string mensaje = "En stages y en el nivel " + sKey + " la cantidad de enemigos debe ser un numero y es un string";
+        std::string mensaje = "En stages y en el nivel " + sKey + " la cantidad de enemigos debe ser un numero y es un string, se usan 20 enemigos por defecto";
         logger.error(mensaje.c_str());
-        return get_cantidad_enemigo_default(key);
+        return 20;
+    }
+    catch(nlohmann::detail::out_of_range) {
+        std::string mensaje = "No se encontro la clave enemigos en " + sKey + ", se usan 20 enemigos por defecto";
+        logger.error(mensaje.c_str());
+        return 20;
     }
 }
 
 std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
-
+    string sKey(key);
+    string sSP(sp);
     json& j_aux = searchValue(j, "naves");
-    if(j_aux == def) return get_sprite_nave_default(key, sp);
+    if(j_aux == def) {
+        std::string mensaje = "No se encontro la clave naves, entonces no se puede encontrar " + sSP +". Se buscara " + sSP + " en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
     json& j_nave = searchValue(j_aux, key);
-    if(j_nave == def) return get_sprite_nave_default(key, sp);
+    if(j_nave == def) {
+        std::string mensaje = "No se encontro la clave " + sKey + " entonces no se puede encontrar el sprite " + sSP +". Se buscara el sprite " + sSP + " en el archivo de configuracion por defecto";
+        logger.error(mensaje.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
 
     try{return  j_nave.at(sp);}
     catch(nlohmann::detail::type_error){
-        string sKey(key);
-        string sSP(sp);
         std::string mensaje = "En naves y en la nave " + sKey + " el sprite " + sSP + "debe ser un string y es un numero";
         logger.error(mensaje.c_str());
-        return get_sprite_nave_default(key, sp);
+        return get_imagen_default("nave");
+    }
+    catch(nlohmann::detail::out_of_range) {
+        std::string mensaje = "No se encontro la clave " + sSP + " en " + sKey + ", se carga una imagen por defecto";
+        logger.error(mensaje.c_str());
+        return get_imagen_default("nave");
     }
 }
 

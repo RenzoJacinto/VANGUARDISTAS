@@ -1,11 +1,11 @@
 {
-	"log": 3,
+	"log": 1,
     	"stages":{
         	"nivel1":{
                 	"enemigos": 5,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
-		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudada.png",
+		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
 		            	"planeta":"sprites/usuario/niveles/nivel1/planeta.png",
 		            	"nube1":"sprites/usuario/niveles/nivel1/nube1.png",
 			    	"nube2":"sprites/usuario/niveles/nivel1/nube3.png",
@@ -40,7 +40,7 @@
     	},
     	"naves":{
         	"jugador":{
-		        "jugador":"sprites/usuario/naves/jugador/navea.png"
+		        "jugador":"sprites/usuario/naves/jugador/nave.png"
             	},
             	"enemigas":{
 		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",

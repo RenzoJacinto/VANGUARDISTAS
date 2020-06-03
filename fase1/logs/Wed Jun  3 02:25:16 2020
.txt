@@ -1,0 +1,5 @@
+03/06/2020 02:25:17.703 - ERROR: No se encontro la clave ciudad en nivel1, se carga un sprite por defecto
+03/06/2020 02:25:17.703 - ERROR: No se encontro la clave planeta en nivel1, se carga un sprite por defecto
+03/06/2020 02:25:17.704 - ERROR: No se encontro la clave nube1 en nivel1, se carga un sprite por defecto
+03/06/2020 02:25:17.705 - ERROR: No se encontro la clave nube2 en nivel1, se carga un sprite por defecto
+03/06/2020 02:25:17.733 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto

@@ -1,0 +1,59 @@
+03/06/2020 02:22:53.578 - ERROR: El archivo de configuracion.json tiene un error de parseo, se utiliza un archivo de configuracion default
+03/06/2020 02:22:53.733 - DEBUG: Se inicializó SDL
+03/06/2020 02:22:53.733 - DEBUG: Filtrado de textura lineal seteado
+03/06/2020 02:22:53.835 - DEBUG: Se creó la ventana
+03/06/2020 02:22:54.036 - DEBUG: Se creó vSync para la ventana
+03/06/2020 02:22:54.036 - DEBUG: Se inicializó el renderizado de color
+03/06/2020 02:22:54.036 - DEBUG: Se inicializó la carga de imagenes PNG
+03/06/2020 02:22:54.080 - INFO: Se cargó la imagen menuBG.png
+03/06/2020 02:22:54.080 - INFO: Se mostró el menú
+03/06/2020 02:22:54.658 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/bg.png
+03/06/2020 02:22:54.666 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/ciudad.png
+03/06/2020 02:22:54.682 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/planeta.png
+03/06/2020 02:22:54.725 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/nube1.png
+03/06/2020 02:22:54.757 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/nube3.png
+03/06/2020 02:22:54.775 - INFO: Se cargó la imagen sprites/usuario/niveles/nivel1/fin_nivel1.png
+03/06/2020 02:22:54.776 - INFO: Se creo la nave jugador
+03/06/2020 02:22:54.776 - DEBUG: Se creó a la nave del jugador
+03/06/2020 02:22:54.776 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.777 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.778 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.779 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.779 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.780 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.781 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.782 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.782 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.783 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.783 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.783 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.784 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.784 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.785 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.786 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.786 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.787 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.787 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.788 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.789 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.789 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.790 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.791 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.791 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.792 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.792 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.794 - INFO: Se creo el enemigo con imagen: enemigo4
+03/06/2020 02:22:54.794 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.795 - INFO: Se creo el enemigo con imagen: enemigo3
+03/06/2020 02:22:54.795 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.795 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.796 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.796 - INFO: Se creo el enemigo con imagen: enemigo2
+03/06/2020 02:22:54.797 - INFO: Se creo el enemigo con imagen: enemigo1
+03/06/2020 02:22:54.797 - DEBUG: Se crearon los enemigos
+03/06/2020 02:22:59.940 - DEBUG: Se liberó memoria del renderizador
+03/06/2020 02:22:59.940 - DEBUG: Se liberó memoria de la ventana
+03/06/2020 02:22:59.940 - DEBUG: Se referenció la ventana como nula
+03/06/2020 02:22:59.940 - DEBUG: Se referenció el renderizador como nulo
+03/06/2020 02:22:59.940 - DEBUG: Se cerró IMG
+03/06/2020 02:22:59.958 - DEBUG: Se cerró SDL

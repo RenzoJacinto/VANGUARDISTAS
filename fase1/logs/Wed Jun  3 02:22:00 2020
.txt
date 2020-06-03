@@ -1,0 +1,7 @@
+03/06/2020 02:22:01.938 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar mapaBG. Se buscara mapaBG en el archivo de configuracion por defecto
+03/06/2020 02:22:01.965 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar ciudad. Se buscara ciudad en el archivo de configuracion por defecto
+03/06/2020 02:22:01.972 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar planeta. Se buscara planeta en el archivo de configuracion por defecto
+03/06/2020 02:22:01.983 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar nube1. Se buscara nube1 en el archivo de configuracion por defecto
+03/06/2020 02:22:02.012 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar nube2. Se buscara nube2 en el archivo de configuracion por defecto
+03/06/2020 02:22:02.034 - ERROR: No se encontro la clave sprites en nivel1, entonces no se puede encontrar finNivel. Se buscara finNivel en el archivo de configuracion por defecto
+03/06/2020 02:22:02.046 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto

@@ -1,0 +1,2 @@
+03/06/2020 02:26:44.632 - ERROR: No se encontro la clave mapaBG en nivel1, se carga un sprite por defecto
+03/06/2020 02:26:44.733 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto

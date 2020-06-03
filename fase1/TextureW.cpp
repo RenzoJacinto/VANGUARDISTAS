@@ -19,9 +19,7 @@ bool TextureW::loadFromFile( std::string path ){
 
 	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
 
-	if( loadedSurface == NULL){
-        logger.error(IMG_GetError());
-	} else{
+	if(loadedSurface != NULL){
 		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
 
         newTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), loadedSurface );

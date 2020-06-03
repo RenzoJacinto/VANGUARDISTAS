@@ -1,0 +1,7 @@
+03/06/2020 02:02:21.995 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.028 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.034 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.047 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.080 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.103 - ERROR: No se encontro la clave: sprites, se sigue la ejecucion usando esta clave en el archivo default.json
+03/06/2020 02:02:22.118 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto

@@ -1,0 +1,4 @@
+03/06/2020 02:25:57.500 - ERROR: No se encontro la clave enemigos en nivel1, se usan 20 enemigos por defecto
+03/06/2020 02:25:57.501 - ERROR: No se encontro la clave mapaBG en nivel1, se carga un sprite por defecto
+03/06/2020 02:25:57.502 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/ciudada.png, se cargo una por defecto
+03/06/2020 02:25:57.604 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto
