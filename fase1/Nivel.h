@@ -22,7 +22,7 @@ class Nivel: public Escenario {
     protected:
         int cantidad_enemigos;
         TextureW gFinNivel;
-
+        SDL_Rect dataFinNivel;
 };
 
 #endif

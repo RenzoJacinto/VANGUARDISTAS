@@ -5,7 +5,12 @@
 #include "Temporizador.h"
 #include "global.h"
 
-Nivel::Nivel(){}
+Nivel::Nivel(){
+    dataFinNivel.h = 600;
+    dataFinNivel.w = 800;
+    dataFinNivel.x = 0;
+    dataFinNivel.y = 0;
+}
 
 vector<NaveEnemiga*> Nivel::crear_enemigos(){
     vector<NaveEnemiga*> enemigos(cantidad_enemigos);
@@ -90,7 +95,7 @@ bool Nivel::procesar(){
 
 void Nivel::finalizar() {
     logger.info("Finalizó el nivel");
-    gFinNivel.render(0,0);
+    gFinNivel.render(0,0, &dataFinNivel);
     SDL_RenderPresent( sdl.getRenderer() );
     logger.info("Se renderizo el final del nivel");
 }

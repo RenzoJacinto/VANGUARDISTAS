@@ -381,7 +381,7 @@
 	<list>
 	"Nivel.h"
 
-1591215670 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Nivel.h
+1591217938 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
@@ -700,7 +700,7 @@
 1591215670 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/NaveJugador.cpp
 	"NaveJugador.h"
 
-1591215670 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Nivel.cpp
+1591218063 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase1/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
