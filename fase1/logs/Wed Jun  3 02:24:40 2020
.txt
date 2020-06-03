@@ -1,8 +1,0 @@
-03/06/2020 02:24:41.360 - ERROR: No se encontro la clave nivel1 entonces no se puede encontrar la cantidad de enemigos. Se buscara la misma en el archivo de configuracion por defecto
-03/06/2020 02:24:41.360 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar mapaBG. Se buscara mapaBG en el archivo de configuracion por defecto
-03/06/2020 02:24:41.377 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar ciudad. Se buscara ciudad en el archivo de configuracion por defecto
-03/06/2020 02:24:41.388 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar planeta. Se buscara planeta en el archivo de configuracion por defecto
-03/06/2020 02:24:41.397 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar nube1. Se buscara nube1 en el archivo de configuracion por defecto
-03/06/2020 02:24:41.437 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar nube2. Se buscara nube2 en el archivo de configuracion por defecto
-03/06/2020 02:24:41.459 - ERROR: No se encontro la clave nivel1, entonces no se puede encontrar finNivel. Se buscara finNivel en el archivo de configuracion por defecto
-03/06/2020 02:24:41.471 - ERROR: La imagen de jugador no fue encontrada, lo cual se cargo una por defecto

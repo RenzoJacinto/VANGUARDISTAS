@@ -1,3 +1,0 @@
-03/06/2020 02:28:52.391 - ERROR: No se encontro la clave mapaBG en nivel1, se carga un sprite por defecto
-03/06/2020 02:28:52.487 - ERROR: No se encontro la clave jugador entonces no se puede encontrar el spritejugador. Se buscara el sprite jugador en el archivo de configuracion por defecto
-03/06/2020 02:28:52.488 - ERROR: No se encontro la clave enemigo1 en enemigas, se carga una imagen por defecto

@@ -14,11 +14,12 @@ bool Menu::cargarImagen(){
     const char* sMenuBG = menu.c_str();
 	if( !gMenuBGTexture.loadFromFile(sMenuBG) ){
         logger.error("No se encontro la imagen del menu, se cargo una por defecto");
-        menu = json.get_sprite_menu_default();
-        gMenuBGTexture.loadFromFile(menu.c_str());
-		ok = false;
-	} else logger.info("Se cargó la imagen menuBG.png");
-
+        menu = json.get_imagen_default("escenario");
+        if (!gMenuBGTexture.loadFromFile(menu.c_str())) ok = false;
+	}
+	std::string msj = "Se cargó la imagen de menú: ";
+	std::string mensaje = msj + menu;
+    logger.info(mensaje.c_str());
 	return ok;
 }
 

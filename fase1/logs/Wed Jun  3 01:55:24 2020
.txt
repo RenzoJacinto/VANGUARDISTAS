@@ -1,5 +1,0 @@
-03/06/2020 01:55:25.660 - ERROR: No se encontro la clave mapaBG en nivel1, se carga un sprite por defecto
-03/06/2020 01:55:25.661 - ERROR: Couldn't open sprites/usuario/niveles/nivel1/ciudada.png
-03/06/2020 01:55:25.661 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/ciudada.png, se cargo una por defecto
-03/06/2020 01:55:25.745 - ERROR: Couldn't open sprites/usuario/naves/jugador/navea.png
-03/06/2020 01:55:25.745 - ERROR: La imagen de la nave no fue encontrada, lo cual se cargo una por defecto
