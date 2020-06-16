@@ -13,12 +13,16 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelY = 0;
 
     std::string imagen = json.get_sprite_nave(tipo, subtipo);
+    std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
 
     if(!gNaveTexture.loadFromFile(imagen)){
-        std::string imagen_def = json.get_imagen_default("nave");
-        logger.error("La imagen de la nave no fue encontrada, lo cual se cargo una por defecto");
-        gNaveTexture.loadFromFile(imagen_def.c_str());
+        logger.error(mensaje.c_str());
+        imagen = json.get_imagen_default("nave");
+        gNaveTexture.loadFromFile(imagen.c_str());
     }
+    string dir(imagen);
+    mensaje = "Se cargo la nave con imagen: " + dir;
+    logger.debug(mensaje.c_str());
     return true;
 }
 

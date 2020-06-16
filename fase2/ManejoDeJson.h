@@ -36,9 +36,11 @@ class ManejoDeJson{
         //Para errores de encontrar sprite
         std::string get_imagen_default(const char* sp);
 
-        std::string get_estado_aplicacion();
-        int get_puerto();
-        int get_ip();
+        //conexion
+        std::string get_estado_conexion();
+
+        //SV
+        int get_max_users();
 
     private:
 

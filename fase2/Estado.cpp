@@ -2,4 +2,12 @@
 
 Estado::Estado(){}
 
-int Estado::inicializar(int* args){}
+bool Estado::iniciar(){}
+
+bool Estado::sendData(){}
+
+bool Estado::receiveData(){}
+
+void Estado::processData(){}
+
+void Estado::close(){}

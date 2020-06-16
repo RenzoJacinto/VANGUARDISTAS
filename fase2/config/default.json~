@@ -49,7 +49,7 @@
 		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
 		}
     	},
-    	"menu": "sprites/usuario/menu/menuBG.png",
+    	"menu": "sprites/usuario/menu/menuaBG.png",
 	"default": {
 		"nave": "sprites/default/nave.png",
 		"escenario": "sprites/default/fondo.png"

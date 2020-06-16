@@ -5,11 +5,15 @@ Nivel2::Nivel2(){}
 
 void Nivel2::cargarNivel(){
 
+    logger.info(">>>> CARGANDO EL NIVEL 2 ....");
+
     cantidad_enemigos = json.get_cantidad_enemigo("nivel2");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel2 inexistente, se cargo una por defecto");
         cantidad_enemigos = json.get_cantidad_enemigo_default("nivel2");
     }
+    std::string mensaje = "Se cargo la cantidad de enemigos: " + std::to_string(cantidad_enemigos);
+    logger.debug(mensaje.c_str());
 
     cargarImagen("nivel2", "mapaBG", &gBGTexture);
     cargarImagen("nivel2", "planeta1", &gPlaneta1Texture);
@@ -41,6 +45,8 @@ void Nivel2::cargarNivel(){
     dataAsteroides3.w = 872;
     dataAsteroides3.x = 0;
     dataAsteroides3.y = 0;
+
+     logger.info("<<<< SE CARGO EL NIVEL 2");
 }
 
 void Nivel2::cerrar(){

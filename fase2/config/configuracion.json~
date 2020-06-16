@@ -1,8 +1,12 @@
 {
 	"log": 3,
+	"conexion":{
+		"estado":"cliente",
+		"users": 1
+	},
     	"stages":{
         	"nivel1":{
-                	"enemigos": 35,
+                	"enemigos": 5,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
@@ -13,7 +17,7 @@
 			}
             	},
            	"nivel2":{
-                	"enemigos": 20,
+                	"enemigos": 2,
                 	"sprites":{
 				"mapaBG":"sprites/usuario/niveles/nivel2/bg2.png",
 				"planeta1":"sprites/usuario/niveles/nivel2/planeta1.png",
@@ -25,7 +29,7 @@
                 	}
             	},
 	    	"nivel3":{
-                	"enemigos": 15,
+                	"enemigos": 3,
                 	"sprites":{
 		        	"mapaBG":"sprites/usuario/niveles/nivel3/bg.png",
 		        	"fondo1":"sprites/usuario/niveles/nivel3/fondo1.png",
@@ -49,10 +53,5 @@
 		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
 		}
     	},
-    	"menu": "sprites/usuario/menu/menuBG.png",
-	"default": {
-		"nave": "sprites/default/nave.png",
-		"escenario": "sprites/default/fondo.png"
-	},
-	"error": "errorKey"
+    	"menu": "sprites/usuario/menu/menuBG.png"
 }

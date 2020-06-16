@@ -13,7 +13,6 @@ class Logger{
         virtual void debug(const char* update);
         virtual void info(const char* update);
         virtual void error(const char* update);
-        std::string get_time();
         void escribir(const char* update);
 
         bool abrirArchivo(const char* filename);

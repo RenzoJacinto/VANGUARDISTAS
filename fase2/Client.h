@@ -7,10 +7,18 @@ class Client: public Estado{
 
     public:
 
-        Client();
-        int inicializar(int* args);
-        int receiveData(int* client_socket, struct View* client_view);
-        int sendData(int* client_socket, struct Command* client_command);
+        Client(char* IP, int port);
+        bool iniciar();
+        bool sendData();
+        bool receiveData();
+        void processData();
+        void close();
+
+    private:
+        std::string ip;
+
+        thread_t hiloPop;
+        thread_t hiloPush;
 
 };
 

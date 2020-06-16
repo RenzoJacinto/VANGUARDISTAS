@@ -5,7 +5,12 @@
 #include "Temporizador.h"
 #include "global.h"
 
-Nivel::Nivel(){}
+Nivel::Nivel(){
+    dataFinNivel.h = 600;
+    dataFinNivel.w = 800;
+    dataFinNivel.x = 0;
+    dataFinNivel.y = 0;
+}
 
 vector<NaveEnemiga*> Nivel::crear_enemigos(){
     vector<NaveEnemiga*> enemigos(cantidad_enemigos);
@@ -29,6 +34,8 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(){
 
         enemigos[i]=enemigo;
     }
+    std::string mensaje = "Se crearon los " + std::to_string(cantidad_enemigos) + " enemigos";
+    logger.debug(mensaje.c_str());
     return enemigos;
 }
 
@@ -41,19 +48,20 @@ bool Nivel::procesar(){
 	    temporizador.iniciar();
 
         NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
-        logger.debug("Se creó a la nave del jugador");
 
         vector<NaveEnemiga*> enemigos = crear_enemigos();
-        logger.debug("Se crearon los enemigos");
+
         float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
         double tiempo_nivel = 0;
         int renderizados = 1;
 
+        e.key.keysym.sym = SDLK_CLEAR;
+
 	    // Mientras que siga corriendo la app
 	    while( usuarioNoRequieraSalir(quit) && tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
 		    while( hayEventos() ){
-		         if( eventoEsSalir() ) quit = true;
-			      jugador->handleEvent( e );
+                if( eventoEsSalir() ) quit = true;
+                jugador->handleEvent( e );
 			 }
 
 			jugador->mover(enemigos);
@@ -89,7 +97,7 @@ bool Nivel::procesar(){
 
 void Nivel::finalizar() {
     logger.info("Finalizó el nivel");
-    gFinNivel.render(0,0);
+    gFinNivel.render(0,0, &dataFinNivel);
     SDL_RenderPresent( sdl.getRenderer() );
     logger.info("Se renderizo el final del nivel");
 }

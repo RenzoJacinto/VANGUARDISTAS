@@ -4,23 +4,25 @@
 #include "LoggerInfo.h"
 #include "LoggerDebug.h"
 #include "Logger.h"
+#include "global.h"
 
 ManejoDeLog::ManejoDeLog(){
     iniciarLog();
-    logger = new LoggerError(filename.c_str());
+    logg = new LoggerDebug(filename.c_str());
 }
 
-bool ManejoDeLog::crearLogger(int nivel){
-    bool ok = true;
-    logger->cerrarArchivo();
-    free(logger);
+void ManejoDeLog::crearLogger(int nivel){
+    logg->cerrarArchivo();
+    free(logg);
     switch(nivel){
-        case nivelInfo: logger = new LoggerInfo(filename.c_str()); break;
-        case nivelError: logger = new LoggerError(filename.c_str()); break;
-        case nivelDebug: logger = new LoggerDebug(filename.c_str()); break;
-        default: logger = new LoggerError(filename.c_str()); ok = false; break;
+        case nivelInfo: logg = new LoggerInfo(filename.c_str()); break;
+        case nivelError: logg = new LoggerError(filename.c_str()); break;
+        case nivelDebug: logg = new LoggerDebug(filename.c_str()); break;
+        default:
+            logger.error("Nivel de log inexistente, se abre uno por default");
+            crearLogger(json.get_nivel_de_log_default());
+            break;
     }
-    return ok;
 }
 
 void ManejoDeLog::iniciarLog(){
@@ -37,17 +39,17 @@ void ManejoDeLog::iniciarLog(){
 }
 
 void ManejoDeLog::info(const char* update){
-    logger->info(update);
+    logg->info(update);
 }
 
 void ManejoDeLog::error(const char* update){
-    logger->error(update);
-}
+    logg->error(update);
+ }
 
 void ManejoDeLog::debug(const char* update){
-    logger->debug(update);
+    logg->debug(update);
 }
 
 void ManejoDeLog::cerrar(){
-    logger->cerrarArchivo();
+    logg->cerrarArchivo();
 }

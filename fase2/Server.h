@@ -2,17 +2,30 @@
 #define SERVER_H_
 
 #include "Estado.h"
+#include "json.hpp"
 
 class Server: public Estado{
 
     public:
+        Server(int port);
+        bool iniciar();
+        bool sendData();
+        bool receiveData();
+        void processData();
+        bool comprobarIdentificacion();
+        void close();
 
-        Server();
-        int inicializar(int* args);
-        void initializeData(struct View* client_view);
-        void processData(int action, struct View* view);
-        int receiveData(int* client_socket, struct Command* client_command);
-        int sendData(int* client_socket, struct View* client_view);
+        static const int MAX_CLIENTS = 4;
+
+    private:
+        int max_users;
+
+        int client_sockets[MAX_CLIENTS];
+
+        pthread_t clientes[MAX_CLIENTS];
+        pthread_attr_t attr;
+
+        json j_wl;
 };
 
 #endif

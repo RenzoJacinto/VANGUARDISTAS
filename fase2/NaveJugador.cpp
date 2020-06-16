@@ -1,10 +1,12 @@
 #include "NaveJugador.h"
 
 NaveJugador::NaveJugador( int x, int y){
-    if(crearNave(x, y, "jugador", "jugador")) logger.info("Se creo la nave jugador");
+    logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
+    if(crearNave(x, y, "jugador", "jugador")) logger.debug("Se creo la nave jugador");
 
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
+    logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
 void NaveJugador::handleEvent( SDL_Event& e ){

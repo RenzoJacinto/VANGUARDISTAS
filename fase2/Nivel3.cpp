@@ -5,11 +5,15 @@ Nivel3::Nivel3(){}
 
 void Nivel3::cargarNivel(){
 
+    logger.info(">>>> CARGANDO EL NIVEL 3 ....");
+
     cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel3 inexistente, se cargo una por defecto");
         cantidad_enemigos = json.get_cantidad_enemigo_default("nivel3");
     }
+    std::string mensaje = "Se cargo la cantidad de enemigos: " + std::to_string(cantidad_enemigos);
+    logger.debug(mensaje.c_str());
 
     cargarImagen("nivel3", "mapaBG", &gBGTexture);
     cargarImagen("nivel3", "fondo1", &gFondo1Texture);
@@ -64,6 +68,8 @@ void Nivel3::cargarNivel(){
     dataFondo6.w = 800;
     dataFondo6.x = 0;
     dataFondo6.y = 0;
+
+     logger.info("<<<< SE CARGO EL NIVEL 1");
 }
 
 void Nivel3::cerrar(){
