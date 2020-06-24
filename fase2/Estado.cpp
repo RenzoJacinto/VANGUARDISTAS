@@ -2,11 +2,11 @@
 
 Estado::Estado(){}
 
-bool Estado::iniciar(){}
+bool Estado::iniciar(){return true;}
 
-bool Estado::sendData(){}
+bool Estado::sendData(){return true;}
 
-bool Estado::receiveData(){}
+bool Estado::receiveData(){return true;}
 
 void Estado::processData(){}
 

@@ -8,10 +8,11 @@
 #include <unistd.h>
 
 
-Client::Client(char* IP, int port){
+Client::Client(char* IP, int port, pthread_mutex_t m){
     puerto = port;
     string sIP(IP);
     ip = sIP;
+    mutex = m;
 }
 
 bool Client::iniciar(){

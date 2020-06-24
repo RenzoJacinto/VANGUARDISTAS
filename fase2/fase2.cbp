@@ -39,6 +39,7 @@
 		<Unit filename="BotonIniciar.h" />
 		<Unit filename="Client.cpp" />
 		<Unit filename="Client.h" />
+		<Unit filename="ColaMultihilo.h" />
 		<Unit filename="Escenario.cpp" />
 		<Unit filename="Escenario.h" />
 		<Unit filename="Estado.cpp" />

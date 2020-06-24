@@ -7,7 +7,7 @@ class Client: public Estado{
 
     public:
 
-        Client(char* IP, int port);
+        Client(char* IP, int port, pthread_mutex_t m);
         bool iniciar();
         bool sendData();
         bool receiveData();
@@ -17,6 +17,7 @@ class Client: public Estado{
 
     private:
         std::string ip;
+        ColaMultihilo cola;
 
         //thread_t hiloPop;
         //thread_t hiloPush;

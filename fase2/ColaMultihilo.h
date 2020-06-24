@@ -2,22 +2,23 @@
 #define COLAMULTIHILO_H_
 
 #include <queue>
+#include <pthread.h>
 
 class ColaMultihilo{
 
     public:
 
         void push(int dato){
-            //mutex.lock();
+            pthread_mutex_lock(&mutex);
             cola.push(dato);
-            //mutex.unlock();
+            pthread_mutex_unlock(&mutex);
         }
 
         int pop(){
-            //mutex.lock();
+            pthread_mutex_lock(&mutex);
             int data = cola.front();
             cola.pop();
-            //mutex.unlock();
+            pthread_mutex_unlock(&mutex);
             return data;
         }
 
@@ -27,6 +28,7 @@ class ColaMultihilo{
 
     private:
         std::queue<int> cola;
+        pthread_mutex_t mutex;
 };
 
 #endif

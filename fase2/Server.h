@@ -7,7 +7,7 @@
 class Server: public Estado{
 
     public:
-        Server(int port);
+        Server(int port, pthread_mutex_t m);
         bool iniciar();
         bool sendData();
         bool receiveData();
@@ -21,6 +21,8 @@ class Server: public Estado{
         int max_users;
 
         int client_sockets[MAX_CLIENTS];
+
+        ColaMultihilo colas[MAX_CLIENTS];
 
         pthread_t clientes[MAX_CLIENTS];
         pthread_attr_t attr;

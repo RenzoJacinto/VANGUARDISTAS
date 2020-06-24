@@ -21,7 +21,7 @@ class Estado{
         int puerto;
         int socket;
 
-        ColaMultihilo qThreads;
+        pthread_mutex_t mutex;
 
         struct client{
             std::string id;

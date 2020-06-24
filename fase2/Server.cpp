@@ -6,9 +6,10 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-Server::Server(int port){
+Server::Server(int port, pthread_mutex_t m){
     max_users = json.get_max_users();
     puerto = port;
+    mutex = m;
 
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
@@ -74,13 +75,13 @@ bool Server::iniciar(){
     if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
 
-    while(! qThreads.estaVacia()){
+    //while(! qThreads.estaVacia()){
 
-        receiveData();
-        processData();
-        sendData();
+        //receiveData();
+        //processData();
+        //sendData();
 
-    }
+    //}
 
     return true;
 }
