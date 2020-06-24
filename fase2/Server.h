@@ -25,7 +25,7 @@ class Server: public Estado{
         pthread_t clientes[MAX_CLIENTS];
         pthread_attr_t attr;
 
-        json j_wl;
+        nlohmann::json j_wl;
 };
 
 #endif

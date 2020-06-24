@@ -11,7 +11,7 @@ Server::Server(int port){
     puerto = port;
 
     ifstream whitelist;
-    whitelist.open(filename, ios::in);
+    whitelist.open("config/whitelist.json", ios::in);
     whitelist >> j_wl;
     whitelist.close();
 }
@@ -21,7 +21,7 @@ bool Server::iniciar(){
     logger.info(">>>> INICIANDO SERVER ....");
 
     logger.info("#Socket ...");
-    socket = socket(AF_INET , SOCK_STREAM , 0);
+    socket = ::socket(AF_INET , SOCK_STREAM , 0);
     if(socket == 0){
         logger.error("No se pudo crear el socket");
         return false;
@@ -106,10 +106,10 @@ bool Server::comprobarIdentificacion(){
         struct client* cliente
         que contiene los datos del cliente{
         (ESTO PARA CADA CLIENTE, se ve de los sockets)
-    */
+
 
     bool ok = true;
-    json& j_user = json.searchValue(j_wl, cliente->id.c_str());
+    nlohmann::json& j_user = json.searchValue(j_wl, cliente->id.c_str());
     if(j_user == "errorKey"){
         std::string msj = "No existe el usuario " + cliente->id;
         logger.error(msj.c_str());
@@ -123,12 +123,13 @@ bool Server::comprobarIdentificacion(){
 
     if(! ok); //Enviar imagen de inicio erroneo
 
-    return ok;
+    return ok;*/
+    return true;
 }
 
 void Server::close(){
-    for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
+    /*for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
         close(client_sockets[i]);
     }
-    close(socket);
+    close(socket);*/
 }

@@ -5,15 +5,13 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 
 Client::Client(char* IP, int port){
     puerto = port;
     string sIP(IP);
     ip = sIP;
-
-    identificacion.id = "Carlos";
-    identificacion.passwd = "asd";
 }
 
 bool Client::iniciar(){
@@ -21,7 +19,7 @@ bool Client::iniciar(){
     logger.info(">>>> INICIANDO CLIENTE ....");
 
     logger.info("#Socket ...");
-    socket = socket(AF_INET , SOCK_STREAM , 0);
+    socket = ::socket(AF_INET, SOCK_STREAM, 0);
     if(socket == 0){
         logger.error("No se pudo crear el socket");
         return false;
@@ -41,8 +39,8 @@ bool Client::iniciar(){
     logger.debug("@Conectado");
 
     // Creo los hilos de envio y recibimiento de data
-    hiloPop = thread(&Client::receiveData(), this, &socket);
-    hiloPush = thread(&Client::sendData(), this, &socket);
+ //   hiloPop = thread(&Client::receiveData(), this, &socket);
+  //  hiloPush = thread(&Client::sendData(), this, &socket);
 
     iniciarSesion();
 
@@ -67,18 +65,18 @@ void Client::processData(){
 }
 
 bool Client::iniciarSesion(){
-    struct client;
-    client.id = "juancito";
+    struct client cliente;
+    cliente.id = "juancito";
     cliente.passwd = "juan123";
 
     /* Deberia pushear en la cola esta data,
     lo dejo asi como ejemplo, pero deberia inicializarse en una imagen por pantalla
         qThreads.push(client);
     */
-
+    return true;
 }
 
 void Client::close(){
-    close(socket);
+    //close(socket);
     logger.debug("Socket del cliente cerrado");
 }

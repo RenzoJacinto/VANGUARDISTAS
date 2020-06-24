@@ -12,13 +12,14 @@ class Client: public Estado{
         bool sendData();
         bool receiveData();
         void processData();
+        bool iniciarSesion();
         void close();
 
     private:
         std::string ip;
 
-        thread_t hiloPop;
-        thread_t hiloPush;
+        //thread_t hiloPop;
+        //thread_t hiloPush;
 
 };
 
