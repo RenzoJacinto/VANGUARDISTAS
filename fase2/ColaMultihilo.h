@@ -14,12 +14,12 @@ class ColaMultihilo{
             pthread_mutex_unlock(&mutex);
         }
 
-        int pop(){
+        void pop(){
             pthread_mutex_lock(&mutex);
             int data = cola.front();
             cola.pop();
             pthread_mutex_unlock(&mutex);
-            return data;
+            //return data;
         }
 
         bool estaVacia(){

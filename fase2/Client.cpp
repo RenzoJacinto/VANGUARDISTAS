@@ -40,8 +40,10 @@ bool Client::iniciar(){
     logger.debug("@Conectado");
 
     // Creo los hilos de envio y recibimiento de data
- //   hiloPop = thread(&Client::receiveData(), this, &socket);
-  //  hiloPush = thread(&Client::sendData(), this, &socket);
+    pthread_create(&hiloPop, NULL, ColaMultihilo::pop, (void*)NULL);
+    pthread_create(&hiloPush, NULL, ColaMultihilo::push, (void*)NULL);
+
+    //hiloPush = thread(&Client::sendData(), this, &socket);
 
     iniciarSesion();
 
