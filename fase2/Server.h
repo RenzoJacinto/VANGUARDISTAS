@@ -9,11 +9,11 @@ class Server: public Estado{
     public:
         Server(int port, pthread_mutex_t m);
         bool iniciar();
-        void* desencolar();
-        void* encolar(void* dato);
-        bool sendData();
-        bool receiveData();
-        void processData();
+        void* recibir_encolar();
+        void* desencolar_procesar_enviar();
+        bool sendData(void* dato);
+        void* receiveData();
+        void* processData(void* dato);
         bool comprobarIdentificacion();
         void close();
 
@@ -25,6 +25,8 @@ class Server: public Estado{
         int client_sockets[MAX_CLIENTS];
 
         ColaMultihilo* cola;
+        pthread_t hiloRecibirEncolar;
+        pthread_t hiloDesencolarProcesarEnviar;
 
         pthread_t clientes[MAX_CLIENTS];
         pthread_attr_t attr;

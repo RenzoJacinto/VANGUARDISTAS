@@ -12,9 +12,9 @@ class Estado{
     public:
         Estado();
         virtual bool iniciar();
-        virtual bool sendData();
-        virtual bool receiveData();
-        virtual void processData();
+        virtual bool sendData(void* dato);
+        virtual void* receiveData();
+        virtual void* processData(void* dato);
         virtual void close();
 
     protected:

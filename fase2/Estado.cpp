@@ -4,10 +4,10 @@ Estado::Estado(){}
 
 bool Estado::iniciar(){return true;}
 
-bool Estado::sendData(){return true;}
+bool Estado::sendData(void* dato){return true;}
 
-bool Estado::receiveData(){return true;}
+void* Estado::receiveData(){return NULL;}
 
-void Estado::processData(){}
+void* Estado::processData(void* dato){return NULL;}
 
 void Estado::close(){}

@@ -46,43 +46,43 @@ bool Client::iniciar(){
 
     // Creo los hilos de envio y recibimiento de data
     int j;
-    j = pthread_create(&hiloPop, NULL, (void* (*)(void*))Client::desencolar(), NULL);
+    j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))Client::recibir_encolar(), NULL);
     if (j){exit(-1);}
-    j = pthread_create(&hiloPop, NULL, (void* (*)(void*))Client::encolar(NULL), NULL);
+    j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))Client::desencolar_procesar_enviar(), NULL);
     if (j){exit(-1);}
 
-    //j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, cola);
+    while(!cola->estaVacia()){
 
-    desencolar();
-    encolar(NULL);
+        recibir_encolar();
+        desencolar_procesar_enviar();
 
-    iniciarSesion();
-
-    // Deberia recibir y enviar data aca
+    }
 
     return true;
 }
 
-void* Client::desencolar(){
-    return cola->pop();
+void* Client::recibir_encolar(){
+    cola->push(receiveData());
+    return NULL;
 }
 
-void* Client::encolar(void* dato){
-    return cola->push(dato);
+void* Client::desencolar_procesar_enviar(){
+    sendData(processData(cola->pop()));
+    return NULL;
 }
 
-bool Client::sendData(){
+bool Client::sendData(void* dato){
 
-    return true;
+
+	return true;
 }
 
-bool Client::receiveData(){
-
-    return false;
+void* Client::receiveData(){
+	return NULL;
 }
 
-void Client::processData(){
-
+void* Client::processData(void* dato){
+    return NULL;
 
 }
 

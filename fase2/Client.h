@@ -9,17 +9,19 @@ class Client: public Estado{
 
         Client(char* IP, int port, pthread_mutex_t m);
         bool iniciar();
-        void* desencolar();
-        void* encolar(void* dato);
-        bool sendData();
-        bool receiveData();
-        void processData();
+        void* recibir_encolar();
+        void* desencolar_procesar_enviar();
+        bool sendData(void* dato);
+        void* receiveData();
+        void* processData(void* dato);
         bool iniciarSesion();
         void close();
 
     private:
         std::string ip;
         ColaMultihilo* cola;
+        pthread_t hiloRecibirEncolar;
+        pthread_t hiloDesencolarProcesarEnviar;
 
         pthread_t hiloPop;
         pthread_t hiloPush;
