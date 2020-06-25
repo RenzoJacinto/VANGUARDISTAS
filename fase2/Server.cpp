@@ -76,12 +76,12 @@ bool Server::iniciar(){
     if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
     int j;
-    j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))Server::recibir_encolar(), NULL);
+    j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))recibir_encolar(), NULL);
     if (j){exit(-1);}
-    j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))Server::desencolar_procesar_enviar(), NULL);
+    j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))desencolar_procesar_enviar(), NULL);
     if (j){exit(-1);}
 
-    while(!cola->estaVacia()){
+    while(true){
 
         recibir_encolar();
         desencolar_procesar_enviar();
@@ -97,7 +97,9 @@ void* Server::recibir_encolar(){
 }
 
 void* Server::desencolar_procesar_enviar(){
-    sendData(processData(cola->pop()));
+    while(!cola->estaVacia()){
+        sendData(processData(cola->pop()));
+    }
     return NULL;
 }
 

@@ -46,19 +46,26 @@ bool Client::iniciar(){
 
     // Creo los hilos de envio y recibimiento de data
     int j;
-    j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))Client::recibir_encolar(), NULL);
+    j = pthread_create(&hiloEnviar, NULL, (void* (*)(void*))enviar(), NULL);
     if (j){exit(-1);}
-    j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))Client::desencolar_procesar_enviar(), NULL);
+    j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))recibir_encolar(), NULL);
+    if (j){exit(-1);}
+    j = pthread_create(&hiloDesencolarProcesar, NULL, (void* (*)(void*))desencolar_procesar(), NULL);
     if (j){exit(-1);}
 
     while(!cola->estaVacia()){
 
+        enviar();
         recibir_encolar();
-        desencolar_procesar_enviar();
+        desencolar_procesar();
 
     }
 
     return true;
+}
+
+void* Client::enviar(){
+    return NULL;
 }
 
 void* Client::recibir_encolar(){
@@ -66,14 +73,14 @@ void* Client::recibir_encolar(){
     return NULL;
 }
 
-void* Client::desencolar_procesar_enviar(){
-    sendData(processData(cola->pop()));
+void* Client::desencolar_procesar(){
+    while(!cola->estaVacia()){
+        processData(cola->pop());
+    }
     return NULL;
 }
 
 bool Client::sendData(void* dato){
-
-
 	return true;
 }
 

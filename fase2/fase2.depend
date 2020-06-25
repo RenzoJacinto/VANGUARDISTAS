@@ -372,7 +372,7 @@
 1593118307 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1593118421 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1593120008 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -384,10 +384,10 @@
 	<pthread.h>
 	<thread>
 
-1593118634 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
+1593122617 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
 	"Estado.h"
 
-1593118470 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1593122199 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	<string>
