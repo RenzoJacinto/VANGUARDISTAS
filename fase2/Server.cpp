@@ -74,12 +74,13 @@ bool Server::iniciar(){
 
     if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
+    ColaMultihilo* cola = new ColaMultihilo();
 
     while(1){
 
-        //;
-        //processData();
-        //sendData();
+        void* dato = cola->pop();
+        processData();
+        cola->push((void*)NULL);
 
     }
 

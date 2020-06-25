@@ -372,15 +372,19 @@
 1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1593045219 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
 	<sys/socket.h>
 	<arpa/inet.h>
 	<unistd.h>
+	<iostream>
+	<cstdlib>
+	<pthread.h>
+	<thread>
 
-1593036022 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
+1593045036 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
 	"Estado.h"
 
 1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
@@ -401,7 +405,7 @@
 	"Server.h"
 	"Client.h"
 
-1593037055 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ColaMultihilo.h
+1593043825 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ColaMultihilo.h
 	<queue>
 	<pthread.h>
 
