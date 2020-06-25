@@ -2,6 +2,7 @@
 #define CLIENT_H_
 
 #include "Estado.h"
+#include <thread>
 
 class Client: public Estado{
 
@@ -15,12 +16,15 @@ class Client: public Estado{
         bool iniciarSesion();
         void close();
 
+        //asd
+        void desencolar();
+        void encolar();
+
     private:
         std::string ip;
-        ColaMultihilo cola;
 
-        pthread_t hiloPop;
-        pthread_t hiloPush;
+        std::thread hiloPop;
+        std::thread hiloPush;
 
 };
 

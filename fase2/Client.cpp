@@ -1,15 +1,11 @@
 #include "Client.h"
 #include "global.h"
 
-#include "ColaMultihilo.h"
-
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <iostream>
 #include <cstdlib>
-#include <pthread.h>
-#include <thread>
 
 
 Client::Client(char* IP, int port, pthread_mutex_t m){
@@ -43,21 +39,32 @@ bool Client::iniciar(){
     }
     logger.debug("@Conectado");
 
-    // Creo los hilos de envio y recibimiento de data
-    int j;
-    typedef void* (*THREADFUNCPTR) (void*);
-    j = pthread_create(&hiloPop, NULL, (THREADFUNCPTR) &ColaMultihilo::pop, (void*)NULL);
-    if (j){exit(-1);}
-    j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, (void*)NULL);
-    if (j){exit(-1);}
-
-    //hiloPush = thread(&Client::sendData(), this, &socket);
-
     iniciarSesion();
+
+    // Creo los hilos de envio y recibimiento de data
+    hiloPop = thread(&Client::desencolar, this);
+    hiloPush = thread(&Client::encolar, this);
+
+
+
+
+
+
 
     // Deberia recibir y enviar data aca
 
     return true;
+}
+
+void Client::desencolar(){
+    while(! cola.estaVacia()){
+        void* data = cola.pop();
+    }
+}
+
+void Client::encolar(){
+
+
 }
 
 bool Client::sendData(){
@@ -77,8 +84,10 @@ void Client::processData(){
 
 bool Client::iniciarSesion(){
     struct client cliente;
-    cliente.id = "juancito";
-    cliente.passwd = "juan123";
+
+    TextureW tSesion;
+    std::string imgSesion = json.get_sprite_menu();
+    tSesion.loadFromFile(imgSesion.c_str());
 
     /* Deberia pushear en la cola esta data,
     lo dejo asi como ejemplo, pero deberia inicializarse en una imagen por pantalla

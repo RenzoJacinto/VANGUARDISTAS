@@ -5,8 +5,6 @@
 #include <time.h>
 #include <ctime>
 
-#include "ColaMultihilo.h"
-
 class Estado{
 
     public:

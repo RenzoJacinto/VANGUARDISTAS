@@ -4,10 +4,13 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
-#include <pthread.h>
 
 Server::Server(int port, pthread_mutex_t m){
-    max_users = json.get_max_users();
+    int max_users_j = json.get_max_users();
+    if(max_users_j > MAX_CLIENTS) max_users = MAX_CLIENTS;
+    else max_users = max_users_j;
+
+
     puerto = port;
     mutex = m;
 

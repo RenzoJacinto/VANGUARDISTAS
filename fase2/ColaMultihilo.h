@@ -8,7 +8,7 @@ class ColaMultihilo{
 
     public:
 
-        void* push(void* dato){
+        void push(void* dato){
             pthread_mutex_lock(&mutex);
             cola.push(dato);
             pthread_mutex_unlock(&mutex);

@@ -3,6 +3,7 @@
 
 #include "Estado.h"
 #include "json.hpp"
+#include <thread>
 
 class Server: public Estado{
 
@@ -22,10 +23,7 @@ class Server: public Estado{
 
         int client_sockets[MAX_CLIENTS];
 
-        ColaMultihilo colas[MAX_CLIENTS];
-
-        pthread_t clientes[MAX_CLIENTS];
-        pthread_attr_t attr;
+        std::thread clientes[MAX_CLIENTS];
 
         nlohmann::json j_wl;
 };
