@@ -2,14 +2,12 @@
 #include "Menu.h"
 #include "Server.h"
 #include "Client.h"
-#include "ColaMultihilo.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
 Estado* estado;
 pthread_mutex_t mutex;
-ColaMultihilo cola;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 

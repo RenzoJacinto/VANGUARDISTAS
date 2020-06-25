@@ -5,6 +5,8 @@
 #include <time.h>
 #include <ctime>
 
+#include "ColaMultihilo.h"
+
 class Estado{
 
     public:
@@ -18,7 +20,7 @@ class Estado{
     protected:
         int puerto;
         int socket;
-
+        const char* estado;
         pthread_mutex_t mutex;
 
         struct client{

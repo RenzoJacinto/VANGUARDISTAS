@@ -4,15 +4,13 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <pthread.h>
 
 Server::Server(int port, pthread_mutex_t m){
-    int max_users_j = json.get_max_users();
-    if(max_users_j > MAX_CLIENTS) max_users = MAX_CLIENTS;
-    else max_users = max_users_j;
-
-
+    max_users = json.get_max_users();
     puerto = port;
     mutex = m;
+    estado = "server";
 
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
@@ -49,7 +47,7 @@ bool Server::iniciar(){
     struct sockaddr_in client_addr;
     int client_addrlen;
     int actual_socket = 0;
-    while(actual_socket < max_users && actual_socket < MAX_CLIENTS){
+    while(actual_socket < 1/*max_users*/ && actual_socket < MAX_CLIENTS){
         logger.info("#Listen ...");
         if (listen(socket , max_users) < 0){
             logger.error("Error en el Listen");
@@ -75,16 +73,17 @@ bool Server::iniciar(){
     }
 
 
-    if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
+    /*if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
+    ColaMultihilo* cola = new ColaMultihilo();
 
-    //while(! qThreads.estaVacia()){
+    while(1){
 
-        //receiveData();
-        //processData();
-        //sendData();
+        void* dato = cola->pop();
+        processData();
+        cola->push((void*)NULL);
 
-    //}
+    }*/
 
     return true;
 }
