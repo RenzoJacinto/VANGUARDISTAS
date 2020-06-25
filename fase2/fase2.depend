@@ -46,7 +46,7 @@
 	<stdio.h>
 	<string>
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
+1593115562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
@@ -233,7 +233,7 @@
 	<limits>
 	<type_traits>
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
+1593115562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
 	<string>
 	<time.h>
 	<ctime>
@@ -372,7 +372,7 @@
 1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1593045219 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1593116713 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -384,10 +384,10 @@
 	<pthread.h>
 	<thread>
 
-1593045036 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
+1593116617 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
 	"Estado.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1593116505 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	<string>
@@ -395,17 +395,17 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
+1593116610 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
 	"Estado.h"
 	"json.hpp"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/main.cpp
+1593115562 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/main.cpp
 	"global.h"
 	"Menu.h"
 	"Server.h"
 	"Client.h"
 
-1593043825 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ColaMultihilo.h
+1593116730 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ColaMultihilo.h
 	<queue>
 	<pthread.h>
 

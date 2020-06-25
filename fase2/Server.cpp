@@ -73,20 +73,27 @@ bool Server::iniciar(){
     }
 
 
-    /*if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
-
-    ColaMultihilo* cola = new ColaMultihilo();
+    if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
     while(1){
 
-        void* dato = cola->pop();
+        receiveData();
         processData();
-        cola->push((void*)NULL);
+        sendData();
 
-    }*/
+    }
 
     return true;
 }
+
+void* Server::desencolar(){
+    return cola->pop();
+}
+
+void* Server::encolar(void* dato){
+    return cola->push(dato);
+}
+
 
 bool Server::sendData(){
 

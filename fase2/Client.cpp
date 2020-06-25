@@ -45,24 +45,30 @@ bool Client::iniciar(){
     logger.debug("@Conectado");
 
     // Creo los hilos de envio y recibimiento de data
-    /*int j;
-    typedef void* (*THREADFUNCPTR) (void*);
-    cola = new ColaMultihilo();
-    j = pthread_create(&hiloPop, NULL, (THREADFUNCPTR) &ColaMultihilo::pop, cola);
+    int j;
+    j = pthread_create(&hiloPop, NULL, (void* (*)(void*))Client::desencolar(), NULL);
     if (j){exit(-1);}
-    j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, cola);
+    j = pthread_create(&hiloPop, NULL, (void* (*)(void*))Client::encolar(NULL), NULL);
     if (j){exit(-1);}
 
-    cola->pop();
-    cola->push((void*)NULL);*/
+    //j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, cola);
 
-    //hiloPush = thread(&Client::sendData(), this, &socket);z
+    desencolar();
+    encolar(NULL);
 
-    //iniciarSesion();
+    iniciarSesion();
 
     // Deberia recibir y enviar data aca
 
     return true;
+}
+
+void* Client::desencolar(){
+    return cola->pop();
+}
+
+void* Client::encolar(void* dato){
+    return cola->push(dato);
 }
 
 bool Client::sendData(){

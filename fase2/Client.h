@@ -9,6 +9,8 @@ class Client: public Estado{
 
         Client(char* IP, int port, pthread_mutex_t m);
         bool iniciar();
+        void* desencolar();
+        void* encolar(void* dato);
         bool sendData();
         bool receiveData();
         void processData();
