@@ -46,12 +46,16 @@ bool Client::iniciar(){
     // Creo los hilos de envio y recibimiento de data
     int j;
     typedef void* (*THREADFUNCPTR) (void*);
-    j = pthread_create(&hiloPop, NULL, (THREADFUNCPTR) &ColaMultihilo::pop, (void*)NULL);
+    cola = new ColaMultihilo();
+    j = pthread_create(&hiloPop, NULL, (THREADFUNCPTR) &ColaMultihilo::pop, cola);
     if (j){exit(-1);}
-    j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, (void*)NULL);
+    j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, cola);
     if (j){exit(-1);}
 
-    //hiloPush = thread(&Client::sendData(), this, &socket);
+    cola->pop();
+    cola->push((void*)NULL);
+
+    //hiloPush = thread(&Client::sendData(), this, &socket);z
 
     iniciarSesion();
 

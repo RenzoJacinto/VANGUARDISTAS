@@ -75,13 +75,13 @@ bool Server::iniciar(){
     if(! comprobarIdentificacion()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
 
 
-    //while(! qThreads.estaVacia()){
+    while(1){
 
-        //receiveData();
+        //;
         //processData();
         //sendData();
 
-    //}
+    }
 
     return true;
 }

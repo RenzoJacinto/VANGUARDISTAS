@@ -17,7 +17,7 @@ class Client: public Estado{
 
     private:
         std::string ip;
-        ColaMultihilo cola;
+        ColaMultihilo* cola;
 
         pthread_t hiloPop;
         pthread_t hiloPush;
