@@ -6,6 +6,10 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <iostream>
+#include <cstdlib>
+#include <pthread.h>
+#include <thread>
 
 
 Client::Client(char* IP, int port, pthread_mutex_t m){
@@ -40,8 +44,12 @@ bool Client::iniciar(){
     logger.debug("@Conectado");
 
     // Creo los hilos de envio y recibimiento de data
-    pthread_create(&hiloPop, NULL, ColaMultihilo::pop, (void*)NULL);
-    pthread_create(&hiloPush, NULL, ColaMultihilo::push, (void*)NULL);
+    int j;
+    typedef void* (*THREADFUNCPTR) (void*);
+    j = pthread_create(&hiloPop, NULL, (THREADFUNCPTR) &ColaMultihilo::pop, (void*)NULL);
+    if (j){exit(-1);}
+    j = pthread_create(&hiloPush, NULL, (THREADFUNCPTR) &ColaMultihilo::push, (void*)NULL);
+    if (j){exit(-1);}
 
     //hiloPush = thread(&Client::sendData(), this, &socket);
 
