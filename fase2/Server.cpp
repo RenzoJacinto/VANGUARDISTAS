@@ -54,21 +54,18 @@ bool Server::iniciar(){
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
     struct sockaddr_in client_addr;
     int client_addrlen;
+    typedef void * (*THREADFUNCPTR)(void *);
     while(cant_sockets < 2/*max_users*/ && cant_sockets < MAX_CLIENTS){
         logger.info("#Listen ...");
-        printf("a\n");
         if (listen(socket , max_users) < 0){
-            printf("error\n");
             logger.error("Error en el Listen");
             return false;
         }
         std::string msj = "@Esperando a que se conecten usuarios en el puerto: " + std::to_string(puerto);
         logger.debug(msj.c_str());
-        printf("b\n");
         // SOCKET DEL CLIENTE
         logger.info("#Aceptar cliente ...");
         client_sockets[cant_sockets] = accept(socket, (struct sockaddr *) &client_addr, (socklen_t*) &client_addrlen);
-        printf("c\n");
         if (client_sockets[cant_sockets] < 0){
             printf("fallo accept\n");
             logger.error("Fallo el accept del cliente");
@@ -79,10 +76,11 @@ bool Server::iniciar(){
             logger.debug(msj.c_str());
             cant_sockets++;
             pthread_t hilo;
-            //printf("aaaa\n");
+            printf("aaaa\n");
             //validar_credenciales(&client_sockets[cant_sockets]);
-            printf("%d\n", cant_sockets);
-            pthread_create(&hilo, NULL, (void* (*)(void*))validar_credenciales((void*)&client_sockets[cant_sockets]), NULL);
+           // printf("%d\n", cant_sockets);
+
+            pthread_create(&hilo, NULL, (THREADFUNCPTR) &Server::validar_credenciales, &client_sockets[cant_sockets]);
             //actual_socket++;
             printf("%d\n", cant_sockets);
         }
@@ -145,22 +143,21 @@ void Server::close(){
     close(socket);*/
 }
 
-void* Server::validar_credenciales(void* socket)
+void* Server::validar_credenciales(void* client_socket)
 {
     for(int i = time(NULL) + 15; time(NULL) != i; time(NULL));
-    int client = *(int*)(socket);
+
+    int client = *(int*)(client_socket);
     credenciales_t* datos = (credenciales_t*)malloc(sizeof(credenciales_t));
 
-    int bytes = recv( client , datos, sizeof(credenciales_t), 0);
-    printf("%s\n", datos->id);
-    if(bytes > 0)
-    {
-        try
-        {
+    int bytes = recv( client , datos, sizeof(credenciales_t), MSG_NOSIGNAL);
+    printf("SOCKET: %d - ID: %s\n", client, datos->id);
+    if(bytes > 0){
+        try{
             char password[50];
             password[0] = 0;
             std::string pass = j_wl.at(datos->id);
-            //printf("%s\n", pass)
+            std::cout<<pass;
             strncat(password, pass.c_str(), 49);
             if(strcmp(password, datos->pass) != 0)
             {
@@ -186,7 +183,7 @@ void* Server::validar_credenciales(void* socket)
             invalid_id[0] = 0;
             strncat(invalid_id, "Usuario invalido", 17);
             int byes1 = send(client, &invalid_id, 18, 0);
-            validar_credenciales(socket);
+            validar_credenciales(client_socket);
         }
     }
 }

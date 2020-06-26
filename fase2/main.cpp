@@ -28,16 +28,15 @@ int main( int argc, char* argv[] ){
         return 0;
     }
 
-    /*if(sdl.iniciarSDL())*/ estado->iniciar();
+    if(sdl.iniciarSDL()) estado->iniciar();
 
-    /*Menu menu = Menu();
+    Menu menu = Menu();
     //Si inicia sdl y la carga de imagenes satisfactoriamente procede a mostrar el menú
     if (menu.cargarImagen()) menu.procesar();
 
      //Libera la memoria allocada
     menu.cerrar();
-	sdl.cerrar();*/
-	printf("llegue al final\n");
+	sdl.cerrar();
 	logger.cerrar();
 	free(estado);
 	return 0;
