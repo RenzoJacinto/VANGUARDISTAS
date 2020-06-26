@@ -11,6 +11,10 @@
 #include <pthread.h>
 #include <thread>
 
+typedef struct Credenciales {
+    char id[50];
+    char pass[50];
+} credenciales_t;
 
 Client::Client(char* IP, int port, pthread_mutex_t m){
     puerto = port;
@@ -40,12 +44,23 @@ bool Client::iniciar(){
     logger.info("#Conexion con el servidor ...");
     if(connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
         logger.error("Conexion con el servidor fallida");
+        printf("no conecto\n");
         return false;
     }
+    printf("conectado\n");
     logger.debug("@Conectado");
 
+    credenciales_t* credenciales = (credenciales_t*)malloc(sizeof(credenciales_t));
+    credenciales->id[0] = 0;
+    strncat(credenciales->id, "carlos", 49);
+    credenciales->pass[0] = 0;
+    strncat(credenciales->pass, "asdasd", 49);
+    char* buf;
+    int bytes = send(socket, credenciales, sizeof(credenciales_t), 0);
+    if(bytes>0){printf("sent\n");}
+    recv(socket , buf, 5, 0);
     // Creo los hilos de envio y recibimiento de data
-    int j;
+    /*int j;
     j = pthread_create(&hiloEnviar, NULL, (void* (*)(void*))enviar(), NULL);
     if (j){exit(-1);}
     j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))recibir_encolar(), NULL);
@@ -59,7 +74,7 @@ bool Client::iniciar(){
         recibir_encolar();
         desencolar_procesar();
 
-    }
+    }*/
 
     return true;
 }

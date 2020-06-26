@@ -5,7 +5,14 @@
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#include <stdlib.h>
 #define PORT 8080
+
+typedef struct nodo {
+	char data[50];
+	char x[50];
+} nodo_t;
+
 int main(int argc, char const *argv[]){
 	int server_fd, new_socket, valread;
 	struct sockaddr_in address;
@@ -50,12 +57,33 @@ int main(int argc, char const *argv[]){
 		}
 		usleep(1000);
 	}
+	nodo_t* a = (nodo_t*)malloc(sizeof(nodo_t));
+	nodo_t* b = (nodo_t*)malloc(sizeof(nodo_t));
+	printf("alloc hecho\n");
+	
 	for(int j = 0 ; j<2 ; j++){
-		valread = read( sockets[j] , buffer, 1024);
-		printf("%s del socket: %d\n",buffer, sockets[j]);
-	    	send(sockets[j] , hello , strlen(hello) , 0 );
-		printf("Hello message sent\n");
+		if (j == 0 ){
+			valread = recv( sockets[j] , a, sizeof(nodo_t), 0);
+			if(a->data){
+			printf("asd a\n");
+			printf("%s del socket: %d\n",a->data, sockets[j]);
+		    	send(sockets[j] , hello , strlen(hello) , 0 );
+			printf("Hello message sent\n");
+			}
+		}
+		
+		else {
+			valread = recv( sockets[j] , b, sizeof(nodo_t), 0);
+			if(b->x) {
+			printf("asd b\n");
+			printf("%s del socket: %d\n",b->x, sockets[j]);
+		    	send(sockets[j] , hello , strlen(hello) , 0 );
+			printf("Hello message sent\n");
+			}	
+		}
 	}
+	free(a);
+	free(b);
 	return 0;
 }
 
