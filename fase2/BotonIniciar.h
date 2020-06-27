@@ -20,19 +20,36 @@ class BotonIniciar
         bool clickOnBoxName(int x, int y);
         bool clickOnBoxPass(int x, int y);
 
-        std::string get_inputTxt();
+        // Seleccion de boxs
+        static const int SELECT_NAME = 0;
+        static const int SELECT_PASS = 1;
+        static const int NONE_SELECT = -1;
+
+        // Posiciones de las box
+        static const int INIT_X_TEXT_NAME = 73;
+        static const int FIN_X_TEXT_NAME = 367;
+
+        static const int INIT_X_TEXT_PASS = 428;
+        static const int FIN_X_TEXT_PASS = 723;
+
+        static const int INIT_Y_TEXT = 357;
+        static const int FIN_Y_TEXT = 388;
+        static const int Y_MEDIO_TEXT = 365;
 
     private:
-        TextureW gInputTextIdTexture;
-        TextureW gInputTextPassTexture;
 
-        std::string inputStringId;
-        std::string inputStringPass;
+        std::string id;
+        std::string pass;
+        TextureW gId;
+        TextureW gPass;
 
         std::string inputText;
+        //TextureW gInputText;
+
+        TextureW gSelectName;
+        TextureW gSelectPass;
 
         int box;
-
 };
 
     #endif // BOTON_INICIAR_H_

@@ -1,16 +1,31 @@
 #include "BotonIniciar.h"
 #include "ManejoDeNiveles.h"
 
-BotonIniciar::BotonIniciar(){}
+BotonIniciar::BotonIniciar(){
+    box = NONE_SELECT;
+    std::string file = json.get_sprite_menu("selectName");
+    if(! gSelectName.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la textura del select name");
+    file = json.get_sprite_menu("selectPass");
+    if(! gSelectPass.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la textura del select password");
+}
 
 void BotonIniciar::handleEvent( SDL_Event& e ){
 
-    int i = mouseEvent(e);
+    int click_act = mouseEvent(e);
+    if(click_act != box && click_act != NONE_SELECT) inputText = " ";
+
+
+    if(click_act == SELECT_NAME) box = SELECT_NAME;
+    else if(click_act == SELECT_PASS) box = SELECT_PASS;
 
 	if( e.type == SDL_KEYDOWN){
-        // Cuando se apreta Enter
+        // ACOMODO EL STRING EN EL CASO DE CAMBIO DE BOX
+        if(inputText == " ") inputText = "";
+
         //Handle backspace
-		if( e.key.keysym.sym == SDLK_BACKSPACE && inputText.length() > 0 ){
+		if( e.key.keysym.sym == SDLK_BACKSPACE && inputText != "" ){
 			//lop off character
             inputText.pop_back();
 		} else if( e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL ){
@@ -18,8 +33,10 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
 		} else if( e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL ){
 			inputText = SDL_GetClipboardText();
 		}
+		 // Cuando se apreta Enter ARRANCA
         if( e.key.keysym.sym == SDLK_RETURN){
             ManejoDeNiveles niveles;
+            // SE QUEDAN GUARDADO 'ID' Y 'PASS' PARA LAS CREDENCIALES
             niveles.procesar();
         }
     } else if( e.type == SDL_TEXTINPUT ){
@@ -28,26 +45,28 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
 			inputText += e.text.text;
 		}
     }
-    if(i == 0) box = 0;
-    if(i == 1) box = 1;
 
-    /*std::cout<<inputStringId<<"\n";
-    size_t length1 = inputStringId.length();
-    size_t length2 = inputStringPass.length();*/
-    size_t length = inputText.length();
+    if(box == SELECT_NAME){
+        gSelectName.render(0,0);
+        id = inputText;
+        size_t length = id.length();
+        if(length > 0 && length <= 49){
+            if(! gId.loadFromRenderedText(id.c_str()))
+                logger.error("No se pudo cargar la textura del texto");
+            gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
+        }
 
-    /*if(length1 > 0 && length1 < 49){
-        gInputTextIdTexture.loadFromRenderedText( inputStringId.c_str());
-        gInputTextIdTexture.render(128, gInputTextIdTexture.getHeight());
+    } else if(box == SELECT_PASS){
+        gSelectPass.render(0,0);
+        pass = inputText;
+        size_t length = pass.length();
+        if(length > 0 && length <= 49){
+            if(! gPass.loadFromRenderedText(pass.c_str()))
+                logger.error("No se pudo cargar la textura del texto");
+            gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
+        }
+    } else inputText = "";
 
-    }
-    if(length2 > 0 && length2 < 49){
-        gInputTextPassTexture.loadFromRenderedText( inputStringId.c_str());
-        gInputTextPassTexture.render(453, gInputTextPassTexture.getHeight());
-    }*/
-    //if(box != -1) std::cout<<inputText<<"\n";
-    //else inputText = "";
-    if(box == -1) inputText = "";
 }
 
 int BotonIniciar::mouseEvent(SDL_Event& e){
@@ -56,28 +75,25 @@ int BotonIniciar::mouseEvent(SDL_Event& e){
 		int x, y;
 		SDL_GetMouseState( &x, &y );
 
-		if(clickOnBoxName(x, y)) return 0;
-        else if(clickOnBoxPass(x, y)) return 1;
+		if(clickOnBoxName(x, y)) return SELECT_NAME;
+        else if(clickOnBoxPass(x, y)) return SELECT_PASS;
+
 	}
-	return -1;
+	return NONE_SELECT;
 }
 
 bool BotonIniciar::clickOnBoxName(int x, int y){
     bool ok = false;
-    if(x > 128 && x < 385){
-        if(y > 342 && y < 367) ok = true;
+    if(x > INIT_X_TEXT_NAME && x < FIN_X_TEXT_NAME){
+        if(y > INIT_Y_TEXT && y < FIN_Y_TEXT) ok = true;
     }
     return ok;
 }
 
 bool BotonIniciar::clickOnBoxPass(int x, int y){
     bool ok = false;
-    if(x > 453 && x < 677){
-        if(y > 342 && y < 367) ok = true;
+    if(x > INIT_X_TEXT_PASS && x < FIN_X_TEXT_PASS){
+        if(y > INIT_Y_TEXT && y < FIN_Y_TEXT) ok = true;
     }
     return ok;
-}
-
-std::string BotonIniciar::get_inputTxt(){
-    return inputText;
 }
