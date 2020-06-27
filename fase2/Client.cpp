@@ -44,10 +44,8 @@ bool Client::iniciar(){
     logger.info("#Conexion con el servidor ...");
     if(connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
         logger.error("Conexion con el servidor fallida");
-        printf("no conecto\n");
         return false;
     }
-    printf("conectado\n");
     logger.debug("@Conectado");
 
     credenciales_t* credenciales = (credenciales_t*)malloc(sizeof(credenciales_t));
@@ -55,10 +53,10 @@ bool Client::iniciar(){
     strncat(credenciales->id, "carlos", 49);
     credenciales->pass[0] = 0;
     strncat(credenciales->pass, "asdasd", 49);
-    char* buf;
-    int bytes = send(socket, credenciales, sizeof(credenciales_t), 0);
+    char* buf = nullptr;
+    int bytes = send(socket, credenciales, sizeof(credenciales_t), MSG_NOSIGNAL);
     if(bytes>0){printf("sent\n");}
-    recv(socket , buf, 5, 0);
+    recv(socket , buf, 5, MSG_NOSIGNAL);
     // Creo los hilos de envio y recibimiento de data
     /*int j;
     j = pthread_create(&hiloEnviar, NULL, (void* (*)(void*))enviar(), NULL);
@@ -109,14 +107,8 @@ void* Client::processData(void* dato){
 }
 
 bool Client::iniciarSesion(){
-    struct client cliente;
-    cliente.id = "juancito";
-    cliente.passwd = "juan123";
 
-    /* Deberia pushear en la cola esta data,
-    lo dejo asi como ejemplo, pero deberia inicializarse en una imagen por pantalla
-        qThreads.push(client);
-    */
+
     return true;
 }
 

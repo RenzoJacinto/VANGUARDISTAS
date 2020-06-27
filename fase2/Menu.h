@@ -14,7 +14,9 @@ class Menu: public Escenario
 
     private:
         SDL_Rect dataMenu;
+
         TextureW gMenuBGTexture;
+        TextureW gTxt;
 };
 
 

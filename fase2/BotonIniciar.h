@@ -8,12 +8,30 @@
 #include <stdio.h>
 #include <string>
 
+#include "TextureW.h"
+
 class BotonIniciar
 {
     public:
         BotonIniciar();
 
         void handleEvent( SDL_Event& e );
+        int mouseEvent(SDL_Event& e);
+        bool clickOnBoxName(int x, int y);
+        bool clickOnBoxPass(int x, int y);
+
+        std::string get_inputTxt();
+
+    private:
+        TextureW gInputTextIdTexture;
+        TextureW gInputTextPassTexture;
+
+        std::string inputStringId;
+        std::string inputStringPass;
+
+        std::string inputText;
+
+        int box;
 
 };
 

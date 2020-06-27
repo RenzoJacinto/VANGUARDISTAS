@@ -32,6 +32,7 @@ void Menu::procesar(){
     BotonIniciar bt;
     logger.info("Se mostró el menú");
     // Mientras que siga corriendo la app
+
     while( usuarioNoRequieraSalir(quit) ){
         SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
         SDL_RenderClear( sdl.getRenderer() );
@@ -39,16 +40,27 @@ void Menu::procesar(){
 
         //gBotonIniciarTexture.render(0, 0);
 
-        SDL_RenderPresent( sdl.getRenderer() );
+       // SDL_RenderPresent( sdl.getRenderer() );
+        SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
             bt.handleEvent( e );
+            std::string inpTxt = bt.get_inputTxt();
+            if(inpTxt != ""){
+                std::cout<<inpTxt<<"\n";
+                if(! gTxt.loadFromRenderedText( inpTxt.c_str())) logger.error("No se cargo el texto");
+                gTxt.render(128,347);
+            }
         }
+        SDL_RenderPresent( sdl.getRenderer() );
+        SDL_StopTextInput();
     }
+
 
 }
 
 void Menu::cerrar(){
 	gMenuBGTexture.free();
 }
+
 

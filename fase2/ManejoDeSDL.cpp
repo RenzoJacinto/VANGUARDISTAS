@@ -50,6 +50,19 @@ bool ManejoDeSDL::iniciarSDL(){
 					ok = false;
 				} else logger.debug("Se inicializó la carga de imagenes PNG");
 
+				if( TTF_Init() == -1 ){
+					logger.error( "SDL_ttf no se pudo inicializar");
+					ok = false;
+				} else {
+                    logger.debug("Se inicializo la carga de fuentes");
+
+                    gFont = TTF_OpenFont("lazy.ttf", 18);
+                    if(gFont == NULL){
+                        logger.error("Error al inicializar la fuente");
+                        ok = false;
+                    } else logger.debug("Se cargo la fuente ''");
+				}
+
 			}
 		}
 	}
@@ -106,4 +119,8 @@ int ManejoDeSDL::getScreenWidth(){
 
 int ManejoDeSDL::getScreenHeight(){
     return screenHeight;
+}
+
+TTF_Font* ManejoDeSDL::getFont(){
+    return gFont;
 }

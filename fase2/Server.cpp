@@ -31,7 +31,6 @@ bool Server::iniciar(){
     logger.info("#Socket ...");
     socket = ::socket(AF_INET , SOCK_STREAM , 0);
     if(socket == 0){
-        printf("error crear?\n");
         logger.error("No se pudo crear el socket");
         return false;
     }
@@ -46,7 +45,6 @@ bool Server::iniciar(){
     logger.info("#Bind ...");
     if( bind(socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0){
         logger.error("Fallo en el Bind");
-        printf("error bind\n");
         return false;
     }
     logger.debug("@Bind correcto");
@@ -74,13 +72,12 @@ bool Server::iniciar(){
             printf("accepted\n");
             msj = "@Conexion del cliente " + std::to_string(cant_sockets) + " aceptada";
             logger.debug(msj.c_str());
-            cant_sockets++;
             pthread_t hilo;
-            printf("aaaa\n");
             //validar_credenciales(&client_sockets[cant_sockets]);
            // printf("%d\n", cant_sockets);
 
             pthread_create(&hilo, NULL, (THREADFUNCPTR) &Server::validar_credenciales, &client_sockets[cant_sockets]);
+            cant_sockets++;
             //actual_socket++;
             printf("%d\n", cant_sockets);
         }

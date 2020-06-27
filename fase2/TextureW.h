@@ -23,7 +23,7 @@ class TextureW
 
 		#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
 		//Creates image from font string
-		bool loadFromRenderedText( std::string textureText, SDL_Color textColor );
+		bool loadFromRenderedText( std::string textureText);
 		#endif
 
 		//Deallocates texture

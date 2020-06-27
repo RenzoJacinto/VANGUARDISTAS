@@ -1,6 +1,7 @@
 #include "TextureW.h"
 #include "ManejoDeSDL.h"
 #include "global.h"
+#include <SDL2/SDL_ttf.h>
 
 TextureW::TextureW(){
 	mTexture = NULL;
@@ -34,6 +35,37 @@ bool TextureW::loadFromFile( std::string path ){
 	mTexture = newTexture;
 	return mTexture != NULL;
 }
+
+#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
+bool TextureW::loadFromRenderedText( std::string textureText ){
+	//Get rid of preexisting texture
+	//free();
+
+    SDL_Color textColor ={ 0, 0, 0, 0xFF };
+
+	//Render text surface
+	SDL_Surface* textSurface = TTF_RenderText_Solid( sdl.getFont(), textureText.c_str(), textColor );
+	if( textSurface != NULL ){
+		//Create texture from surface pixels
+        mTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), textSurface );
+		if( mTexture == NULL ) printf( "Unable to create texture from rendered text! SDL Error: %s\n", SDL_GetError() );
+		else{
+			//Get image dimensions
+			mWidth = textSurface->w;
+			mHeight = textSurface->h;
+		}
+
+		//Get rid of old surface
+		SDL_FreeSurface( textSurface );
+	} else{
+		printf( "Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError() );
+	}
+
+
+	//Return success
+	return mTexture != NULL;
+}
+#endif
 
 void TextureW::free(){
 	if( mTexture != NULL ){
