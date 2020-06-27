@@ -40,15 +40,21 @@ bool ManejoDeJson::abrir_archivo_aux(const char* filename){
     return true;
 }
 
-std::string ManejoDeJson::get_sprite_menu(){
-    try { return j.at("menu"); }
+std::string ManejoDeJson::get_sprite_menu(const char* sp){
+    json& j_aux = searchValue(j, "menu");
+    if(j_aux == "errorKey") return get_sprite_menu_default(sp);
+
+    string sSP(sp);
+
+    try { return j_aux.at(sp); }
     catch (nlohmann::detail::out_of_range) {
-        logger.error("No se encuentra el menu. Se abre el menu de default.json");
-        return get_sprite_menu_default();
+        std::string msj = "No se encontro el sprite " + sSP + " del menu. Se obtiene de default.json";
+        logger.error(msj.c_str());
+        return get_sprite_menu_default(sp);
     }
     catch(nlohmann::detail::type_error){
-        logger.error("El sprite del menu debe ser un string y es un numero. Se abre el menu de default.json");
-        return get_sprite_menu_default();
+        logger.error("El sprite buscado debe ser un string y es un numero");
+        return get_sprite_menu_default(sp);
     }
 }
 
@@ -180,9 +186,15 @@ std::string ManejoDeJson::get_sprite_nave_default(const char* key, const char* s
     return j_nivel.at(sp);
 }
 
-std::string ManejoDeJson::get_sprite_menu_default(){
-    logger.debug("Se obtuvo el sprite del menu de default.json");
-    return def.at("menu");
+std::string ManejoDeJson::get_sprite_menu_default(const char* sp){
+
+    json& j_aux = searchValue(def, "menu");
+
+    string sSP(sp);
+    std::string msj = "Se obtuvo el sprite " + sSP + " del menu de default.json";
+    logger.debug(msj.c_str());
+
+    return j_aux.at(sp);
 }
 
 int ManejoDeJson::get_nivel_de_log_default(){

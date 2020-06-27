@@ -56,7 +56,7 @@ bool ManejoDeSDL::iniciarSDL(){
 				} else {
                     logger.debug("Se inicializo la carga de fuentes");
 
-                    gFont = TTF_OpenFont("lazy.ttf", 18);
+                    gFont = TTF_OpenFont("font.ttf", 18);
                     if(gFont == NULL){
                         logger.error("Error al inicializar la fuente");
                         ok = false;

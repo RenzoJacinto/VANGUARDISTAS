@@ -54,7 +54,7 @@
 		"selectName": "sprites/usuario/menu/selectName.png",
 		"selectPass": "sprites/usuario/menu/selectPass.png"
 
-	},
+	}
 	"default": {
 		"nave": "sprites/default/nave.png",
 		"escenario": "sprites/default/fondo.png"

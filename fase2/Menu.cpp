@@ -15,7 +15,7 @@ bool Menu::cargarImagen(){
 	bool ok = true;
 
     // Cargar la textura de la nave
-    std::string menu = json.get_sprite_menu();
+    std::string menu = json.get_sprite_menu("menu");
     const char* sMenuBG = menu.c_str();
 	if( !gMenuBGTexture.loadFromFile(sMenuBG) ){
         logger.error("No se encontro la imagen del menu, se cargo una por defecto");
@@ -33,30 +33,19 @@ void Menu::procesar(){
     logger.info("Se mostró el menú");
     // Mientras que siga corriendo la app
 
+    SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+    SDL_RenderClear( sdl.getRenderer() );
+    gMenuBGTexture.render( 0, 0, &dataMenu );
+
     while( usuarioNoRequieraSalir(quit) ){
-        SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-        SDL_RenderClear( sdl.getRenderer() );
-        gMenuBGTexture.render( 0, 0, &dataMenu );
-
-        //gBotonIniciarTexture.render(0, 0);
-
-       // SDL_RenderPresent( sdl.getRenderer() );
         SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
             bt.handleEvent( e );
-            std::string inpTxt = bt.get_inputTxt();
-            if(inpTxt != ""){
-                std::cout<<inpTxt<<"\n";
-                if(! gTxt.loadFromRenderedText( inpTxt.c_str())) logger.error("No se cargo el texto");
-                gTxt.render(128,347);
-            }
         }
         SDL_RenderPresent( sdl.getRenderer() );
         SDL_StopTextInput();
     }
-
-
 }
 
 void Menu::cerrar(){

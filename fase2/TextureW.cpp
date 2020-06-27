@@ -41,7 +41,7 @@ bool TextureW::loadFromRenderedText( std::string textureText ){
 	//Get rid of preexisting texture
 	//free();
 
-    SDL_Color textColor ={ 0, 0, 0, 0xFF };
+    SDL_Color textColor = { 34, 177, 76, 255 };
 
 	//Render text surface
 	SDL_Surface* textSurface = TTF_RenderText_Solid( sdl.getFont(), textureText.c_str(), textColor );

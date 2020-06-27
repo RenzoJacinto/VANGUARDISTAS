@@ -1,7 +1,7 @@
 {
 	"log": 3,
 	"conexion":{
-		"estado":"server",
+		"estado":"client",
 		"users": 1
 	},
     	"stages":{
@@ -53,5 +53,10 @@
 		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
 		}
     	},
-    	"menu": "sprites/usuario/menu/menuBG.png"
+    	"menu":{
+		"menu":"sprites/usuario/menu/menuBG.png",
+		"selectName": "sprites/usuario/menu/selectName.png",
+		"selectPass": "sprites/usuario/menu/selectPass.png"
+
+	}
 }
