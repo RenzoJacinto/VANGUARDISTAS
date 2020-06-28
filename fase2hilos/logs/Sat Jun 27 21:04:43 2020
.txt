@@ -1,0 +1,22 @@
+27/06/2020 21:04:44.85 - DEBUG: Se inicializó SDL
+27/06/2020 21:04:44.85 - DEBUG: Filtrado de textura lineal seteado
+27/06/2020 21:04:44.168 - DEBUG: Se creó la ventana
+27/06/2020 21:04:44.376 - DEBUG: Se creó vSync para la ventana
+27/06/2020 21:04:44.376 - DEBUG: Se inicializó el renderizado de color
+27/06/2020 21:04:44.376 - DEBUG: Se inicializó la carga de imagenes PNG
+27/06/2020 21:04:44.376 - DEBUG: Se inicializo la carga de fuentes
+27/06/2020 21:04:44.376 - DEBUG: Se cargo la fuente ''
+27/06/2020 21:04:44.376 - INFO: >>>> INICIANDO CLIENTE ....
+27/06/2020 21:04:44.377 - INFO: #Socket ...
+27/06/2020 21:04:44.377 - DEBUG: @Socket creado
+
+27/06/2020 21:04:44.377 - INFO: #Conexion con el servidor ...
+27/06/2020 21:04:44.377 - ERROR: Conexion con el servidor fallida
+27/06/2020 21:04:44.424 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+27/06/2020 21:04:44.474 - INFO: Se mostró el menú
+27/06/2020 21:05:35.989 - DEBUG: Se liberó memoria del renderizador
+27/06/2020 21:05:35.989 - DEBUG: Se liberó memoria de la ventana
+27/06/2020 21:05:35.989 - DEBUG: Se referenció la ventana como nula
+27/06/2020 21:05:35.989 - DEBUG: Se referenció el renderizador como nulo
+27/06/2020 21:05:35.989 - DEBUG: Se cerró IMG
+27/06/2020 21:05:36.5 - DEBUG: Se cerró SDL
