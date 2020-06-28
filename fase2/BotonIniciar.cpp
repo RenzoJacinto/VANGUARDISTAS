@@ -39,7 +39,7 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
         if( e.key.keysym.sym == SDLK_RETURN){
             ManejoDeNiveles niveles;
             // SE QUEDAN GUARDADO 'ID' Y 'PASS' PARA LAS CREDENCIALES
-            niveles.procesar();
+            niveles.procesar_cliente();
         }
     } else if( e.type == SDL_TEXTINPUT ){
         if( !( SDL_GetModState() & KMOD_CTRL && ( e.text.text[ 0 ] == 'c' || e.text.text[ 0 ] == 'C' || e.text.text[ 0 ] == 'v' || e.text.text[ 0 ] == 'V' ) ) ){

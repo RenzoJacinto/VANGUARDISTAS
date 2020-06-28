@@ -16,11 +16,13 @@ class Client: public Estado{
         void* receiveData();
         void* processData(void* dato);
         bool iniciarSesion();
+        int get_socket();
         void close();
 
     private:
         std::string ip;
         ColaMultihilo* cola;
+        int socket_id;
         pthread_t hiloEnviar;
         pthread_t hiloRecibirEncolar;
         pthread_t hiloDesencolarProcesar;

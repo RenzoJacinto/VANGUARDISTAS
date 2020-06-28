@@ -9,12 +9,15 @@ class Server: public Estado{
     public:
         Server(int port, pthread_mutex_t m);
         bool iniciar();
+        int get_socket_actual();
+        void aumentar_socket();
         void* recibir_encolar();
         void* desencolar_procesar_enviar();
         bool sendData(void* dato);
         void* receiveData();
         void* processData(void* dato);
-        void* validar_credenciales(void* socket);
+        void* validar_credenciales(int client);
+        int get_socket(int i);
         void close();
 
         static const int MAX_CLIENTS = 4;

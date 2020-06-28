@@ -27,13 +27,15 @@ Client::Client(char* IP, int port, pthread_mutex_t m){
 bool Client::iniciar(){
 
     logger.info(">>>> INICIANDO CLIENTE ....");
-
+    printf("arranca\n");
     logger.info("#Socket ...");
     socket = ::socket(AF_INET, SOCK_STREAM, 0);
     if(socket == 0){
+        printf("error creacion\n");
         logger.error("No se pudo crear el socket");
         return false;
     }
+    socket_id = socket;
     logger.debug("@Socket creado\n");
 
     struct sockaddr_in server;
@@ -43,6 +45,7 @@ bool Client::iniciar(){
 
     logger.info("#Conexion con el servidor ...");
     if(connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
+        printf("error conex\n");
         logger.error("Conexion con el servidor fallida");
         return false;
     }
@@ -54,6 +57,7 @@ bool Client::iniciar(){
     credenciales->pass[0] = 0;
     strncat(credenciales->pass, "asdasd", 49);
     char* buf = nullptr;
+    printf("enviando\n");
     int bytes = send(socket, credenciales, sizeof(credenciales_t), MSG_NOSIGNAL);
     if(bytes>0){printf("sent\n");}
     recv(socket , buf, 5, MSG_NOSIGNAL);
@@ -115,4 +119,8 @@ bool Client::iniciarSesion(){
 void Client::close(){
     //close(socket);
     logger.debug("Socket del cliente cerrado");
+}
+
+int Client::get_socket() {
+    return socket_id;
 }

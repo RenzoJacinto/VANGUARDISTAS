@@ -12,13 +12,29 @@ ManejoDeNiveles::ManejoDeNiveles(){
     cargarNiveles();
 }
 
-void ManejoDeNiveles::procesar(){
+void ManejoDeNiveles::procesar_servidor(){
 
     list<Nivel*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
         (*nivel)->cargarNivel();
-        if((*nivel)->procesar()) {
+        if((*nivel)->procesar_servidor()) {
+            cerrar_niveles(niveles);
+            break;
+        }
+        (*nivel)->finalizar();
+        delay(5);
+        (*nivel)->cerrar();
+    }
+}
+
+void ManejoDeNiveles::procesar_cliente(){
+
+    list<Nivel*>::iterator nivel;
+    for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
+
+        (*nivel)->cargarNivel();
+        if((*nivel)->procesar_cliente()) {
             cerrar_niveles(niveles);
             break;
         }

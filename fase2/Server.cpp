@@ -11,6 +11,20 @@ typedef struct Credenciales {
     char pass[50];
 } credenciales_t;
 
+void* hilo_validar_credenciales(void* p)
+{
+    Server* sv = (Server*) p;
+
+    pthread_mutex_lock(&mutex);
+    int client = sv->get_socket_actual();
+    sv->aumentar_socket();
+    pthread_mutex_unlock(&mutex);
+
+    sv->validar_credenciales(client);
+
+    return NULL;
+}
+
 Server::Server(int port, pthread_mutex_t m){
     max_users = json.get_max_users();
     puerto = port;
@@ -22,6 +36,15 @@ Server::Server(int port, pthread_mutex_t m){
     whitelist.open("config/whitelist.json", ios::in);
     whitelist >> j_wl;
     whitelist.close();
+}
+
+int Server::get_socket_actual()
+{
+    return client_sockets[cant_sockets];
+}
+
+void Server::aumentar_socket() {
+    cant_sockets++;
 }
 
 bool Server::iniciar(){
@@ -52,8 +75,9 @@ bool Server::iniciar(){
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
     struct sockaddr_in client_addr;
     int client_addrlen;
-    typedef void * (*THREADFUNCPTR)(void *);
-    while(cant_sockets < 2/*max_users*/ && cant_sockets < MAX_CLIENTS){
+    int actual_socket = 0;
+    //typedef void * (*THREADFUNCPTR)(void *);
+    while(actual_socket < 2/*max_users*/ && cant_sockets < MAX_CLIENTS){
         logger.info("#Listen ...");
         if (listen(socket , max_users) < 0){
             logger.error("Error en el Listen");
@@ -63,23 +87,24 @@ bool Server::iniciar(){
         logger.debug(msj.c_str());
         // SOCKET DEL CLIENTE
         logger.info("#Aceptar cliente ...");
-        client_sockets[cant_sockets] = accept(socket, (struct sockaddr *) &client_addr, (socklen_t*) &client_addrlen);
-        if (client_sockets[cant_sockets] < 0){
+        printf("esperando conexiones\n");
+        client_sockets[actual_socket] = accept(socket, (struct sockaddr *) &client_addr, (socklen_t*) &client_addrlen);
+        if (client_sockets[actual_socket] < 0){
             printf("fallo accept\n");
             logger.error("Fallo el accept del cliente");
             continue;
         } else{
+            //actual_socket++;
             printf("accepted\n");
             msj = "@Conexion del cliente " + std::to_string(cant_sockets) + " aceptada";
             logger.debug(msj.c_str());
-            pthread_t hilo;
+            //pthread_t hilo;
             //validar_credenciales(&client_sockets[cant_sockets]);
-           // printf("%d\n", cant_sockets);
-
-            pthread_create(&hilo, NULL, (THREADFUNCPTR) &Server::validar_credenciales, &client_sockets[cant_sockets]);
-            cant_sockets++;
-            //actual_socket++;
+            //printf("%d\n", cant_sockets);
+            //validar_credenciales(client_sockets[actual_socket]);
+            pthread_create(&clientes[actual_socket], NULL, hilo_validar_credenciales, this);
             printf("%d\n", cant_sockets);
+            actual_socket++;
         }
 
         //HACE UN USLEEP DE 1 SEG
@@ -140,13 +165,14 @@ void Server::close(){
     close(socket);*/
 }
 
-void* Server::validar_credenciales(void* client_socket)
+int Server::get_socket(int i) {
+    return client_sockets[i];
+}
+
+void* Server::validar_credenciales(int client)
 {
-    for(int i = time(NULL) + 15; time(NULL) != i; time(NULL));
-
-    int client = *(int*)(client_socket);
+    printf("validando credenciales\n");
     credenciales_t* datos = (credenciales_t*)malloc(sizeof(credenciales_t));
-
     int bytes = recv( client , datos, sizeof(credenciales_t), MSG_NOSIGNAL);
     printf("SOCKET: %d - ID: %s\n", client, datos->id);
     if(bytes > 0){
@@ -162,6 +188,7 @@ void* Server::validar_credenciales(void* client_socket)
                 invalid_pass[0] = 0;
                 strncat(invalid_pass, "Contrasenia invalida", 21);
                 int byes1 = send(client, &invalid_pass, 22, 0);
+                validar_credenciales(client);
                 return NULL;
             }
             printf("datos correctos\n");
@@ -180,7 +207,7 @@ void* Server::validar_credenciales(void* client_socket)
             invalid_id[0] = 0;
             strncat(invalid_id, "Usuario invalido", 17);
             int byes1 = send(client, &invalid_id, 18, 0);
-            validar_credenciales(client_socket);
+            validar_credenciales(client);
         }
     }
 }
