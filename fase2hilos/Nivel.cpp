@@ -305,7 +305,7 @@ bool Nivel::procesar_cliente(){
             }
 
             velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-            v->id = client->id;
+            v->id = client->get_id();
             v->VelX = jugador->getVelX();
             v->VelY = jugador->getVelY();
 
