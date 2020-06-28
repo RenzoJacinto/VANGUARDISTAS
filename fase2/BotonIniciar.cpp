@@ -12,64 +12,55 @@ BotonIniciar::BotonIniciar(){
 }
 
 void BotonIniciar::handleEvent( SDL_Event& e ){
-
+    std::string inputTxt = "";
+    bool backspace = false;
     int click_act = mouseEvent(e);
-    if(click_act != box && click_act != NONE_SELECT){
-        inputText = " ";
-    }
-
-
     if(click_act == SELECT_NAME) box = SELECT_NAME;
-    else if(click_act == SELECT_PASS) box = SELECT_PASS;
+    if(click_act == SELECT_PASS) box = SELECT_PASS;
 
-	if( e.type == SDL_KEYDOWN){
-        // ACOMODO EL STRING EN EL CASO DE CAMBIO DE BOX
-        if(inputText == " ") inputText = "";
-
+    if( e.type == SDL_KEYDOWN){
         //Handle backspace
-		if( e.key.keysym.sym == SDLK_BACKSPACE && inputText != "" ){
-			//lop off character
-            inputText.pop_back();
+		if( e.key.keysym.sym == SDLK_BACKSPACE)
+            backspace = true;
 		} else if( e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL ){
-			SDL_SetClipboardText( inputText.c_str() );
+			SDL_SetClipboardText( inputTxt.c_str() );
 		} else if( e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL ){
-			inputText = SDL_GetClipboardText();
+			inputTxt = SDL_GetClipboardText();
 		}
-		 // Cuando se apreta Enter ARRANCA
+
+        // CUANDO SE APRETA ENTER (QUEDAN LOS ESTADOS FINALES DE ID Y PASS)
         if( e.key.keysym.sym == SDLK_RETURN){
             ManejoDeNiveles niveles;
-            // SE QUEDAN GUARDADO 'ID' Y 'PASS' PARA LAS CREDENCIALES
-            niveles.procesar_cliente();
+            niveles.procesar();
         }
+
     } else if( e.type == SDL_TEXTINPUT ){
         if( !( SDL_GetModState() & KMOD_CTRL && ( e.text.text[ 0 ] == 'c' || e.text.text[ 0 ] == 'C' || e.text.text[ 0 ] == 'v' || e.text.text[ 0 ] == 'V' ) ) ){
 			//Append character
-			inputText += e.text.text;
+			inputTxt += e.text.text;
 		}
     }
 
     if(box == SELECT_NAME){
         gSelectName.render(0,0);
-        if(inputText != " "){
-            id = inputText;
-            size_t length = id.length();
-            if(length > 0 && length <= 49){
-                if(! gId.loadFromRenderedText(id.c_str()))
-                    logger.error("No se pudo cargar la textura del texto");
-            }
+        id += inputTxt;
+        if(backspace && id != "") id.pop_back();
+        size_t length = id.length();
+        if(length > 0 && length <= 49){
+            if(! gId.loadFromRenderedText(id.c_str()))
+                logger.error("No se pudo cargar la textura del texto");
         }
 
     } else if(box == SELECT_PASS){
         gSelectPass.render(0,0);
-        if(inputText != " "){
-            pass = inputText;
-            size_t length = pass.length();
-            if(length > 0 && length <= 49){
-                if(! gPass.loadFromRenderedText(pass.c_str()))
-                    logger.error("No se pudo cargar la textura del texto");
-            }
+        pass += inputTxt;
+        if(backspace && pass != "") pass.pop_back();
+        size_t length = pass.length();
+        if(length > 0 && length <= 49){
+            if(! gPass.loadFromRenderedText(pass.c_str()))
+                logger.error("No se pudo cargar la textura del texto");
         }
-    } else inputText = "";
+    }
 
     if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
     if(pass != "") gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
