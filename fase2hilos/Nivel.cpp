@@ -60,7 +60,7 @@ int get_nave(vector<NaveJugador*> jugadores, int id) {
     int k = 0;
     vector<NaveJugador*>::iterator pos;
     for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
-        printf("id buscada: %d, id de iteracion: %d\n", id, (*pos)->get_id());
+//        printf("id buscada: %d, id de iteracion: %d\n", id, (*pos)->get_id());
         if(id == (*pos)->get_id()) break;
         k++;
     }
@@ -108,7 +108,7 @@ bool Nivel::procesar_servidor(){
         NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, 1);
 
         vector<NaveEnemiga*> enemigos = crear_enemigos();
-        vector<NaveJugador*> jugadores(1);
+        vector<NaveJugador*> jugadores(2);
         jugadores[0] = jugador;
         jugadores[1] = jugador1;
 
@@ -121,9 +121,9 @@ bool Nivel::procesar_servidor(){
         //v->VelX = 0;
         //v->VelY = 0;
 
-        posiciones_t* pos = (posiciones_t*) malloc(sizeof(posiciones_t));
-        pos->posX = 200;
-        pos->posY = 200;
+        //posiciones_t* pos = (posiciones_t*) malloc(sizeof(posiciones_t));
+        //pos->posX = 200;
+        //pos->posY = 200;
 
         //velocidades_t* v1 = (velocidades_t*) malloc(sizeof(velocidades_t));
         //v1->VelX = 0;
@@ -170,6 +170,7 @@ bool Nivel::procesar_servidor(){
                 printf("SERVER seteo Y %d\n", v->VelY);
                 jugadores[j]->mover(enemigos);
                 printf("SERVER movio al jugador\n");
+                posiciones_t* pos = (posiciones_t*) malloc(sizeof(posiciones_t));
                 pos->posX = jugador->getPosX();
                 pos->posY = jugador->getPosY();
                 pos->id = v->id;
@@ -192,6 +193,7 @@ bool Nivel::procesar_servidor(){
                     if(bytes_writen<=0) break;
                 }
                 free(v);
+                free(pos);
             }
             //jugador->setVelX(v->VelX);
             //jugador->setVelY(v->VelY);
@@ -242,7 +244,7 @@ bool Nivel::procesar_servidor(){
 
 			//SDL_RenderPresent( sdl.getRenderer() );
         }
-        free(pos);
+        //free(pos);
         //free(pos1);
         //free(v);
         //free(v1);
@@ -271,7 +273,7 @@ bool Nivel::procesar_cliente(){
         id++;
         NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, id%2);
 
-        vector<NaveJugador*> jugadores(1);
+        vector<NaveJugador*> jugadores(2);
         jugadores[0] = jugador;
         jugadores[1] = jugador1;
         //vector<NaveEnemiga*> enemigos = crear_enemigos();
@@ -284,8 +286,8 @@ bool Nivel::procesar_cliente(){
         pthread_t hilo;
         pthread_create(&hilo, NULL, loop_recibir_cliente, estado);
 
-        velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-        v->id = client->get_id();
+        //velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
+        //v->id = client->get_id();
         //posiciones_t* pos = (posiciones_t*) malloc(sizeof(posiciones_t));
         //pos->posX = 200;
         //pos->posY = 200;
@@ -302,6 +304,8 @@ bool Nivel::procesar_cliente(){
                 jugador->handleEvent( e );
             }
 
+            velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
+            v->id = client->id;
             v->VelX = jugador->getVelX();
             v->VelY = jugador->getVelY();
 
@@ -335,6 +339,8 @@ bool Nivel::procesar_cliente(){
                 printf("seteo Y %d\n", pos->posX);
                 free(pos);
             }
+
+            free(v);
 
             //send(client->get_socket(), v, sizeof(velocidades_t), MSG_NOSIGNAL);
 
@@ -386,7 +392,7 @@ bool Nivel::procesar_cliente(){
 
         }
         //free(pos);
-        free(v);
+        //free(v);
         //vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
         jugador->cerrarNave();
