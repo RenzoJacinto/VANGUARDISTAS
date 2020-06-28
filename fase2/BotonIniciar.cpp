@@ -14,7 +14,9 @@ BotonIniciar::BotonIniciar(){
 void BotonIniciar::handleEvent( SDL_Event& e ){
 
     int click_act = mouseEvent(e);
-    if(click_act != box && click_act != NONE_SELECT) inputText = " ";
+    if(click_act != box && click_act != NONE_SELECT){
+        inputText = " ";
+    }
 
 
     if(click_act == SELECT_NAME) box = SELECT_NAME;
@@ -48,24 +50,29 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
 
     if(box == SELECT_NAME){
         gSelectName.render(0,0);
-        id = inputText;
-        size_t length = id.length();
-        if(length > 0 && length <= 49){
-            if(! gId.loadFromRenderedText(id.c_str()))
-                logger.error("No se pudo cargar la textura del texto");
-            gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
+        if(inputText != " "){
+            id = inputText;
+            size_t length = id.length();
+            if(length > 0 && length <= 49){
+                if(! gId.loadFromRenderedText(id.c_str()))
+                    logger.error("No se pudo cargar la textura del texto");
+            }
         }
 
     } else if(box == SELECT_PASS){
         gSelectPass.render(0,0);
-        pass = inputText;
-        size_t length = pass.length();
-        if(length > 0 && length <= 49){
-            if(! gPass.loadFromRenderedText(pass.c_str()))
-                logger.error("No se pudo cargar la textura del texto");
-            gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
+        if(inputText != " "){
+            pass = inputText;
+            size_t length = pass.length();
+            if(length > 0 && length <= 49){
+                if(! gPass.loadFromRenderedText(pass.c_str()))
+                    logger.error("No se pudo cargar la textura del texto");
+            }
         }
     } else inputText = "";
+
+    if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
+    if(pass != "") gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
 
 }
 
