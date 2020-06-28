@@ -20,8 +20,8 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
 
     if( e.type == SDL_KEYDOWN){
         //Handle backspace
-		if( e.key.keysym.sym == SDLK_BACKSPACE){
-            		backspace = true;
+		if( e.key.keysym.sym == SDLK_BACKSPACE)
+            backspace = true;
 		} else if( e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL ){
 			SDL_SetClipboardText( inputTxt.c_str() );
 		} else if( e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL ){
