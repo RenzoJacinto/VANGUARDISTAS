@@ -1,0 +1,41 @@
+27/06/2020 17:31:04.270 - DEBUG: Se inicializó SDL
+27/06/2020 17:31:04.270 - DEBUG: Filtrado de textura lineal seteado
+27/06/2020 17:31:04.346 - DEBUG: Se creó la ventana
+27/06/2020 17:31:04.553 - DEBUG: Se creó vSync para la ventana
+27/06/2020 17:31:04.553 - DEBUG: Se inicializó el renderizado de color
+27/06/2020 17:31:04.553 - DEBUG: Se inicializó la carga de imagenes PNG
+27/06/2020 17:31:04.554 - DEBUG: Se inicializo la carga de fuentes
+27/06/2020 17:31:04.554 - DEBUG: Se cargo la fuente ''
+27/06/2020 17:31:04.554 - INFO: >>>> INICIANDO CLIENTE ....
+27/06/2020 17:31:04.554 - INFO: #Socket ...
+27/06/2020 17:31:04.554 - DEBUG: @Socket creado
+
+27/06/2020 17:31:04.554 - INFO: #Conexion con el servidor ...
+27/06/2020 17:31:04.558 - DEBUG: @Conectado
+27/06/2020 17:31:04.628 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+27/06/2020 17:31:04.628 - INFO: Se mostró el menú
+27/06/2020 17:31:06.139 - INFO: >>>> CARGANDO EL NIVEL 1 ....
+27/06/2020 17:31:06.139 - DEBUG: Se cargo la cantidad de enemigos: 5
+27/06/2020 17:31:06.139 - INFO: ## CARGANDO mapaBG ....
+27/06/2020 17:31:06.164 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/bg.png
+27/06/2020 17:31:06.164 - INFO: ## CARGANDO ciudad ....
+27/06/2020 17:31:06.170 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/ciudad.png
+27/06/2020 17:31:06.170 - INFO: ## CARGANDO planeta ....
+27/06/2020 17:31:06.176 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/planeta.png
+27/06/2020 17:31:06.176 - INFO: ## CARGANDO nube1 ....
+27/06/2020 17:31:06.215 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube1.png
+27/06/2020 17:31:06.215 - INFO: ## CARGANDO nube2 ....
+27/06/2020 17:31:06.236 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube3.png
+27/06/2020 17:31:06.236 - INFO: ## CARGANDO finNivel ....
+27/06/2020 17:31:06.248 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/fin_nivel1.png
+27/06/2020 17:31:06.248 - INFO: <<<< SE CARGO EL NIVEL 1
+27/06/2020 17:31:06.248 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+27/06/2020 17:31:06.248 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/jugador/nave1.png
+27/06/2020 17:31:06.248 - DEBUG: Se creo la nave jugador
+27/06/2020 17:31:06.249 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+27/06/2020 17:31:16.792 - DEBUG: Se liberó memoria del renderizador
+27/06/2020 17:31:16.793 - DEBUG: Se liberó memoria de la ventana
+27/06/2020 17:31:16.793 - DEBUG: Se referenció la ventana como nula
+27/06/2020 17:31:16.793 - DEBUG: Se referenció el renderizador como nulo
+27/06/2020 17:31:16.793 - DEBUG: Se cerró IMG
+27/06/2020 17:31:16.814 - DEBUG: Se cerró SDL
