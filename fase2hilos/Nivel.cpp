@@ -104,13 +104,18 @@ bool Nivel::procesar_servidor(){
 
         Server* server = (Server*) estado;
 
-        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4, 0);
-        NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, 1);
+        NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4, 0);
+        NaveJugador* jugador2 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, 1);
+
+        std::map<int, NaveJugador*> jugadores = {
+            { jugador1->get_id(), jugador1 },
+            { jugador2->get_id(), jugador2 }
+        };
 
         vector<NaveEnemiga*> enemigos = crear_enemigos();
-        vector<NaveJugador*> jugadores(2);
-        jugadores[0] = jugador;
-        jugadores[1] = jugador1;
+        //vector<NaveJugador*> jugadores(2);
+        //jugadores[0] = jugador;
+        //jugadores[1] = jugador1;
 
         float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
         double tiempo_nivel = 0;
@@ -162,16 +167,22 @@ bool Nivel::procesar_servidor(){
             while(!server->cola_esta_vacia()) {
                 printf("SERVER iteracion\n");
                 velocidades_t* v = (velocidades_t*)server->desencolar_procesar_enviar();
-                int j = get_nave(jugadores, v->id);
-                printf("SERVER encontro j\n");
-                jugadores[j]->setVelX(v->VelX);
+                //int j = get_nave(jugadores, v->id);
+                //printf("SERVER encontro j\n");
+                //jugadores[j]->setVelX(v->VelX);
+                NaveJugador* jugador = jugadores[v->id];
+                jugador->setVelX(v->VelX);
                 printf("SERVER seteo X %d\n", v->VelX);
-                jugadores[j]->setVelY(v->VelY);
+                //jugadores[j]->setVelY(v->VelY);
+                jugador->setVelY(v->VelY);
                 printf("SERVER seteo Y %d\n", v->VelY);
-                jugadores[j]->mover(enemigos);
+                //jugadores[j]->mover(enemigos);
+                jugador->mover(enemigos);
                 printf("SERVER movio al jugador\n");
                 posiciones_t* pos = (posiciones_t*) malloc(sizeof(posiciones_t));
+                //pos->posX = jugadores[j]->getPosX();
                 pos->posX = jugador->getPosX();
+                //pos->posY = jugadores[j]->getPosY();
                 pos->posY = jugador->getPosY();
                 pos->id = v->id;
                 printf("SERVER X:%d - Y:%d, ID:%d\n", pos->posX, pos->posY, pos->id);
@@ -232,10 +243,10 @@ bool Nivel::procesar_servidor(){
             //jugador->renderizar();
 
             //Todo este bloque deberiamos declararlo en otro lado
-            for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
-                enemigos[i]->mover(jugador);
+            //for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
+                //enemigos[i]->mover(jugador);
                 //enemigos[i]->renderizar();
-            }
+            //}
 
             tiempo_nivel = temporizador.transcurridoEnSegundos();
             if(tiempo_nivel/renderizados > tiempo_por_enemigos) renderizados++;
@@ -251,7 +262,8 @@ bool Nivel::procesar_servidor(){
         //client->finalizar();
         vector<NaveEnemiga*>::iterator posi;
         // CIERRA LAS NAVES
-        jugador->cerrarNave();
+        jugador1->cerrarNave();
+        jugador2->cerrarNave();
         for(posi = enemigos.begin(); posi != enemigos.end(); posi++){
             (*posi)->cerrarNave();
         }
@@ -269,13 +281,18 @@ bool Nivel::procesar_cliente(){
         Client* client = (Client*) estado;
 
         int id = client->get_id();
-        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4, id);
+        NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4, id);
         id++;
-        NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, id%2);
+        NaveJugador* jugador2 = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, id%2);
 
-        vector<NaveJugador*> jugadores(2);
-        jugadores[0] = jugador;
-        jugadores[1] = jugador1;
+        std::map<int, NaveJugador*> jugadores = {
+            { jugador1->get_id(), jugador1 },
+            { jugador2->get_id(), jugador2 }
+        };
+
+        //vector<NaveJugador*> jugadores(2);
+        //jugadores[0] = jugador;
+        //jugadores[1] = jugador1;
         //vector<NaveEnemiga*> enemigos = crear_enemigos();
 
         float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
@@ -301,13 +318,13 @@ bool Nivel::procesar_cliente(){
 
 		    while( hayEventos() ){
                 if( eventoEsSalir() ) quit = true;
-                jugador->handleEvent( e );
+                jugador1->handleEvent( e );
             }
 
             velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
             v->id = client->get_id();
-            v->VelX = jugador->getVelX();
-            v->VelY = jugador->getVelY();
+            v->VelX = jugador1->getVelX();
+            v->VelY = jugador1->getVelY();
 
             printf("CLIENT vel: %d - %d\n", v -> VelX, v->VelY);
             int total_bytes_writen = 0;
@@ -325,14 +342,15 @@ bool Nivel::procesar_cliente(){
             printf("data enviada\n");
 
 
-            printf("CLIENT: pos: %d - %d\n", jugador -> getPosX(), jugador->getPosY());
+            printf("CLIENT: pos: %d - %d\n", jugador1 -> getPosX(), jugador1->getPosY());
 
             while(!client->cola_esta_vacia()) {
                 printf("recibio cosas\n");
                 posiciones_t* pos = (posiciones_t*)client->desencolar_procesar();
                 printf("desencolo\n");
-                int j = get_nave(jugadores, pos->id);
-                printf("encontro j %d\n", j);
+                //int j = get_nave(jugadores, pos->id);
+                //printf("encontro j %d\n", j);
+                NaveJugador* jugador = jugadores[pos->id];
                 jugador->setPosX(pos -> posX);
                 printf("seteo X %d\n", pos->posX);
                 jugador->setPosY(pos -> posY);
@@ -371,8 +389,8 @@ bool Nivel::procesar_cliente(){
 			renderBackground();
 
             //render jugador
-            jugador->renderizar();
             jugador1->renderizar();
+            jugador2->renderizar();
 
             //SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
 
@@ -395,7 +413,8 @@ bool Nivel::procesar_cliente(){
         //free(v);
         //vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
-        jugador->cerrarNave();
+        jugador1->cerrarNave();
+        jugador2->cerrarNave();
         client->finalizar();
         //for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
         //    (*pos)->cerrarNave();

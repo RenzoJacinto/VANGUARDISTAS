@@ -12,4 +12,4 @@ void* Estado::processData(void* dato){return NULL;}
 
 void* Estado::recibir_encolar() {};
 
-void Estado::close(){}
+void Estado::cerrar(){}

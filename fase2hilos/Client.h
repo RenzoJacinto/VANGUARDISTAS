@@ -20,7 +20,7 @@ class Client: public Estado{
         bool cola_esta_vacia();
         int get_socket();
         int get_id();
-        void close();
+        void cerrar();
 
     private:
         std::string ip;

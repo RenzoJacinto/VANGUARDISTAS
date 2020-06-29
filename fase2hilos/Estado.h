@@ -16,7 +16,7 @@ class Estado{
         virtual void* receiveData();
         virtual void* recibir_encolar();
         virtual void* processData(void* dato);
-        virtual void close();
+        virtual void cerrar();
 
     protected:
         int puerto;

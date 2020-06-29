@@ -34,6 +34,7 @@ int main( int argc, char* argv[] ){
         estado -> iniciar();
         ManejoDeNiveles niveles;
         niveles.procesar_servidor();
+        estado-> cerrar();
     }
     else{
         if(sdl.iniciarSDL()) estado->iniciar();
@@ -45,6 +46,7 @@ int main( int argc, char* argv[] ){
         menu.cerrar();
         sdl.cerrar();
         logger.cerrar();
+        estado->cerrar();
 	}
 	free(estado);
 	return 0;

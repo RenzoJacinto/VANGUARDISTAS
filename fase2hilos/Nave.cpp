@@ -105,13 +105,13 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos )
 {
     bool colision = false;
-    vector<NaveEnemiga*>::iterator pos;
+    //vector<NaveEnemiga*>::iterator pos;
 
-    for(pos = enemigos.begin();pos != enemigos.end();pos++)
-    {
-        colision = checkCollision( jugador , *pos );
-        if (colision) break;
-    }
+    //for(pos = enemigos.begin();pos != enemigos.end();pos++)
+    //{
+        //colision = checkCollision( jugador , *pos );
+        //if (colision) break;
+    //}
 
     return colision;
 }

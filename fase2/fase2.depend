@@ -1,21 +1,22 @@
 # depslib dependency file v1.0
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/BotonIniciar.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/BotonIniciar.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 	<stdio.h>
 	<string>
+	"TextureW.h"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeNiveles.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
@@ -35,10 +36,10 @@
 	"global.h"
 	"list"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeSDL.h
+1593372562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeSDL.h
 	"TextureW.h"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/TextureW.h
+1593372562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -46,9 +47,9 @@
 	<stdio.h>
 	<string>
 
-1593115562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
-	"ManejoDeSDL.h"
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/global.h
 	"ManejoDeLog.h"
+	"ManejoDeSDL.h"
 	"ManejoDeJson.h"
 	<pthread.h>
 
@@ -59,7 +60,7 @@
 	<iostream>
 	<fstream>
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
+1593372562 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
@@ -233,7 +234,7 @@
 	<limits>
 	<type_traits>
 
-1593118260 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
 	<string>
 	<time.h>
 	<ctime>
@@ -283,7 +284,7 @@
 	"Logger.h"
 	"global.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeNiveles.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
 	<time.h>
@@ -304,18 +305,17 @@
 	"Nivel.h"
 	"TextureW.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeSDL.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeSDL.cpp
 	"global.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Menu.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Menu.cpp
 	"Menu.h"
-	"BotonIniciar.h"
 	"global.h"
-	"ManejoDeSDL.h"
 
-1593035785 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Menu.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Menu.h
 	"Escenario.h"
 	"TextureW.h"
+	"BotonIniciar.h"
 
 1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nave.cpp
 	"Nave.h"
@@ -333,7 +333,7 @@
 1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NaveJugador.cpp
 	"NaveJugador.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -359,20 +359,21 @@
 	"Nivel3.h"
 	"global.h"
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/TextureW.cpp
+1593372562 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
+	<SDL2/SDL_ttf.h>
 
-1593035785 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
+1593372562 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
 
-1593118307 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1593120008 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -382,24 +383,25 @@
 	<iostream>
 	<cstdlib>
 	<pthread.h>
-	<thread>
 
-1593122617 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.h
 	"Estado.h"
+	"Juego.h"
 
-1593122199 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	<string>
 	<sys/socket.h>
 	<arpa/inet.h>
+	<unistd.h>
 	<pthread.h>
 
-1593118384 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.h
 	"Estado.h"
 	"json.hpp"
 
-1593115562 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/main.cpp
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/main.cpp
 	"global.h"
 	"Menu.h"
 	"Server.h"
@@ -1649,4 +1651,12 @@
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
+
+1593458422 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Juego.h
+	"Menu.h"
+
+1593458422 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Juego.cpp
+	"Juego.h"
+	"global.h"
+	"TextureW.h"
 

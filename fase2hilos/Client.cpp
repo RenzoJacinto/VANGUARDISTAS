@@ -155,8 +155,8 @@ void Client::finalizar() {
     pthread_mutex_unlock(&mutex);
 }
 
-void Client::close(){
-    //close(socket);
+void Client::cerrar(){
+    close(socket);
     logger.debug("Socket del cliente cerrado");
 }
 
