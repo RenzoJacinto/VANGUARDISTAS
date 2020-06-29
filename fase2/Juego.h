@@ -11,13 +11,13 @@ class Juego{
         void init_menu();
         std::string get_id();
         std::string get_password();
-        void render_errorLoguin();
+        void render_errorLoguin(int intentos);
 
         void cerrar();
 
     private:
         Menu menu;
-        //TextureW gErrorLoguin;
+
 
 };
 

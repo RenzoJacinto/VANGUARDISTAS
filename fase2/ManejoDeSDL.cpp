@@ -56,11 +56,20 @@ bool ManejoDeSDL::iniciarSDL(){
 				} else {
                     logger.debug("Se inicializo la carga de fuentes");
 
-                    gFont = TTF_OpenFont("font.ttf", 18);
-                    if(gFont == NULL){
+                    gFontBox = TTF_OpenFont("font.ttf", 18);
+                    if(gFontBox == NULL){
                         logger.error("Error al inicializar la fuente");
                         ok = false;
-                    } else logger.debug("Se cargo la fuente 'Berlin Sans FB'");
+                    } else logger.debug("Se cargo la fuente 'Berlin Sans FB' con size 18 para los textBox");
+
+                    gFontLog = TTF_OpenFont("font.ttf", 50);
+                    if(gFontLog == NULL){
+                        logger.error("Error al inicializar la fuente");
+                        ok = false;
+                    } else{
+                        TTF_SetFontStyle(gFontLog, TTF_STYLE_ITALIC);
+                        logger.debug("Se cargo la fuente 'Berlin Sans FB' con size 50 para el error de logueo");
+                    }
 				}
 
 			}
@@ -78,6 +87,8 @@ void ManejoDeSDL::cerrar(){
 	logger.debug("Se referenció la ventana como nula");
 	setRenderer(NULL);
 	logger.debug("Se referenció el renderizador como nulo");
+	TTF_CloseFont(gFontLog);
+	TTF_CloseFont(gFontBox);
 
 	IMG_Quit();
 	logger.debug("Se cerró IMG");
@@ -121,6 +132,10 @@ int ManejoDeSDL::getScreenHeight(){
     return screenHeight;
 }
 
-TTF_Font* ManejoDeSDL::getFont(){
-    return gFont;
+TTF_Font* ManejoDeSDL::getFontBox(){
+    return gFontBox;
+}
+
+TTF_Font* ManejoDeSDL::getFontLog(){
+    return gFontLog;
 }

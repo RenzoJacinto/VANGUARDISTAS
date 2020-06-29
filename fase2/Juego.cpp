@@ -24,6 +24,8 @@ void Juego::cerrar(){
     sdl.cerrar();
 }
 
-void Juego::render_errorLoguin(){
-    //gErrorLoguin.render(0,0);
+void Juego::render_errorLoguin(int intentos){
+
+    std::string intentos_rest = std::to_string(intentos);
+    menu.renderErrorLoguin(intentos_rest.c_str());
 }

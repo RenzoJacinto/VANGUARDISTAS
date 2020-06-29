@@ -36,7 +36,8 @@ class ManejoDeSDL{
 
         void renderEnemigo(int x, int y);
 
-        TTF_Font* getFont();
+        TTF_Font* getFontBox();
+        TTF_Font* getFontLog();
 
     private:
 
@@ -46,7 +47,8 @@ class ManejoDeSDL{
 
         SDL_Renderer* gRenderer;
 
-        TTF_Font* gFont;
+        TTF_Font* gFontBox;
+        TTF_Font* gFontLog;
 
 };
 

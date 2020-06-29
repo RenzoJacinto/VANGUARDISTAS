@@ -52,7 +52,8 @@
     	"menu":{
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
-		"selectPass": "sprites/usuario/menu/selectPass.png"
+		"selectPass": "sprites/usuario/menu/selectPass.png",
+		"errorLoguin": "sprites/usuario/menu/errorLoguin.png"
 
 	},
 	"default": {
