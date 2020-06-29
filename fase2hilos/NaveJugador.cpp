@@ -2,7 +2,10 @@
 
 NaveJugador::NaveJugador( int x, int y, int id){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
-    if(crearNave(x, y, "jugador", "jugador")) logger.debug("Se creo la nave jugador");
+    std::string jug = "jugador";
+    std::string num = std::to_string (id);
+    jug+=num;
+    if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
