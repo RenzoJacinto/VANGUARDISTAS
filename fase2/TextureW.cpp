@@ -37,14 +37,16 @@ bool TextureW::loadFromFile( std::string path ){
 }
 
 #if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
-bool TextureW::loadFromRenderedText( std::string textureText ){
+bool TextureW::loadFromRenderedText( std::string textureText, std::string action){
 	//Get rid of preexisting texture
 	//free();
+	TTF_Font* font = sdl.getFontBox();
+	if(action == "log") font = sdl.getFontLog();
 
     SDL_Color textColor = { 34, 177, 76, 255 };
 
 	//Render text surface
-	SDL_Surface* textSurface = TTF_RenderText_Solid( sdl.getFont(), textureText.c_str(), textColor );
+	SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );
 	if( textSurface != NULL ){
 		//Create texture from surface pixels
         mTexture = SDL_CreateTextureFromSurface( sdl.getRenderer(), textSurface );

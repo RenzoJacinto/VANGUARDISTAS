@@ -150,8 +150,8 @@ bool Client::iniciarSesion(){
         }
         if(accion_recibida == 0 && ok) break;
         else{
-            //juego.render_errorLoguin();
             veces_check++;
+            juego.render_errorLoguin(2-veces_check);
         }
         printf("AC_RECI: %d\n", accion_recibida);
 

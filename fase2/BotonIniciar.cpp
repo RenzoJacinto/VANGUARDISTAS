@@ -42,7 +42,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
         if(backspace && id != "") id.pop_back();
         size_t length = id.length();
         if(length > 0 && length <= 27){
-            if(! gId.loadFromRenderedText(id.c_str()))
+            if(! gId.loadFromRenderedText(id.c_str(), ""))
                 logger.error("No se pudo cargar la textura del texto");
         }
 
@@ -52,7 +52,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
         if(backspace && pass != "") pass.pop_back();
         size_t length = pass.length();
         if(length > 0 && length <= 27){
-            if(! gPass.loadFromRenderedText(pass.c_str()))
+            if(! gPass.loadFromRenderedText(pass.c_str(), ""))
                 logger.error("No se pudo cargar la textura del texto");
         }
     }

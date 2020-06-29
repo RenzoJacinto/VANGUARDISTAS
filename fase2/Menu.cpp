@@ -38,7 +38,6 @@ void Menu::procesar(){
     // Mientras que siga corriendo la app
     while( usuarioNoRequieraSalir(quit) ){
 
-
         SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
@@ -59,6 +58,27 @@ std::string Menu::get_id(){
 
 std::string Menu::get_pass(){
     return bt.get_Pass();
+}
+
+void Menu::renderErrorLoguin(const char* intentos){
+    TextureW gErrorLoguin;
+    std::string file = json.get_sprite_menu("errorLoguin");
+    if(! gErrorLoguin.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la imagen de error de logueo");
+    else logger.debug("Se carga la imagen de error de logueo");
+
+    TextureW gIntentos;
+    if(! gIntentos.loadFromRenderedText(intentos, "log"))
+        logger.error("No se pudo cargar el texto de intentos");
+    else logger.debug("Se cargo el texto de intentos");
+
+    SDL_RenderClear(sdl.getRenderer());
+    gErrorLoguin.render(0,0);
+    gIntentos.render(398, 366);
+    SDL_RenderPresent(sdl.getRenderer());
+
+    //HACE UN USLEEP DE 2 SEG
+    for(int i = time(NULL) + 4; time(NULL) != i; time(NULL));
 }
 
 
