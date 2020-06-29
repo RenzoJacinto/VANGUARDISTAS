@@ -3,19 +3,6 @@
 
 BotonIniciar::BotonIniciar(){
     box = NONE_SELECT;
-    std::string file = json.get_sprite_menu("selectName");
-    std::cout<<file<<"\n";
-    if(! gSelectName.loadFromFile(file.c_str()))
-        logger.error("No se pudo cargar la textura del select name");
-
-    else logger.debug("Se cargo las imagen de seleccion de box name");
-
-    file = json.get_sprite_menu("selectPass");
-    std::cout<<file<<"\n";
-    if(! gSelectPass.loadFromFile(file.c_str()))
-        logger.error("No se pudo cargar la textura del select password");
-
-    else logger.debug("Se cargo las imagen de seleccion de box password");
 }
 
 bool BotonIniciar::handleEvent( SDL_Event& e ){
@@ -57,7 +44,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
         if(length > 0 && length <= 27){
             if(! gId.loadFromRenderedText(id.c_str()))
                 logger.error("No se pudo cargar la textura del texto");
-        } else gId.loadFromRenderedText(" ");
+        }
 
     } else if(box == SELECT_PASS){
         gSelectPass.render(0,0);
@@ -67,7 +54,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
         if(length > 0 && length <= 27){
             if(! gPass.loadFromRenderedText(pass.c_str()))
                 logger.error("No se pudo cargar la textura del texto");
-        } else gId.loadFromRenderedText(" ");
+        }
     }
 
     if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
@@ -116,4 +103,16 @@ std::string BotonIniciar::get_Pass(){
 void BotonIniciar::inicializar_credenciales(){
     id = "";
     pass = "";
+}
+
+void BotonIniciar::cargarImagenes(){
+    std::string file = json.get_sprite_menu("selectName");
+    if(! gSelectName.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la textura del select name");
+    else logger.debug("Se cargo las imagen de seleccion de box name");
+
+    file = json.get_sprite_menu("selectPass");
+    if(! gSelectPass.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la textura del select password");
+    else logger.debug("Se cargo las imagen de seleccion de box password");
 }

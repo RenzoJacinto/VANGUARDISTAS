@@ -10,8 +10,7 @@
 
 #include "TextureW.h"
 
-class BotonIniciar
-{
+class BotonIniciar{
     public:
         BotonIniciar();
 
@@ -23,6 +22,7 @@ class BotonIniciar
         std::string get_ID();
         std::string get_Pass();
         void inicializar_credenciales();
+        void cargarImagenes();
 
         // Seleccion de boxs
         static const int SELECT_NAME = 0;

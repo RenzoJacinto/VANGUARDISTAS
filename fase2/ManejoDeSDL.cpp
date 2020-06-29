@@ -60,7 +60,7 @@ bool ManejoDeSDL::iniciarSDL(){
                     if(gFont == NULL){
                         logger.error("Error al inicializar la fuente");
                         ok = false;
-                    } else logger.debug("Se cargo la fuente ''");
+                    } else logger.debug("Se cargo la fuente 'Berlin Sans FB'");
 				}
 
 			}

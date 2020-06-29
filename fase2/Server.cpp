@@ -180,31 +180,34 @@ void Server::loguin_users(){
     client_t cliente;
 
 
-    int data_send = 1;
+
     std:string msj = "+++ ID: ";
     int veces_check[max_users];
     for(int j=0; j<max_users; j++) veces_check[j]=0;
-    while(true){
-        for(int i=0; i<max_users; i++){
-            if(veces_check[i] == 2) break;
-            if(receiveData(client_sockets[i],&cliente, size_client) < 0)
-                logger.error("No se recibio correctamente la data");
 
-            std::cout<<"ID: "<<cliente.id<<"\n";
-            std::cout<<"PASS: "<<cliente.pass<<"\n";
+    for(int i=0; i<max_users; i++){
+        int data_send = 1;
+        while(data_send != 0){
+            if(veces_check[i] < 2){
+                if(receiveData(client_sockets[i],&cliente, size_client) < 0)
+                    logger.error("No se recibio correctamente la data");
 
-            string ids(cliente.id);
-            string cpass(cliente.pass);
-            msj += ids + " ; PASS: " + cpass;
-            logger.info(msj.c_str());
+                std::cout<<"ID: "<<cliente.id<<"\n";
+                std::cout<<"PASS: "<<cliente.pass<<"\n";
+
+                string ids(cliente.id);
+                string cpass(cliente.pass);
+                msj += ids + " ; PASS: " + cpass;
+                logger.info(msj.c_str());
 
 
-            data_send = check_loguin_user(&cliente);
-            if(sendData(client_sockets[i], &data_send, sizeof(int)) < 0 )
-                logger.error("No se envio correctamente la data");
-            printf("DATA_SEND: %d\n", data_send);
+                data_send = check_loguin_user(&cliente);
+                if(sendData(client_sockets[i], &data_send, sizeof(int)) < 0 )
+                    logger.error("No se envio correctamente la data");
+                printf("DATA_SEND: %d\n", data_send);
 
-            (veces_check[i])++;
+                (veces_check[i])++;
+            } else break;
         }
     }
 

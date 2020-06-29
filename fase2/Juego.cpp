@@ -4,10 +4,10 @@
 
 Juego::Juego(){
     //gErrorLoguin.loadFromFile("s");
+    if(! sdl.iniciarSDL()) logger.error("Fallo la inicializacion de SDL");
 }
 
 void Juego::init_menu(){
-    if(! sdl.iniciarSDL()) logger.error("Fallo la inicializacion de SDL");
     if (menu.cargarImagen()) menu.procesar();
 }
 

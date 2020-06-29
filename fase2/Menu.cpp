@@ -12,6 +12,8 @@ bool Menu::cargarImagen(){
 	//Loading success flag
 	bool ok = true;
 
+	bt.cargarImagenes();
+
     // Cargar la textura de la nave
     std::string menu = json.get_sprite_menu("menu");
     const char* sMenuBG = menu.c_str();
