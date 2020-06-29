@@ -3,6 +3,7 @@
 
 #include "Escenario.h"
 #include "TextureW.h"
+#include "BotonIniciar.h"
 
 class Menu: public Escenario
 {
@@ -12,7 +13,12 @@ class Menu: public Escenario
         void procesar();
         void cerrar();
 
+        std::string get_id();
+        std::string get_pass();
+
     private:
+        BotonIniciar bt;
+
         SDL_Rect dataMenu;
 
         TextureW gMenuBGTexture;

@@ -2,13 +2,12 @@
 #include "Menu.h"
 #include "Server.h"
 #include "Client.h"
-#include "ManejoDeNiveles.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
-Estado* estado;
 pthread_mutex_t mutex;
+Estado* estado;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 
@@ -29,24 +28,11 @@ int main( int argc, char* argv[] ){
         return 0;
     }
 
-    std::string estado_json = json.get_estado_conexion();
-    if(strcmp(estado_json.c_str(), "server") == 0) {
-        estado -> iniciar();
-        ManejoDeNiveles niveles;
-        niveles.procesar_servidor();
-    }
-    else{
-        if(sdl.iniciarSDL()) estado->iniciar();
-        Menu menu = Menu();
-        //Si inicia sdl y la carga de imagenes satisfactoriamente procede a mostrar el menú
-        if (menu.cargarImagen()) menu.procesar();
+    estado->iniciar();
 
-         //Libera la memoria allocada
-        menu.cerrar();
-        sdl.cerrar();
-        logger.cerrar();
-	}
-	free(estado);
+    //Libera la memoria allocada
+    logger.cerrar();
+    free(estado);
 	return 0;
 }
 

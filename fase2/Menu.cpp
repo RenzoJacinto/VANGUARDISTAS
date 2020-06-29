@@ -1,7 +1,5 @@
 #include "Menu.h"
-#include "BotonIniciar.h"
 #include "global.h"
-#include "ManejoDeSDL.h"
 
 Menu::Menu(){
     dataMenu.h = 600;
@@ -29,19 +27,20 @@ bool Menu::cargarImagen(){
 
 void Menu::procesar(){
     bool quit = false;
-    BotonIniciar bt;
     logger.info("Se mostró el menú");
-    // Mientras que siga corriendo la app
+    bt.inicializar_credenciales();
 
-    SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
     SDL_RenderClear( sdl.getRenderer() );
     gMenuBGTexture.render( 0, 0, &dataMenu );
 
+    // Mientras que siga corriendo la app
     while( usuarioNoRequieraSalir(quit) ){
+
+
         SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
-            bt.handleEvent( e );
+            if(! bt.handleEvent( e )) quit = true;
         }
         SDL_RenderPresent( sdl.getRenderer() );
         SDL_StopTextInput();
@@ -50,6 +49,14 @@ void Menu::procesar(){
 
 void Menu::cerrar(){
 	gMenuBGTexture.free();
+}
+
+std::string Menu::get_id(){
+    return bt.get_ID();
+}
+
+std::string Menu::get_pass(){
+    return bt.get_Pass();
 }
 
 

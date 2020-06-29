@@ -15,10 +15,14 @@ class BotonIniciar
     public:
         BotonIniciar();
 
-        void handleEvent( SDL_Event& e );
+        bool handleEvent( SDL_Event& e );
         int mouseEvent(SDL_Event& e);
         bool clickOnBoxName(int x, int y);
         bool clickOnBoxPass(int x, int y);
+
+        std::string get_ID();
+        std::string get_Pass();
+        void inicializar_credenciales();
 
         // Seleccion de boxs
         static const int SELECT_NAME = 0;
@@ -44,7 +48,6 @@ class BotonIniciar
         TextureW gPass;
 
         std::string inputText;
-        //TextureW gInputText;
 
         TextureW gSelectName;
         TextureW gSelectPass;

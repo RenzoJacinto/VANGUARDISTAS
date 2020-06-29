@@ -4,47 +4,21 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 #include <pthread.h>
 
-typedef struct Credenciales {
-    char id[50];
-    char pass[50];
-} credenciales_t;
-
-void* hilo_validar_credenciales(void* p)
-{
-    Server* sv = (Server*) p;
-
-    pthread_mutex_lock(&mutex);
-    int client = sv->get_socket_actual();
-    sv->aumentar_socket();
-    pthread_mutex_unlock(&mutex);
-
-    sv->validar_credenciales(client);
-
-    return NULL;
-}
 
 Server::Server(int port, pthread_mutex_t m){
     max_users = json.get_max_users();
+    if(max_users > MAX_CLIENTS) max_users = MAX_CLIENTS;
+
     puerto = port;
     mutex = m;
-    cant_sockets = 0;
-    estado = "server";
 
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
     whitelist >> j_wl;
     whitelist.close();
-}
-
-int Server::get_socket_actual()
-{
-    return client_sockets[cant_sockets];
-}
-
-void Server::aumentar_socket() {
-    cant_sockets++;
 }
 
 bool Server::iniciar(){
@@ -64,6 +38,12 @@ bool Server::iniciar(){
     server_addr.sin_addr.s_addr = INADDR_ANY;
     server_addr.sin_port = htons(puerto);
 
+    int opt = 1;
+    if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))){
+        logger.error("Error al setsockopt");
+        return false;
+    }
+
     // BIND
     logger.info("#Bind ...");
     if( bind(socket, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0){
@@ -75,15 +55,18 @@ bool Server::iniciar(){
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
     struct sockaddr_in client_addr;
     int client_addrlen;
-    int actual_socket = 0;
+
     //typedef void * (*THREADFUNCPTR)(void *);
-    while(actual_socket < 2/*max_users*/ && cant_sockets < MAX_CLIENTS){
-        logger.info("#Listen ...");
-        if (listen(socket , max_users) < 0){
-            logger.error("Error en el Listen");
-            return false;
-        }
-        std::string msj = "@Esperando a que se conecten usuarios en el puerto: " + std::to_string(puerto);
+    logger.info("#Listen ...");
+    if (listen(socket , max_users) < 0){
+        logger.error("Error en el Listen");
+        return false;
+    }
+
+    int actual_socket = 0;
+    while(actual_socket < max_users && actual_socket < MAX_CLIENTS){
+
+        std::string msj = "@Esperando a que se conecten " + std::to_string(max_users-actual_socket) + " usuarios en el puerto: " + std::to_string(puerto);
         logger.debug(msj.c_str());
         // SOCKET DEL CLIENTE
         logger.info("#Aceptar cliente ...");
@@ -94,120 +77,156 @@ bool Server::iniciar(){
             logger.error("Fallo el accept del cliente");
             continue;
         } else{
-            //actual_socket++;
             printf("accepted\n");
-            msj = "@Conexion del cliente " + std::to_string(cant_sockets) + " aceptada";
+            msj = "@Conexion del cliente " + std::to_string(actual_socket) + " aceptada";
             logger.debug(msj.c_str());
-            //pthread_t hilo;
-            //validar_credenciales(&client_sockets[cant_sockets]);
-            //printf("%d\n", cant_sockets);
-            //validar_credenciales(client_sockets[actual_socket]);
-            pthread_create(&clientes[actual_socket], NULL, hilo_validar_credenciales, this);
-            printf("%d\n", cant_sockets);
             actual_socket++;
         }
 
         //HACE UN USLEEP DE 1 SEG
-        //for(int i = time(NULL) + 1; time(NULL) != i; time(NULL));
+        for(int i = time(NULL) + 1; time(NULL) != i; time(NULL));
         printf("termine\n");
     }
-
-
-    //if(! validar_credenciales()); //DEBERIA ESPERAR A QUE INGRESEN OTROS O QUE VUELVA A INGRESAR;
-
-    //int j;
-    //j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))recibir_encolar(), NULL);
-    //if (j){exit(-1);}
-    //j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))desencolar_procesar_enviar(), NULL);
-    //if (j){exit(-1);}
-
-    //while(true){
-
-      //  recibir_encolar();
-        //desencolar_procesar_enviar();
-
-    //}
-
+    loguin_users();
+    cerrar();
     return true;
 }
 
-void* Server::recibir_encolar(){
-    cola->push(receiveData());
-    return NULL;
-}
-
-void* Server::desencolar_procesar_enviar(){
-    while(!cola->estaVacia()){
-        sendData(processData(cola->pop()));
+void* Server::encolar(){
+    while(true){
+        receiveData(0, NULL, 0);
+        //cola->push(NULL);
     }
     return NULL;
 }
 
-bool Server::sendData(void* dato){
-
-
-	return true;
-}
-
-void* Server::receiveData(){
-	return NULL;
-}
-
-void* Server::processData(void* dato){
+void* Server::desencolar(){
+    while(!cola->estaVacia()){
+        //processData(cola->pop());
+        sendData(0, NULL, 0);
+    }
     return NULL;
+}
+
+int Server::sendData(int client_socket, void* dato, int data_size){
+
+    int total_bytes_enviados = 0;
+    int bytes_enviados = 0;
+    bool ok = true;
+
+    std::string msj = "";
+    std::string str_sock = std::to_string(client_socket);
+
+    while ((data_size > total_bytes_enviados) && ok){
+        bytes_enviados = send(client_socket, (dato + total_bytes_enviados), (data_size-total_bytes_enviados), MSG_NOSIGNAL);
+
+        if (bytes_enviados < 0) {
+            msj = "No se envio correctamente la data del cliente con socket " + str_sock;
+            logger.error(msj.c_str());  // Error
+            return bytes_enviados;
+        } else if(bytes_enviados == 0) {
+            msj = "El cliente de socket " + str_sock +" se desconecto"; // Socket closed
+            logger.error(msj.c_str());
+            ok = false;
+        } else total_bytes_enviados += bytes_enviados;
+    }
+
+    return 0;
 
 }
 
-void Server::close(){
-    /*for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
+int Server::receiveData(int client_socket, void* dato, int data_size){
+	int total_bytes_recibidos = 0;
+    int bytes_recibidos = 0;
+    bool ok = true;
+
+    std::string msj = "";
+    std::string str_sock = std::to_string(client_socket);
+
+    while ((data_size > total_bytes_recibidos) && ok) {
+        bytes_recibidos = recv(client_socket, (dato + total_bytes_recibidos), (data_size - total_bytes_recibidos), MSG_NOSIGNAL);
+
+        if (bytes_recibidos < 0){
+            msj = "No se recibio correctamente la data del cliente con socket " + str_sock;
+            logger.error(msj.c_str()); // Error
+            return bytes_recibidos;
+        } else if (bytes_recibidos == 0) {
+            msj = "El cliente de socket " + str_sock +" se desconecto";
+            logger.error(msj.c_str()); // Socket closed
+            ok = false;
+        } else total_bytes_recibidos += bytes_recibidos;
+
+    }
+    return 0;
+}
+
+void Server::processData(){
+
+
+}
+
+void Server::cerrar(){
+    for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
         close(client_sockets[i]);
     }
-    close(socket);*/
+    close(socket);
 }
 
-int Server::get_socket(int i) {
-    return client_sockets[i];
-}
+void Server::loguin_users(){
 
-void* Server::validar_credenciales(int client)
-{
-    printf("validando credenciales\n");
-    credenciales_t* datos = (credenciales_t*)malloc(sizeof(credenciales_t));
-    int bytes = recv( client , datos, sizeof(credenciales_t), MSG_NOSIGNAL);
-    printf("SOCKET: %d - ID: %s\n", client, datos->id);
-    if(bytes > 0){
-        try{
-            char password[50];
-            password[0] = 0;
-            std::string pass = j_wl.at(datos->id);
-            std::cout<<pass;
-            strncat(password, pass.c_str(), 49);
-            if(strcmp(password, datos->pass) != 0)
-            {
-                char invalid_pass[22];
-                invalid_pass[0] = 0;
-                strncat(invalid_pass, "Contrasenia invalida", 21);
-                int byes1 = send(client, &invalid_pass, 22, 0);
-                validar_credenciales(client);
-                return NULL;
-            }
-            printf("datos correctos\n");
-            char hola[6];
-            hola[0] = 0;
-            strncat(hola, "hola", 5);
-            int byes1 = send(client, &hola, 6, 0);
-            //pthread_mutex_lock(&mutex);
-            //cant_sockets++;
-            //pthread_mutex_unlock(&mutex);
-            return NULL;
-        }
-        catch(nlohmann::detail::out_of_range)
-        {
-            char invalid_id[18];
-            invalid_id[0] = 0;
-            strncat(invalid_id, "Usuario invalido", 17);
-            int byes1 = send(client, &invalid_id, 18, 0);
-            validar_credenciales(client);
+    logger.info("~~ Verificando las credenciales de los usuarios");
+
+    size_t size_client = sizeof(client_t);
+    client_t cliente;
+
+
+    int data_send = 1;
+    std:string msj = "+++ ID: ";
+    int veces_check[max_users];
+    for(int j=0; j<max_users; j++) veces_check[j]=0;
+    while(true){
+        for(int i=0; i<max_users; i++){
+            if(veces_check[i] == 2) break;
+            if(receiveData(client_sockets[i],&cliente, size_client) < 0)
+                logger.error("No se recibio correctamente la data");
+
+            std::cout<<"ID: "<<cliente.id<<"\n";
+            std::cout<<"PASS: "<<cliente.pass<<"\n";
+
+            string ids(cliente.id);
+            string cpass(cliente.pass);
+            msj += ids + " ; PASS: " + cpass;
+            logger.info(msj.c_str());
+
+
+            data_send = check_loguin_user(&cliente);
+            if(sendData(client_sockets[i], &data_send, sizeof(int)) < 0 )
+                logger.error("No se envio correctamente la data");
+            printf("DATA_SEND: %d\n", data_send);
+
+            (veces_check[i])++;
         }
     }
+
 }
+
+// correcta credenciales -> 0 else 1
+int Server::check_loguin_user(client_t* cliente){
+    int ok = 0;
+    std::string msj = "--- ";
+    nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);
+    if(j_aux == "errorKey"){
+        msj += "Id inexistente";
+        logger.info(msj.c_str());
+        ok = 1;
+    } else{
+        std::string password = j_wl.at(cliente->id);
+        if(password != cliente->pass){
+            msj += "Password incorrecta";
+            logger.info(msj.c_str());
+            ok = 1;
+        }
+    }
+    return ok;
+}
+

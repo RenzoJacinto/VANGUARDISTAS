@@ -12,26 +12,25 @@ class Estado{
     public:
         Estado();
         virtual bool iniciar();
-        virtual bool sendData(void* dato);
-        virtual void* receiveData();
-        virtual void* processData(void* dato);
-        virtual void close();
+        virtual int sendData(void* dato);
+        virtual int receiveData();
+        virtual void processData(void* dato);
+        virtual void cerrar();
 
     protected:
         int puerto;
         int socket;
-        const char* estado;
         pthread_mutex_t mutex;
 
-        struct client{
-            std::string id;
-            std::string passwd;
-        };
+        typedef struct client{
+            char id[28];
+            char pass[28];
+        } client_t;
 
-        struct position{
+        typedef struct position{
             int x;
             int y;
-        };
+        } position_t;
 };
 
 #endif

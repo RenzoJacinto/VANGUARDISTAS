@@ -2,6 +2,7 @@
 #define CLIENT_H_
 
 #include "Estado.h"
+#include "Juego.h"
 
 class Client: public Estado{
 
@@ -9,23 +10,26 @@ class Client: public Estado{
 
         Client(char* IP, int port, pthread_mutex_t m);
         bool iniciar();
-        void* enviar();
-        void* recibir_encolar();
-        void* desencolar_procesar();
-        bool sendData(void* dato);
-        void* receiveData();
-        void* processData(void* dato);
+
+        //hilos
+        void* encolar();
+        void* desencolar();
+
+        int sendData(void* dato, int size_data);
+        int receiveData(void* dato, int size_data);
+        void processData(void* dato);
+
         bool iniciarSesion();
-        int get_socket();
-        void close();
+
+        void cerrar();
 
     private:
         std::string ip;
         ColaMultihilo* cola;
-        int socket_id;
-        pthread_t hiloEnviar;
-        pthread_t hiloRecibirEncolar;
-        pthread_t hiloDesencolarProcesar;
+        pthread_t hiloPop;
+        pthread_t hiloPush;
+
+        Juego juego;
 
 };
 
