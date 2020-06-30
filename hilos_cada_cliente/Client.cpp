@@ -138,6 +138,13 @@ void* Client::receiveData(){
 	return pos;
 }
 
+long int Client::receiveN(){
+    long int n = (long int)malloc(sizeof(long int));
+    recv(socket_id, (void*)n, sizeof(long int), MSG_NOSIGNAL);
+    printf("n: %ld\n", n);
+    return n;
+}
+
 void* Client::processData(void* dato){
     return NULL;
 

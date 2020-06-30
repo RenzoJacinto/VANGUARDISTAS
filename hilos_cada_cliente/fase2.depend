@@ -2754,7 +2754,7 @@
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1593463293 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Client.cpp
+1593537350 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -2766,7 +2766,7 @@
 	<pthread.h>
 	<thread>
 
-1593463247 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Client.h
+1593537349 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Client.h
 	"Estado.h"
 
 1593495110 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Escenario.cpp
@@ -2892,7 +2892,7 @@
 	"Nivel3.h"
 	"global.h"
 
-1593533741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Server.cpp
+1593535615 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Server.cpp
 	"Server.h"
 	"global.h"
 	<string>
@@ -2915,7 +2915,7 @@
 	<ctime>
 	<cmath>
 
-1593534310 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.cpp
+1593537513 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.cpp
 	"NivelCliente.h"
 
 1593495941 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.h
@@ -2924,7 +2924,7 @@
 	"Nivel.h"
 	"TextureW.h"
 
-1593496136 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelServer.cpp
+1593537649 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelServer.cpp
 	"NivelServer.h"
 
 1593496101 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelServer.h

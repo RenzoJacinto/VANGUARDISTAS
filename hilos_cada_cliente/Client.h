@@ -14,6 +14,7 @@ class Client: public Estado{
         void* desencolar_procesar();
         bool sendData(void* dato);
         void* receiveData();
+        long int receiveN();
         void finalizar();
         void* processData(void* dato);
         bool iniciarSesion();

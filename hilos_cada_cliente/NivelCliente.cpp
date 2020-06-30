@@ -27,15 +27,16 @@ bool NivelCliente::procesar(){
 	    temporizador.iniciar();
 
         Client* client = (Client*) estado;
+        //long int n = client->receiveN();
+        const int n = 2;
 
         int id = client->get_id();
         std::map<int, NaveJugador*> jugadores;
-        NaveJugador* jugador1 = new NaveJugador( 100, sdl.getScreenWidth() / 4, id);
+        NaveJugador* jugador1 = new NaveJugador( 0, 0, id);
         jugadores.insert({id, jugador1});
-        const int n = 2;
         for(int i = 0; i < (n-1); ++i){
             ++id;
-            NaveJugador* jugador = new NaveJugador( 200, sdl.getScreenWidth() / 4, id%n);
+            NaveJugador* jugador = new NaveJugador( 0, 0, id%n);
             jugadores.insert({jugador->get_id(), jugador});
         }
         //id++;

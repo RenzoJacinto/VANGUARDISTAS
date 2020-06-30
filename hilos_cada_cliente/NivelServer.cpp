@@ -33,16 +33,7 @@ void* loop_recibir_server_1(void* p) {
 void* loop_enviar_server(void* p) {
     data_send_t* data = (data_send_t*)p;
     Server* server = data->server;
-    posiciones_t* pos = data->pos;
-    int id = data->id;
-    int total_bytes_writen = 0;
-    int bytes_writen = 0;
-    int sent_data_size = sizeof(posiciones_t);
-    while(sent_data_size > total_bytes_writen) {
-        bytes_writen = send(server->get_socket(id), pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
-        total_bytes_writen += bytes_writen;
-        if(bytes_writen<=0)break;
-    }
+    server->sendData(data);
     return NULL;
 }
 
@@ -58,7 +49,10 @@ bool NivelServer::procesar(){
 
         std::map<int, NaveJugador*> jugadores;
 
-        const int n = server->get_max_users();
+        long int n = server->get_max_users();
+        //for(int i = 0; i < n; ++i){
+            //send(server->get_socket(i), (void*)n, sizeof(long int), MSG_NOSIGNAL);
+        //}
         int x = 0;
         for(int i = 0; i < n; ++i){
             x += 100;
@@ -156,17 +150,14 @@ bool NivelServer::procesar(){
                 int total_bytes_writen = 0;
                 int bytes_writen = 0;
                 int sent_data_size = sizeof(posiciones_t);
-                while(sent_data_size > total_bytes_writen) {
-                    bytes_writen = send(server->get_socket(0), pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
-                    total_bytes_writen += bytes_writen;
-                    if(bytes_writen<=0)break;
-                }
-                total_bytes_writen = 0;
-                bytes_writen = 0;
-                while(sent_data_size > total_bytes_writen) {
-                    bytes_writen = send(server->get_socket(1), pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
-                    total_bytes_writen += bytes_writen;
-                    if(bytes_writen<=0)break;
+                for(int i = 0; i < n; ++i){
+                    while(sent_data_size > total_bytes_writen) {
+                        bytes_writen = send(server->get_socket(i), pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
+                        total_bytes_writen += bytes_writen;
+                        if(bytes_writen<=0)break;
+                    }
+                    total_bytes_writen = 0;
+                    bytes_writen = 0;
                 }
                 //data_send_t* data = (data_send_t*) malloc(sizeof(data_send_t));
                 //data->server = server;

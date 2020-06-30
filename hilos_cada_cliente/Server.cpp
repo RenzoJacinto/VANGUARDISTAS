@@ -17,6 +17,18 @@ typedef struct velocidades {
     int VelY;
 } velocidades_t;
 
+typedef struct posiciones {
+    int id;
+    int posX;
+    int posY;
+} posiciones_t;
+
+typedef struct data_send{
+    Server* server;
+    posiciones_t* pos;
+    int id;
+}data_send_t;
+
 nlohmann::json USERS;
 void* hilo_validar_credenciales(void* p)
 {
@@ -209,8 +221,17 @@ void* Server::desencolar_procesar_enviar(){
 }
 
 bool Server::sendData(void* dato){
-
-
+    data_send_t* data = (data_send_t*)dato;
+    posiciones_t* pos = data->pos;
+    int id = data->id;
+    int total_bytes_writen = 0;
+    int bytes_writen = 0;
+    int sent_data_size = sizeof(posiciones_t);
+    while(sent_data_size > total_bytes_writen) {
+        bytes_writen = send(client_sockets[id], pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
+        total_bytes_writen += bytes_writen;
+        if(bytes_writen<=0)break;
+    }
 	return true;
 }
 
