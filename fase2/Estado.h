@@ -6,6 +6,8 @@
 #include <ctime>
 
 #include "ColaMultihilo.h"
+#include "TextureW.h"
+#include "typesmsj.h"
 
 class Estado{
 
@@ -22,15 +24,6 @@ class Estado{
         int socket;
         pthread_mutex_t mutex;
 
-        typedef struct client{
-            char id[28];
-            char pass[28];
-        } client_t;
-
-        typedef struct position{
-            int x;
-            int y;
-        } position_t;
 };
 
 #endif

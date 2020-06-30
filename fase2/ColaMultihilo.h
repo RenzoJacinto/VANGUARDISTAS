@@ -7,29 +7,35 @@
 class ColaMultihilo{
 
     public:
+        ColaMultihilo(){
+            elements = 0;
+            pthread_mutex_init(&mutex, NULL);
+        }
 
-        void* push(void* dato){
+        void push(void* dato){
             pthread_mutex_lock(&mutex);
             cola.push(dato);
+            elements++;
             pthread_mutex_unlock(&mutex);
-            return NULL;
         }
 
         void* pop(){
             pthread_mutex_lock(&mutex);
             void* data = cola.front();
             cola.pop();
+            elements--;
             pthread_mutex_unlock(&mutex);
             return data;
         }
 
         bool estaVacia(){
-            return cola.empty();
+            return elements;
         }
 
     private:
         std::queue<void*> cola;
         pthread_mutex_t mutex;
+        int elements;
 };
 
 #endif

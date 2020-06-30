@@ -6,7 +6,6 @@
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
-pthread_mutex_t mutex;
 Estado* estado;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
@@ -25,10 +24,16 @@ int main( int argc, char* argv[] ){
 
     if(!iniciar_conexion(argv)){
         logger.cerrar();
+        free(estado);
         return 0;
     }
-
-    estado->iniciar();
+    if(estado != NULL) estado->iniciar();
+    else{
+        logger.error("Parametros invalidos");
+        logger.cerrar();
+        free(estado);
+        return 0;
+    }
 
     //Libera la memoria allocada
     logger.cerrar();
@@ -38,16 +43,15 @@ int main( int argc, char* argv[] ){
 
 
 bool iniciar_conexion(char* args[]){
-    pthread_mutex_init(&mutex, NULL);
     std::string estado_json = json.get_estado_conexion();
     if (strcmp(estado_json.c_str(), "server") == 0){
-        estado = new Server(atoi(args[1]), mutex);
+        estado = new Server(atoi(args[1]));
         return true;
     } else if(strcmp(estado_json.c_str(), "client") == 0){
         printf("es cliente\n");
-        estado = new Client(args[1], atoi(args[2]), mutex);
+        estado = new Client(args[1], atoi(args[2]));
         return true;
-    }else{
+    } else{
         logger.error("El estado obtenido es inexistente");
         return false;
     }

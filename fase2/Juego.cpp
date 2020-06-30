@@ -29,3 +29,12 @@ void Juego::render_errorLoguin(int intentos){
     std::string intentos_rest = std::to_string(intentos);
     menu.renderErrorLoguin(intentos_rest.c_str());
 }
+
+void Juego::iniciar(position_t* pos){
+    ManejoDeNiveles niveles;
+    niveles.procesar(pos);
+}
+void Juego::renderNave(client_vw_t* client_view){
+    client_view->gNaveTexture.render(client_view->x, client_view->y);
+    SDL_RenderPresent(sdl.getRenderer());
+}

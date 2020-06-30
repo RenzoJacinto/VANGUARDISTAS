@@ -11,11 +11,33 @@
 #include <pthread.h>
 
 
-Client::Client(char* IP, int port, pthread_mutex_t m){
+void* client_encolar(void* client){
+    Client* cliente = (Client*)client;
+    cliente->encolar();
+    return NULL;
+}
+void* client_desencolar(void* client){
+    Client* cliente = (Client*)client;
+    cliente->desencolar();
+    return NULL;
+}
+void*client_enviar(void* client){
+    Client* cliente = (Client*)client;
+    cliente->enviar();
+    return NULL;
+}
+
+Client::Client(char* IP, int port){
     puerto = port;
     string sIP(IP);
     ip = sIP;
-    mutex = m;
+
+    cola = new ColaMultihilo();
+
+    size_pos = sizeof(struct position);
+    pos = (struct position* )malloc(size_pos);
+    pos->x = 0;
+    pos->y = 0;
 }
 
 bool Client::iniciar(){
@@ -29,6 +51,9 @@ bool Client::iniciar(){
         logger.error("No se pudo crear el socket");
         return false;
     }
+    //seteo el socet del cliente
+    //pos->client_socket = socket;
+
     logger.debug("@Socket creado");
 
     struct sockaddr_in server;
@@ -44,32 +69,51 @@ bool Client::iniciar(){
     }
     logger.debug("@Conectado");
 
-    iniciarSesion();
+    if(! iniciarSesion()){
+        juego.cerrar();
+        return false;
+    }
 
     // Creo los hilos de envio y recibimiento de data
     //typedef void * (*THREADFUNCPTR)(void *);
 
-    //pthread_create(&hiloPop, NULL, (THREADFUNCPTR)Client::desencolar, NULL);
-    //pthread_create(&hiloPush, NULL, (THREADFUNCPTR)Client::encolar, NULL);
+    pthread_create(&hiloPop, NULL, client_desencolar, this);
+    pthread_create(&hiloPush, NULL, client_encolar, this);
+    pthread_create(&hiloEnviar, NULL, client_enviar, this);
 
-    juego.cerrar();
+    juego.iniciar(pos);
+
+    cerrar();
     return true;
 }
 
 void* Client::encolar(){
+    int size_data = sizeof(client_vw_t);
+    client_vw_t client_view;
     while(true){
-        receiveData(NULL, 0);
-        cola->push(NULL);
+        if(receiveData(&client_view, size_pos) < 0) break;
+        std::cout<<"ENCOLAR\n";
+        printf("X: %d\n", client_view.x);
+        printf("Y: %d\n", client_view.y);
+        std::cout<<"-----------\n";
+        cola->push(&client_view);
     }
     return NULL;
 }
 
 void* Client::desencolar(){
+
     while(true){
         while(! cola->estaVacia()){
             processData(cola->pop());
-            sendData( NULL, 0);
         }
+    }
+    return NULL;
+}
+
+void* Client::enviar(){
+    while(true){
+        if(sendData(pos,size_pos) < 0) break;
     }
     return NULL;
 }
@@ -116,7 +160,12 @@ int Client::receiveData(void* dato, int bytes_totales){
 }
 
 void Client::processData(void* dato){
-
+    struct client_vw* client_view = (struct client_vw*)dato;
+    std::cout<<"PROCESS DATA\n";
+    printf("X: %d\n", client_view->x);
+    printf("Y: %d\n", client_view->y);
+    std::cout<<"-----------\n";
+    juego.renderNave(client_view);
 }
 
 bool Client::iniciarSesion(){
@@ -141,8 +190,6 @@ bool Client::iniciarSesion(){
             logger.error("Error en el envio de la data");
             ok = false;
         }
-        std::cout<<"ID: "<<cliente->id<<"\n";
-        std::cout<<"PASS: "<<cliente->pass<<"\n";
 
         if(receiveData(&accion_recibida, sizeof(int)) < 0){
             logger.error("Error en el recibimiento de la data");
@@ -151,9 +198,11 @@ bool Client::iniciarSesion(){
         if(accion_recibida == 0 && ok) break;
         else{
             veces_check++;
-            juego.render_errorLoguin(2-veces_check);
+            int intentos = 2 - veces_check;
+            juego.render_errorLoguin(intentos);
+            std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
+            logger.info(msj.c_str());
         }
-        printf("AC_RECI: %d\n", accion_recibida);
 
     }
     //free(cliente);
@@ -162,6 +211,8 @@ bool Client::iniciarSesion(){
 }
 
 void Client::cerrar(){
+    juego.cerrar();
+    logger.debug("Juego terminado");
     close(socket);
     logger.debug("Socket del cliente cerrado");
 }

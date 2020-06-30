@@ -16,13 +16,13 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     logger.info(mensaje.c_str());
 }
 
-void NaveEnemiga::mover( NaveJugador* jugador ){
+void NaveEnemiga::mover(){
 
     setPosX(getPosX()+desplazamiento);
 
-    if( checkCollision( jugador , this ) ){
+    /*if( checkCollision( jugador , this ) ){
         setPosX(getPosX()-desplazamiento);
-    }
+    }*/
 }
 
 void NaveEnemiga::renderizar(){
@@ -44,4 +44,8 @@ int NaveEnemiga::getAltoImagen(){
 
 int NaveEnemiga::getAnchoImagen(){
 	return gNaveTexture.getWidth();
+}
+
+TextureW NaveEnemiga::get_texture(){
+    return gNaveTexture;
 }

@@ -12,7 +12,7 @@ class NaveEnemiga: public Nave {
         NaveEnemiga(int x, int y, const char* sprite);
 
 		//Mueve la Nave considerando la posicion de la Nave del jugador
-		void mover( NaveJugador* jugador );
+		void mover();
 
 		void renderizar();
 
@@ -23,6 +23,8 @@ class NaveEnemiga: public Nave {
 		int getAltoImagen();
 
 		int getAnchoImagen();
+
+		TextureW get_texture();
 
     protected:
 

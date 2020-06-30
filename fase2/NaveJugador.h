@@ -23,13 +23,15 @@ class NaveJugador: public Nave {
 		void handleEvent( SDL_Event& e );
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( vector<NaveEnemiga*>  enemigo );
+		void mover();
 
 		void renderizar();
 
         int getAlto();
 
         int getAncho();
+
+        TextureW get_texture();
 
     private:
 
