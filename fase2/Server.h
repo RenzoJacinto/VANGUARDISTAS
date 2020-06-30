@@ -3,15 +3,16 @@
 
 #include "Estado.h"
 #include "json.hpp"
+#include "Nivel.h"
 
 class Server: public Estado{
 
     public:
-        Server(int port, pthread_mutex_t m);
+        Server(int port);
         bool iniciar();
 
         //hilos
-        void* encolar();
+        void* encolar(int client_socket);
         void* desencolar();
 
         int sendData(int client_socket, void* dato, int data_size);
@@ -22,6 +23,8 @@ class Server: public Estado{
         void loguin_users();
 
         void cerrar();
+        TextureW get_textureNave(int client_socket);
+        void set_textureNave(int i);
 
         static const int MAX_CLIENTS = 4;
 
@@ -30,7 +33,14 @@ class Server: public Estado{
         int client_sockets[MAX_CLIENTS];
         ColaMultihilo* cola;
 
+        pthread_t hiloPop;
+        pthread_t hilosPush[MAX_CLIENTS];
+
         nlohmann::json j_wl;
+
+        TextureW gNaves[MAX_CLIENTS];
+
+        Nivel server_level;
 };
 
 #endif

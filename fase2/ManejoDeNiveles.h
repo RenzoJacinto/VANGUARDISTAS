@@ -3,6 +3,7 @@
 
 #include <list>
 #include "Nivel.h"
+#include "typesmsj.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class ManejoDeNiveles{
 
         ManejoDeNiveles();
         void cerrar_niveles(list<Nivel*> niveles);
-        void procesar();
+        void procesar(position_t* pos);
         void delay(int sec);
         void cargarNiveles();
 

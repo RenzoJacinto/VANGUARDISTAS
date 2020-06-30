@@ -41,7 +41,9 @@ void Menu::procesar(){
         SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
-            if(! bt.handleEvent( e )) quit = true;
+            if(! bt.handleEvent( e )){
+                quit = true;
+            }
         }
         SDL_RenderPresent( sdl.getRenderer() );
         SDL_StopTextInput();

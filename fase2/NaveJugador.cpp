@@ -2,7 +2,7 @@
 
 NaveJugador::NaveJugador( int x, int y){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
-    if(crearNave(x, y, "jugador", "jugador")) logger.debug("Se creo la nave jugador");
+    if(crearNave(x, y, "jugador", "nave1")) logger.debug("Se creo la nave jugador");
 
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
@@ -32,12 +32,12 @@ void NaveJugador::handleEvent( SDL_Event& e ){
     }
 }
 
-void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
+void NaveJugador::mover(){
 
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
 
-    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  ||  encontrarEnemigos( this, enemigos ) ){
+    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )){
         // Vuelve a la anterior posicion
         setPosX(getPosX()-getVelX());
     }
@@ -45,7 +45,7 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
     // Mueve la nave a la izquierda o la derecha
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || encontrarEnemigos( this, enemigos ) ){
+    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() )){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }

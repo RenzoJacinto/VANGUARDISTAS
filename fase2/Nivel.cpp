@@ -12,8 +12,9 @@ Nivel::Nivel(){
     dataFinNivel.y = 0;
 }
 
-vector<NaveEnemiga*> Nivel::crear_enemigos(){
+vector<NaveEnemiga*> Nivel::crear_enemigos(ColaMultihilo* cola){
     vector<NaveEnemiga*> enemigos(cantidad_enemigos);
+    int size_view = sizeof(struct client_vw);
     for(int i=0; i<cantidad_enemigos; i++){
 
         // Elige un enemigo random
@@ -33,13 +34,15 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(){
         NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
 
         enemigos[i]=enemigo;
+        client_vw_t* client_view = (client_vw_t*)malloc(size_view);
+        cola->push(client_view);
     }
     std::string mensaje = "Se crearon los " + std::to_string(cantidad_enemigos) + " enemigos";
     logger.debug(mensaje.c_str());
     return enemigos;
 }
 
-bool Nivel::procesar(){
+bool Nivel::procesarServer(ColaMultihilo* cola, int max_users){
 
 	    bool quit = false;
 
@@ -47,34 +50,24 @@ bool Nivel::procesar(){
 	    Temporizador temporizador;
 	    temporizador.iniciar();
 
-        NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4);
 
-        vector<NaveEnemiga*> enemigos = crear_enemigos();
+        vector<NaveEnemiga*> enemigos = crear_enemigos(cola);
 
         float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
         double tiempo_nivel = 0;
         int renderizados = 1;
 
+        int size_view = sizeof(struct client_vw);
 	    // Mientras que siga corriendo la app
-	    while( usuarioNoRequieraSalir(quit) && tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
-		    while( hayEventos() ){
-		         if( eventoEsSalir() ) quit = true;
-			      jugador->handleEvent( e );
-			 }
+	    while( tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
 
-			jugador->mover(enemigos);
-
-            //SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-            SDL_RenderClear( sdl.getRenderer() );
-			renderBackground();
-
-            //render jugador
-            jugador->renderizar();
-
-            //Todo este bloque deberiamos declararlo en otro lado
             for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
-                enemigos[i]->mover(jugador);
-                enemigos[i]->renderizar();
+                enemigos[i]->mover();
+                client_vw_t* client_view = (client_vw_t*)malloc(size_view);
+                client_view->gNaveTexture = enemigos[i]->get_texture();
+                client_view->x = enemigos[i]->getPosX();
+                client_view->y = enemigos[i]->getPosY();
+                cola->push(client_view);
             }
 
             tiempo_nivel = temporizador.transcurridoEnSegundos();
@@ -86,10 +79,31 @@ bool Nivel::procesar(){
         }
         vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
-        jugador->cerrarNave();
         for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
             (*pos)->cerrarNave();
         }
+        return quit;
+}
+
+bool Nivel::procesarClient(position_t* pos){
+
+	    bool quit = false;
+        NaveJugador* jugador = new NaveJugador(10,10);
+	    // Mientras que siga corriendo la app
+	    while( usuarioNoRequieraSalir(quit)) {
+            while( hayEventos() ){
+		         if( eventoEsSalir() ) quit = true;
+		         jugador->handleEvent(e);
+            }
+            jugador->mover();
+            pos->x = jugador->getPosX();
+            pos->y = jugador->getPosY();
+
+            SDL_RenderClear(sdl.getRenderer());
+			renderBackground();
+			SDL_RenderPresent(sdl.getRenderer());
+        }
+        jugador->cerrarNave();
         return quit;
 }
 

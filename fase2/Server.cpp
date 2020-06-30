@@ -7,13 +7,27 @@
 #include <unistd.h>
 #include <pthread.h>
 
+struct sv{
+    Server* server;
+    int client_socket;
+};
 
-Server::Server(int port, pthread_mutex_t m){
+void* server_encolar(void* sv_cSock){
+    struct sv* sv_aux = (struct sv*)sv_cSock;
+    Server* server = sv_aux->server;
+    return server->encolar(sv_aux->client_socket);
+}
+
+void* server_desencolar(void* sv){
+    Server* server = (Server*)sv;
+    return server->desencolar();
+}
+
+Server::Server(int port){
     max_users = json.get_max_users();
     if(max_users > MAX_CLIENTS) max_users = MAX_CLIENTS;
 
     puerto = port;
-    mutex = m;
 
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
@@ -39,7 +53,7 @@ bool Server::iniciar(){
     server_addr.sin_port = htons(puerto);
 
     int opt = 1;
-    if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))){
+    if (setsockopt(socket, SOL_SOCKET, SO_REUSEADDR, (char*)&opt, sizeof(int))){
         logger.error("Error al setsockopt");
         return false;
     }
@@ -62,7 +76,7 @@ bool Server::iniciar(){
         logger.error("Error en el Listen");
         return false;
     }
-
+    //typedef void * (*THREADFUNCPTR)(void *);
     int actual_socket = 0;
     while(actual_socket < max_users && actual_socket < MAX_CLIENTS){
 
@@ -75,7 +89,6 @@ bool Server::iniciar(){
         if (client_sockets[actual_socket] < 0){
             printf("fallo accept\n");
             logger.error("Fallo el accept del cliente");
-            continue;
         } else{
             printf("accepted\n");
             msj = "@Conexion del cliente " + std::to_string(actual_socket) + " aceptada";
@@ -88,22 +101,59 @@ bool Server::iniciar(){
         printf("termine\n");
     }
     loguin_users();
+
+    for(int j=0; j<max_users; j++){
+        //seteo para la func de cada hilo de cada cliente
+        struct sv* sv_sock = (struct sv*)malloc(sizeof(struct sv));
+        sv_sock->server = this;
+        sv_sock->client_socket = client_sockets[j];
+
+        set_textureNave(j);
+        pthread_create(&hilosPush[j], NULL, server_encolar, sv_sock);
+    }
+    pthread_create(&hiloPop, NULL, server_desencolar, this);
+    server_level.procesarServer(cola, max_users);
+
     cerrar();
     return true;
 }
 
-void* Server::encolar(){
+void* Server::encolar(int client_socket){
+    position_t* pos = NULL;
+    int size_view = sizeof(client_vw_t);
+    int size_pos = sizeof(position_t);
     while(true){
-        receiveData(0, NULL, 0);
-        //cola->push(NULL);
+        if(receiveData(client_socket, pos, size_pos) < 0) break;
+        std::cout<<"ENCOLAR\n";
+        printf("X: %d\n", pos->x);
+        printf("Y: %d\n", pos->y);
+        std::cout<<"-----------\n";
+
+        client_vw_t* client_view = (client_vw_t*)malloc(size_view);
+        client_view->gNaveTexture = get_textureNave(client_socket);
+        client_view->x = pos->x;
+        client_view->y = pos->y;
+        cola->push(client_view);
     }
     return NULL;
 }
 
 void* Server::desencolar(){
+    int size_view =  sizeof(client_vw_t);
     while(!cola->estaVacia()){
-        //processData(cola->pop());
-        sendData(0, NULL, 0);
+        client_vw_t* client_view = (client_vw_t*)(cola->pop());
+
+        std::cout<<"ENCOLAR\n";
+        printf("X: %d\n", client_view->x);
+        printf("Y: %d\n", client_view->y);
+        std::cout<<"-----------\n";
+
+        //broadcast
+        for(int i=0; i<max_users; i++){
+            if(sendData(client_sockets[i], client_view,size_view) < 0 ) {
+                logger.info("Se desconecto un user");
+            }
+        }
     }
     return NULL;
 }
@@ -130,9 +180,7 @@ int Server::sendData(int client_socket, void* dato, int data_size){
             ok = false;
         } else total_bytes_enviados += bytes_enviados;
     }
-
     return 0;
-
 }
 
 int Server::receiveData(int client_socket, void* dato, int data_size){
@@ -155,14 +203,8 @@ int Server::receiveData(int client_socket, void* dato, int data_size){
             logger.error(msj.c_str()); // Socket closed
             ok = false;
         } else total_bytes_recibidos += bytes_recibidos;
-
     }
     return 0;
-}
-
-void Server::processData(){
-
-
 }
 
 void Server::cerrar(){
@@ -192,19 +234,16 @@ void Server::loguin_users(){
                 if(receiveData(client_sockets[i],&cliente, size_client) < 0)
                     logger.error("No se recibio correctamente la data");
 
-                std::cout<<"ID: "<<cliente.id<<"\n";
-                std::cout<<"PASS: "<<cliente.pass<<"\n";
-
                 string ids(cliente.id);
                 string cpass(cliente.pass);
+
                 msj += ids + " ; PASS: " + cpass;
                 logger.info(msj.c_str());
-
 
                 data_send = check_loguin_user(&cliente);
                 if(sendData(client_sockets[i], &data_send, sizeof(int)) < 0 )
                     logger.error("No se envio correctamente la data");
-                printf("DATA_SEND: %d\n", data_send);
+                if(data_send == 1) logger.info("Error de logueo, credenciales invalidas");
 
                 (veces_check[i])++;
             } else break;
@@ -233,3 +272,17 @@ int Server::check_loguin_user(client_t* cliente){
     return ok;
 }
 
+TextureW Server::get_textureNave(int client_socket){
+    int actual_sock = 0;
+    for(int j=0; j<max_users; j++){
+        if(client_socket == client_sockets[j]) actual_sock = j;
+    }
+    return gNaves[actual_sock];
+}
+
+void Server::set_textureNave(int i){
+    int nave = i+1;
+    std::string sp = "nave" + std::to_string(nave);
+    sp = json.get_sprite_nave("jugador", sp.c_str());
+    gNaves[i].loadFromFile(sp.c_str());
+}

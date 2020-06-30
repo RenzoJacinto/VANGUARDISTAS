@@ -12,13 +12,13 @@ ManejoDeNiveles::ManejoDeNiveles(){
     cargarNiveles();
 }
 
-void ManejoDeNiveles::procesar(){
+void ManejoDeNiveles::procesar(position_t* pos){
 
     list<Nivel*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
         (*nivel)->cargarNivel();
-        if((*nivel)->procesar()) {
+        if((*nivel)->procesarClient(pos)) {
             cerrar_niveles(niveles);
             break;
         }
