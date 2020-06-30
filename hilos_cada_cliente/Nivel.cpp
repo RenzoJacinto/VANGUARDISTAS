@@ -312,12 +312,12 @@ bool Nivel::procesar_cliente(){
 
         int id = client->get_id();
         std::map<int, NaveJugador*> jugadores;
-        NaveJugador* jugador1 = new NaveJugador( sdl.getScreenWidth() / 4, sdl.getScreenWidth() / 4, id);
+        NaveJugador* jugador1 = new NaveJugador( 100, sdl.getScreenWidth() / 4, id);
         jugadores.insert({id, jugador1});
-        const int n = 4;
+        const int n = 2;
         for(int i = 0; i < n; ++i){
             ++id;
-            NaveJugador* jugador = new NaveJugador( sdl.getScreenWidth() / 2, sdl.getScreenWidth() / 4, id%n);
+            NaveJugador* jugador = new NaveJugador( 200, sdl.getScreenWidth() / 4, id%n);
             jugadores.insert({jugador->get_id(), jugador});
         }
         //id++;
