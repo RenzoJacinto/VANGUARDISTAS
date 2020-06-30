@@ -3,6 +3,7 @@
 
 #include "Estado.h"
 #include "json.hpp"
+#include <unistd.h>
 
 class Server: public Estado{
 
@@ -19,7 +20,7 @@ class Server: public Estado{
         void* processData(void* dato);
         void* validar_credenciales(int client, int id);
         int get_socket(int i);
-        void close();
+        void cerrar();
         int get_id_actual();
 
         static const int MAX_CLIENTS = 4;

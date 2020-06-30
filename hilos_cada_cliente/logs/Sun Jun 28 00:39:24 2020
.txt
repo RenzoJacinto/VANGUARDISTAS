@@ -1,0 +1,97 @@
+28/06/2020 00:39:24.637 - INFO: >>>> INICIANDO SERVER ....
+28/06/2020 00:39:24.637 - INFO: #Socket ...
+28/06/2020 00:39:24.637 - DEBUG: @Socket creado
+28/06/2020 00:39:24.637 - INFO: #Bind ...
+28/06/2020 00:39:24.637 - DEBUG: @Bind correcto
+28/06/2020 00:39:24.637 - INFO: #Listen ...
+28/06/2020 00:39:24.637 - DEBUG: @Esperando a que se conecten usuarios en el puerto: 5555
+28/06/2020 00:39:24.637 - INFO: #Aceptar cliente ...
+28/06/2020 00:39:32.1 - DEBUG: @Conexion del cliente 0 aceptada
+28/06/2020 00:39:32.1 - INFO: >>>> CARGANDO EL NIVEL 1 ....
+28/06/2020 00:39:32.1 - DEBUG: Se cargo la cantidad de enemigos: 5
+28/06/2020 00:39:32.1 - INFO: ## CARGANDO mapaBG ....
+28/06/2020 00:39:32.12 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/bg.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.12 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.12 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.12 - INFO: ## CARGANDO ciudad ....
+28/06/2020 00:39:32.13 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/ciudad.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.13 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.13 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.13 - INFO: ## CARGANDO planeta ....
+28/06/2020 00:39:32.25 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/planeta.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.26 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.26 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.26 - INFO: ## CARGANDO nube1 ....
+28/06/2020 00:39:32.65 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/nube1.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.65 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.65 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.65 - INFO: ## CARGANDO nube2 ....
+28/06/2020 00:39:32.97 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/nube3.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.97 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.97 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.97 - INFO: ## CARGANDO finNivel ....
+28/06/2020 00:39:32.121 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel1/fin_nivel1.png, se carga la imagen que muestra el error
+28/06/2020 00:39:32.121 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.121 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:39:32.121 - INFO: <<<< SE CARGO EL NIVEL 1
+28/06/2020 00:39:32.121 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+28/06/2020 00:39:32.121 - ERROR: La imagen (sprites/usuario/naves/jugador/nave.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.121 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.121 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.121 - DEBUG: Se creo la nave jugador
+28/06/2020 00:39:32.121 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+28/06/2020 00:39:32.121 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+28/06/2020 00:39:32.121 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.121 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.121 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.121 - DEBUG: Se creo el enemigo4
+28/06/2020 00:39:32.121 - INFO: <<<< SE CARGO LA NAVE enemigo4
+28/06/2020 00:39:32.121 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+28/06/2020 00:39:32.121 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.121 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.121 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.121 - DEBUG: Se creo el enemigo2
+28/06/2020 00:39:32.121 - INFO: <<<< SE CARGO LA NAVE enemigo2
+28/06/2020 00:39:32.121 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+28/06/2020 00:39:32.122 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.122 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.122 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.122 - DEBUG: Se creo el enemigo1
+28/06/2020 00:39:32.122 - INFO: <<<< SE CARGO LA NAVE enemigo1
+28/06/2020 00:39:32.122 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+28/06/2020 00:39:32.122 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.122 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.122 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.122 - DEBUG: Se creo el enemigo3
+28/06/2020 00:39:32.122 - INFO: <<<< SE CARGO LA NAVE enemigo3
+28/06/2020 00:39:32.122 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+28/06/2020 00:39:32.122 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+28/06/2020 00:39:32.122 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:39:32.122 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+28/06/2020 00:39:32.122 - DEBUG: Se creo el enemigo4
+28/06/2020 00:39:32.122 - INFO: <<<< SE CARGO LA NAVE enemigo4
+28/06/2020 00:39:32.122 - DEBUG: Se crearon los 5 enemigos
+28/06/2020 00:43:32.121 - INFO: Finalizó el nivel
+28/06/2020 00:43:32.121 - INFO: Se renderizo el final del nivel
+28/06/2020 00:43:37.8 - INFO: >>>> CARGANDO EL NIVEL 2 ....
+28/06/2020 00:43:37.8 - DEBUG: Se cargo la cantidad de enemigos: 2
+28/06/2020 00:43:37.8 - INFO: ## CARGANDO mapaBG ....
+28/06/2020 00:43:37.16 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel2/bg2.png, se carga la imagen que muestra el error
+28/06/2020 00:43:37.16 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:43:37.16 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:43:37.16 - INFO: ## CARGANDO planeta1 ....
+28/06/2020 00:43:37.25 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel2/planeta1.png, se carga la imagen que muestra el error
+28/06/2020 00:43:37.25 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:43:37.25 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:43:37.25 - INFO: ## CARGANDO planeta2 ....
+28/06/2020 00:43:37.26 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel2/planeta2.png, se carga la imagen que muestra el error
+28/06/2020 00:43:37.26 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:43:37.26 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:43:37.26 - INFO: ## CARGANDO asteroides1 ....
+28/06/2020 00:43:37.30 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel2/asteroides1.png, se carga la imagen que muestra el error
+28/06/2020 00:43:37.30 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:43:37.30 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png
+28/06/2020 00:43:37.30 - INFO: ## CARGANDO asteroides2 ....
+28/06/2020 00:43:37.40 - ERROR: No se encontro el sprite: sprites/usuario/niveles/nivel2/asteroides2.png, se carga la imagen que muestra el error
+28/06/2020 00:43:37.40 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+28/06/2020 00:43:37.41 - DEBUG: Se cargo con la imagen: sprites/default/fondo.png

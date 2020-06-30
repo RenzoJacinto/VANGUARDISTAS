@@ -1651,3 +1651,849 @@
 	"ManejoDeSDL.h"
 	"global.h"
 
+1593377668 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeNiveles.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"TextureW.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeNiveles.h
+	<list>
+	"Nivel.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel.h
+	<list>
+	"NaveEnemiga.h"
+	"Escenario.h"
+	"TextureW.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/NaveEnemiga.h
+	"Nave.h"
+
+1593377530 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"global.h"
+	"list"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeSDL.h
+	"TextureW.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/global.h
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+	"ManejoDeJson.h"
+	"Estado.h"
+	<pthread.h>
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeLog.h
+	"Logger.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Logger.h
+	<iostream>
+	<fstream>
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeJson.h
+	<iostream>
+	<fstream>
+	<string>
+	"json.hpp"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/json.hpp
+	<algorithm>
+	<cassert>
+	<ciso646>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<utility>
+	<algorithm>
+	<array>
+	<ciso646>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<exception>
+	<stdexcept>
+	<string>
+	<cstddef>
+	<utility>
+	<stdint.h>
+	<stdint.h>
+	<cstdlib>
+	<ciso646>
+	<cstddef>
+	<type_traits>
+	<ciso646>
+	<limits>
+	<type_traits>
+	<utility>
+	<iterator>
+	<type_traits>
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<array>
+	<ciso646>
+	<cstddef>
+	<cstdint>
+	<string>
+	<algorithm>
+	<ciso646>
+	<iterator>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<cstddef>
+	<iterator>
+	<string>
+	<tuple>
+	<algorithm>
+	<array>
+	<cassert>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<array>
+	<cassert>
+	<cstddef>
+	<cstdio>
+	<cstring>
+	<istream>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<type_traits>
+	<utility>
+	<cassert>
+	<cstddef>
+	<string>
+	<utility>
+	<vector>
+	<cstdint>
+	<utility>
+	<string>
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<cassert>
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<cstddef>
+	<limits>
+	<ciso646>
+	<iterator>
+	<type_traits>
+	<cstddef>
+	<iterator>
+	<utility>
+	<algorithm>
+	<cassert>
+	<cctype>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<initializer_list>
+	<utility>
+	<algorithm>
+	<array>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<algorithm>
+	<cstddef>
+	<ios>
+	<iterator>
+	<memory>
+	<ostream>
+	<string>
+	<vector>
+	<algorithm>
+	<array>
+	<cassert>
+	<ciso646>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<type_traits>
+	<utility>
+	<array>
+	<cassert>
+	<ciso646>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+
+1593463253 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Estado.h
+	<string>
+	<time.h>
+	<ctime>
+	"ColaMultihilo.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ColaMultihilo.h
+	<queue>
+	<pthread.h>
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Escenario.h
+	<SDL2/SDL.h>
+	"TextureW.h"
+
+1593463293 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Client.cpp
+	"Client.h"
+	"global.h"
+	"ColaMultihilo.h"
+	<sys/socket.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<iostream>
+	<cstdlib>
+	<pthread.h>
+	<thread>
+
+1593463247 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Client.h
+	"Estado.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Escenario.cpp
+	"Escenario.h"
+	"global.h"
+
+1593463262 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Estado.cpp
+	"Estado.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Logger.cpp
+	"Logger.h"
+	<iostream>
+	<fstream>
+	<string>
+	<sys/time.h>
+	<time.h>
+	<math.h>
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerDebug.cpp
+	"LoggerDebug.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerDebug.h
+	"Logger.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerError.cpp
+	"LoggerError.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerError.h
+	"Logger.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerInfo.cpp
+	"LoggerInfo.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/LoggerInfo.h
+	"Logger.h"
+
+1593463396 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/main.cpp
+	"global.h"
+	"Menu.h"
+	"Server.h"
+	"Client.h"
+	"ManejoDeNiveles.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Menu.h
+	"Escenario.h"
+	"TextureW.h"
+
+1593463511 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Server.h
+	"Estado.h"
+	"json.hpp"
+	<unistd.h>
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeJson.cpp
+	"ManejoDeJson.h"
+	<stdio.h>
+	"global.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+	<string>
+	"LoggerError.h"
+	"LoggerInfo.h"
+	"LoggerDebug.h"
+	"Logger.h"
+	"global.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeNiveles.cpp
+	"ManejoDeNiveles.h"
+	<string>
+	<time.h>
+	<ctime>
+	"Nivel1.h"
+	"Nivel2.h"
+	"Nivel3.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel1.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel2.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel3.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/ManejoDeSDL.cpp
+	"global.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Menu.cpp
+	"Menu.h"
+	"BotonIniciar.h"
+	"global.h"
+	"ManejoDeSDL.h"
+
+1593459930 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nave.cpp
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"global.h"
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/NaveJugador.h
+	"Nave.h"
+	"list"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/NaveJugador.cpp
+	"NaveJugador.h"
+
+1593463082 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel.cpp
+	"Nivel.h"
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Server.h"
+	"Client.h"
+	"Estado.h"
+	"Temporizador.h"
+	"global.h"
+	"Server.h"
+	"Estado.h"
+	<sys/socket.h>
+	<arpa/inet.h>
+	<pthread.h>
+
+1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Temporizador.h
+	<iostream>
+	<chrono>
+	<ctime>
+	<cmath>
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel1.cpp
+	"Nivel1.h"
+	"global.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel2.cpp
+	"Nivel2.h"
+	"global.h"
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Nivel3.cpp
+	"Nivel3.h"
+	"global.h"
+
+1593463648 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/Server.cpp
+	"Server.h"
+	"global.h"
+	<string>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<pthread.h>
+
+1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2hilos/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+	<SDL2/SDL_ttf.h>
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/BotonIniciar.cpp
+	"BotonIniciar.h"
+	"ManejoDeNiveles.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/BotonIniciar.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/TextureW.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/ManejoDeNiveles.h
+	<list>
+	"Nivel.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Nivel.h
+	<list>
+	"NaveEnemiga.h"
+	"Escenario.h"
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/NaveEnemiga.h
+	"Nave.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Nave.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	<stdio.h>
+	<string>
+	"ManejoDeSDL.h"
+	"global.h"
+	"list"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/ManejoDeSDL.h
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/global.h
+	"ManejoDeSDL.h"
+	"ManejoDeLog.h"
+	"ManejoDeJson.h"
+	"Estado.h"
+	<pthread.h>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/ManejoDeLog.h
+	"Logger.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Logger.h
+	<iostream>
+	<fstream>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/ManejoDeJson.h
+	<iostream>
+	<fstream>
+	<string>
+	"json.hpp"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/json.hpp
+	<algorithm>
+	<cassert>
+	<ciso646>
+	<cstddef>
+	<functional>
+	<initializer_list>
+	<iosfwd>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<utility>
+	<algorithm>
+	<array>
+	<ciso646>
+	<forward_list>
+	<iterator>
+	<map>
+	<string>
+	<tuple>
+	<type_traits>
+	<unordered_map>
+	<utility>
+	<valarray>
+	<exception>
+	<stdexcept>
+	<string>
+	<cstddef>
+	<utility>
+	<stdint.h>
+	<stdint.h>
+	<cstdlib>
+	<ciso646>
+	<cstddef>
+	<type_traits>
+	<ciso646>
+	<limits>
+	<type_traits>
+	<utility>
+	<iterator>
+	<type_traits>
+	<cstdint>
+	<map>
+	<memory>
+	<string>
+	<vector>
+	<array>
+	<ciso646>
+	<cstddef>
+	<cstdint>
+	<string>
+	<algorithm>
+	<ciso646>
+	<iterator>
+	<string>
+	<tuple>
+	<type_traits>
+	<utility>
+	<valarray>
+	<vector>
+	<cstddef>
+	<iterator>
+	<string>
+	<tuple>
+	<algorithm>
+	<array>
+	<cassert>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<cstring>
+	<iterator>
+	<limits>
+	<string>
+	<utility>
+	<array>
+	<cassert>
+	<cstddef>
+	<cstdio>
+	<cstring>
+	<istream>
+	<iterator>
+	<memory>
+	<numeric>
+	<string>
+	<type_traits>
+	<utility>
+	<cassert>
+	<cstddef>
+	<string>
+	<utility>
+	<vector>
+	<cstdint>
+	<utility>
+	<string>
+	<array>
+	<clocale>
+	<cstddef>
+	<cstdio>
+	<cstdlib>
+	<initializer_list>
+	<string>
+	<utility>
+	<vector>
+	<cassert>
+	<cmath>
+	<cstdint>
+	<functional>
+	<string>
+	<utility>
+	<vector>
+	<cstddef>
+	<limits>
+	<ciso646>
+	<iterator>
+	<type_traits>
+	<cstddef>
+	<iterator>
+	<utility>
+	<algorithm>
+	<cassert>
+	<cctype>
+	<numeric>
+	<string>
+	<utility>
+	<vector>
+	<initializer_list>
+	<utility>
+	<algorithm>
+	<array>
+	<cstdint>
+	<cstring>
+	<limits>
+	<string>
+	<algorithm>
+	<cstddef>
+	<ios>
+	<iterator>
+	<memory>
+	<ostream>
+	<string>
+	<vector>
+	<algorithm>
+	<array>
+	<cassert>
+	<ciso646>
+	<clocale>
+	<cmath>
+	<cstddef>
+	<cstdint>
+	<cstdio>
+	<limits>
+	<string>
+	<type_traits>
+	<utility>
+	<array>
+	<cassert>
+	<ciso646>
+	<cmath>
+	<cstdint>
+	<cstring>
+	<limits>
+	<type_traits>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Estado.h
+	<string>
+	<time.h>
+	<ctime>
+	"ColaMultihilo.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/ColaMultihilo.h
+	<queue>
+	<pthread.h>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Escenario.h
+	<SDL2/SDL.h>
+	"TextureW.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Client.cpp
+	"Client.h"
+	"global.h"
+	"ColaMultihilo.h"
+	<sys/socket.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<iostream>
+	<cstdlib>
+	<pthread.h>
+	<thread>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Client.h
+	"Estado.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Escenario.cpp
+	"Escenario.h"
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Estado.cpp
+	"Estado.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Logger.cpp
+	"Logger.h"
+	<iostream>
+	<fstream>
+	<string>
+	<sys/time.h>
+	<time.h>
+	<math.h>
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/LoggerDebug.cpp
+	"LoggerDebug.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/LoggerDebug.h
+	"Logger.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/LoggerError.cpp
+	"LoggerError.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/LoggerError.h
+	"Logger.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/LoggerInfo.cpp
+	"LoggerInfo.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/LoggerInfo.h
+	"Logger.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/main.cpp
+	"global.h"
+	"Menu.h"
+	"Server.h"
+	"Client.h"
+	"ManejoDeNiveles.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Menu.h
+	"Escenario.h"
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Server.h
+	"Estado.h"
+	"json.hpp"
+	<unistd.h>
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/ManejoDeJson.cpp
+	"ManejoDeJson.h"
+	<stdio.h>
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/ManejoDeLog.cpp
+	"ManejoDeLog.h"
+	<string>
+	"LoggerError.h"
+	"LoggerInfo.h"
+	"LoggerDebug.h"
+	"Logger.h"
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/ManejoDeNiveles.cpp
+	"ManejoDeNiveles.h"
+	<string>
+	<time.h>
+	<ctime>
+	"Nivel1.h"
+	"Nivel2.h"
+	"Nivel3.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Nivel1.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Nivel2.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Nivel3.h
+	"Nivel.h"
+	"TextureW.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/ManejoDeSDL.cpp
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Menu.cpp
+	"Menu.h"
+	"BotonIniciar.h"
+	"global.h"
+	"ManejoDeSDL.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Nave.cpp
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"global.h"
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/NaveJugador.h
+	"Nave.h"
+	"list"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/NaveEnemiga.cpp
+	"NaveEnemiga.h"
+
+1593468412 source:/home/agustin/Desktop/taller/fase2hilos/NaveJugador.cpp
+	"NaveJugador.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Nivel.cpp
+	"Nivel.h"
+	"Nave.h"
+	"NaveJugador.h"
+	"NaveEnemiga.h"
+	"Server.h"
+	"Client.h"
+	"Estado.h"
+	"Temporizador.h"
+	"global.h"
+	"Server.h"
+	"Estado.h"
+	<sys/socket.h>
+	<arpa/inet.h>
+	<pthread.h>
+
+1593467246 /home/agustin/Desktop/taller/fase2hilos/Temporizador.h
+	<iostream>
+	<chrono>
+	<ctime>
+	<cmath>
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Nivel1.cpp
+	"Nivel1.h"
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Nivel2.cpp
+	"Nivel2.h"
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Nivel3.cpp
+	"Nivel3.h"
+	"global.h"
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/Server.cpp
+	"Server.h"
+	"global.h"
+	<string>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<pthread.h>
+
+1593467246 source:/home/agustin/Desktop/taller/fase2hilos/TextureW.cpp
+	"TextureW.h"
+	"ManejoDeSDL.h"
+	"global.h"
+	<SDL2/SDL_ttf.h>
+

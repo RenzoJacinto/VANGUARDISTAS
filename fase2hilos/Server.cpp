@@ -51,7 +51,7 @@ void* validar_credenciales_aux(int client, int id)
                 char invalid_pass[22];
                 invalid_pass[0] = 0;
                 strncat(invalid_pass, "Contrasenia invalida", 21);
-                int byes1 = send(client, &invalid_pass, 22, 0);
+                send(client, &invalid_pass, 22, 0);
                 validar_credenciales_aux(client, id);
                 return NULL;
             }
@@ -60,7 +60,7 @@ void* validar_credenciales_aux(int client, int id)
             v->id = id;
             v->VelX=0;
             v->VelY=0;
-            int byes1 = send(client, v, sizeof(velocidades_t), 0);
+            send(client, v, sizeof(velocidades_t), 0);
             free(v);
             printf("id enviado\n");
             //pthread_mutex_lock(&mutex);
@@ -73,10 +73,11 @@ void* validar_credenciales_aux(int client, int id)
             char invalid_id[18];
             invalid_id[0] = 0;
             strncat(invalid_id, "Usuario invalido", 17);
-            int byes1 = send(client, &invalid_id, 18, 0);
+            send(client, &invalid_id, 18, 0);
             validar_credenciales_aux(client, id);
         }
     }
+    return NULL;
 }
 
 
@@ -235,11 +236,11 @@ void* Server::processData(void* dato){
 
 }
 
-void Server::close(){
-    /*for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
+void Server::cerrar(){
+    for(int i=0; i<max_users && i<MAX_CLIENTS; i++){
         close(client_sockets[i]);
     }
-    close(socket);*/
+    close(socket);
 }
 
 int Server::get_socket(int i) {
@@ -268,7 +269,7 @@ void* Server::validar_credenciales(int client, int id)
                 char invalid_pass[22];
                 invalid_pass[0] = 0;
                 strncat(invalid_pass, "Contrasenia invalida", 21);
-                int byes1 = send(client, &invalid_pass, 22, 0);
+                send(client, &invalid_pass, 22, 0);
                 validar_credenciales(client, id);
                 return NULL;
             }
@@ -277,7 +278,7 @@ void* Server::validar_credenciales(int client, int id)
             v->id = id;
             v->VelX=0;
             v->VelY=0;
-            int byes1 = send(client, v, sizeof(velocidades_t), 0);
+            send(client, v, sizeof(velocidades_t), 0);
             free(v);
             printf("id enviado\n");
             //pthread_mutex_lock(&mutex);
@@ -290,10 +291,11 @@ void* Server::validar_credenciales(int client, int id)
             char invalid_id[18];
             invalid_id[0] = 0;
             strncat(invalid_id, "Usuario invalido", 17);
-            int byes1 = send(client, &invalid_id, 18, 0);
+            send(client, &invalid_id, 18, 0);
             validar_credenciales(client, id);
         }
     }
+    return NULL;
 }
 
 int Server::get_id_actual(){
