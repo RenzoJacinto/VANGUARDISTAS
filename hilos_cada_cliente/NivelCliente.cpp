@@ -33,7 +33,7 @@ bool NivelCliente::procesar(){
         NaveJugador* jugador1 = new NaveJugador( 100, sdl.getScreenWidth() / 4, id);
         jugadores.insert({id, jugador1});
         const int n = 2;
-        for(int i = 0; i < n; ++i){
+        for(int i = 0; i < (n-1); ++i){
             ++id;
             NaveJugador* jugador = new NaveJugador( 200, sdl.getScreenWidth() / 4, id%n);
             jugadores.insert({jugador->get_id(), jugador});
@@ -51,7 +51,12 @@ bool NivelCliente::procesar(){
         //jugadores[1] = jugador1;
         //vector<NaveEnemiga*> enemigos = crear_enemigos();
 
-        float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
+        float tiempo_por_enemigos;
+        if(cantidad_enemigos != 0){
+            tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
+        }else{
+            tiempo_por_enemigos = 0;
+        }
         double tiempo_nivel = 0;
         int renderizados = 1;
 

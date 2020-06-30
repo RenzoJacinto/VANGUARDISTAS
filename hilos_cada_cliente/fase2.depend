@@ -2892,7 +2892,7 @@
 	"Nivel3.h"
 	"global.h"
 
-1593533387 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Server.cpp
+1593533741 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Server.cpp
 	"Server.h"
 	"global.h"
 	<string>
@@ -2915,7 +2915,7 @@
 	<ctime>
 	<cmath>
 
-1593496135 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.cpp
+1593534310 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.cpp
 	"NivelCliente.h"
 
 1593495941 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.h

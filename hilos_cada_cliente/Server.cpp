@@ -132,7 +132,6 @@ bool Server::iniciar(){
 
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
     struct sockaddr_in client_addr;
-    socklen_t client_len;
     int actual_socket = 0;
     if (listen(socket , 2) < 0){
             logger.error("Error en el Listen");
@@ -147,6 +146,7 @@ bool Server::iniciar(){
         // SOCKET DEL CLIENTE
         logger.info("#Aceptar cliente ...");
         printf("esperando conexiones\n");
+        socklen_t client_len;
         client_len = sizeof(struct sockaddr_in);
         client_sockets[actual_socket] = accept(socket, (struct sockaddr *) &client_addr, &client_len);
         if (client_sockets[actual_socket] < 0){

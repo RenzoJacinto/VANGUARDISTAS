@@ -79,7 +79,12 @@ bool NivelServer::procesar(){
         //jugadores[0] = jugador;
         //jugadores[1] = jugador1;
 
-        float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
+        float tiempo_por_enemigos;
+        if(cantidad_enemigos != 0){
+            tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
+        }else{
+            tiempo_por_enemigos = 0;
+        }
         double tiempo_nivel = 0;
         int renderizados = 1;
 
