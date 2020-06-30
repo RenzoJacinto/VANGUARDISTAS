@@ -3,6 +3,7 @@
 #include "Server.h"
 #include "Client.h"
 #include "ManejoDeNiveles.h"
+#include "NivelServer.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
@@ -32,8 +33,8 @@ int main( int argc, char* argv[] ){
     std::string estado_json = json.get_estado_conexion();
     if(strcmp(estado_json.c_str(), "server") == 0) {
         estado -> iniciar();
-        ManejoDeNiveles niveles;
-        niveles.procesar_servidor();
+        NivelServer* nivsv = new NivelServer();
+        nivsv->procesar();
         estado-> cerrar();
     }
     else{

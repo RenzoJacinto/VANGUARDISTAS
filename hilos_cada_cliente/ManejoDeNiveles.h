@@ -12,8 +12,7 @@ class ManejoDeNiveles{
 
         ManejoDeNiveles();
         void cerrar_niveles(list<Nivel*> niveles);
-        void procesar_servidor();
-        void procesar_cliente();
+        void procesar();
         void delay(int sec);
         void cargarNiveles();
 

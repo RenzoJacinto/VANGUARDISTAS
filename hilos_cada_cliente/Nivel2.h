@@ -1,10 +1,10 @@
 #ifndef NIVEL2_H
 #define NIVEL2_H
 
-#include "Nivel.h"
+#include "NivelCliente.h"
 #include "TextureW.h"
 
-class Nivel2: public Nivel{
+class Nivel2: public NivelCliente{
 
     public:
         Nivel2();

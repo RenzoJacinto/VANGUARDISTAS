@@ -27,7 +27,7 @@ bool Menu::cargarImagen(){
 	return ok;
 }
 
-void Menu::procesar(){
+bool Menu::procesar(){
     bool quit = false;
     BotonIniciar bt;
     logger.info("Se mostró el menú");
@@ -46,6 +46,7 @@ void Menu::procesar(){
         SDL_RenderPresent( sdl.getRenderer() );
         SDL_StopTextInput();
     }
+    return true;
 }
 
 void Menu::cerrar(){

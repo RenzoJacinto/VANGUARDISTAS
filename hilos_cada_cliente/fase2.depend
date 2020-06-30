@@ -2497,7 +2497,7 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1593377668 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/BotonIniciar.cpp
+1593493640 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
@@ -2518,15 +2518,22 @@
 	<stdio.h>
 	<string>
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/ManejoDeNiveles.h
+1593493619 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel.h
-	<list>
+1593496039 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel.h
+	"NaveJugador.h"
 	"NaveEnemiga.h"
+	"Server.h"
+	"Client.h"
+	"Estado.h"
+	"Temporizador.h"
+	"global.h"
 	"Escenario.h"
-	"TextureW.h"
+	<sys/socket.h>
+	<arpa/inet.h>
+	<pthread.h>
 
 1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NaveEnemiga.h
 	"Nave.h"
@@ -2743,7 +2750,7 @@
 	<queue>
 	<pthread.h>
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Escenario.h
+1593495504 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 
@@ -2762,7 +2769,7 @@
 1593463247 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Client.h
 	"Estado.h"
 
-1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Escenario.cpp
+1593495110 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
@@ -2796,14 +2803,15 @@
 1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/LoggerInfo.h
 	"Logger.h"
 
-1593463396 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/main.cpp
+1593497395 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/main.cpp
 	"global.h"
 	"Menu.h"
 	"Server.h"
 	"Client.h"
 	"ManejoDeNiveles.h"
+	"NivelServer.h"
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Menu.h
+1593495479 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 
@@ -2826,7 +2834,7 @@
 	"Logger.h"
 	"global.h"
 
-1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/ManejoDeNiveles.cpp
+1593493608 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
 	<time.h>
@@ -2835,22 +2843,22 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel1.h
-	"Nivel.h"
+1593497151 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel1.h
+	"NivelCliente.h"
 	"TextureW.h"
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel2.h
-	"Nivel.h"
+1593497157 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel2.h
+	"NivelCliente.h"
 	"TextureW.h"
 
-1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel3.h
-	"Nivel.h"
+1593497164 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel3.h
+	"NivelCliente.h"
 	"TextureW.h"
 
 1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/ManejoDeSDL.cpp
 	"global.h"
 
-1593373021 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Menu.cpp
+1593495497 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Menu.cpp
 	"Menu.h"
 	"BotonIniciar.h"
 	"global.h"
@@ -2898,25 +2906,30 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1593475319 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel.cpp
+1593493850 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Nivel.cpp
 	"Nivel.h"
-	"Nave.h"
-	"NaveJugador.h"
-	"NaveEnemiga.h"
-	"Server.h"
-	"Client.h"
-	"Estado.h"
-	"Temporizador.h"
-	"global.h"
-	"Server.h"
-	"Estado.h"
-	<sys/socket.h>
-	<arpa/inet.h>
-	<pthread.h>
 
 1593373021 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/Temporizador.h
 	<iostream>
 	<chrono>
 	<ctime>
 	<cmath>
+
+1593496135 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.cpp
+	"NivelCliente.h"
+
+1593495941 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelCliente.h
+	<list>
+	"NaveEnemiga.h"
+	"Nivel.h"
+	"TextureW.h"
+
+1593496136 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelServer.cpp
+	"NivelServer.h"
+
+1593496101 /home/renzo/Documents/GitHub/VANGUARDISTAS/hilos_cada_cliente/NivelServer.h
+	<list>
+	"NaveEnemiga.h"
+	"Nivel.h"
+	"TextureW.h"
 
