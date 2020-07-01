@@ -18,22 +18,14 @@ class Juego{
 
         void render_errorLoguin(int intentos);
         void iniciar(position_t* pos);
-        void renderNave(client_vw_t* client_view);
-
-        std::string obtenerSpriteNave(int tipo, int serial);
+        void pushDato(client_vw_t* client_view);
 
         static const int CARGADO = 1;
         static const int VACIO = 0;
 
     private:
         Menu menu;
-
-        TextureW texturesJugadores[4];
-        TextureW texturesEnemigos[4];
-
-
-        int bit_jugadores[4];
-        int bit_enemigos[4];
+        ManejoDeNiveles niveles;
 
 };
 

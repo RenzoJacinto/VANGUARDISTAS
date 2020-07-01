@@ -1,14 +1,11 @@
 #include "Juego.h"
 #include "global.h"
 #include "TextureW.h"
+#include "NaveJugador.h"
 
 Juego::Juego(){
 
     if(! sdl.iniciarSDL()) logger.error("Fallo la inicializacion de SDL");
-    for(int i=0; i<4;i++){
-        bit_enemigos[i] = VACIO;
-        bit_jugadores[i] = VACIO;
-    }
 }
 
 void Juego::init_menu(){
@@ -25,6 +22,7 @@ std::string Juego::get_password(){
 
 void Juego::cerrarMenu(){
     menu.cerrar();
+    //for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 }
 
 void Juego::cerrar(){
@@ -38,30 +36,12 @@ void Juego::render_errorLoguin(int intentos){
 }
 
 void Juego::iniciar(position_t* pos){
-    ManejoDeNiveles niveles;
     niveles.cargarNiveles();
     niveles.procesar(pos);
 }
-void Juego::renderNave(client_vw_t* client_view){
-    TextureW texture;
-    std::string sprite;
-    std::string nave;
-    if(client_view->tipo_nave == TIPO_JUGADOR){
-        nave = "nave" + std::to_string(client_view->serial);
-        sprite = json.get_sprite_nave("jugador", nave.c_str());
-        if(! texture.loadFromFile(sprite.c_str())){
-            sprite = json.get_imagen_default("nave");
-            texture.loadFromFile(sprite.c_str());
-        }
-    } else if(client_view->tipo_nave == TIPO_ENEMIGO){
-        nave = "enemigo" + std::to_string(client_view->serial);
-        sprite = json.get_sprite_nave("enemigas", nave.c_str());
-        if(! texture.loadFromFile(sprite.c_str())){
-            sprite = json.get_imagen_default("nave");
-            texture.loadFromFile(sprite.c_str());
-        }
-    }
 
-    texture.render(client_view->x, client_view->y);
-    SDL_RenderPresent(sdl.getRenderer());
+void Juego::pushDato(client_vw_t* client_view){
+    niveles.pushDato(client_view);
 }
+
+

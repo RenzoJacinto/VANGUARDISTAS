@@ -21,7 +21,7 @@ void* client_desencolar(void* client){
     cliente->desencolar();
     return NULL;
 }
-void*client_enviar(void* client){
+void* client_enviar(void* client){
     Client* cliente = (Client*)client;
     cliente->enviar();
     return NULL;
@@ -38,6 +38,8 @@ Client::Client(char* IP, int port){
     pos = (struct position* )malloc(size_pos);
     pos->x = 10;
     pos->y = 10;
+    pos_ant.x = 0;
+    pos_ant.y = 0;
     pthread_mutex_init(&mutex, NULL);
 }
 
@@ -52,8 +54,6 @@ bool Client::iniciar(){
         logger.error("No se pudo crear el socket");
         return false;
     }
-    //seteo el socet del cliente
-    //pos->client_socket = socket;
 
     logger.debug("@Socket creado");
 
@@ -82,7 +82,7 @@ bool Client::iniciar(){
     pthread_create(&hiloPush, NULL, client_encolar, this);
     pthread_create(&hiloEnviar, NULL, client_enviar, this);
 
-    juego.iniciar(pos);
+    jugar();
 
     cerrar();
     return true;
@@ -103,12 +103,12 @@ void* Client::encolar(){
         data->tipo_nave = client_view.tipo_nave;
         data->x = client_view.x;
         data->y = client_view.y;
-        std::cout<<"ENCOLAR\n";
+       /* std::cout<<"ENCOLAR\n";
         printf("ser: %d\n", data->serial);
         printf("ty: %d\n", data->tipo_nave);
         printf("X: %d\n", data->x);
         printf("Y: %d\n", data->y);
-        std::cout<<"-----------\n";
+        std::cout<<"-----------\n";*/
 
         cola->push(data);
 
@@ -145,11 +145,19 @@ void* Client::enviar(){
         //printf("X: %d\n", pos->x);
         //printf("Y: %d\n", pos->y);
        // pthread_mutex_lock(&mutex);
-        if(sendData(pos,size_pos) < 0) break;
+        if(pos_ant.x != pos->x || pos_ant.y != pos->y){
+            if(sendData(pos,size_pos) < 0) break;
+            pos_ant.x = pos->x;
+            pos_ant.y = pos->y;
+        }
        // pthread_mutex_unlock(&mutex);
         //pthread_mutex_unlock(&mutex);
     }
     return NULL;
+}
+
+void Client::jugar(){
+    juego.iniciar(pos);
 }
 
 int Client::sendData(position_t* dato, int total_data_size){
@@ -193,11 +201,18 @@ int Client::receiveData(client_vw_t* dato, int bytes_totales){
 }
 
 void Client::processData(client_vw_t* dato){
-    std::cout<<"PROCESS DATA\n";
+    /*std::cout<<"PROCESS DATA\n";
     printf("X: %d\n", dato->x);
     printf("Y: %d\n", dato->y);
-    std::cout<<"-----------\n";
-    juego.renderNave(dato);
+    std::cout<<"-----------\n";*/
+    int x = dato->x;
+    int y = dato->y;
+    int hScreen = sdl.getScreenHeight();
+    int wScreen = sdl.getScreenWidth();
+    if(x >= 0 && x <= wScreen){
+        if(y >= 0 && y <= hScreen) juego.pushDato(dato);
+    }
+
 }
 
 bool Client::iniciarSesion(){

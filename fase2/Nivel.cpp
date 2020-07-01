@@ -5,6 +5,7 @@
 #include "Temporizador.h"
 #include "global.h"
 
+
 Nivel::Nivel(){
     dataFinNivel.h = 600;
     dataFinNivel.w = 800;
@@ -50,8 +51,6 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(client_vw_t** clients_vw){
 
 bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
 
-	    bool quit = false;
-
 	    cantidad_enemigos = json.get_cantidad_enemigo(nivel.c_str());
         if(cantidad_enemigos == 0){
             std::string msj = "Cantidad de enemigos del " + nivel + " inexistente, se cargo una por defecto";
@@ -77,7 +76,7 @@ bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
 
 	    // Mientras que siga corriendo la app
 	    while( tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
-
+            /*
             for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
                 enemigos[i]->mover();
                 client_vw_t* client_view = (client_vw_t*)malloc(size_view);
@@ -87,7 +86,7 @@ bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
                 client_view->y = enemigos[i]->getPosY();
 
                 //cola->push(client_view);
-            }
+            }*/
 
             tiempo_nivel = temporizador.transcurridoEnSegundos();
             if(tiempo_nivel/renderizados > tiempo_por_enemigos) renderizados++;
@@ -99,29 +98,82 @@ bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
         for(pos = enemigos.begin(); pos != enemigos.end(); pos++){
             (*pos)->cerrarNave();
         }
-        return quit;
+        return false;
 }
 
 bool Nivel::procesarClient(position_t* pos){
 
 	    bool quit = false;
         NaveJugador* jugador = new NaveJugador(10,10);
-	    // Mientras que siga corriendo la app
-	    while( usuarioNoRequieraSalir(quit)) {
+
+        Temporizador temporizador;
+	    temporizador.iniciar();
+	    double tiempo_nivel = 0;
+
+        // Mientras que siga corriendo la app
+        while( usuarioNoRequieraSalir(quit) && tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
+
             while( hayEventos() ){
-		         if( eventoEsSalir() ) quit = true;
-		         jugador->handleEvent(e);
+                if( eventoEsSalir() ) quit = true;
+                jugador->handleEvent(e);
             }
+            SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear(sdl.getRenderer());
+
             jugador->mover();
             pos->x = jugador->getPosX();
             pos->y = jugador->getPosY();
 
-            SDL_RenderClear(sdl.getRenderer());
-			renderBackground();
-			SDL_RenderPresent(sdl.getRenderer());
+
+            renderBackground();
+            renderNaves();
+            SDL_RenderPresent(sdl.getRenderer());
+            tiempo_nivel = temporizador.transcurridoEnSegundos();
+
         }
-        //jugador->cerrarNave();
+        jugador->cerrarNave();
         return quit;
+}
+
+void Nivel::renderNaves(){
+    while(! qTextures.estaVacia()){
+        //std::cout<<"POPEO\n";
+        client_vw_t* view = qTextures.pop();
+        renderNave(view->tipo_nave, view->serial, view->x, view->y);
+        free(view);
+    }
+    std::cout<<"Sale\n";
+}
+
+void Nivel::renderNave(int tipo, int serial, int x, int y){
+    TextureW texture;
+    std::string sprite;
+    std::string nave;
+    if(tipo == TIPO_JUGADOR){
+        nave = "nave" + std::to_string(serial);
+        sprite = json.get_sprite_nave("jugador", nave.c_str());
+        if(! texture.loadFromFile(sprite.c_str())){
+            sprite = json.get_imagen_default("nave");
+            texture.loadFromFile(sprite.c_str());
+        }
+    } else if(tipo == TIPO_ENEMIGO){
+        nave = "enemigo" + std::to_string(serial);
+        sprite = json.get_sprite_nave("enemigas", nave.c_str());
+        if(! texture.loadFromFile(sprite.c_str())){
+
+            sprite = json.get_imagen_default("nave");
+            texture.loadFromFile(sprite.c_str());
+        }
+    }
+    std::string msj = "Se cargo la " + nave + " con sprite " + sprite;
+    logger.info(msj.c_str());
+    //std::cout<<msj<<"\n";
+
+    texture.render(x, y);
+}
+
+void Nivel::pushDato(client_vw_t* client_view){
+    qTextures.push(client_view);
 }
 
 void Nivel::finalizar() {

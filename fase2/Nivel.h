@@ -23,6 +23,10 @@ class Nivel: public Escenario {
         bool procesarClient(position_t* pos);
         bool procesarServer(ColaMultihilo* cola, std::string nivel);
 
+        void pushDato(client_vw_t* client_view);
+        void renderNaves();
+        void renderNave(int tipo, int serial, int x, int y);
+
         static const int TIEMPO_NIVEL_SEGS = 240;
     protected:
         int cantidad_enemigos;
@@ -30,6 +34,8 @@ class Nivel: public Escenario {
         SDL_Rect dataFinNivel;
 
         client_vw_t** clients_vw;
+    private:
+        ColaMultihilo qTextures;
 };
 
 #endif

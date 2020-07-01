@@ -20,10 +20,12 @@ class ManejoDeNiveles{
 
         void procesarServer(ColaMultihilo* cola);
 
+        void pushDato(client_vw_t* client_view);
+
         static const int CANT_NIVELES = 3;
     private:
         std::list<Nivel*> niveles;
+        int actual_nivel;
 };
 
 #endif
-

@@ -109,8 +109,8 @@ bool Server::iniciar(){
         printf("termine\n");
     }
     loguin_users();
+    //for(int i = time(NULL) + 3; time(NULL) != i; time(NULL));
 
-    pthread_create(&hiloPop, NULL, server_desencolar, this);
     for(int j=0; j<max_users; j++){
         //seteo para la func de cada hilo de cada cliente
         struct sv* sv_sock = (struct sv*)malloc(sizeof(struct sv));
@@ -118,6 +118,7 @@ bool Server::iniciar(){
         sv_sock->client_socket = client_sockets[j];
         pthread_create(&hilosPush[j], NULL, server_encolar, sv_sock);
     }
+    pthread_create(&hiloPop, NULL, server_desencolar, this);
 
     //pthread_create(&hiloProcesar, NULL, server_procesar, this);
 
@@ -149,7 +150,6 @@ void* Server::encolar(int client_socket){
         printf("Tipo: %d\n", client_view->tipo_nave);
         printf("-----\n");
         cola->push(client_view);
-        //
     }
     return NULL;
 }
