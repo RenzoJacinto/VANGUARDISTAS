@@ -22,6 +22,8 @@ void Escenario::cargarImagen(const char* nivel, const char* sprite, TextureW* te
     logger.debug(mensaje.c_str());
 }
 
+bool Escenario::procesar(){return true;}
+
 bool Escenario::usuarioNoRequieraSalir(bool quit){
     return !quit;
 }
@@ -33,4 +35,6 @@ bool Escenario::hayEventos(){
 bool Escenario::eventoEsSalir(){
     return e.type == SDL_QUIT;
 }
+
+void Escenario::cerrar(){}
 

@@ -9,7 +9,7 @@ class Menu: public Escenario
     public:
         Menu();
         bool cargarImagen();
-        void procesar();
+        bool procesar();
         void cerrar();
 
     private:

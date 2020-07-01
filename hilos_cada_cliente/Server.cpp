@@ -17,6 +17,18 @@ typedef struct velocidades {
     int VelY;
 } velocidades_t;
 
+typedef struct posiciones {
+    int id;
+    int posX;
+    int posY;
+} posiciones_t;
+
+typedef struct data_send{
+    Server* server;
+    posiciones_t* pos;
+    int id;
+}data_send_t;
+
 nlohmann::json USERS;
 void* hilo_validar_credenciales(void* p)
 {
@@ -132,7 +144,6 @@ bool Server::iniciar(){
 
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
     struct sockaddr_in client_addr;
-    int client_addrlen;
     int actual_socket = 0;
     if (listen(socket , 2) < 0){
             logger.error("Error en el Listen");
@@ -147,7 +158,9 @@ bool Server::iniciar(){
         // SOCKET DEL CLIENTE
         logger.info("#Aceptar cliente ...");
         printf("esperando conexiones\n");
-        client_sockets[actual_socket] = accept(socket, (struct sockaddr *) &client_addr, (socklen_t*) &client_addrlen);
+        socklen_t client_len;
+        client_len = sizeof(struct sockaddr_in);
+        client_sockets[actual_socket] = accept(socket, (struct sockaddr *) &client_addr, &client_len);
         if (client_sockets[actual_socket] < 0){
             printf("fallo accept\n");
             logger.error("Fallo el accept del cliente");
@@ -208,8 +221,17 @@ void* Server::desencolar_procesar_enviar(){
 }
 
 bool Server::sendData(void* dato){
-
-
+    data_send_t* data = (data_send_t*)dato;
+    posiciones_t* pos = data->pos;
+    int id = data->id;
+    int total_bytes_writen = 0;
+    int bytes_writen = 0;
+    int sent_data_size = sizeof(posiciones_t);
+    while(sent_data_size > total_bytes_writen) {
+        bytes_writen = send(client_sockets[id], pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
+        total_bytes_writen += bytes_writen;
+        if(bytes_writen<=0)break;
+    }
 	return true;
 }
 

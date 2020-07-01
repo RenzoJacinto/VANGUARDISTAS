@@ -31,7 +31,7 @@ void BotonIniciar::handleEvent( SDL_Event& e ){
         // CUANDO SE APRETA ENTER (QUEDAN LOS ESTADOS FINALES DE ID Y PASS)
         if( e.key.keysym.sym == SDLK_RETURN){
             ManejoDeNiveles niveles;
-            niveles.procesar_cliente();
+            niveles.procesar();
         }
 
     } else if( e.type == SDL_TEXTINPUT ){

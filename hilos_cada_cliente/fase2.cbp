@@ -80,6 +80,10 @@
 		<Unit filename="Nivel2.h" />
 		<Unit filename="Nivel3.cpp" />
 		<Unit filename="Nivel3.h" />
+		<Unit filename="NivelCliente.cpp" />
+		<Unit filename="NivelCliente.h" />
+		<Unit filename="NivelServer.cpp" />
+		<Unit filename="NivelServer.h" />
 		<Unit filename="Server.cpp" />
 		<Unit filename="Server.h" />
 		<Unit filename="Temporizador.h" />
