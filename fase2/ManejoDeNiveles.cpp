@@ -9,7 +9,6 @@
 #include "Nivel3.h"
 
 ManejoDeNiveles::ManejoDeNiveles(){
-    cargarNiveles();
 }
 
 void ManejoDeNiveles::procesar(position_t* pos){
@@ -48,4 +47,12 @@ void ManejoDeNiveles::cargarNiveles(){
     niveles.push_back(mapa1);
     niveles.push_back(mapa2);
     niveles.push_back(mapa3);
+}
+
+void ManejoDeNiveles::procesarServer(ColaMultihilo* cola){
+    Nivel nivel;
+    for(int i=0; i<CANT_NIVELES; i++){
+        std::string ac_nivel = "nivel"+std::to_string(i+1);
+        nivel.procesarServer(cola, ac_nivel);
+    }
 }

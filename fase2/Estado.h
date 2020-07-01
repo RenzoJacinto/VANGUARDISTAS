@@ -14,9 +14,7 @@ class Estado{
     public:
         Estado();
         virtual bool iniciar();
-        virtual int sendData(void* dato);
-        virtual int receiveData();
-        virtual void processData(void* dato);
+
         virtual void cerrar();
 
     protected:

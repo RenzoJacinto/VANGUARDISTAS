@@ -9,8 +9,7 @@
 #include <string>
 
 //Texture wrapper class
-class TextureW
-{
+class TextureW{
 	public:
 		// Constructor
 		TextureW();
@@ -45,6 +44,7 @@ class TextureW
 		int getWidth();
 		int getHeight();
 
+
 	private:
 		// La textura actual
 		SDL_Texture* mTexture;
@@ -52,6 +52,7 @@ class TextureW
 		// Las dimensiones de la imagen
 		int mWidth;
 		int mHeight;
+
 };
 
 #endif

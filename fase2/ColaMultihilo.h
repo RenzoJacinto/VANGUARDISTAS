@@ -3,37 +3,19 @@
 
 #include <queue>
 #include <pthread.h>
+#include "typesmsj.h"
+
 
 class ColaMultihilo{
 
     public:
-        ColaMultihilo(){
-            elements = 0;
-            pthread_mutex_init(&mutex, NULL);
-        }
-
-        void push(void* dato){
-            pthread_mutex_lock(&mutex);
-            cola.push(dato);
-            elements++;
-            pthread_mutex_unlock(&mutex);
-        }
-
-        void* pop(){
-            pthread_mutex_lock(&mutex);
-            void* data = cola.front();
-            cola.pop();
-            elements--;
-            pthread_mutex_unlock(&mutex);
-            return data;
-        }
-
-        bool estaVacia(){
-            return elements;
-        }
+        ColaMultihilo();
+        void push(client_vw_t* dato);
+        client_vw_t* pop();
+        bool estaVacia();
 
     private:
-        std::queue<void*> cola;
+        std::queue<client_vw_t*> cola;
         pthread_mutex_t mutex;
         int elements;
 };

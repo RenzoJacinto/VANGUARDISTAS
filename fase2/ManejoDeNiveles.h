@@ -4,6 +4,7 @@
 #include <list>
 #include "Nivel.h"
 #include "typesmsj.h"
+#include "ColaMultihilo.h"
 
 using namespace std;
 
@@ -17,6 +18,9 @@ class ManejoDeNiveles{
         void delay(int sec);
         void cargarNiveles();
 
+        void procesarServer(ColaMultihilo* cola);
+
+        static const int CANT_NIVELES = 3;
     private:
         std::list<Nivel*> niveles;
 };

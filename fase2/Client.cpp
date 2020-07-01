@@ -36,8 +36,9 @@ Client::Client(char* IP, int port){
 
     size_pos = sizeof(struct position);
     pos = (struct position* )malloc(size_pos);
-    pos->x = 0;
-    pos->y = 0;
+    pos->x = 10;
+    pos->y = 10;
+    pthread_mutex_init(&mutex, NULL);
 }
 
 bool Client::iniciar(){
@@ -72,7 +73,7 @@ bool Client::iniciar(){
     if(! iniciarSesion()){
         juego.cerrar();
         return false;
-    }
+    } juego.cerrarMenu();
 
     // Creo los hilos de envio y recibimiento de data
     //typedef void * (*THREADFUNCPTR)(void *);
@@ -89,37 +90,65 @@ bool Client::iniciar(){
 
 void* Client::encolar(){
     int size_data = sizeof(client_vw_t);
-    client_vw_t client_view;
+
     while(true){
-        if(receiveData(&client_view, size_pos) < 0) break;
+        client_vw_t client_view;
+
+        if(receiveData(&client_view, size_data) < 0) break;
+
+
+        client_vw_t* client_recv = (client_vw_t*)malloc(size_data);
+        client_recv->tipo_nave = client_view.tipo_nave;
+        client_recv->x = client_view.x;
+        client_recv->y = client_view.y;
+        client_recv->serial = client_view.serial;
+
         std::cout<<"ENCOLAR\n";
-        printf("X: %d\n", client_view.x);
-        printf("Y: %d\n", client_view.y);
+        printf("ser: %d\n", client_recv->serial);
+        printf("ty: %d\n", client_recv->tipo_nave);
+        printf("X: %d\n", client_recv->x);
+        printf("Y: %d\n", client_recv->y);
         std::cout<<"-----------\n";
-        cola->push(&client_view);
+
+        cola->push(client_recv);
+
     }
     return NULL;
 }
 
 void* Client::desencolar(){
+//    size_t size_view = sizeof(client_vw_t);
 
     while(true){
+
         while(! cola->estaVacia()){
-            processData(cola->pop());
+
+            client_vw_t* data = cola->pop();
+            /*client_vw_t* client_view = (client_vw_t*)malloc(size_view);
+            client_view->tipo_nave = data->tipo_nave;
+            client_view->serial = data->serial;
+            client_view->x = data->x;
+            client_view->y = data->y;*/
+
+            //pthread_mutex_lock(&mutex);
+            processData(data);
+            //pthread_mutex_unlock(&mutex);
         }
+
     }
     return NULL;
 }
 
 void* Client::enviar(){
     while(true){
+        //pthread_mutex_lock(&mutex);
         if(sendData(pos,size_pos) < 0) break;
+        //pthread_mutex_unlock(&mutex);
     }
     return NULL;
 }
 
-int Client::sendData(void* dato, int total_data_size){
-
+int Client::sendData(position_t* dato, int total_data_size){
 	int total_bytes_enviados = 0;
     int bytes_enviados = 0;
     bool ok = true;
@@ -138,13 +167,13 @@ int Client::sendData(void* dato, int total_data_size){
     return 0;
 }
 
-int Client::receiveData(void* dato, int bytes_totales){
+int Client::receiveData(client_vw_t* dato, int bytes_totales){
 
 
     int total_bytes_recibidos=0;
     int bytes_recibidos = 0;
     bool ok = true;
-    while((bytes_totales > total_bytes_recibidos) && ok){
+    while((bytes_totales > bytes_recibidos) && ok){
         bytes_recibidos = recv(socket, (dato + total_bytes_recibidos), (bytes_totales - total_bytes_recibidos), MSG_NOSIGNAL);
 
         if(bytes_recibidos < 0){
@@ -159,13 +188,12 @@ int Client::receiveData(void* dato, int bytes_totales){
 	return total_bytes_recibidos;
 }
 
-void Client::processData(void* dato){
-    struct client_vw* client_view = (struct client_vw*)dato;
+void Client::processData(client_vw_t* dato){
     std::cout<<"PROCESS DATA\n";
-    printf("X: %d\n", client_view->x);
-    printf("Y: %d\n", client_view->y);
+    printf("X: %d\n", dato->x);
+    printf("Y: %d\n", dato->y);
     std::cout<<"-----------\n";
-    juego.renderNave(client_view);
+    juego.renderNave(dato);
 }
 
 bool Client::iniciarSesion(){
@@ -186,12 +214,12 @@ bool Client::iniciarSesion(){
         strcpy(cliente->id,juego.get_id().c_str());
         strcpy(cliente->pass,juego.get_password().c_str());
 
-        if(sendData(cliente, size_client) < 0){
+        if(send(socket, cliente, size_client, MSG_NOSIGNAL) < 0){
             logger.error("Error en el envio de la data");
             ok = false;
         }
 
-        if(receiveData(&accion_recibida, sizeof(int)) < 0){
+        if(recv(socket, &accion_recibida, sizeof(int), MSG_NOSIGNAL) < 0){
             logger.error("Error en el recibimiento de la data");
             ok = false;
         }

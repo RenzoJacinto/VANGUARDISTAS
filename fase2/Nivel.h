@@ -13,7 +13,7 @@ class Nivel: public Escenario {
     public:
 
         Nivel();
-        vector<NaveEnemiga*> crear_enemigos(ColaMultihilo* cola);
+        vector<NaveEnemiga*> crear_enemigos(client_vw_t** clients_vw);
 
         void finalizar();
         virtual void cerrar();
@@ -21,13 +21,15 @@ class Nivel: public Escenario {
         virtual void renderBackground();
 
         bool procesarClient(position_t* pos);
-        bool procesarServer(ColaMultihilo* cola, int max_users);
+        bool procesarServer(ColaMultihilo* cola, std::string nivel);
 
         static const int TIEMPO_NIVEL_SEGS = 240;
     protected:
         int cantidad_enemigos;
         TextureW gFinNivel;
         SDL_Rect dataFinNivel;
+
+        client_vw_t** clients_vw;
 };
 
 #endif

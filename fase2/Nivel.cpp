@@ -12,9 +12,9 @@ Nivel::Nivel(){
     dataFinNivel.y = 0;
 }
 
-vector<NaveEnemiga*> Nivel::crear_enemigos(ColaMultihilo* cola){
+vector<NaveEnemiga*> Nivel::crear_enemigos(client_vw_t** clients_vw){
     vector<NaveEnemiga*> enemigos(cantidad_enemigos);
-    int size_view = sizeof(struct client_vw);
+    size_t size_view = sizeof(client_vw_t);
     for(int i=0; i<cantidad_enemigos; i++){
 
         // Elige un enemigo random
@@ -34,39 +34,58 @@ vector<NaveEnemiga*> Nivel::crear_enemigos(ColaMultihilo* cola){
         NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
 
         enemigos[i]=enemigo;
+
         client_vw_t* client_view = (client_vw_t*)malloc(size_view);
-        cola->push(client_view);
+        client_view->serial = enemigo_random;
+        client_view->tipo_nave = TIPO_ENEMIGO;
+        client_view->x = enemigos[i]->getPosX();
+        client_view->y = enemigos[i]->getPosY();
+
+        clients_vw[i] = client_view;
     }
     std::string mensaje = "Se crearon los " + std::to_string(cantidad_enemigos) + " enemigos";
     logger.debug(mensaje.c_str());
     return enemigos;
 }
 
-bool Nivel::procesarServer(ColaMultihilo* cola, int max_users){
+bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
 
 	    bool quit = false;
+
+	    cantidad_enemigos = json.get_cantidad_enemigo(nivel.c_str());
+        if(cantidad_enemigos == 0){
+            std::string msj = "Cantidad de enemigos del " + nivel + " inexistente, se cargo una por defecto";
+            logger.error(msj.c_str());
+            cantidad_enemigos = json.get_cantidad_enemigo_default(nivel.c_str());
+        }
+        std::string mensaje = "Se cargo la cantidad de enemigos: " + std::to_string(cantidad_enemigos);
+        logger.debug(mensaje.c_str());
+        std::cout<<mensaje<<"\n";
 
 	    //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
 	    Temporizador temporizador;
 	    temporizador.iniciar();
 
-
-        vector<NaveEnemiga*> enemigos = crear_enemigos(cola);
+        size_t size_view = sizeof(client_vw_t);
+        clients_vw = (client_vw_t**)malloc(size_view * cantidad_enemigos);
+        vector<NaveEnemiga*> enemigos = crear_enemigos(clients_vw);
 
         float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cantidad_enemigos;
         double tiempo_nivel = 0;
         int renderizados = 1;
 
-        int size_view = sizeof(struct client_vw);
+
 	    // Mientras que siga corriendo la app
 	    while( tiempo_nivel < TIEMPO_NIVEL_SEGS ) {
 
             for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
                 enemigos[i]->mover();
                 client_vw_t* client_view = (client_vw_t*)malloc(size_view);
-                client_view->gNaveTexture = enemigos[i]->get_texture();
+                client_view->tipo_nave = clients_vw[i]->tipo_nave;
+                client_view->serial = clients_vw[i]->serial;
                 client_view->x = enemigos[i]->getPosX();
                 client_view->y = enemigos[i]->getPosY();
+
                 cola->push(client_view);
             }
 
@@ -74,8 +93,6 @@ bool Nivel::procesarServer(ColaMultihilo* cola, int max_users){
             if(tiempo_nivel/renderizados > tiempo_por_enemigos) renderizados++;
 
             //Hasta aca
-
-			SDL_RenderPresent( sdl.getRenderer() );
         }
         vector<NaveEnemiga*>::iterator pos;
         // CIERRA LAS NAVES
@@ -103,7 +120,7 @@ bool Nivel::procesarClient(position_t* pos){
 			renderBackground();
 			SDL_RenderPresent(sdl.getRenderer());
         }
-        jugador->cerrarNave();
+        //jugador->cerrarNave();
         return quit;
 }
 

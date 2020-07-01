@@ -16,9 +16,9 @@ class Client: public Estado{
         void* desencolar();
         void* enviar();
 
-        int sendData(void* dato, int size_data);
-        int receiveData(void* dato, int size_data);
-        void processData(void* dato);
+        int sendData(position_t* dato, int size_data);
+        int receiveData(client_vw_t* dato, int size_data);
+        void processData(client_vw_t* dato);
 
         bool iniciarSesion();
 
@@ -33,7 +33,7 @@ class Client: public Estado{
 
         Juego juego;
 
-        struct position* pos;
+        position_t* pos;
         int size_pos;
 
 };

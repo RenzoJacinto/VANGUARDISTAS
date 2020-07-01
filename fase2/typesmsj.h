@@ -13,9 +13,24 @@ typedef struct position{
 } position_t;
 
 typedef struct client_vw{
-    TextureW gNaveTexture;
+    int tipo_nave;
+    int serial;
     int x;
     int y;
 } client_vw_t;
+
+static const int TIPO_JUGADOR = 0;
+static const int TIPO_ENEMIGO = 1;
+
+static const int SERIAL_ENEMIGO_1 = 1;
+static const int SERIAL_ENEMIGO_2 = 2;
+static const int SERIAL_ENEMIGO_3 = 3;
+static const int SERIAL_ENEMIGO_4 = 4;
+
+static const int SERIAL_JUGADOR_1 = 1;
+static const int SERIAL_JUGADOR_2 = 2;
+static const int SERIAL_JUGADOR_3 = 3;
+static const int SERIAL_JUGADOR_4 = 4;
+
 
 #endif
