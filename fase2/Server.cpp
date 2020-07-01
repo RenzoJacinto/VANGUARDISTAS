@@ -110,15 +110,15 @@ bool Server::iniciar(){
     }
     loguin_users();
 
+    pthread_create(&hiloPop, NULL, server_desencolar, this);
     for(int j=0; j<max_users; j++){
         //seteo para la func de cada hilo de cada cliente
         struct sv* sv_sock = (struct sv*)malloc(sizeof(struct sv));
         sv_sock->server = this;
         sv_sock->client_socket = client_sockets[j];
-
         pthread_create(&hilosPush[j], NULL, server_encolar, sv_sock);
     }
-    pthread_create(&hiloPop, NULL, server_desencolar, this);
+
     //pthread_create(&hiloProcesar, NULL, server_procesar, this);
 
     ManejoDeNiveles niveles;
@@ -137,36 +137,42 @@ void* Server::encolar(int client_socket){
         position_t pos;
         //pthread_mutex_lock(&mutex);
         if(receiveData(client_socket, &pos, size_pos) < 0) break;
-
+        //pthread_mutex_unlock(&mutex);
         client_vw_t* client_view = (client_vw_t*)malloc(size_view);
         client_view->serial = get_serial_by_socket(client_socket) + 1;
         client_view->tipo_nave = TIPO_JUGADOR;
         client_view->x = pos.x;
         client_view->y = pos.y;
+        printf("X: %d\n", client_view->x);
+        printf("Y: %d\n", client_view->y);
+        printf("Ser: %d\n", client_view->serial);
+        printf("Tipo: %d\n", client_view->tipo_nave);
+        printf("-----\n");
         cola->push(client_view);
-        //pthread_mutex_unlock(&mutex);
+        //
     }
     return NULL;
 }
 
 void* Server::desencolar(){
     int size_view =  sizeof(client_vw_t);
-    while(!cola->estaVacia()){
+    while(true){
+        while(!cola->estaVacia()){
 
+            client_vw_t* data = cola->pop();
 
-        client_vw_t* data = cola->pop();
+            std::cout<<"DESENCOLAR\n";
+            printf("typ: %d\n", data->tipo_nave);
+            printf("ser: %d\n", data->serial);
+            printf("X: %d\n", data->x);
+            printf("Y: %d\n", data->y);
+            std::cout<<"-----------\n";
 
-        std::cout<<"DESENCOLAR\n";
-        printf("typ: %d\n", data->tipo_nave);
-        printf("ser: %d\n", data->serial);
-        printf("X: %d\n", data->x);
-        printf("Y: %d\n", data->y);
-        std::cout<<"-----------\n";
-
-        //broadcast
-        for(int i=0; i<max_users; i++){
-            if(sendData(client_sockets[i], data,size_view) < 0 ) {
-                logger.info("Se desconecto un user");
+            //broadcast
+            for(int i=0; i<max_users; i++){
+                if(sendData(client_sockets[i], data,size_view) < 0 ) {
+                    logger.info("Se desconecto un user");
+                }
             }
         }
     }
@@ -195,7 +201,7 @@ int Server::sendData(int client_socket, client_vw_t* dato, int data_size){
             ok = false;
         } else total_bytes_enviados += bytes_enviados;
     }
-    return 0;
+    return total_bytes_enviados;
 }
 
 int Server::receiveData(int client_socket, position_t* dato, int data_size){
@@ -206,7 +212,7 @@ int Server::receiveData(int client_socket, position_t* dato, int data_size){
     std::string msj = "";
     std::string str_sock = std::to_string(client_socket);
 
-    while ((data_size > bytes_recibidos) && ok) {
+    while ((data_size > total_bytes_recibidos) && ok) {
         bytes_recibidos = recv(client_socket, (dato + total_bytes_recibidos), (data_size - total_bytes_recibidos), MSG_NOSIGNAL);
 
         if (bytes_recibidos < 0){
@@ -219,7 +225,7 @@ int Server::receiveData(int client_socket, position_t* dato, int data_size){
             ok = false;
         } else total_bytes_recibidos += bytes_recibidos;
     }
-    return 0;
+    return total_bytes_recibidos;
 }
 
 void Server::cerrar(){
@@ -249,6 +255,10 @@ void Server::loguin_users(){
 
                 string ids(cliente.id);
                 string cpass(cliente.pass);
+
+                std::cout<<"CLIENTE "<<i<<"\n";
+                std::cout<<"ID: "<<ids<<"\n";
+                std::cout<<"Pass: "<<cpass<<"\n";
 
                 msj += ids + " ; PASS: " + cpass;
                 logger.info(msj.c_str());

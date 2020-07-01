@@ -94,23 +94,23 @@ void* Client::encolar(){
     while(true){
         client_vw_t client_view;
 
+        //pthread_mutex_lock(&mutex);
         if(receiveData(&client_view, size_data) < 0) break;
+        //pthread_mutex_unlock(&mutex);
 
-
-        client_vw_t* client_recv = (client_vw_t*)malloc(size_data);
-        client_recv->tipo_nave = client_view.tipo_nave;
-        client_recv->x = client_view.x;
-        client_recv->y = client_view.y;
-        client_recv->serial = client_view.serial;
-
+        client_vw_t* data = (client_vw_t*)malloc(size_data);
+        data->serial = client_view.serial;
+        data->tipo_nave = client_view.tipo_nave;
+        data->x = client_view.x;
+        data->y = client_view.y;
         std::cout<<"ENCOLAR\n";
-        printf("ser: %d\n", client_recv->serial);
-        printf("ty: %d\n", client_recv->tipo_nave);
-        printf("X: %d\n", client_recv->x);
-        printf("Y: %d\n", client_recv->y);
+        printf("ser: %d\n", data->serial);
+        printf("ty: %d\n", data->tipo_nave);
+        printf("X: %d\n", data->x);
+        printf("Y: %d\n", data->y);
         std::cout<<"-----------\n";
 
-        cola->push(client_recv);
+        cola->push(data);
 
     }
     return NULL;
@@ -142,7 +142,11 @@ void* Client::desencolar(){
 void* Client::enviar(){
     while(true){
         //pthread_mutex_lock(&mutex);
+        //printf("X: %d\n", pos->x);
+        //printf("Y: %d\n", pos->y);
+       // pthread_mutex_lock(&mutex);
         if(sendData(pos,size_pos) < 0) break;
+       // pthread_mutex_unlock(&mutex);
         //pthread_mutex_unlock(&mutex);
     }
     return NULL;
@@ -173,7 +177,7 @@ int Client::receiveData(client_vw_t* dato, int bytes_totales){
     int total_bytes_recibidos=0;
     int bytes_recibidos = 0;
     bool ok = true;
-    while((bytes_totales > bytes_recibidos) && ok){
+    while((bytes_totales > total_bytes_recibidos) && ok){
         bytes_recibidos = recv(socket, (dato + total_bytes_recibidos), (bytes_totales - total_bytes_recibidos), MSG_NOSIGNAL);
 
         if(bytes_recibidos < 0){

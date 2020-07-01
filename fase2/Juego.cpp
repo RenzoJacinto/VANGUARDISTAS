@@ -44,50 +44,24 @@ void Juego::iniciar(position_t* pos){
 }
 void Juego::renderNave(client_vw_t* client_view){
     TextureW texture;
-    std::string sprite = obtenerSpriteNave(client_view->tipo_nave, client_view->serial);
-    if(sprite == ""){
-        if(client_view->tipo_nave == TIPO_JUGADOR) texture = texturesJugadores[client_view->serial - 1];
-        if(client_view->tipo_nave == TIPO_ENEMIGO) texture = texturesEnemigos[client_view->serial - 1];
-    } else{
-        if(client_view->tipo_nave == TIPO_JUGADOR){
-            std::string msj = "No se pudo cargar la imagen "+sprite+" , se carga por default";
-            if(! texture.loadFromFile(sprite)){
-                logger.error(msj.c_str());
-                std::string nave = "nave"+client_view->serial;
-                sprite = json.get_sprite_nave_default("jugador", nave.c_str());
-                texture.loadFromFile(sprite);
-            } else{
-                msj = "Se cargo la imagen "+sprite;
-                logger.debug(sprite.c_str());
-            }
-            texturesJugadores[client_view->serial - 1] = texture;
-        } else if(client_view->tipo_nave == TIPO_ENEMIGO){
-            texture.loadFromFile(sprite);
-            texturesEnemigos[client_view->serial - 1] = texture;
+    std::string sprite;
+    std::string nave;
+    if(client_view->tipo_nave == TIPO_JUGADOR){
+        nave = "nave" + std::to_string(client_view->serial);
+        sprite = json.get_sprite_nave("jugador", nave.c_str());
+        if(! texture.loadFromFile(sprite.c_str())){
+            sprite = json.get_imagen_default("nave");
+            texture.loadFromFile(sprite.c_str());
+        }
+    } else if(client_view->tipo_nave == TIPO_ENEMIGO){
+        nave = "enemigo" + std::to_string(client_view->serial);
+        sprite = json.get_sprite_nave("enemigas", nave.c_str());
+        if(! texture.loadFromFile(sprite.c_str())){
+            sprite = json.get_imagen_default("nave");
+            texture.loadFromFile(sprite.c_str());
         }
     }
 
     texture.render(client_view->x, client_view->y);
     SDL_RenderPresent(sdl.getRenderer());
-}
-
-std::string Juego::obtenerSpriteNave(int tipo, int serial){
-    std::string sprite = "";
-    if(tipo == TIPO_JUGADOR){
-        if(bit_jugadores[serial] == CARGADO) sprite = "";
-        else{
-            std::string nave = "nave"+std::to_string(serial);
-            sprite = json.get_sprite_nave("jugador", nave.c_str());
-            bit_jugadores[serial - 1] = CARGADO;
-        }
-
-    } else if(tipo == TIPO_ENEMIGO){
-        if(bit_enemigos[serial] == CARGADO) sprite = "";
-        else{
-            std::string nave = "enemigo"+std::to_string(serial);
-            sprite = json.get_sprite_nave("enemigo", nave.c_str());
-            bit_enemigos[serial - 1] = CARGADO;
-        }
-    }
-    return sprite;
 }

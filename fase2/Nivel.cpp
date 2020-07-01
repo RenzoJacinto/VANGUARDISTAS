@@ -86,7 +86,7 @@ bool Nivel::procesarServer(ColaMultihilo* cola, std::string nivel){
                 client_view->x = enemigos[i]->getPosX();
                 client_view->y = enemigos[i]->getPosY();
 
-                cola->push(client_view);
+                //cola->push(client_view);
             }
 
             tiempo_nivel = temporizador.transcurridoEnSegundos();
