@@ -143,6 +143,12 @@ void* Server::encolar(int client_socket){
         client_view->tipo_nave = TIPO_JUGADOR;
         client_view->x = pos.x;
         client_view->y = pos.y;
+        std::cout<<"ENCOLAR\n";
+        printf("typ: %d\n", client_view->tipo_nave);
+        printf("ser: %d\n", client_view->serial);
+        printf("X: %d\n", client_view->x);
+        printf("Y: %d\n", client_view->y);
+        std::cout<<"-----------\n";
         cola->push(client_view);
         //pthread_mutex_unlock(&mutex);
     }
@@ -206,7 +212,7 @@ int Server::receiveData(int client_socket, position_t* dato, int data_size){
     std::string msj = "";
     std::string str_sock = std::to_string(client_socket);
 
-    while ((data_size > bytes_recibidos) && ok) {
+    while ((data_size > total_bytes_recibidos) && ok) {
         bytes_recibidos = recv(client_socket, (dato + total_bytes_recibidos), (data_size - total_bytes_recibidos), MSG_NOSIGNAL);
 
         if (bytes_recibidos < 0){

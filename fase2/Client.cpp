@@ -152,7 +152,10 @@ int Client::sendData(position_t* dato, int total_data_size){
 	int total_bytes_enviados = 0;
     int bytes_enviados = 0;
     bool ok = true;
-
+    std::cout<<"SEND\n";
+    printf("X: %d\n", dato->x);
+    printf("Y: %d\n", dato->y);
+    std::cout<<"-----------\n";
     while ((total_data_size > total_bytes_enviados) && ok){
         bytes_enviados = send(socket, (dato + total_bytes_enviados), (total_data_size-total_bytes_enviados), MSG_NOSIGNAL);
 
@@ -173,7 +176,7 @@ int Client::receiveData(client_vw_t* dato, int bytes_totales){
     int total_bytes_recibidos=0;
     int bytes_recibidos = 0;
     bool ok = true;
-    while((bytes_totales > bytes_recibidos) && ok){
+    while((bytes_totales > total_bytes_recibidos) && ok){
         bytes_recibidos = recv(socket, (dato + total_bytes_recibidos), (bytes_totales - total_bytes_recibidos), MSG_NOSIGNAL);
 
         if(bytes_recibidos < 0){

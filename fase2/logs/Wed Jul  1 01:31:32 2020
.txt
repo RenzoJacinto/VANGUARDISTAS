@@ -1,0 +1,46 @@
+01/07/2020 01:31:32.346 - DEBUG: Se inicializó SDL
+01/07/2020 01:31:32.346 - DEBUG: Filtrado de textura lineal seteado
+01/07/2020 01:31:32.455 - DEBUG: Se creó la ventana
+01/07/2020 01:31:32.689 - DEBUG: Se creó vSync para la ventana
+01/07/2020 01:31:32.689 - DEBUG: Se inicializó el renderizado de color
+01/07/2020 01:31:32.689 - DEBUG: Se inicializó la carga de imagenes PNG
+01/07/2020 01:31:32.689 - DEBUG: Se inicializo la carga de fuentes
+01/07/2020 01:31:32.690 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 18 para los textBox
+01/07/2020 01:31:32.690 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 50 para el error de logueo
+01/07/2020 01:31:32.690 - INFO: >>>> INICIANDO CLIENTE ....
+01/07/2020 01:31:32.697 - INFO: #Socket ...
+01/07/2020 01:31:32.697 - DEBUG: @Socket creado
+01/07/2020 01:31:32.697 - INFO: #Conexion con el servidor ...
+01/07/2020 01:31:32.733 - DEBUG: @Conectado
+01/07/2020 01:31:32.755 - DEBUG: Se cargo las imagen de seleccion de box name
+01/07/2020 01:31:32.780 - DEBUG: Se cargo las imagen de seleccion de box password
+01/07/2020 01:31:32.834 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+01/07/2020 01:31:32.834 - INFO: Se mostró el menú
+01/07/2020 01:31:42.971 - INFO: >>>> CARGANDO EL NIVEL 1 ....
+01/07/2020 01:31:42.971 - INFO: ## CARGANDO mapaBG ....
+01/07/2020 01:31:43.32 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/bg.png
+01/07/2020 01:31:43.32 - INFO: ## CARGANDO ciudad ....
+01/07/2020 01:31:43.73 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/ciudad.png
+01/07/2020 01:31:43.73 - INFO: ## CARGANDO planeta ....
+01/07/2020 01:31:43.119 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/planeta.png
+01/07/2020 01:31:43.119 - INFO: ## CARGANDO nube1 ....
+01/07/2020 01:31:43.300 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube1.png
+01/07/2020 01:31:43.300 - INFO: ## CARGANDO nube2 ....
+01/07/2020 01:31:43.472 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube3.png
+01/07/2020 01:31:43.472 - INFO: ## CARGANDO finNivel ....
+01/07/2020 01:31:43.541 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/fin_nivel1.png
+01/07/2020 01:31:43.541 - INFO: <<<< SE CARGO EL NIVEL 1
+01/07/2020 01:31:43.541 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+01/07/2020 01:31:43.541 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/jugador/nave1.png
+01/07/2020 01:31:43.541 - DEBUG: Se creo la nave jugador
+01/07/2020 01:31:43.541 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+01/07/2020 01:32:42.924 - ERROR: No se recibio correctamente la data
+01/07/2020 01:32:42.924 - ERROR: No se envio correctamente la data
+01/07/2020 01:32:48.701 - DEBUG: Se liberó memoria del renderizador
+01/07/2020 01:32:48.724 - DEBUG: Se liberó memoria de la ventana
+01/07/2020 01:32:48.724 - DEBUG: Se referenció la ventana como nula
+01/07/2020 01:32:48.724 - DEBUG: Se referenció el renderizador como nulo
+01/07/2020 01:32:48.724 - DEBUG: Se cerró IMG
+01/07/2020 01:32:48.771 - DEBUG: Se cerró SDL
+01/07/2020 01:32:48.771 - DEBUG: Juego terminado
+01/07/2020 01:32:48.771 - DEBUG: Socket del cliente cerrado
