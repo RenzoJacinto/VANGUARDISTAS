@@ -1,0 +1,30 @@
+****************************************************
+****	SOLUCION AL ACCESO REITERATIVO DEL	****
+****		USUARIO Y LA CONTRASEÑA		****
+****************************************************
+
+1) Ejecutar la siguiente linea:
+
+	git config --global credential.helper store
+
+   Basicamente lo que hace es que al ingresar el usuario
+   y su contraseña en la siguiente linea, esto lo guarda
+   en la cache, para cuando se vuelva a usar lo ejecute
+   de ahi sin ingresarlo de nuevo
+
+2) Para que en la siguiente linea les guarde sus datos,
+   ejecutar la siguientes lineas e ingresar sus datos
+
+	git pull origin master /* ENTER */
+Username for 'https://github.com': /* ACA SU EMAIL DE GITHUB Y ENTER */
+Password for 'https://github.com': /* ACA SU PASSWORD Y ENTER */
+ 	
+3) Con esto les quedaron guardados sus datos, asique si
+   quieren probarlo y verificar que anda suban algun
+   archivo nuevo (obvio despues lo borran)
+
+****************************************************
+****		LISTO GENTE A METERLE		****
+****		     by franjon11		****
+****************************************************
+
