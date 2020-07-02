@@ -16,14 +16,17 @@ class JuegoCliente : public Escenario
     public:
 
         JuegoCliente();
+        bool iniciarSDL();
         void init_menu();
         void iniciarNivel(Client* client);
         void procesar(posiciones_t* pos);
         void cerrar();
+
         void cargarNivel(Client* client);
         void renderBackground();
         void parallax();
         void aumentar_renderizados(int i);
+
         std::string get_id();
         std::string get_password();
         void render_errorLoguin(int intentos);

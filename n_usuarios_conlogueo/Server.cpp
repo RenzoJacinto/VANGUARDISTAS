@@ -7,72 +7,10 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-typedef struct hilosServer
-{
+typedef struct hilosServer{
     Server* server;
     int i;
 } hilosServer_t;
-
-nlohmann::json USERS;
-void* hilo_validar_credenciales(void* p){
-    Server* sv = (Server*) p;
-
-    pthread_mutex_lock(&mutex);
-    int client = sv->get_socket_actual();
-    int id = sv->get_id_actual();
-    sv->aumentar_socket();
-    pthread_mutex_unlock(&mutex);
-
-    sv->validar_credenciales(client, id);
-
-    return NULL;
-}
-
-void* validar_credenciales_aux(int client, int id){
-    printf("validando credenciales\n");
-    credenciales_t* datos = (credenciales_t*)malloc(sizeof(credenciales_t));
-    int bytes = recv( client , datos, sizeof(credenciales_t), MSG_NOSIGNAL);
-    printf("SOCKET: %d - ID: %s\n", client, datos->id);
-    if(bytes > 0){
-        try{
-            char password[50];
-            password[0] = 0;
-            std::string pass = USERS.at(datos->id);
-            std::cout<<pass;
-            strncat(password, pass.c_str(), 49);
-            if(strcmp(password, datos->pass) != 0)
-            {
-                char invalid_pass[22];
-                invalid_pass[0] = 0;
-                strncat(invalid_pass, "Contrasenia invalida", 21);
-                send(client, &invalid_pass, 22, 0);
-                validar_credenciales_aux(client, id);
-                return NULL;
-            }
-            printf("datos correctos\n");
-            velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-            v->id = id;
-            v->VelX=0;
-            v->VelY=0;
-            send(client, v, sizeof(velocidades_t), 0);
-            free(v);
-            printf("id enviado\n");
-            //pthread_mutex_lock(&mutex);
-            //cant_sockets++;
-            //pthread_mutex_unlock(&mutex);
-            return NULL;
-        }
-        catch(nlohmann::detail::out_of_range)
-        {
-            char invalid_id[18];
-            invalid_id[0] = 0;
-            strncat(invalid_id, "Usuario invalido", 17);
-            send(client, &invalid_id, 18, 0);
-            validar_credenciales_aux(client, id);
-        }
-    }
-    return NULL;
-}
 
 void* encolar_procesar(void* p){
     hilosServer_t* data = (hilosServer_t*)p;
@@ -92,7 +30,8 @@ void* desencolar_procesar(void* p){
 
 Server::Server(int port, pthread_mutex_t m){
     max_users = json.get_max_users();
-    if(max_users>4) max_users=4;
+    if(max_users>MAX_CLIENTS) max_users=MAX_CLIENTS;
+
     puerto = port;
     mutex = m;
     cant_sockets = 0;
@@ -103,12 +42,10 @@ Server::Server(int port, pthread_mutex_t m){
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
     whitelist >> j_wl;
-    USERS =j_wl;
     whitelist.close();
 }
 
-int Server::get_socket_actual()
-{
+int Server::get_socket_actual(){
     return client_sockets[cant_sockets];
 }
 
@@ -197,32 +134,16 @@ bool Server::iniciar(){
 
     juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), actual_socket, this);
     printf("creo el juego\n");
-    char buf[5];
-    buf[0]=0;
-    for(int i = 0; i<actual_socket;i++) recv(client_sockets[i], buf, 5, MSG_NOSIGNAL);
-    //pthread_t hilo;
-    //pthread_create(&hilo,  NULL, desencolar_procesar, this);
-    for(int i = 0; i<actual_socket; i++)
-    {
+
+    for(int i = 0; i<actual_socket; i++){
         hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
         data->server = this;
         data->i = i;
         pthread_create(&clientes[i], NULL, encolar_procesar, data);
     }
-    //pthread_create(&hilo2, NULL, encolar_procesar, this);
+
     juego->iniciarNivel(json.get_cantidad_enemigo("nivel1"), this, 240);
-    //int j;
-    //j = pthread_create(&hiloRecibirEncolar, NULL, (void* (*)(void*))recibir_encolar(), NULL);
-    //if (j){exit(-1);}
-    //j = pthread_create(&hiloDesencolarProcesarEnviar, NULL, (void* (*)(void*))desencolar_procesar_enviar(), NULL);
-    //if (j){exit(-1);}
-
-    //while(true){
-
-      //  recibir_encolar();
-        //desencolar_procesar_enviar();
-
-    //}
+    cerrar();
 
     return true;
 }
@@ -249,12 +170,10 @@ void* Server::recibir_encolar(int socket){
 }
 
 void* Server::desencolar_procesar_enviar(){
-    while(true)
-    {
+    while(true){
         if(cola->estaVacia()) continue;
         void* dato = cola->pop();
-        if(dato)
-        {
+        if(dato){
             posiciones_t* pos = juego->procesar((velocidades_t*) dato);
             printf("ID: %d, posX: %d, posY: %d\n", pos->id, pos->posX, pos->posY);
             send_all(pos);
@@ -323,7 +242,11 @@ void Server::loguin_users(){
                 data_send = check_loguin_user(&cliente);
                 if(send(client_sockets[i], &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
                     logger.error("No se envio correctamente la data");
-                if(data_send == 1) logger.info("Error de logueo, credenciales invalidas");
+                if(data_send == 1){
+                    std::cout<<"Error de logueado!!\n";
+                    logger.info("Error de logueo, credenciales invalidas");
+                }
+                else std::cout<<"Logueado!!\n";
 
                 (veces_check[i])++;
             } else break;
@@ -367,58 +290,12 @@ bool Server::cola_esta_vacia() {
     return cola->estaVacia();
 }
 
-void* Server::validar_credenciales(int client, int id){
-    printf("validando credenciales\n");
-    credenciales_t* datos = (credenciales_t*)malloc(sizeof(credenciales_t));
-    int bytes = recv( client , datos, sizeof(credenciales_t), MSG_NOSIGNAL);
-    printf("SOCKET: %d - ID: %s\n", client, datos->id);
-    if(bytes > 0){
-        try{
-            char password[50];
-            password[0] = 0;
-            std::string pass = j_wl.at(datos->id);
-            std::cout<<pass;
-            strncat(password, pass.c_str(), 49);
-            if(strcmp(password, datos->pass) != 0){
-                char invalid_pass[22];
-                invalid_pass[0] = 0;
-                strncat(invalid_pass, "Contrasenia invalida", 21);
-                send(client, &invalid_pass, 22, 0);
-                validar_credenciales(client, id);
-                return NULL;
-            }
-            printf("datos correctos\n");
-            velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-            v->id = id;
-            v->VelX=0;
-            v->VelY=0;
-            send(client, v, sizeof(velocidades_t), 0);
-            free(v);
-            printf("id enviado\n");
-            //pthread_mutex_lock(&mutex);
-            //cant_sockets++;
-            //pthread_mutex_unlock(&mutex);
-            return NULL;
-        }
-        catch(nlohmann::detail::out_of_range){
-            char invalid_id[18];
-            invalid_id[0] = 0;
-            strncat(invalid_id, "Usuario invalido", 17);
-            send(client, &invalid_id, 18, 0);
-            validar_credenciales(client, id);
-        }
-    }
-    return NULL;
-}
-
 int Server::get_id_actual(){
     return cant_sockets;
 }
 
-void Server::send_all(posiciones_t* pos)
-{
-    for(int i = 0; i<max_users; i++)
-    {
+void Server::send_all(posiciones_t* pos){
+    for(int i = 0; i<max_users; i++){
         int total_bytes_writen = 0;
         int bytes_writen = 0;
         int sent_data_size = sizeof(posiciones_t);
@@ -431,7 +308,6 @@ void Server::send_all(posiciones_t* pos)
     }
 }
 
-void* Server::desencolar()
-{
+void* Server::desencolar(){
     return cola->pop();
 }

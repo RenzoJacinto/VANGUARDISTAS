@@ -56,8 +56,7 @@ JuegoServidor::JuegoServidor(int cant_enemigos, int cant_jugadores, Server* serv
     free(pos);
 }
 
-void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_niv)
-{
+void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_niv){
 
     //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
     Temporizador temporizador;
@@ -68,15 +67,11 @@ void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
     int renderizados = 1;
 
     while( tiempo_nivel < t_niv ) {
-        /*for(int i = 0; i < renderizados && i < cantidad_enemigos; i++){
-            velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-            v->id = i+4;
-            server->encolar(v);
-        }*/
-        while(!server->cola_esta_vacia())
-        {
+        if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
+        while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
             posiciones_t* pos = procesar((velocidades_t*)dato);
+            std::cout<<"ID: "<< pos->id<<"X: "<<pos->posX<<"Y: "<<pos->posY;
             server->send_all(pos);
             free(pos);
         }
@@ -90,8 +85,7 @@ void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
 
 }
 
-posiciones_t* JuegoServidor::procesar(velocidades_t* v)
-{
+posiciones_t* JuegoServidor::procesar(velocidades_t* v){
     int id = v->id;
     int vx = v->VelX;
     int vy = v->VelY;
@@ -101,8 +95,7 @@ posiciones_t* JuegoServidor::procesar(velocidades_t* v)
     pos->id = id;
     pos->posX = 0;
     pos->posY = 0;
-    if(id>3)
-    {
+    if(id>3){
         for(int i = 0; i < id - 4; i++){
             enemigos[i]->mover(jugadores[0]);
         }

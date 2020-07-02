@@ -13,12 +13,21 @@ JuegoCliente::JuegoCliente(){
     menu = Menu();
 }
 
+bool JuegoCliente::iniciarSDL(){
+    bool ok = true;
+    if(! sdl.iniciarSDL()){
+        logger.error("Fallo la inicializacion de SDL");
+        ok = false;
+    }
+    return ok;
+}
+
 void JuegoCliente::init_menu(){
+
     if (menu.cargarImagen()) menu.procesar();
 }
 
-void JuegoCliente::iniciarNivel(Client* client)
-{
+void JuegoCliente::iniciarNivel(Client* client){
     printf("CLIENT inicia el nivel, ID: %d\n", client->get_id());
     bool quit = false;
 
@@ -45,8 +54,7 @@ void JuegoCliente::iniciarNivel(Client* client)
         client->sendData(v);
         //printf("data enviada\n");
 
-        while(!client->cola_esta_vacia())
-        {
+        while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
             procesar((posiciones_t*) dato);
         }
@@ -91,11 +99,9 @@ void JuegoCliente::iniciarNivel(Client* client)
     //return quit;
 }
 
-void JuegoCliente::procesar(posiciones_t* pos)
-{
+void JuegoCliente::procesar(posiciones_t* pos){
     printf("CLIENT procesa data, ID: %d\n", pos->id);
-    if(pos->id>3)
-    {
+    if(pos->id>3){
         aumentar_renderizados(pos->id-4);
         for(int i = 0; i < renderizados ; i++){
             enemigos[i]->mover(jugadores[0]);
@@ -112,18 +118,21 @@ void JuegoCliente::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 1 ....");
 
+    std::cout<<"CARGAR NIVEL\n";
+
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-    while(true)
-    {
+    while(true){
         pos = (posiciones_t*)client->receiveData();
+        if(pos == NULL){
+            std::cout<<"recibio nulo\n";
+            continue;
+        }
         printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
-        if(pos->id>3)
-        {
+        if(pos->id>3){
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
             enemigos.push_back(enemigo);
-        }
-        else{
+        } else{
             printf("creo nave jugador\n");
             NaveJugador* nave = new NaveJugador(0, 0, pos->id);
             jugadores.push_back(nave);
@@ -220,8 +229,7 @@ void JuegoCliente::parallax(){
 
 }
 
-void JuegoCliente::aumentar_renderizados(int i)
-{
+void JuegoCliente::aumentar_renderizados(int i){
     pthread_mutex_lock(&mutex);
     if(i>renderizados)renderizados++;
     pthread_mutex_unlock(&mutex);

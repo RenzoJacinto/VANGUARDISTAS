@@ -59,7 +59,6 @@ bool Client::iniciar(){
     printf("enviando\n");
     int bytes = send(socket, credenciales, sizeof(credenciales_t), MSG_NOSIGNAL);
     if(bytes>0){printf("sent\n");}
-
     bytes = recv(socket , v, sizeof(velocidades_t), MSG_NOSIGNAL);
     id = v->id;
     printf("incio correctamente, id: %d\n", id);

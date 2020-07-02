@@ -13,15 +13,22 @@ class Server: public Estado{
     public:
         Server(int port, pthread_mutex_t m);
         bool iniciar();
+
         int get_socket_actual();
+
         void aumentar_socket();
+
         void* recibir_encolar(int i);
         void* desencolar_procesar_enviar();
+
         bool sendData(void* dato);
+
         bool cola_esta_vacia();
+
         void* receiveData(int socket);
         void* processData(void* dato);
-        void* validar_credenciales(int client, int id);
+
+
         int get_socket(int i);
         int check_loguin_user(credenciales_t* cliente);
         void loguin_users();
