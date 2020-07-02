@@ -67,7 +67,7 @@ void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
     int renderizados = 1;
 
     while( tiempo_nivel < t_niv ) {
-        if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
+        //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
             posiciones_t* pos = procesar((velocidades_t*)dato);

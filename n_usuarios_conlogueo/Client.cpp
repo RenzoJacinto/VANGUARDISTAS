@@ -143,7 +143,7 @@ void* Client::receiveData(){
     int total_bytes_writen = 0;
     int sent_data_size = sizeof(posiciones_t);
     while(sent_data_size > total_bytes_writen) {
-        bytes_writen = recv(socket_id, pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
+        bytes_writen = recv(socket, pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
         total_bytes_writen += bytes_writen;
         if(bytes_writen<=0) {
             //printf("error en el recv CLIENT\n");
@@ -195,7 +195,7 @@ bool Client::iniciarSesion(){
         else{
             veces_check++;
             int intentos = 2 - veces_check;
-            juego->render_errorLoguin(intentos);
+            juego->render_errorLogin(intentos, accion_recibida);
             std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
             logger.info(msj.c_str());
         }
@@ -218,7 +218,7 @@ void Client::cerrar(){
 }
 
 int Client::get_socket() {
-    return socket_id;
+    return socket;
 }
 
 bool Client::cola_esta_vacia(){

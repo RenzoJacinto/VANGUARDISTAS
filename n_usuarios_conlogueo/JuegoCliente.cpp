@@ -123,10 +123,10 @@ void JuegoCliente::cargarNivel(Client* client){
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     while(true){
         pos = (posiciones_t*)client->receiveData();
-        if(pos == NULL){
-            std::cout<<"recibio nulo\n";
-            continue;
-        }
+        //if(pos == NULL){
+            //std::cout<<"recibio nulo\n";
+            //continue;
+        //}
         printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
         if(pos->id>3){
@@ -243,10 +243,9 @@ std::string JuegoCliente::get_password(){
     return menu.get_pass();
 }
 
-void JuegoCliente::render_errorLoguin(int intentos){
-
+void JuegoCliente::render_errorLogin(int intentos, int accion_recibida){
     std::string intentos_rest = std::to_string(intentos);
-    menu.renderErrorLoguin(intentos_rest.c_str());
+    menu.renderErrorLoguin(intentos_rest.c_str(), accion_recibida);
 }
 
 void JuegoCliente::cerrarMenu(){

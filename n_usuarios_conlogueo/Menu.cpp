@@ -62,7 +62,7 @@ std::string Menu::get_pass(){
     return bt.get_Pass();
 }
 
-void Menu::renderErrorLoguin(const char* intentos){
+void Menu::renderErrorLoguin(const char* intentos, int accion_recibida){
     TextureW gErrorLoguin;
     std::string file = json.get_sprite_menu("errorLoguin");
     if(! gErrorLoguin.loadFromFile(file.c_str()))

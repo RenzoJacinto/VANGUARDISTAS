@@ -29,7 +29,7 @@ class JuegoCliente : public Escenario
 
         std::string get_id();
         std::string get_password();
-        void render_errorLoguin(int intentos);
+        void render_errorLogin(int intentos, int accion_recibida);
         void cerrarMenu();
 
     private:

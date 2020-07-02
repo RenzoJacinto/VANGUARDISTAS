@@ -53,6 +53,12 @@ void Server::aumentar_socket() {
     cant_sockets++;
 }
 
+void* hilo_login(void* data){
+    hilosServer_t* d = (hilosServer_t*) data;
+    d->server->loguin_users(d->i);
+    return NULL;
+}
+
 bool Server::iniciar(){
 
     logger.info(">>>> INICIANDO SERVER ....");
@@ -116,6 +122,10 @@ bool Server::iniciar(){
             printf("accepted\n");
             msj = "@Conexion del cliente " + std::to_string(actual_socket) + " aceptada";
             logger.debug(msj.c_str());
+            hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
+            data->server = this;
+            data->i = client_sockets[actual_socket];
+            pthread_create(&clientes[actual_socket], NULL, hilo_login, data);
             actual_socket++;
         }
 
@@ -123,7 +133,9 @@ bool Server::iniciar(){
         for(int i = time(NULL) + 1; time(NULL) != i; time(NULL));
         printf("termine\n");
     }
-    loguin_users();
+    for(int i = 0; i < max_users; ++i){
+        pthread_join(clientes[i], NULL);
+    }
 
     for(int i = 0; i<actual_socket; ++i){
         velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
@@ -211,7 +223,7 @@ void* Server::processData(void* dato){
 
 }
 
-void Server::loguin_users(){
+void Server::loguin_users(int sockett){
 
     logger.info("~~ Verificando las credenciales de los usuarios");
 
@@ -219,44 +231,51 @@ void Server::loguin_users(){
     credenciales_t cliente;
 
     std::string msj = "+++ ID: ";
-    int veces_check[max_users];
-    for(int j=0; j<max_users; j++) veces_check[j]=0;
+    int veces_check = 0;
 
-    for(int i=0; i<max_users; i++){
-        int data_send = 1;
-        while(data_send != 0){
-            if(veces_check[i] < 2){
-                if(recv(client_sockets[i], &cliente, size_client, MSG_NOSIGNAL) < 0)
-                    logger.error("No se recibio correctamente la data");
+    int data_send = 1;
+    while(data_send != 0){
+        if(veces_check < 2){
+            if(recv(sockett, &cliente, size_client, MSG_NOSIGNAL) < 0)
+                logger.error("No se recibio correctamente la data");
 
-                string ids(cliente.id);
-                string cpass(cliente.pass);
+            string ids(cliente.id);
+            string cpass(cliente.pass);
 
-                std::cout<<"CLIENTE "<<i<<"\n";
-                std::cout<<"ID: "<<ids<<"\n";
-                std::cout<<"Pass: "<<cpass<<"\n";
+            std::cout<<"CLIENTE "<<sockett<<"\n";
+            std::cout<<"ID: "<<ids<<"\n";
+            std::cout<<"Pass: "<<cpass<<"\n";
 
-                msj += ids + " ; PASS: " + cpass;
-                logger.info(msj.c_str());
+            msj += ids + " ; PASS: " + cpass;
+            logger.info(msj.c_str());
 
-                data_send = check_loguin_user(&cliente);
-                if(send(client_sockets[i], &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
-                    logger.error("No se envio correctamente la data");
-                if(data_send == 1){
-                    std::cout<<"Error de logueado!!\n";
-                    logger.info("Error de logueo, credenciales invalidas");
-                }
-                else std::cout<<"Logueado!!\n";
-
-                (veces_check[i])++;
-            } else break;
-        }
+            data_send = check_loguin_user(&cliente);
+            if(send(sockett, &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
+                logger.error("No se envio correctamente la data");
+            if(data_send == 1){
+                std::cout<<"Error de logueado!!\n";
+                logger.info("Error de logueo, credenciales invalidas");
+            }else if(data_send == -1){
+                std::cout<<"Usuario ya ingresado!!\n";
+                logger.info("Usuario ya ingresado");
+            }else{
+                pthread_mutex_lock(&mutex);
+                usuarios_ingresados.insert({cliente.id, 1});
+                pthread_mutex_unlock(&mutex);
+                std::cout<<"Logueado!!\n";
+            }
+            veces_check++;
+        } else break;
     }
-
 }
 
 // correcta credenciales -> 0 else 1
 int Server::check_loguin_user(credenciales_t* cliente){
+    pthread_mutex_lock(&mutex);
+    if(!(usuarios_ingresados.find(cliente->id) == usuarios_ingresados.end())){
+        if(usuarios_ingresados.at(cliente->id) == 1) return -1;
+    }
+    pthread_mutex_unlock(&mutex);
     int ok = 0;
     std::string msj = "--- ";
     nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);

@@ -30,7 +30,7 @@ class Client: public Estado{
     private:
         std::string ip;
         ColaMultihilo* cola;
-        int socket_id;
+        int socket;
         int id;
         bool terminar;
         JuegoCliente* juego;

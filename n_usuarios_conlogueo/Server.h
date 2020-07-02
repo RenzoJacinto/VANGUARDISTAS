@@ -31,7 +31,7 @@ class Server: public Estado{
 
         int get_socket(int i);
         int check_loguin_user(credenciales_t* cliente);
-        void loguin_users();
+        void loguin_users(int socket);
         void cerrar();
         void send_all(posiciones_t* pos);
         int get_id_actual();
@@ -53,6 +53,7 @@ class Server: public Estado{
         pthread_attr_t attr;
 
         nlohmann::json j_wl;
+        std::map<char*,int> usuarios_ingresados;
 };
 
 #endif
