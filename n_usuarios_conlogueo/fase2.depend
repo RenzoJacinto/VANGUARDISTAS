@@ -5213,7 +5213,7 @@
 1593675123 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/n_usuarios_conlogueo/ManejoDeSDL.cpp
 	"global.h"
 
-1593675123 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/n_usuarios_conlogueo/Menu.cpp
+1593732551 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/n_usuarios_conlogueo/Menu.cpp
 	"Menu.h"
 	"global.h"
 
@@ -5278,7 +5278,7 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1593731380 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/n_usuarios_conlogueo/JuegoCliente.cpp
+1593732223 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/n_usuarios_conlogueo/JuegoCliente.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"

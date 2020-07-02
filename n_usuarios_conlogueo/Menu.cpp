@@ -64,7 +64,9 @@ std::string Menu::get_pass(){
 
 void Menu::renderErrorLoguin(const char* intentos, int accion_recibida){
     TextureW gErrorLoguin;
-    std::string file = json.get_sprite_menu("errorLoguin");
+    std::string file;
+    if (accion_recibida == 1) file = json.get_sprite_menu("errorLoguin");
+    else if(accion_recibida == -1) file = json.get_sprite_menu("errorLoguinID");
     if(! gErrorLoguin.loadFromFile(file.c_str()))
         logger.error("No se pudo cargar la imagen de error de logueo");
     else logger.debug("Se carga la imagen de error de logueo");

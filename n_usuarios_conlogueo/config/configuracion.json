@@ -1,7 +1,7 @@
 {
 	"log": 3,
 	"conexion":{
-		"estado":"client",
+		"estado":"server",
 		"users": 2
 	},
     	"stages":{
@@ -60,7 +60,8 @@
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
 		"selectPass": "sprites/usuario/menu/selectPass.png",
-		"errorLoguin": "sprites/usuario/menu/errorLoguin.png"
+		"errorLoguin": "sprites/usuario/menu/errorLoguin.png",
+		"errorLoguinID": "sprites/usuario/menu/errorLoguinID.png"
 
 	}
 }
