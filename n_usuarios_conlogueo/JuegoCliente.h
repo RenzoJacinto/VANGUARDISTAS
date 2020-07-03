@@ -31,6 +31,7 @@ class JuegoCliente : public Escenario
         std::string get_password();
         void render_errorLogin(int intentos, int accion_recibida);
         void cerrarMenu();
+        void renderWaitUsers();
 
     private:
         vector<NaveEnemiga*> enemigos;

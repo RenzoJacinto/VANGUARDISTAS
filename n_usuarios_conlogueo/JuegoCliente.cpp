@@ -245,9 +245,14 @@ std::string JuegoCliente::get_password(){
 
 void JuegoCliente::render_errorLogin(int intentos, int accion_recibida){
     std::string intentos_rest = std::to_string(intentos);
-    menu.renderErrorLoguin(intentos_rest.c_str(), accion_recibida);
+    menu.renderErrorLogin(intentos_rest.c_str(), accion_recibida);
 }
 
 void JuegoCliente::cerrarMenu(){
     menu.cerrar();
+}
+
+void JuegoCliente::renderWaitUsers(){
+    menu.renderWaitUsers();
+
 }

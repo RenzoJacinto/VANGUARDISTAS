@@ -53,7 +53,7 @@ class Server: public Estado{
         pthread_attr_t attr;
 
         nlohmann::json j_wl;
-        std::map<char*,int> usuarios_ingresados;
+        std::map<std::string,int> usuarios_ingresados;
 };
 
 #endif

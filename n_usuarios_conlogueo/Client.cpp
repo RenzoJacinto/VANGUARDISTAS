@@ -53,7 +53,7 @@ bool Client::iniciar(){
     if(! iniciarSesion()){
         juego->cerrar();
         return false;
-    } juego->cerrarMenu();
+    }
 
     velocidades_t v ;
     printf("enviando\n");
@@ -62,6 +62,7 @@ bool Client::iniciar(){
     id = v.id;
     printf("incio correctamente, id: %d\n", id);
 
+    juego->cerrarMenu();
     iniciar_juego();
 
     return true;
@@ -191,13 +192,16 @@ bool Client::iniciarSesion(){
             logger.error("Error en el recibimiento de la data");
             ok = false;
         }
-        if(accion_recibida == 0 && ok) break;
-        else{
+        std::cout<<accion_recibida<<"\n";
+        if(accion_recibida == 0 && ok){
+            juego->renderWaitUsers();
+            break;
+        } else{
             veces_check++;
             int intentos = 2 - veces_check;
             juego->render_errorLogin(intentos, accion_recibida);
-            std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
-            logger.info(msj.c_str());
+            /*std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
+            logger.info(msj.c_str());*/
         }
 
     }

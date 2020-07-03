@@ -1,7 +1,7 @@
 {
 	"log": 3,
 	"conexion":{
-		"estado":"client",
+		"estado":"server",
 		"users": 2
 	},
     	"stages":{

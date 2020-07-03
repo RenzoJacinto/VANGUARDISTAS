@@ -12,7 +12,8 @@ class Menu: public Escenario
         bool cargarImagen();
         void procesar();
         void cerrar();
-        void renderErrorLoguin(const char* intentos, int accion_recibida);
+        void renderErrorLogin(const char* intentos, int accion_recibida);
+        void renderWaitUsers();
 
         std::string get_id();
         std::string get_pass();
