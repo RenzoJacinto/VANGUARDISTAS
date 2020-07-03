@@ -62,11 +62,16 @@ std::string Menu::get_pass(){
     return bt.get_Pass();
 }
 
-void Menu::renderErrorLoguin(const char* intentos){
-    TextureW gErrorLoguin;
-    std::string file = json.get_sprite_menu("errorLoguin");
-    if(! gErrorLoguin.loadFromFile(file.c_str()))
+void Menu::renderErrorLogin(const char* intentos, int accion_recibida){
+    TextureW gErrorLogin;
+    std::string file;
+    if (accion_recibida == 1) file = json.get_sprite_menu("errorLogin");
+    else if(accion_recibida == -1) file = json.get_sprite_menu("errorLoginID");
+    if(! gErrorLogin.loadFromFile(file.c_str())){
         logger.error("No se pudo cargar la imagen de error de logueo");
+        file = json.get_imagen_default("escenario");
+        gErrorLogin.loadFromFile(file.c_str());
+    }
     else logger.debug("Se carga la imagen de error de logueo");
 
     TextureW gIntentos;
@@ -75,12 +80,28 @@ void Menu::renderErrorLoguin(const char* intentos){
     else logger.debug("Se cargo el texto de intentos");
 
     SDL_RenderClear(sdl.getRenderer());
-    gErrorLoguin.render(0,0);
+    gErrorLogin.render(0,0);
     gIntentos.render(398, 366);
     SDL_RenderPresent(sdl.getRenderer());
 
-    //HACE UN USLEEP DE 2 SEG
-    for(int i = time(NULL) + 4; time(NULL) != i; time(NULL));
+    gErrorLogin.free();
+    gIntentos.free();
+
+    //HACE UN USLEEP DE 3 SEG
+    for(int i = time(NULL) + 3; time(NULL) != i; time(NULL));
 }
 
+void Menu::renderWaitUsers(){
+    TextureW textureWait;
+    std::string file = json.get_sprite_menu("waitUsers");
+    if(! textureWait.loadFromFile(file.c_str())){
+        logger.error("No se pudo cargar la imagen de wait users");
+        file = json.get_imagen_default("escenario");
+        textureWait.loadFromFile(file.c_str());
+    }
+    SDL_RenderClear(sdl.getRenderer());
+    textureWait.render(0,0);
+    SDL_RenderPresent(sdl.getRenderer());
+    textureWait.free();
+}
 

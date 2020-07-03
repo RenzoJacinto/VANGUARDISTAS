@@ -1,11 +1,14 @@
 #include "NaveJugador.h"
 
-NaveJugador::NaveJugador( int x, int y){
+NaveJugador::NaveJugador( int x, int y, int id){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
-    if(crearNave(x, y, "jugador", "nave1")) logger.debug("Se creo la nave jugador");
+    std::string jug = "jugador"+std::to_string(id);
+
+    if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
+    id_nave = id;
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
@@ -32,12 +35,12 @@ void NaveJugador::handleEvent( SDL_Event& e ){
     }
 }
 
-void NaveJugador::mover(){
+void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
 
-    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )){
+    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > sdl.getScreenWidth() )  ||  encontrarEnemigos( this, enemigos ) ){
         // Vuelve a la anterior posicion
         setPosX(getPosX()-getVelX());
     }
@@ -45,7 +48,7 @@ void NaveJugador::mover(){
     // Mueve la nave a la izquierda o la derecha
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() )){
+    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > sdl.getScreenHeight() ) || encontrarEnemigos( this, enemigos ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }
@@ -61,6 +64,14 @@ int NaveJugador::getAlto(){
 
 int NaveJugador::getAncho(){
     return ancho;
+}
+int NaveJugador::get_id(){
+    return id_nave;
+}
+
+void NaveJugador::desconectar()
+{
+    gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", "jugadorOff"));
 }
 
 

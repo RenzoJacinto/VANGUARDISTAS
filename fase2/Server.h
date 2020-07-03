@@ -3,44 +3,60 @@
 
 #include "Estado.h"
 #include "json.hpp"
-#include "Nivel.h"
-#include "ManejoDeNiveles.h"
+#include "JuegoServidor.h"
+#include <unistd.h>
+
+class JuegoServidor;
 
 class Server: public Estado{
 
     public:
-        Server(int port);
+        Server(int port, pthread_mutex_t m);
         bool iniciar();
 
-        //hilos
-        void* encolar(int client_socket);
-        void* desencolar();
+        int get_socket_actual();
 
-        int sendData(int client_socket, client_vw_t* dato, int data_size);
-        int receiveData(int client_socket, position_t* dato, int data_size);
-        void processData();
+        void aumentar_socket();
 
-        int check_loguin_user(client_t* cliente);
-        void loguin_users();
+        void* recibir_encolar(int i);
+        void* desencolar_procesar_enviar();
 
+        bool sendData(void* dato);
+
+        bool cola_esta_vacia();
+
+        void* receiveData(int socket);
+        void* processData(void* dato);
+
+
+        int get_socket(int i);
+        int check_loguin_user(credenciales_t* cliente);
+        void loguin_users(int socket);
         void cerrar();
-        int get_serial_by_socket(int client_socket);
+        void send_all(posiciones_t* pos);
+        int get_id_actual();
+        void encolar(void* dato);
+        void* desencolar();
+        bool desconecto(int i);
+        void desconectar(int i);
 
         static const int MAX_CLIENTS = 4;
 
     private:
+        JuegoServidor* juego;
+        int ult_id_enemigo;
         int max_users;
+        int cant_sockets;
         int client_sockets[MAX_CLIENTS];
         ColaMultihilo* cola;
-
-        pthread_t hiloPop;
-        pthread_t hilosPush[MAX_CLIENTS];
+        bool desc[MAX_CLIENTS];
+        //pthread_t hiloRecibirEncolar;
+        //pthread_t hiloDesencolarProcesarEnviar;
+        pthread_t clientes[MAX_CLIENTS];
+        pthread_attr_t attr;
 
         nlohmann::json j_wl;
-
-        TextureW gNaves[MAX_CLIENTS];
-
-        Nivel server_level;
+        std::map<std::string,int> usuarios_ingresados;
 };
 
 #endif

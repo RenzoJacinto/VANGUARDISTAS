@@ -1,0 +1,160 @@
+03/07/2020 00:59:54.888 - INFO: >>>> INICIANDO CLIENTE ....
+03/07/2020 00:59:54.888 - INFO: #Socket ...
+03/07/2020 00:59:54.888 - DEBUG: @Socket creado
+03/07/2020 00:59:54.888 - INFO: #Conexion con el servidor ...
+03/07/2020 00:59:54.892 - DEBUG: @Conectado
+03/07/2020 00:59:55.57 - DEBUG: Se inicializó SDL
+03/07/2020 00:59:55.57 - DEBUG: Filtrado de textura lineal seteado
+03/07/2020 00:59:55.120 - DEBUG: Se creó la ventana
+03/07/2020 00:59:55.316 - DEBUG: Se creó vSync para la ventana
+03/07/2020 00:59:55.316 - DEBUG: Se inicializó el renderizado de color
+03/07/2020 00:59:55.316 - DEBUG: Se inicializó la carga de imagenes PNG
+03/07/2020 00:59:55.316 - DEBUG: Se inicializo la carga de fuentes
+03/07/2020 00:59:55.316 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 18 para los textBox
+03/07/2020 00:59:55.316 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 50 para el error de logueo
+03/07/2020 00:59:55.344 - DEBUG: Se cargo las imagen de seleccion de box name
+03/07/2020 00:59:55.367 - DEBUG: Se cargo las imagen de seleccion de box password
+03/07/2020 00:59:55.419 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+03/07/2020 00:59:55.419 - INFO: Se mostró el menú
+03/07/2020 01:00:15.562 - INFO: >>>> CARGANDO EL NIVEL 1 ....
+03/07/2020 01:00:15.562 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+03/07/2020 01:00:15.563 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/jugador/nave1.png
+03/07/2020 01:00:15.563 - DEBUG: Se creo la nave jugador
+03/07/2020 01:00:15.563 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+03/07/2020 01:00:15.563 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+03/07/2020 01:00:15.564 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/jugador/nave2.png
+03/07/2020 01:00:15.564 - DEBUG: Se creo la nave jugador
+03/07/2020 01:00:15.564 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+03/07/2020 01:00:15.564 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.565 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.565 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.565 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.565 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.572 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.572 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.572 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.573 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.573 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.573 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.573 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.575 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.576 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.576 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.576 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.577 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.577 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.577 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.577 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.578 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.579 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.579 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.579 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.586 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.586 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.586 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.586 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.587 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.587 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.587 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.587 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.589 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.589 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.589 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.589 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.590 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.591 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.591 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.591 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.592 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.592 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.592 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.592 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.593 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.593 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.593 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.593 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.595 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.595 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.595 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.595 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.598 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.598 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.598 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.598 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.598 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.599 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.599 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.599 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.599 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.600 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.600 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.600 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.602 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.603 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.603 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.603 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.605 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.606 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.606 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.606 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.606 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.606 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.606 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.606 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.607 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.607 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.608 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.608 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.608 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.608 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.608 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.608 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.613 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.615 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo2.png
+03/07/2020 01:00:15.615 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.615 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.615 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.616 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.616 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.616 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.622 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.623 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.623 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.623 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.624 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.624 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.624 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.624 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.626 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.632 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.632 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.632 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.632 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.632 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo1.png
+03/07/2020 01:00:15.632 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.632 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.634 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.635 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo4.png
+03/07/2020 01:00:15.635 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.635 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.635 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.637 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.637 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.637 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.642 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.643 - DEBUG: Se cargo la nave con imagen: sprites/usuario/naves/enemigas/enemigo3.png
+03/07/2020 01:00:15.643 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.643 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.643 - INFO: ## CARGANDO mapaBG ....
+03/07/2020 01:00:15.671 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/bg.png
+03/07/2020 01:00:15.671 - INFO: ## CARGANDO ciudad ....
+03/07/2020 01:00:15.700 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/ciudad.png
+03/07/2020 01:00:15.700 - INFO: ## CARGANDO planeta ....
+03/07/2020 01:00:15.710 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/planeta.png
+03/07/2020 01:00:15.710 - INFO: ## CARGANDO nube1 ....
+03/07/2020 01:00:15.838 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube1.png
+03/07/2020 01:00:15.838 - INFO: ## CARGANDO nube2 ....
+03/07/2020 01:00:15.926 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/nube3.png
+03/07/2020 01:00:15.926 - INFO: ## CARGANDO finNivel ....
+03/07/2020 01:00:15.978 - DEBUG: Se cargo con la imagen: sprites/usuario/niveles/nivel1/fin_nivel1.png
+03/07/2020 01:00:15.978 - INFO: <<<< SE CARGO EL NIVEL 1

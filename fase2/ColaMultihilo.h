@@ -1,23 +1,35 @@
 #ifndef COLAMULTIHILO_H_
 #define COLAMULTIHILO_H_
-
+#include "Estado.h"
 #include <queue>
 #include <pthread.h>
-#include "typesmsj.h"
-
 
 class ColaMultihilo{
 
     public:
-        ColaMultihilo();
-        void push(client_vw_t* dato);
-        client_vw_t* pop();
-        bool estaVacia();
+
+        void* push(void* dato){
+            pthread_mutex_lock(&mutex);
+            cola.push(dato);
+            pthread_mutex_unlock(&mutex);
+            return NULL;
+        }
+
+        void* pop(){
+            pthread_mutex_lock(&mutex);
+            void* data = cola.front();
+            cola.pop();
+            pthread_mutex_unlock(&mutex);
+            return data;
+        }
+
+        bool estaVacia(){
+            return cola.empty();
+        }
 
     private:
-        std::queue<client_vw_t*> cola;
+        std::queue<void*> cola;
         pthread_mutex_t mutex;
-        int elements;
 };
 
 #endif

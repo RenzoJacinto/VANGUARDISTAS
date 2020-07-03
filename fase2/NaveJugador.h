@@ -10,9 +10,11 @@ class NaveJugador: public Nave {
 
     public:
 
-        NaveJugador( int x, int y);
+        NaveJugador( int x, int y, int id);
+        int get_id();
 
         //Las dimensiones de la Nave del Jugador
+        int id_nave;
 		static const int NAVE_WIDTH = 50;
 		static const int NAVE_HEIGHT = 21;
 
@@ -23,7 +25,7 @@ class NaveJugador: public Nave {
 		void handleEvent( SDL_Event& e );
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover();
+		void mover( vector<NaveEnemiga*>  enemigo );
 
 		void renderizar();
 
@@ -31,7 +33,7 @@ class NaveJugador: public Nave {
 
         int getAncho();
 
-        TextureW get_texture();
+        void desconectar();
 
     private:
 

@@ -2,42 +2,41 @@
 #define CLIENT_H_
 
 #include "Estado.h"
-#include "Juego.h"
+#include "JuegoCliente.h"
+
 
 class Client: public Estado{
 
     public:
 
-        Client(char* IP, int port);
+        Client(char* IP, int port, pthread_mutex_t m);
         bool iniciar();
-
-        //hilos
-        void* encolar();
-        void* desencolar();
         void* enviar();
-        void jugar();
-
-        int sendData(position_t* dato, int size_data);
-        int receiveData(client_vw_t* dato, int size_data);
-        void processData(client_vw_t* dato);
-
+        void* recibir_encolar();
+        void* desencolar_procesar();
+        bool sendData(void* dato);
+        void* receiveData();
+        void finalizar();
+        void* processData(void* dato);
         bool iniciarSesion();
-
+        bool cola_esta_vacia();
+        int get_socket();
+        int get_id();
         void cerrar();
+        void iniciar_juego();
+        void init_menu();
+        void* desencolar();
 
     private:
         std::string ip;
         ColaMultihilo* cola;
-        pthread_t hiloPop;
-        pthread_t hiloPush;
+        int socket;
+        int id;
+        bool terminar;
+        JuegoCliente* juego;
         pthread_t hiloEnviar;
-        pthread_t hiloJuego;
-
-        Juego juego;
-
-        position_t* pos;
-        position_t pos_ant;
-        int size_pos;
+        pthread_t hiloRecibirEncolar;
+        pthread_t hiloDesencolarProcesar;
 
 };
 

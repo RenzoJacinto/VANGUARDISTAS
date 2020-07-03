@@ -33,7 +33,7 @@ void Logger::escribir(const char* update){
 
     strftime(buffer, 26, "%d/%m/%Y %H:%M:%S.", tm_info);
     std::string horaActual(buffer);
-    std:string ms = std::to_string(millisec);
+    std::string ms = std::to_string(millisec);
 
     const char* espacio = " - ";
     const char* new_line = "\n";

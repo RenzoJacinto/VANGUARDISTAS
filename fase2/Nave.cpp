@@ -31,36 +31,52 @@ void Nave::cerrarNave(){
 }
 
 int Nave::getPosX(){
+    //pthread_mutex_lock(&mutex);
     return mPosX;
+    //pthread_mutex_unlock(&mutex);
 }
 
 
 void Nave::setPosX(int num){
+    //pthread_mutex_lock(&mutex);
     mPosX=num;
+    //pthread_mutex_unlock(&mutex);
 }
 
 int Nave::getPosY(){
+    //pthread_mutex_lock(&mutex);
     return mPosY;
+    //pthread_mutex_unlock(&mutex);
 }
 
 void Nave::setPosY(int num){
+    //pthread_mutex_lock(&mutex);
     mPosY=num;
+    //pthread_mutex_unlock(&mutex);
 }
 
 int Nave::getVelX(){
+    //pthread_mutex_lock(&mutex);
     return mVelX;
+    //pthread_mutex_unlock(&mutex);
 }
 
 void Nave::setVelX(int num){
+    //pthread_mutex_lock(&mutex);
     mVelX=num;
+    //pthread_mutex_unlock(&mutex);
 }
 
 int Nave::getVelY(){
+    //pthread_mutex_lock(&mutex);
     return mVelY;
+    //pthread_mutex_unlock(&mutex);
 }
 
 void Nave::setVelY(int num){
+    //pthread_mutex_lock(&mutex);
     mVelY=num;
+    //pthread_mutex_unlock(&mutex);
 }
 
 double Nave::distanceSquared( int x1, int y1, int x2, int y2 ){

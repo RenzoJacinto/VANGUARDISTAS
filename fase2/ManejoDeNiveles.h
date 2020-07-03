@@ -3,8 +3,6 @@
 
 #include <list>
 #include "Nivel.h"
-#include "typesmsj.h"
-#include "ColaMultihilo.h"
 
 using namespace std;
 
@@ -14,18 +12,14 @@ class ManejoDeNiveles{
 
         ManejoDeNiveles();
         void cerrar_niveles(list<Nivel*> niveles);
-        void procesar(position_t* pos);
+        void procesar_servidor();
+        void procesar_cliente();
         void delay(int sec);
         void cargarNiveles();
 
-        void procesarServer(ColaMultihilo* cola);
-
-        void pushDato(client_vw_t* client_view);
-
-        static const int CANT_NIVELES = 3;
     private:
         std::list<Nivel*> niveles;
-        int actual_nivel;
 };
 
 #endif
+

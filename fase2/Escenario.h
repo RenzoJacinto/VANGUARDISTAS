@@ -10,6 +10,7 @@ class Escenario{
 
         Escenario();
         void cargarImagen(const char* nivel, const char* sprite, TextureW* textura);
+        void procesar();
         bool usuarioNoRequieraSalir(bool quit);
         bool hayEventos();
         bool eventoEsSalir();

@@ -45,6 +45,7 @@ class Nave{
 
 		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
 
+
     protected:
 
         //Las coordenadas X e Y de la Nave
@@ -54,6 +55,7 @@ class Nave{
 		int mVelX, mVelY;
 
         TextureW gNaveTexture;
+
 };
 
 #endif /* NAVE_H_ */

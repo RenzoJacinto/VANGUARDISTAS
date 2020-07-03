@@ -38,6 +38,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer" />
+			<Add option="-pthread" />
 		</Linker>
 		<Unit filename="BotonIniciar.cpp" />
 		<Unit filename="BotonIniciar.h" />
@@ -48,6 +49,10 @@
 		<Unit filename="Escenario.h" />
 		<Unit filename="Estado.cpp" />
 		<Unit filename="Estado.h" />
+		<Unit filename="JuegoCliente.cpp" />
+		<Unit filename="JuegoCliente.h" />
+		<Unit filename="JuegoServidor.cpp" />
+		<Unit filename="JuegoServidor.h" />
 		<Unit filename="Logger.cpp" />
 		<Unit filename="Logger.h" />
 		<Unit filename="LoggerDebug.cpp" />

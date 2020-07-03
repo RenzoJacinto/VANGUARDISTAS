@@ -40,11 +40,7 @@
     	},
     	"naves":{
         	"jugador":{
-		        "nave1":"sprites/usuario/naves/jugador/nave1.png",
-			"nave2":"sprites/usuario/naves/jugador/nave2.png",
-			"nave3":"sprites/usuario/naves/jugador/nave3.png",
-			"nave4":"sprites/usuario/naves/jugador/nave4.png",
-			"naveOff":"sprites/usuario/naves/jugador/naveDesconexion.png"
+		        "jugador":"sprites/usuario/naves/jugador/nave.png"
             	},
             	"enemigas":{
 		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",
@@ -56,8 +52,7 @@
     	"menu":{
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
-		"selectPass": "sprites/usuario/menu/selectPass.png",
-		"errorLoguin": "sprites/usuario/menu/errorLoguin.png"
+		"selectPass": "sprites/usuario/menu/selectPass.png"
 
 	},
 	"default": {

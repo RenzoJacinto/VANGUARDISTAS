@@ -1,0 +1,195 @@
+03/07/2020 00:59:44.804 - INFO: >>>> INICIANDO SERVER ....
+03/07/2020 00:59:44.804 - INFO: #Socket ...
+03/07/2020 00:59:44.804 - DEBUG: @Socket creado
+03/07/2020 00:59:44.804 - INFO: #Bind ...
+03/07/2020 00:59:44.804 - DEBUG: @Bind correcto
+03/07/2020 00:59:44.804 - INFO: #Listen ...
+03/07/2020 00:59:44.804 - DEBUG: @Esperando a que se conecten 2 usuarios en el puerto: 8080
+03/07/2020 00:59:44.804 - INFO: #Aceptar cliente ...
+03/07/2020 00:59:54.888 - DEBUG: @Conexion del cliente 0 aceptada
+03/07/2020 00:59:54.890 - INFO: ~~ Verificando las credenciales de los usuarios
+03/07/2020 00:59:55.6 - DEBUG: @Esperando a que se conecten 1 usuarios en el puerto: 8080
+03/07/2020 00:59:55.6 - INFO: #Aceptar cliente ...
+03/07/2020 01:00:00.158 - INFO: +++ ID: carlos ; PASS: asdasd
+03/07/2020 01:00:03.57 - DEBUG: @Conexion del cliente 1 aceptada
+03/07/2020 01:00:03.58 - INFO: ~~ Verificando las credenciales de los usuarios
+03/07/2020 01:00:15.555 - INFO: +++ ID: juancito ; PASS: juan123
+03/07/2020 01:00:15.558 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+03/07/2020 01:00:15.558 - ERROR: La imagen (sprites/usuario/naves/jugador/nave1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.558 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.559 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.559 - DEBUG: Se creo la nave jugador
+03/07/2020 01:00:15.559 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+03/07/2020 01:00:15.559 - INFO: >>>> CARGANDO LA NAVE JUGADOR ....
+03/07/2020 01:00:15.559 - ERROR: La imagen (sprites/usuario/naves/jugador/nave2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.559 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.559 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.559 - DEBUG: Se creo la nave jugador
+03/07/2020 01:00:15.559 - INFO: <<<< SE CARGO LA NAVE JUGADOR
+03/07/2020 01:00:15.559 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.559 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.559 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.559 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.559 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.559 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.559 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.559 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.559 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.559 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.559 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.559 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.559 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.560 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.560 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.560 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.560 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.560 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.560 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.560 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.560 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.560 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.561 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.561 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.561 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.572 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.572 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.572 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.572 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.572 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.573 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.574 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.574 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.574 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.574 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.574 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.574 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.575 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.575 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.575 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.575 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.575 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.576 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.577 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.577 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.577 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.577 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.577 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.578 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.578 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.578 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.578 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.578 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.578 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.580 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.580 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.580 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.580 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.580 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.580 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.586 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.587 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.587 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.587 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.587 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.587 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.587 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.588 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.588 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.588 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.588 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.588 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.590 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.590 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.590 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.590 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.590 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.590 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.591 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.591 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.591 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.591 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.591 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.591 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.592 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.593 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.593 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.593 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.593 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.593 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.594 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.594 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.594 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.594 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.594 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.594 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.595 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.596 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.596 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.596 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.596 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.596 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.598 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.598 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.598 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.598 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.598 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.598 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.599 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.599 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.599 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.599 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.599 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.599 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.600 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.600 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.600 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.600 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.600 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.600 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.600 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.600 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.600 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.600 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.600 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.600 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.603 - INFO: >>>> CARGANDO LA NAVE enemigo2 ....
+03/07/2020 01:00:15.603 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo2.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.603 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.603 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.603 - DEBUG: Se creo el enemigo2
+03/07/2020 01:00:15.603 - INFO: <<<< SE CARGO LA NAVE enemigo2
+03/07/2020 01:00:15.605 - INFO: >>>> CARGANDO LA NAVE enemigo3 ....
+03/07/2020 01:00:15.605 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo3.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.605 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.605 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.605 - DEBUG: Se creo el enemigo3
+03/07/2020 01:00:15.605 - INFO: <<<< SE CARGO LA NAVE enemigo3
+03/07/2020 01:00:15.606 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.606 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.606 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.606 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.606 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.606 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.608 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.608 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.608 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.608 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.608 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.608 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.609 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.609 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.609 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.609 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.609 - DEBUG: Se creo el enemigo4
+03/07/2020 01:00:15.609 - INFO: <<<< SE CARGO LA NAVE enemigo4
+03/07/2020 01:00:15.613 - INFO: >>>> CARGANDO LA NAVE enemigo1 ....
+03/07/2020 01:00:15.614 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo1.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.614 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.614 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.614 - DEBUG: Se creo el enemigo1
+03/07/2020 01:00:15.614 - INFO: <<<< SE CARGO LA NAVE enemigo1
+03/07/2020 01:00:15.615 - INFO: >>>> CARGANDO LA NAVE enemigo4 ....
+03/07/2020 01:00:15.615 - ERROR: La imagen (sprites/usuario/naves/enemigas/enemigo4.png) no fue encontrada, se carga la imagen que muestra el error
+03/07/2020 01:00:15.615 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
+03/07/2020 01:00:15.615 - DEBUG: Se cargo la nave con imagen: sprites/default/nave.png
+03/07/2020 01:00:15.615 - DEBUG: Se creo el enemigo4

@@ -2,11 +2,13 @@
 #include "Menu.h"
 #include "Server.h"
 #include "Client.h"
+#include "ManejoDeNiveles.h"
 
 ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
 Estado* estado;
+pthread_mutex_t mutex;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 
@@ -41,19 +43,19 @@ int main( int argc, char* argv[] ){
 	return 0;
 }
 
-
 bool iniciar_conexion(char* args[], int argc){
+    pthread_mutex_init(&mutex, NULL);
     bool ok = true;
     std::string estado_json = json.get_estado_conexion();
     if (strcmp(estado_json.c_str(), "server") == 0){
-        if(argc == 2) estado = new Server(atoi(args[1]));
+        if(argc == 2) estado = new Server(atoi(args[1]), mutex);
         else{
             logger.error("Cantidad de parametros para el server invalida");
             ok = false;
         }
     } else if(strcmp(estado_json.c_str(), "client") == 0){
         printf("es cliente\n");
-        if(argc == 3) estado = new Client(args[1], atoi(args[2]));
+        if(argc == 3) estado = new Client(args[1], atoi(args[2]), mutex);
         else{
             logger.error("Cantidad de parametros para el cliente invalida");
             ok = false;
