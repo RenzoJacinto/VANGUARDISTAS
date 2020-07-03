@@ -31,7 +31,7 @@ class Server: public Estado{
 
         int get_socket(int i);
         int check_loguin_user(credenciales_t* cliente);
-        void loguin_users(int socket);
+        bool loguin_users(int socket_client);
         void cerrar();
         void send_all(posiciones_t* pos);
         int get_id_actual();
@@ -39,6 +39,7 @@ class Server: public Estado{
         void* desencolar();
         bool desconecto(int i);
         void desconectar(int i);
+        void iniciar_cliente(int i);
 
         static const int MAX_CLIENTS = 4;
 

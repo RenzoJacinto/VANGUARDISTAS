@@ -222,7 +222,8 @@ void JuegoCliente::renderBackground(){
 }
 
 
-void JuegoCliente::parallax(){
+void JuegoCliente::parallax()
+{
 
     scrollingOffsetBG -= 0.5;
     if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
@@ -264,4 +265,9 @@ void JuegoCliente::cerrarMenu(){
 void JuegoCliente::renderWaitUsers(){
     menu.renderWaitUsers();
 
+}
+
+void JuegoCliente::cerrar_ventana()
+{
+    sdl.cerrar();
 }

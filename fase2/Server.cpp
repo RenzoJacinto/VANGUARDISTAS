@@ -55,10 +55,35 @@ void Server::aumentar_socket() {
 
 void* hilo_login(void* data){
     hilosServer_t* d = (hilosServer_t*) data;
-    d->server->loguin_users(d->i);
+    d->server->iniciar_cliente(d->i);
     return NULL;
 }
 
+void Server::iniciar_cliente(int i)
+{
+    struct sockaddr_in client_addr;
+
+    socklen_t clilen;
+    clilen = sizeof(client_addr);
+
+    while(true)
+    {
+        printf("esperando conexion del cliente %d\n", i);
+        client_sockets[i] = accept(socket, (struct sockaddr *) &client_addr, &clilen);
+        if (client_sockets[i] < 0){
+            printf("fallo accept\n");
+            std::cout<<"2: "<<std::strerror(errno)<<"\n";
+            logger.error("Fallo el accept del cliente");
+        } else{
+            printf("accepted\n");
+            std::string msj = "";
+            msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
+            logger.debug(msj.c_str());
+            if(loguin_users(client_sockets[i])) break;
+            printf("el cliente %d no pudo loguearse\n", i);
+        }
+    }
+}
 bool Server::iniciar(){
 
     logger.info(">>>> INICIANDO SERVER ....");
@@ -103,8 +128,15 @@ bool Server::iniciar(){
         std::cout<<std::strerror(errno)<<"\n";
         return false;
     }
+
+    for(int i = 0; i<max_users; i++){
+        hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
+        data->server = this;
+        data->i = i;
+        pthread_create(&clientes[i], NULL, hilo_login, data);
+    }
     //typedef void * (*THREADFUNCPTR)(void *);
-    int actual_socket = 0;
+    /*int actual_socket = 0;
     while(actual_socket < max_users && actual_socket < MAX_CLIENTS){
 
         std::string msj = "@Esperando a que se conecten " + std::to_string(max_users-actual_socket) + " usuarios en el puerto: " + std::to_string(puerto);
@@ -132,26 +164,27 @@ bool Server::iniciar(){
         //HACE UN USLEEP DE 1 SEG
         for(int i = time(NULL) + 1; time(NULL) != i; time(NULL));
         printf("termine\n");
-    }
+    }*/
+
     for(int i = 0; i < max_users; ++i){
         pthread_join(clientes[i], NULL);
     }
 
-    for(int i = 0; i<actual_socket; ++i){
+    for(int i = 0; i<max_users; ++i){
         velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
         v->id = i;
         send(get_socket(i), v, sizeof(velocidades_t), MSG_NOSIGNAL);
         free(v);
     }
 
-    for(int i = 0; i<actual_socket; ++i){
+    for(int i = 0; i<max_users; ++i){
         desc[i] = false;
     }
 
-    juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), actual_socket, this);
+    juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), max_users, this);
     printf("creo el juego\n");
 
-    for(int i = 0; i<actual_socket; i++){
+    for(int i = 0; i<max_users; i++){
         hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
         data->server = this;
         data->i = i;
@@ -227,7 +260,7 @@ void* Server::processData(void* dato){
 
 }
 
-void Server::loguin_users(int socket){
+bool Server::loguin_users(int socket_client){
 
     logger.info("~~ Verificando las credenciales de los usuarios");
 
@@ -240,7 +273,7 @@ void Server::loguin_users(int socket){
     int data_send = 1;
     while(data_send != 0){
         if(veces_check < 2){
-            if(recv(socket, &cliente, size_client, MSG_NOSIGNAL) < 0)
+            if(recv(socket_client, &cliente, size_client, MSG_NOSIGNAL) < 0)
                 logger.error("No se recibio correctamente la data");
 
             string ids(cliente.id);
@@ -254,29 +287,32 @@ void Server::loguin_users(int socket){
             logger.info(msj.c_str());
 
             data_send = check_loguin_user(&cliente);
-            if(send(socket, &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
+            if(send(socket_client, &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
                 logger.error("No se envio correctamente la data");
+            printf("envio accion\n");
             if(data_send == 0){
                 //pthread_mutex_lock(&mutex);
                 usuarios_ingresados.insert({ids, 1});
                 //pthread_mutex_unlock(&mutex);
                 std::cout<<"Logueado!!\n";
+                return true;
             }
             veces_check++;
         } else break;
     }
+    return false;
 }
 
 // correcta credenciales -> 0 else 1
 int Server::check_loguin_user(credenciales_t* cliente){
-    pthread_mutex_lock(&mutex);
+    //pthread_mutex_lock(&mutex);
     if(usuarios_ingresados.find(cliente->id) != usuarios_ingresados.end()){
         if(usuarios_ingresados.at(cliente->id) == 1){
             logger.info("Usuario ya ingresado");
             return -1;
         }
     }
-    pthread_mutex_unlock(&mutex);
+    //pthread_mutex_unlock(&mutex);
     int ok = 0;
     std::string msj = "--- ";
     nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);

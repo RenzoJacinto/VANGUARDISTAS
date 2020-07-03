@@ -51,7 +51,7 @@ bool Client::iniciar(){
     logger.debug("@Conectado");
 
     if(! iniciarSesion()){
-        juego->cerrar();
+        juego->cerrar_ventana();
         return false;
     }
 
@@ -188,10 +188,12 @@ bool Client::iniciarSesion(){
             ok = false;
         }
 
+        printf("Envio credenciales\n");
         if(recv(socket, &accion_recibida, sizeof(int), MSG_NOSIGNAL) < 0){
             logger.error("Error en el recibimiento de la data");
             ok = false;
         }
+        printf("recibio credenciales\n");
         std::cout<<accion_recibida<<"\n";
         if(accion_recibida == 0 && ok){
             juego->renderWaitUsers();
@@ -199,6 +201,7 @@ bool Client::iniciarSesion(){
         } else{
             veces_check++;
             int intentos = 2 - veces_check;
+            printf("renderiza pantalla error\n");
             juego->render_errorLogin(intentos, accion_recibida);
             /*std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
             logger.info(msj.c_str());*/
@@ -207,7 +210,7 @@ bool Client::iniciarSesion(){
     }
     //free(cliente);
 
-    return ok;
+    return veces_check != 2;
 }
 
 void Client::finalizar() {
