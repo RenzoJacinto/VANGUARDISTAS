@@ -15,8 +15,8 @@ class NaveJugador: public Nave {
 
         //Las dimensiones de la Nave del Jugador
         int id_nave;
-		static const int NAVE_WIDTH = 50;
-		static const int NAVE_HEIGHT = 21;
+		static const int NAVE_WIDTH = 80;
+		static const int NAVE_HEIGHT = 34;
 
 		//Velocidad de la Nave del Jugador
 		static const int NAVE_VEL = 5;
