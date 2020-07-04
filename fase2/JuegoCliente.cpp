@@ -106,7 +106,7 @@ void JuegoCliente::procesar(posiciones_t* pos){
     if(pos->id>3){
         aumentar_renderizados(pos->id-4);
         for(int i = 0; i < renderizados ; i++){
-            enemigos[i]->mover(jugadores[0]);
+            enemigos[i]->mover(jugadores);
         }
         parallax();
         return;

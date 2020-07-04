@@ -4,7 +4,7 @@ CC = g++
 
 CXXFLAGS = -g -O2 -Wall
  
-LINKER_FLAGS = -std=c++11 -pthread -lSDL2 -lSDL2_image
+LINKER_FLAGS = -std=c++11 -pthread -lSDL2 -lSDL2_image -lSDL2_ttf
 
 OBJCLI_NAME = cliente
 OBJSERV_NAME = servidor
@@ -14,6 +14,10 @@ cliente: $(OBJSCLI)
 
 servidor: $(OBJSERV)
 	$(CC) $(OBJ) $(COMPILER_FLAGS) $(LINKER_FLAGS) -o $(OBJSERV_NAME)
+
+
+.PHONY : clean
+
 
 clean:
 	rm -rf *.o $(OBJCLI_NAME) $(OBJSERV_NAME)
