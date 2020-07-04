@@ -9,6 +9,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
     id_nave = id;
+    conectado = true;
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
@@ -71,7 +72,19 @@ int NaveJugador::get_id(){
 
 void NaveJugador::desconectar()
 {
+    conectado = false;
     gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", "jugadorOff"));
 }
 
+bool NaveJugador::isOn()
+{
+    return conectado;
+}
+
+void NaveJugador::conectar()
+{
+    conectado = true;
+    std::string jug = "jugador"+std::to_string(id_nave);
+    gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", jug.c_str()));
+}
 

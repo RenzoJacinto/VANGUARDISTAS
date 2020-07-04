@@ -15,10 +15,18 @@ class JuegoServidor{
         JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server);
         void iniciarNivel(int cantidad_enemigos, Server* server, int t_niv);
         posiciones_t* procesar(velocidades_t* v);
+        void iniciar_reconexion(int id, Server* server);
+        void parallax();
 
     private:
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
+
+        double scrollingOffsetBG;
+        double scrollingOffsetCity;
+        double tierraInicial;
+        double scrollingOffsetNube1;
+        double scrollingOffsetNube2;
 };
 
 #endif

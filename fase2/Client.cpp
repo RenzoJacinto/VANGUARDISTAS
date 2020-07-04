@@ -60,10 +60,20 @@ bool Client::iniciar(){
 
     recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL);
     id = v.id;
-    printf("incio correctamente, id: %d\n", id);
+    if(strcmp(v.descrip, "on") == 0)
+    {
+        printf("incio correctamente, id: %d\n", id);
 
-    juego->cerrarMenu();
-    iniciar_juego();
+        juego->cerrarMenu();
+        iniciar_juego();
+    }
+
+    else
+    {
+        juego->cerrarMenu();
+        juego->reconectar(this);
+        reiniciar_juego();
+    }
 
     return true;
 }
@@ -73,6 +83,15 @@ void* hiloEncolar(void* p){
     Client* client = (Client*)p;
     client->recibir_encolar();
     return NULL;
+}
+
+void Client::reiniciar_juego()
+{
+    pthread_t hilo_encolar;
+    pthread_create(&hilo_encolar, NULL, hiloEncolar, this);
+    //pthread_t hilo_desencolar;
+    //pthread_create(&hilo_desencolar, NULL, hiloDesencolar, this);
+    juego->iniciarNivel(this);
 }
 
 void* hiloDesencolar(void* p){

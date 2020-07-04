@@ -22,6 +22,7 @@ class JuegoCliente : public Escenario
         void procesar(posiciones_t* pos);
         void cerrar();
         void cerrar_ventana();
+        void reconectar(Client* client);
 
         void cargarNivel(Client* client);
         void renderBackground();

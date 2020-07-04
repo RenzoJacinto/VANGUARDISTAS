@@ -35,9 +35,14 @@ class NaveJugador: public Nave {
 
         void desconectar();
 
+        bool isOn();
+
+        void conectar();
+
     private:
 
         int alto,ancho;
+        bool conectado;
 };
 
 #endif // NAVEJUGADOR_H

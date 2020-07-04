@@ -108,12 +108,14 @@ void JuegoCliente::procesar(posiciones_t* pos){
         for(int i = 0; i < renderizados ; i++){
             enemigos[i]->mover(jugadores[0]);
         }
+        parallax();
         return;
     }
-    if(strcmp(pos->descrip, "off"))
+    if(strcmp(pos->descrip, "off") != 0)
     {
         jugadores[pos->id]->setPosX(pos->posX);
         jugadores[pos->id]->setPosY(pos->posY);
+        if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
     }
     else
     {
@@ -204,13 +206,10 @@ void JuegoCliente::cerrar(){
 
 void JuegoCliente::renderBackground(){
 
-    parallax();
-
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
 
 	gPlanetaTexture.render(tierraInicial, -50);
-    tierraInicial -= 0.2;
 
 	gCiudadTexture.render(scrollingOffsetCity, 150, &dataCiudad);
 	gCiudadTexture.render(scrollingOffsetCity + dataCiudad.w, 150, &dataCiudad);
@@ -224,6 +223,8 @@ void JuegoCliente::renderBackground(){
 
 void JuegoCliente::parallax()
 {
+
+    tierraInicial -= 0.2;
 
     scrollingOffsetBG -= 0.5;
     if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
@@ -270,4 +271,67 @@ void JuegoCliente::renderWaitUsers(){
 void JuegoCliente::cerrar_ventana()
 {
     sdl.cerrar();
+}
+
+void JuegoCliente::reconectar(Client* client)
+{
+    posiciones_t* pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetBG = (double) pos->posX;
+    printf("scroll BG: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetCity = (double) pos->posX;
+    printf("scroll City: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    tierraInicial = (double) pos->posX;
+    printf("tierra: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetNube1 = (double) pos->posX;
+    printf("scroll nube1: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetNube2 = (double) pos->posX;
+    printf("scroll nube2: %d\n", pos->posX);
+
+    while(true)
+    {
+        pos = (posiciones_t*)client->receiveData();
+        printf("ID: %d, STRING: %s\n", pos->id, pos->descrip);
+        if(pos->id == -1) break;
+        if(pos->id>3){
+            NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
+            enemigos.push_back(enemigo);
+        } else{
+            printf("creo nave jugador\n");
+            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            if(strcmp(pos->descrip, "off")==0) nave->desconectar();
+            jugadores.push_back(nave);
+        }
+    }
+
+    cargarImagen("nivel1", "mapaBG", &gBGTexture);
+    cargarImagen("nivel1", "ciudad", &gCiudadTexture);
+    cargarImagen("nivel1", "planeta", &gPlanetaTexture);
+    cargarImagen("nivel1", "nube1", &gNube1);
+    cargarImagen("nivel1", "nube2", &gNube2);
+
+    cargarImagen("nivel1", "finNivel", &gFinNivel);
+
+    dataBG.h = 600;
+    dataBG.w = 2048;
+    dataBG.x = 0;
+    dataBG.y = 0;
+
+    dataCiudad.h = 450;
+    dataCiudad.w = 2048;
+    dataCiudad.x = 0;
+    dataCiudad.y = 0;
+
+    dataNube1.h = 600;
+    dataNube1.w = 800;
+    dataNube1.x = 0;
+    dataNube1.y = 0;
+
+    dataNube2.h = 600;
+    dataNube2.w = 800;
+    dataNube2.x = 0;
+    dataNube2.y = 0;
 }

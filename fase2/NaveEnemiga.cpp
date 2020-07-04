@@ -8,9 +8,10 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         mensaje = "Se creo el " + sp;
         logger.debug(mensaje.c_str());
     }
-    if(x<=0) desplazamiento = 1;
+    if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
-
+    clave[0] = 0;
+    strncat(clave, sprite, 15);
     radio=getAltoImagen()/2;
     mensaje = "<<<< SE CARGO LA NAVE " + sp;
     logger.info(mensaje.c_str());
@@ -44,4 +45,9 @@ int NaveEnemiga::getAltoImagen(){
 
 int NaveEnemiga::getAnchoImagen(){
 	return gNaveTexture.getWidth();
+}
+
+char* NaveEnemiga::getClave()
+{
+    return clave;
 }

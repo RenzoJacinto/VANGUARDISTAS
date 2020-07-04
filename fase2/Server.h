@@ -40,6 +40,8 @@ class Server: public Estado{
         bool desconecto(int i);
         void desconectar(int i);
         void iniciar_cliente(int i);
+        void reconectar_cliente(int i);
+        void conectar(int i);
 
         static const int MAX_CLIENTS = 4;
 

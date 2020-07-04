@@ -26,6 +26,7 @@ class Client: public Estado{
         void iniciar_juego();
         void init_menu();
         void* desencolar();
+        void reiniciar_juego();
 
     private:
         std::string ip;

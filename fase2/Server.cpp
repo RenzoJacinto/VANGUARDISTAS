@@ -84,6 +84,50 @@ void Server::iniciar_cliente(int i)
         }
     }
 }
+
+void* hilo_reconexion(void* data){
+    hilosServer_t* d = (hilosServer_t*) data;
+    d->server->reconectar_cliente(d->i);
+    return NULL;
+}
+
+void Server::reconectar_cliente(int i)
+{
+    struct sockaddr_in client_addr;
+
+    socklen_t clilen;
+    clilen = sizeof(client_addr);
+
+    while(true)
+    {
+        printf("esperando conexion del cliente %d\n", i);
+        client_sockets[i] = accept(socket, (struct sockaddr *) &client_addr, &clilen);
+        if (client_sockets[i] < 0){
+            printf("fallo accept\n");
+            std::cout<<"2: "<<std::strerror(errno)<<"\n";
+            logger.error("Fallo el accept del cliente");
+        } else{
+            printf("accepted\n");
+            std::string msj = "";
+            msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
+            logger.debug(msj.c_str());
+            if(loguin_users(client_sockets[i])) break;
+            printf("el cliente %d no pudo loguearse\n", i);
+        }
+    }
+
+    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+    v->id = i;
+    v->descrip[0] = 0;
+    strncat(v->descrip, "off", 5);
+    send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
+    free(v);
+    //hilosServer_t* d = (hilosServer_t*) data;
+    juego->iniciar_reconexion(i, this);
+    desc[i] = false;
+    recibir_encolar(i);
+}
+
 bool Server::iniciar(){
 
     logger.info(">>>> INICIANDO SERVER ....");
@@ -116,10 +160,10 @@ bool Server::iniciar(){
     logger.debug("@Bind correcto");
 
     // ESPERA A QUE SE CONECTEN LOS USUARIOS, como maximo "max_users"
-    struct sockaddr_in client_addr;
+    //struct sockaddr_in client_addr;
 
-    socklen_t clilen;
-    clilen = sizeof(client_addr);
+    //socklen_t clilen;
+    //clilen = sizeof(client_addr);
 
     //typedef void * (*THREADFUNCPTR)(void *);
     logger.info("#Listen ...");
@@ -173,6 +217,8 @@ bool Server::iniciar(){
     for(int i = 0; i<max_users; ++i){
         velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
         v->id = i;
+        v->descrip[0] = 0;
+        strncat(v->descrip, "on", 5);
         send(get_socket(i), v, sizeof(velocidades_t), MSG_NOSIGNAL);
         free(v);
     }
@@ -352,6 +398,7 @@ int Server::get_id_actual(){
 
 void Server::send_all(posiciones_t* pos){
     for(int i = 0; i<max_users; i++){
+        if(desconecto(i)) continue;
         int total_bytes_writen = 0;
         int bytes_writen = 0;
         int sent_data_size = sizeof(posiciones_t);
@@ -359,20 +406,23 @@ void Server::send_all(posiciones_t* pos){
             bytes_writen = send(client_sockets[i], pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
             total_bytes_writen += bytes_writen;
             if(bytes_writen<=0){
-                if(!desconecto(i))
-                {
-                    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-                    v->id = i;
-                    v->descrip[0] = 0;
-                    strncat(v->descrip, "off", 5);
-                    encolar(v);
-                    desconectar(i);
-                }
+                velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+                v->id = i;
+                v->descrip[0] = 0;
+                strncat(v->descrip, "off", 5);
+                encolar(v);
+                desconectar(i);
+                pthread_cancel(clientes[i]);
+                hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
+                data->server = this;
+                data->i = i;
+                pthread_create(&clientes[i], NULL, hilo_reconexion, data);
                 break;
+            }
+
             }
             printf("envio mensaje a todos\n");
         }
-    }
 }
 
 void* Server::desencolar(){
@@ -387,4 +437,9 @@ void Server::desconectar(int i)
 bool Server::desconecto(int i)
 {
     return desc[i];
+}
+
+void Server::conectar(int i)
+{
+    desc[i] = false;
 }
