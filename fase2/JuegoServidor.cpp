@@ -79,7 +79,7 @@ void JuegoServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
             posiciones_t* pos = procesar((velocidades_t*)dato);
-            std::cout<<"ID: "<< pos->id<<"X: "<<pos->posX<<"Y: "<<pos->posY;
+            //std::cout<<"ID: "<< pos->id<<"X: "<<pos->posX<<"Y: "<<pos->posY;
             server->send_all(pos);
             free(pos);
         }
@@ -97,14 +97,14 @@ posiciones_t* JuegoServidor::procesar(velocidades_t* v){
     int id = v->id;
     int vx = v->VelX;
     int vy = v->VelY;
-    printf("SERVER proceso un dato, ID: %d\n", id);
+    //printf("SERVER proceso un dato, ID: %d\n", id);
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->id = id;
     pos->posX = 0;
     pos->posY = 0;
     if(id>3){
         for(int i = 0; i < id - 4; i++){
-            enemigos[i]->mover(jugadores);
+            enemigos[i]->mover(jugadores[0]);
         }
         parallax();
     }
@@ -123,19 +123,19 @@ posiciones_t* JuegoServidor::procesar(velocidades_t* v){
     return pos;
 }
 
-void JuegoServidor::iniciar_reconexion(int id, Server* server)
+void JuegoServidor::iniciar_reconexion(int id, Server* server, int socket_id)
 {
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->posX = (int)scrollingOffsetBG;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetCity;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
     pos->posX = (int)tierraInicial;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetNube1;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetNube2;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
 
     int i = 0;
     vector<NaveJugador*>::iterator posJ;
@@ -148,7 +148,7 @@ void JuegoServidor::iniciar_reconexion(int id, Server* server)
         if(server->desconecto(i) && i != id) strncat(pos->descrip, "off", 5);
         else strncat(pos->descrip, "on", 5);
 
-        send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
         i++;
     }
 
@@ -162,11 +162,11 @@ void JuegoServidor::iniciar_reconexion(int id, Server* server)
         pos->descrip[0] = 0;
         strncat(pos->descrip, (*posE)->getClave(), 15);
 
-        send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
         i++;
     }
     pos->id = -1;
-    send(server->get_socket(id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
     free(pos);
 }
 

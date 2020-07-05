@@ -45,7 +45,6 @@ class Nave{
 
 		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
 
-		bool encontrarJugadores(NaveEnemiga* enemigo, vector<NaveJugador*> jugadores);
 
     protected:
 

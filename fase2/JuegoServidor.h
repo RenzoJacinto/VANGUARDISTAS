@@ -15,7 +15,7 @@ class JuegoServidor{
         JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server);
         void iniciarNivel(int cantidad_enemigos, Server* server, int t_niv);
         posiciones_t* procesar(velocidades_t* v);
-        void iniciar_reconexion(int id, Server* server);
+        void iniciar_reconexion(int id, Server* server, int socket_id);
         void parallax();
 
     private:

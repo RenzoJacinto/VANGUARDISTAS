@@ -39,6 +39,11 @@ Server::Server(int port, pthread_mutex_t m){
 
     cola = new ColaMultihilo();
 
+    for(int i = 0; i < max_users; ++i){
+        desc[i] = false;
+        desc_usuarios[i] = false;
+    }
+
     ifstream whitelist;
     whitelist.open("config/whitelist.json", ios::in);
     whitelist >> j_wl;
@@ -65,7 +70,7 @@ void Server::iniciar_cliente(int i)
 
     socklen_t clilen;
     clilen = sizeof(client_addr);
-
+    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     while(true)
     {
         printf("esperando conexion del cliente %d\n", i);
@@ -79,10 +84,11 @@ void Server::iniciar_cliente(int i)
             std::string msj = "";
             msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
             logger.debug(msj.c_str());
-            if(loguin_users(client_sockets[i])) break;
+            if(loguin_users(i, false, v)) break;
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
+    free(v);
 }
 
 void* hilo_reconexion(void* data){
@@ -97,7 +103,7 @@ void Server::reconectar_cliente(int i)
 
     socklen_t clilen;
     clilen = sizeof(client_addr);
-
+    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     while(true)
     {
         printf("esperando conexion del cliente %d\n", i);
@@ -111,21 +117,25 @@ void Server::reconectar_cliente(int i)
             std::string msj = "";
             msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
             logger.debug(msj.c_str());
-            if(loguin_users(client_sockets[i])) break;
+            if(loguin_users(i, true, v)) break;
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
-
-    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-    v->id = i;
+    printf("ID NAVE RECONEXION: %d\n", v->id);
+    //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+    //v->id = i;
     v->descrip[0] = 0;
     strncat(v->descrip, "off", 5);
     send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
-    free(v);
+    //free(v);
     //hilosServer_t* d = (hilosServer_t*) data;
-    juego->iniciar_reconexion(i, this);
+    printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), v->id);
+    juego->iniciar_reconexion(v->id, this, i);
+    printf("envio datos reconexion\n");
     desc[i] = false;
-    recibir_encolar(i);
+    desc_usuarios[v->id] = false;
+    free(v);
+    //recibir_encolar(i);
 }
 
 bool Server::iniciar(){
@@ -249,7 +259,7 @@ void Server::encolar(void* dato) {
         free(v);
         return;
     }
-    printf("ID A ENCOLAR: %d\n", v->id);
+    //printf("ID A ENCOLAR: %d\n", v->id);
     ult_id_enemigo = v->id;
     cola->push(dato);
 }
@@ -257,7 +267,9 @@ void Server::encolar(void* dato) {
 void* Server::recibir_encolar(int socket){
     while(true) {
         void* data = receiveData(socket);
+        printf("recibe data\n");
         if(!data) continue;
+        printf("intenta encolar\n");
         encolar(data);
     }
 
@@ -290,12 +302,29 @@ void* Server::receiveData(int socket){
     int sent_data_size = sizeof(velocidades_t);
     while(sent_data_size > total_bytes_writen) {
         bytes_writen = recv(client_sockets[socket], v+total_bytes_writen, sizeof(velocidades_t)-total_bytes_writen, MSG_NOSIGNAL);
-        total_bytes_writen += bytes_writen;
-        if(bytes_writen <= 0) {
+
+        if(bytes_writen <= 0 && !desc[socket]) {
+            velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+            std::string msg = usuario_per_socket.at(socket);
+            int id = usuarios_ingresados.at(msg);
+            v->id = id;
+            v->descrip[0] = 0;
+            strncat(v->descrip, "off", 5);
+            encolar(v);
+            desconectar(socket);
+            printf("ID DESC: %d\n", socket);
+            desc_usuarios[id] = true;
+            reconectar_cliente(socket);
+            //pthread_cancel(clientes[i]);
+            //hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
+            //data->server = this;
+            //data->i = i;
+            //pthread_create(&clientes[i], NULL, hilo_reconexion, data);
             //printf("error en el recv SERVER\n");
-            free(v);
+            //free(v);
             return NULL;
         }
+        else total_bytes_writen += bytes_writen;
     }
     //printf("data recibida\n");
 	return v;
@@ -306,7 +335,7 @@ void* Server::processData(void* dato){
 
 }
 
-bool Server::loguin_users(int socket_client){
+bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
 
     logger.info("~~ Verificando las credenciales de los usuarios");
 
@@ -318,8 +347,9 @@ bool Server::loguin_users(int socket_client){
 
     int data_send = 1;
     while(data_send != 0){
-        if(veces_check < 2){
-            if(recv(socket_client, &cliente, size_client, MSG_NOSIGNAL) < 0)
+        if(veces_check < 2)
+        {
+            if(recv(client_sockets[i], &cliente, size_client, MSG_NOSIGNAL) < 0)
                 logger.error("No se recibio correctamente la data");
 
             string ids(cliente.id);
@@ -332,19 +362,59 @@ bool Server::loguin_users(int socket_client){
             msj += ids + " ; PASS: " + cpass;
             logger.info(msj.c_str());
 
-            data_send = check_loguin_user(&cliente);
-            if(send(socket_client, &data_send, sizeof(int), MSG_NOSIGNAL) < 0 )
-                logger.error("No se envio correctamente la data");
-            printf("envio accion\n");
-            if(data_send == 0){
-                //pthread_mutex_lock(&mutex);
-                usuarios_ingresados.insert({ids, 1});
-                //pthread_mutex_unlock(&mutex);
-                std::cout<<"Logueado!!\n";
-                return true;
+            if(!esReconex)
+            {
+                //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+                v->VelX = check_loguin_user(&cliente);
+                v->id = i;
+                if(send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0 )
+                    logger.error("No se envio correctamente la data");
+                printf("envio accion\n");
+                if(v->VelX == 0)
+                {
+                    //pthread_mutex_lock(&mutex);
+                    usuarios_ingresados.insert({ids, i});
+                    usuario_per_socket.insert({i, ids});
+                    //pthread_mutex_unlock(&mutex);
+                    //free(v);
+                    std::cout<<"Logueado!!\n";
+                    return true;
+                }
+                //free(v);
+                veces_check++;
             }
-            veces_check++;
-        } else break;
+            else
+            {
+                //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+                v->VelX = check_loguin_user_reconexion(&cliente);
+                if(v->VelX != -1) {
+                    v->id = usuarios_ingresados.at(ids);
+                    printf("ID USER %s: %d", ids.c_str(), v->id);
+                }
+                if(send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0 )
+                    logger.error("No se envio correctamente la data");
+                printf("envio accion\n");
+                if(v->VelX == 0)
+                {
+                    //pthread_mutex_lock(&mutex);
+                    //usuarios_ingresados.insert({ids, i});
+                    //pthread_mutex_unlock(&mutex);
+                    std::cout<<"Logueado!!\n";
+                    std::map<int, std::string>::iterator it = usuario_per_socket.find(i);
+                    if(it != usuario_per_socket.end())
+                    {
+                        printf("actualizo valor del socket %d a %s\n", i, ids.c_str());
+                        it->second = ids;
+                    }
+                    //free(v);
+                    return true;
+                }
+                //free(v);
+                veces_check++;
+            }
+        }
+
+        else break;
     }
     return false;
 }
@@ -352,13 +422,48 @@ bool Server::loguin_users(int socket_client){
 // correcta credenciales -> 0 else 1
 int Server::check_loguin_user(credenciales_t* cliente){
     //pthread_mutex_lock(&mutex);
+    //printf("buscando credenciales de %s\n" cliente->id);
     if(usuarios_ingresados.find(cliente->id) != usuarios_ingresados.end()){
-        if(usuarios_ingresados.at(cliente->id) == 1){
-            logger.info("Usuario ya ingresado");
+        //if(usuarios_ingresados.at(cliente->id) == 1){
+        //    logger.info("Usuario ya ingresado");
             return -1;
-        }
+        //}
     }
     //pthread_mutex_unlock(&mutex);
+    int ok = 0;
+    std::string msj = "--- ";
+    nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);
+    if(j_aux == "errorKey"){
+        msj += "Id inexistente";
+        logger.info(msj.c_str());
+        ok = 1;
+    } else{
+        std::string password = j_wl.at(cliente->id);
+        if(password != cliente->pass){
+            msj += "Password incorrecta";
+            logger.info(msj.c_str());
+            ok = 1;
+        }
+    }
+    return ok;
+}
+
+int Server::check_loguin_user_reconexion(credenciales_t* cliente){
+    //pthread_mutex_lock(&mutex);
+    printf("buscando credenciales de %s\n", cliente->id);
+    if(usuarios_ingresados.find(cliente->id) == usuarios_ingresados.end()){
+        //    logger.info("Usuario ya ingresado");
+        printf("User not on this game\n");
+        return -1;
+        //}
+    }
+    //pthread_mutex_unlock(&mutex);
+    int id_user = usuarios_ingresados.at(cliente->id);
+    if(!desc_usuarios[id_user])
+    {
+        printf("user %d still connected\n", id_user);
+        return -2;
+    }
     int ok = 0;
     std::string msj = "--- ";
     nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);
@@ -406,22 +511,26 @@ void Server::send_all(posiciones_t* pos){
             bytes_writen = send(client_sockets[i], pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
             total_bytes_writen += bytes_writen;
             if(bytes_writen<=0){
-                velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+                /*velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
                 v->id = i;
                 v->descrip[0] = 0;
                 strncat(v->descrip, "off", 5);
                 encolar(v);
                 desconectar(i);
+                std::string msg = usuario_per_socket.at(i);
+                int id = usuarios_ingresados.at(msg);
+                printf("ID DESC: %d\n", id);
+                desc_usuarios[id] = true;
                 pthread_cancel(clientes[i]);
                 hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
                 data->server = this;
                 data->i = i;
-                pthread_create(&clientes[i], NULL, hilo_reconexion, data);
+                pthread_create(&clientes[i], NULL, hilo_reconexion, data);*/
                 break;
             }
 
             }
-            printf("envio mensaje a todos\n");
+            //printf("envio mensaje a todos\n");
         }
 }
 

@@ -31,7 +31,8 @@ class Server: public Estado{
 
         int get_socket(int i);
         int check_loguin_user(credenciales_t* cliente);
-        bool loguin_users(int socket_client);
+        int check_loguin_user_reconexion(credenciales_t* cliente);
+        bool loguin_users(int i, bool esReconex, velocidades_t* v);
         void cerrar();
         void send_all(posiciones_t* pos);
         int get_id_actual();
@@ -53,6 +54,7 @@ class Server: public Estado{
         int client_sockets[MAX_CLIENTS];
         ColaMultihilo* cola;
         bool desc[MAX_CLIENTS];
+        bool desc_usuarios[MAX_CLIENTS];
         //pthread_t hiloRecibirEncolar;
         //pthread_t hiloDesencolarProcesarEnviar;
         pthread_t clientes[MAX_CLIENTS];
@@ -60,6 +62,7 @@ class Server: public Estado{
 
         nlohmann::json j_wl;
         std::map<std::string,int> usuarios_ingresados;
+        std::map<int,std::string> usuario_per_socket;
 };
 
 #endif
