@@ -104,7 +104,7 @@ posiciones_t* JuegoServidor::procesar(velocidades_t* v){
     pos->posY = 0;
     if(id>3){
         for(int i = 0; i < id - 4; i++){
-            enemigos[i]->mover(jugadores[0]);
+            enemigos[i]->mover(jugadores);
         }
         parallax();
     }
