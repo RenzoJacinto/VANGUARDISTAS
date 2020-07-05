@@ -65,8 +65,11 @@ std::string Menu::get_pass(){
 void Menu::renderErrorLogin(const char* intentos, int accion_recibida){
     TextureW gErrorLogin;
     std::string file;
-    if (accion_recibida == 1) file = json.get_sprite_menu("errorLogin");
-    else if(accion_recibida == -1) file = json.get_sprite_menu("errorLoginID");
+    if (accion_recibida == ERROR_LOGIN) file = json.get_sprite_menu("errorLogin");
+    else if(accion_recibida == ID_YA_LOGUEADA) file = json.get_sprite_menu("errorLoginID");
+    else if(accion_recibida == ID_NO_LOGUEADA_RECON) file = json.get_sprite_menu("idNoConectada");
+    else if(accion_recibida == JUEGO_LLENO) file = json.get_sprite_menu("juegoLleno");
+
     if(! gErrorLogin.loadFromFile(file.c_str())){
         logger.error("No se pudo cargar la imagen de error de logueo");
         file = json.get_imagen_default("escenario");

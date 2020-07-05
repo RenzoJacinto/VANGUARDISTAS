@@ -64,8 +64,7 @@ void* hilo_login(void* data){
     return NULL;
 }
 
-void Server::iniciar_cliente(int i)
-{
+void Server::iniciar_cliente(int i){
     struct sockaddr_in client_addr;
 
     socklen_t clilen;
@@ -387,22 +386,20 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
             {
                 //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
                 v->VelX = check_loguin_user_reconexion(&cliente);
-                if(v->VelX != -1) {
+                if(v->VelX != ID_YA_LOGUEADA) {
                     v->id = usuarios_ingresados.at(ids);
                     printf("ID USER %s: %d", ids.c_str(), v->id);
                 }
                 if(send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0 )
                     logger.error("No se envio correctamente la data");
                 printf("envio accion\n");
-                if(v->VelX == 0)
-                {
+                if(v->VelX == LOGIN_CORRECTO){
                     //pthread_mutex_lock(&mutex);
                     //usuarios_ingresados.insert({ids, i});
                     //pthread_mutex_unlock(&mutex);
                     std::cout<<"Logueado!!\n";
                     std::map<int, std::string>::iterator it = usuario_per_socket.find(i);
-                    if(it != usuario_per_socket.end())
-                    {
+                    if(it != usuario_per_socket.end()){
                         printf("actualizo valor del socket %d a %s\n", i, ids.c_str());
                         it->second = ids;
                     }
@@ -426,60 +423,37 @@ int Server::check_loguin_user(credenciales_t* cliente){
     if(usuarios_ingresados.find(cliente->id) != usuarios_ingresados.end()){
         //if(usuarios_ingresados.at(cliente->id) == 1){
         //    logger.info("Usuario ya ingresado");
-            return -1;
+            return ID_YA_LOGUEADA;
         //}
     }
     //pthread_mutex_unlock(&mutex);
-    int ok = 0;
+    int ok = LOGIN_CORRECTO;
     std::string msj = "--- ";
     nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);
     if(j_aux == "errorKey"){
         msj += "Id inexistente";
         logger.info(msj.c_str());
-        ok = 1;
+        ok = ERROR_LOGIN;
     } else{
         std::string password = j_wl.at(cliente->id);
         if(password != cliente->pass){
             msj += "Password incorrecta";
             logger.info(msj.c_str());
-            ok = 1;
+            ok = ERROR_LOGIN;
         }
     }
     return ok;
 }
 
 int Server::check_loguin_user_reconexion(credenciales_t* cliente){
-    //pthread_mutex_lock(&mutex);
-    printf("buscando credenciales de %s\n", cliente->id);
-    if(usuarios_ingresados.find(cliente->id) == usuarios_ingresados.end()){
-        //    logger.info("Usuario ya ingresado");
-        printf("User not on this game\n");
-        return -1;
-        //}
-    }
-    //pthread_mutex_unlock(&mutex);
+
+
     int id_user = usuarios_ingresados.at(cliente->id);
-    if(!desc_usuarios[id_user])
-    {
+    if(!desc_usuarios[id_user]){
         printf("user %d still connected\n", id_user);
-        return -2;
+        return ID_NO_LOGUEADA_RECON;
     }
-    int ok = 0;
-    std::string msj = "--- ";
-    nlohmann::json& j_aux = json.searchValue(j_wl, cliente->id);
-    if(j_aux == "errorKey"){
-        msj += "Id inexistente";
-        logger.info(msj.c_str());
-        ok = 1;
-    } else{
-        std::string password = j_wl.at(cliente->id);
-        if(password != cliente->pass){
-            msj += "Password incorrecta";
-            logger.info(msj.c_str());
-            ok = 1;
-        }
-    }
-    return ok;
+    return check_loguin_user(cliente);
 }
 
 void Server::cerrar(){
@@ -538,17 +512,14 @@ void* Server::desencolar(){
     return cola->pop();
 }
 
-void Server::desconectar(int i)
-{
+void Server::desconectar(int i){
     desc[i] = true;
 }
 
-bool Server::desconecto(int i)
-{
+bool Server::desconecto(int i){
     return desc[i];
 }
 
-void Server::conectar(int i)
-{
+void Server::conectar(int i){
     desc[i] = false;
 }

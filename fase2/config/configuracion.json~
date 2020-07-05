@@ -1,8 +1,12 @@
 {
 	"log": 3,
+	"conexion":{
+		"estado":"server",
+		"users": 2
+	},
     	"stages":{
         	"nivel1":{
-                	"enemigos": 35,
+                	"enemigos": 30,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
@@ -13,7 +17,7 @@
 			}
             	},
            	"nivel2":{
-                	"enemigos": 20,
+                	"enemigos": 2,
                 	"sprites":{
 				"mapaBG":"sprites/usuario/niveles/nivel2/bg2.png",
 				"planeta1":"sprites/usuario/niveles/nivel2/planeta1.png",
@@ -25,7 +29,7 @@
                 	}
             	},
 	    	"nivel3":{
-                	"enemigos": 15,
+                	"enemigos": 3,
                 	"sprites":{
 		        	"mapaBG":"sprites/usuario/niveles/nivel3/bg.png",
 		        	"fondo1":"sprites/usuario/niveles/nivel3/fondo1.png",
@@ -40,7 +44,11 @@
     	},
     	"naves":{
         	"jugador":{
-		        "jugador":"sprites/usuario/naves/jugador/nave.png"
+		        "jugador0":"sprites/usuario/naves/jugador/nave1.png",
+			"jugador1":"sprites/usuario/naves/jugador/nave2.png",
+			"jugador2":"sprites/usuario/naves/jugador/nave3.png",
+			"jugador3":"sprites/usuario/naves/jugador/nave4.png",
+			"jugadorOff":"sprites/usuario/naves/jugador/naveDesconexion.png"
             	},
             	"enemigas":{
 		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",
@@ -56,13 +64,7 @@
 		"errorLogin": "sprites/usuario/menu/errorLogin.png",
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
-		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
-		"idNoConectada":"sprites/usuario/menu/idNoConectada.png"
-
-	},
-	"default": {
-		"nave": "sprites/default/nave.png",
-		"escenario": "sprites/default/fondo.png"
-	},
-	"error": "errorKey"
+		"waitUsers":"sprites/usuario/menu/waitUsers.png",
+		"waitUsers":"sprites/usuario/menu/waitUsers.png"	
+	}
 }

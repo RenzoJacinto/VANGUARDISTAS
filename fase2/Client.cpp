@@ -214,7 +214,7 @@ bool Client::iniciarSesion(){
         }
         printf("recibio credenciales\n");
         std::cout<<v->VelX<<"\n";
-        if(v->VelX == 0 && ok){
+        if(v->VelX == LOGIN_CORRECTO && ok){
             id = v->id;
             juego->renderWaitUsers();
             break;
@@ -222,7 +222,7 @@ bool Client::iniciarSesion(){
             veces_check++;
             int intentos = 2 - veces_check;
             printf("renderiza pantalla error\n");
-            if(v->VelX == -2) printf("user %d still connected\n", v->id);
+            if(v->VelX == ID_NO_LOGUEADA_RECON) printf("user %d still connected\n", v->id);
             else juego->render_errorLogin(intentos, v->VelX);
             /*std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
             logger.info(msj.c_str());*/
