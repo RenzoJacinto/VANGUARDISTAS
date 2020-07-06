@@ -1,9 +1,0 @@
-26/06/2020 02:11:04.976 - ERROR: No se encontro la imagen del menu, se cargo una por defecto
-26/06/2020 02:11:04.976 - DEBUG: Se obtuvo la imagen de error, que muestra inexistencia de imagen
-26/06/2020 02:11:04.976 - INFO: Se cargó la imagen de menú: sprites/default/fondo.png
-26/06/2020 02:11:04.976 - DEBUG: Se liberó memoria del renderizador
-26/06/2020 02:11:04.976 - DEBUG: Se liberó memoria de la ventana
-26/06/2020 02:11:04.976 - DEBUG: Se referenció la ventana como nula
-26/06/2020 02:11:04.976 - DEBUG: Se referenció el renderizador como nulo
-26/06/2020 02:11:04.976 - DEBUG: Se cerró IMG
-26/06/2020 02:11:04.976 - DEBUG: Se cerró SDL
