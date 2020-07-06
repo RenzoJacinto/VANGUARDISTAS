@@ -26,6 +26,7 @@ class Nivel: public Escenario {
         virtual void renderBackground();
         virtual void parallax();
 
+
         //static const int TIEMPO_NIVEL_SEGS = 240;
 
     protected:

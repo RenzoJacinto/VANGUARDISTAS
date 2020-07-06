@@ -14,6 +14,7 @@ class Menu: public Escenario
         void cerrar();
         void renderErrorLogin(const char* intentos, int accion_recibida);
         void renderWaitUsers();
+        void renderServerCaido();
 
         std::string get_id();
         std::string get_pass();

@@ -43,16 +43,24 @@ bool Client::iniciar(){
     server.sin_port = htons(puerto);
 
     logger.info("#Conexion con el servidor ...");
-    if(int o = connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
-        printf("error conex %d\n", o);
+    if(connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
+        //printf("error conex %d\n", o);
         std::cout<<"2: "<<std::strerror(errno)<<"\n";
         logger.error("Conexion con el servidor fallida");
         return false;
     }
     logger.debug("@Conectado");
+
+    if(! juego->iniciarSDL()){
+        return false;
+    }
     int s;
     if(recv(socket, &s, sizeof(int), MSG_NOSIGNAL)<0) return false;
-    if(s==1) return false;
+    if(s==1){
+        juego->renderServerLleno();
+        juego->cerrar_ventana();
+        return false;
+    }
     if(! iniciarSesion()){
         juego->cerrar_ventana();
         return false;
@@ -63,24 +71,16 @@ bool Client::iniciar(){
 
     recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL);
     //id = v.id;
-    if(strcmp(v.descrip, "on") == 0)
-    {
+    if(strcmp(v.descrip, "on") == 0){
         printf("incio correctamente, id: %d\n", id);
-
         juego->cerrarMenu();
         juego->iniciarJuego(this, 0);
-    }
-
-    else if(strcmp(v.descrip, "off") == 0)
-    {
+    } else if(strcmp(v.descrip, "off") == 0){
         printf("reconectar\n");
         juego->cerrarMenu();
         printf("nivel: %d\n", v.id);
         juego->reconectar(this, v.id);
-    }
-
-    else
-    {
+    } else{
         printf("none\n");
         juego->cerrarMenu();
         juego->reconectarSiguiente(this, v.id);
@@ -95,13 +95,11 @@ void* hiloEncolar(void* p){
     return NULL;
 }
 
-void Client::reiniciar_juego(int nivel)
-{
+void Client::reiniciar_juego(int nivel){
     juego->reconectar(this, nivel);
 }
 
-void Client::reiniciar_siguiente(int nivel)
-{
+void Client::reiniciar_siguiente(int nivel){
     juego->reconectarSiguiente(this, nivel);
 }
 
@@ -142,8 +140,7 @@ void* Client::desencolar_procesar(){
     return NULL;
 }
 
-void* Client::desencolar()
-{
+void* Client::desencolar(){
     return cola->pop();
 }
 
@@ -158,7 +155,7 @@ bool Client::sendData(void* dato){
         total_bytes_writen += bytes_writen;
         if(bytes_writen<=0) {
             printf("error en send CLIENT\n");
-            break;
+            return false;
         }
     }
     return true;
@@ -189,10 +186,6 @@ void* Client::processData(void* dato){
 
 bool Client::iniciarSesion(){
 
-    if(! juego->iniciarSDL()){
-        return false;
-    }
-
     int veces_check = 0;
 
     int size_client = sizeof(credenciales_t);
@@ -211,10 +204,12 @@ bool Client::iniciarSesion(){
 
         if(send(socket, cliente, size_client, MSG_NOSIGNAL) < 0){
             logger.error("Error en el envio de la data");
+            //renderServerCaido();
             ok = false;
         }
 
         printf("Envio credenciales\n");
+        v->VelX = 10;
         if(recv(socket, v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0){
             logger.error("Error en el recibimiento de la data");
             ok = false;
@@ -264,19 +259,19 @@ int Client::get_id() {
     return id;
 }
 
-void Client::crear_hilo_recibir()
-{
+void Client::crear_hilo_recibir(){
     pthread_create(&hilo_encolar, NULL, hiloEncolar, this);
 }
-void Client::cerrar_hilo_recibir()
-{
+void Client::cerrar_hilo_recibir(){
     pthread_cancel(hilo_encolar);
 }
-void Client::vaciar_cola()
-{
-    while(!cola->estaVacia())
-    {
+void Client::vaciar_cola(){
+    while(!cola->estaVacia()){
         void* dato = cola->pop();
         free(dato);
     }
+}
+
+void Client::renderServerCaido(){
+    juego->renderServerCaido();
 }

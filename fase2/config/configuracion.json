@@ -1,8 +1,8 @@
 {
 	"log": 3,
 	"conexion":{
-		"estado":"server",
-		"users": 2
+		"estado":"client",
+		"users": 1
 	},
     	"stages":{
         	"nivel1":{
@@ -65,6 +65,7 @@
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
 		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
-		"idNoConectada":"sprites/usuario/menu/idNoConectada.png"	
+		"idNoConectada":"sprites/usuario/menu/idNoConectada.png",
+		"serverCerrado":"sprites/usuario/menu/serverCerrado.png"
 	}
 }

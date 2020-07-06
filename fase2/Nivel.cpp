@@ -22,14 +22,12 @@ Nivel::Nivel(){
 }
 
 
-bool Nivel::iniciarNivel(Client* client)
-{
+bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
 
     NaveJugador* jugador1 = jugadores[client->get_id()];
 
-    while( usuarioNoRequieraSalir(quit) )
-    {
+    while( usuarioNoRequieraSalir(quit) ){
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
             jugador1->handleEvent( e );
@@ -44,14 +42,16 @@ bool Nivel::iniciarNivel(Client* client)
 
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
-        client->sendData(v);
+        if(! client->sendData(v)){
+            client->renderServerCaido();
+            free(v);
+            return true;
+        }
 
-        while(!client->cola_esta_vacia())
-        {
+        while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
             posiciones_t* pos = (posiciones_t*) dato;
-            if(pos->id == -1)
-            {
+            if(pos->id == -1){
                 return false;
             }
             procesar((posiciones_t*) dato);
@@ -72,8 +72,7 @@ void Nivel::renderizar(){
 
         //render jugador
         vector<NaveJugador*>::iterator pos;
-        for(pos = jugadores.begin(); pos != jugadores.end(); pos++)
-        {
+        for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             (*pos)->renderizar();
         }
 
@@ -89,8 +88,7 @@ void Nivel::renderizar(){
 
 void Nivel::procesar(posiciones_t* pos){
     printf("CLIENT procesa data, ID: %d\n", pos->id);
-    if(pos->id == -1)
-    {
+    if(pos->id == -1){
         printf("llego un -1\n");
         return;
     }
@@ -102,16 +100,13 @@ void Nivel::procesar(posiciones_t* pos){
         parallax();
         return;
     }
-    if(strcmp(pos->descrip, "off") != 0)
-    {
+    if(strcmp(pos->descrip, "off") != 0){
         printf("intenta setear posiciones\n");
         jugadores[pos->id]->setPosX(pos->posX);
         jugadores[pos->id]->setPosY(pos->posY);
         if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
         printf("las seteo\n");
-    }
-    else
-    {
+    } else{
         jugadores[pos->id]->desconectar();
     }
     free(pos);

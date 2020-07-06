@@ -52,8 +52,12 @@
     	"menu":{
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
-		"selectPass": "sprites/usuario/menu/selectPass.png"
-
+		"selectPass": "sprites/usuario/menu/selectPass.png",
+		"errorLogin": "sprites/usuario/menu/errorLogin.png",
+		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
+		"waitUsers":"sprites/usuario/menu/waitUsers.png",
+		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
+		"idNoConectada":"sprites/usuario/menu/idNoConectada.png"
 	},
 	"default": {
 		"nave": "sprites/default/nave.png",

@@ -36,6 +36,9 @@ class JuegoCliente : public Escenario
         void render_errorLogin(int intentos, int accion_recibida);
         void cerrarMenu();
         void renderWaitUsers();
+        void renderServerLleno();
+
+        void renderServerCaido();
 
     private:
 

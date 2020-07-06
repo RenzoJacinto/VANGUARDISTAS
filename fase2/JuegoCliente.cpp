@@ -34,8 +34,7 @@ void JuegoCliente::init_menu(){
 }
 
 void JuegoCliente::iniciarJuego(Client* client, int nivel){
-    for(int i = nivel; i<3;i++)
-    {
+    for(int i = nivel; i<3;i++){
         niveles[i]->cargarNivel(client);
         client->crear_hilo_recibir();
         if(niveles[i]->iniciarNivel(client)) break;
@@ -66,16 +65,13 @@ void JuegoCliente::cerrarMenu(){
 
 void JuegoCliente::renderWaitUsers(){
     menu.renderWaitUsers();
-
 }
 
-void JuegoCliente::cerrar_ventana()
-{
+void JuegoCliente::cerrar_ventana(){
     sdl.cerrar();
 }
 
-void JuegoCliente::reconectar(Client* client, int nivel)
-{
+void JuegoCliente::reconectar(Client* client, int nivel){
     if(nivel>2) return;
     printf("entra a juego cliente\n");
     niveles[nivel]->reconectar(client);
@@ -89,10 +85,30 @@ void JuegoCliente::reconectar(Client* client, int nivel)
     iniciarJuego(client, nivel+1);
 }
 
-void JuegoCliente::reconectarSiguiente(Client* client, int nivel)
-{
+void JuegoCliente::reconectarSiguiente(Client* client, int nivel){
     if(nivel>2) return;
     client->recibir_encolar();
     client->vaciar_cola();
     iniciarJuego(client, nivel);
+}
+
+void JuegoCliente::renderServerLleno(){
+    TextureW texture;
+    std::string file = json.get_sprite_menu("juegoLleno");
+    if(! texture.loadFromFile(file.c_str())){
+        logger.error("No se pudo cargar la textura del juego lleno");
+        file = json.get_imagen_default("escenario");
+        texture.loadFromFile(file.c_str());
+    }
+
+    SDL_RenderClear(sdl.getRenderer());
+    texture.render(0,0);
+    SDL_RenderPresent(sdl.getRenderer());
+    texture.free();
+    //HACE UN USLEEP DE 3 SEG
+    for(int i = time(NULL) + 8; time(NULL) != i; time(NULL));
+}
+
+void JuegoCliente::renderServerCaido(){
+    menu.renderServerCaido();
 }

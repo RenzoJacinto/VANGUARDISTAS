@@ -57,8 +57,8 @@
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
 		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
-		"idNoConectada":"sprites/usuario/menu/idNoConectada.png"
-
+		"idNoConectada":"sprites/usuario/menu/idNoConectada.png",
+		"serverCerrado":"sprites/usuario/menu/serverCerrado.png"
 	},
 	"default": {
 		"nave": "sprites/default/nave.png",

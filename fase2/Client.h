@@ -32,6 +32,8 @@ class Client: public Estado{
         void vaciar_cola();
         void reiniciar_siguiente(int nivel);
 
+        void renderServerCaido();
+
     private:
         std::string ip;
         ColaMultihilo* cola;

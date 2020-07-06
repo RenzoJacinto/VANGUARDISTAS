@@ -69,6 +69,10 @@ void Menu::renderErrorLogin(const char* intentos, int accion_recibida){
     else if(accion_recibida == ID_YA_LOGUEADA) file = json.get_sprite_menu("errorLoginID");
     else if(accion_recibida == ID_NO_LOGUEADA_RECON) file = json.get_sprite_menu("idNoConectada");
     else if(accion_recibida == JUEGO_LLENO) file = json.get_sprite_menu("juegoLleno");
+    else{
+        renderServerCaido();
+        return;
+    }
 
     if(! gErrorLogin.loadFromFile(file.c_str())){
         logger.error("No se pudo cargar la imagen de error de logueo");
@@ -101,10 +105,28 @@ void Menu::renderWaitUsers(){
         logger.error("No se pudo cargar la imagen de wait users");
         file = json.get_imagen_default("escenario");
         textureWait.loadFromFile(file.c_str());
-    }
+    } else logger.debug("Se cargo la imagen de wait users");
     SDL_RenderClear(sdl.getRenderer());
     textureWait.render(0,0);
     SDL_RenderPresent(sdl.getRenderer());
     textureWait.free();
+}
+
+void Menu::renderServerCaido(){
+    TextureW texture;
+    std::string file = json.get_sprite_menu("serverCerrado");
+    if(! texture.loadFromFile(file.c_str())){
+        logger.error("No se pudo cargar la imagen de server caido");
+        file = json.get_imagen_default("escenario");
+        texture.loadFromFile(file.c_str());
+    } else logger.debug("Se cargo la imagen de server caido");
+
+    SDL_RenderClear(sdl.getRenderer());
+    texture.render(0,0);
+    SDL_RenderPresent(sdl.getRenderer());
+    texture.free();
+
+    //HACE UN USLEEP DE 3 SEG
+    for(int i = time(NULL) + 8; time(NULL) != i; time(NULL));
 }
 

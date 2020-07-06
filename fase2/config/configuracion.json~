@@ -1,8 +1,8 @@
 {
 	"log": 3,
 	"conexion":{
-		"estado":"server",
-		"users": 2
+		"estado":"client",
+		"users": 1
 	},
     	"stages":{
         	"nivel1":{
@@ -64,7 +64,7 @@
 		"errorLogin": "sprites/usuario/menu/errorLogin.png",
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
-		"waitUsers":"sprites/usuario/menu/waitUsers.png",
-		"waitUsers":"sprites/usuario/menu/waitUsers.png"	
+		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
+		"idNoConectada":"sprites/usuario/menu/idNoConectada.png"
 	}
 }
