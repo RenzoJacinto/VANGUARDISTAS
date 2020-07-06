@@ -50,7 +50,9 @@ bool Client::iniciar(){
         return false;
     }
     logger.debug("@Conectado");
-
+    int s;
+    if(recv(socket, &s, sizeof(int), MSG_NOSIGNAL)<0) return false;
+    if(s==1) return false;
     if(! iniciarSesion()){
         juego->cerrar_ventana();
         return false;

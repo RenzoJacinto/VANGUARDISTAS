@@ -33,6 +33,7 @@ void Nivel1::cargarNivel(Client* client){
         } else{
             printf("creo nave jugador\n");
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            if(strcmp(pos->descrip, "off") == 0) nave->desconectar();
             jugadores.push_back(nave);
         }
     }

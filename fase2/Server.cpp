@@ -36,6 +36,7 @@ Server::Server(int port, pthread_mutex_t m){
     mutex = m;
     cant_sockets = 0;
     ult_id_enemigo = 0;
+    users_conectados = 0;
 
     cola = new ColaMultihilo();
 
@@ -58,6 +59,27 @@ void Server::aumentar_socket() {
     cant_sockets++;
 }
 
+void* hilo_rechazar(void* p)
+{
+    Server* server = (Server*) p;
+    server->rechazar_conexiones();
+    return NULL;
+}
+
+void Server::rechazar_conexiones()
+{
+    int i = 1;
+    struct sockaddr_in client_addr;
+
+    socklen_t clilen;
+    clilen = sizeof(client_addr);
+    while(true)
+    {
+        printf("esperando conexiones para rechazar\n");
+        int client = accept(socket, (struct sockaddr *) &client_addr, &clilen);
+        send(client, &i, sizeof(int), MSG_NOSIGNAL);
+    }
+}
 void* hilo_login(void* data){
     hilosServer_t* d = (hilosServer_t*) data;
     d->server->iniciar_cliente(d->i);
@@ -69,6 +91,7 @@ void Server::iniciar_cliente(int i){
 
     socklen_t clilen;
     clilen = sizeof(client_addr);
+    int s = 0;
     velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     while(true)
     {
@@ -79,11 +102,24 @@ void Server::iniciar_cliente(int i){
             std::cout<<"2: "<<std::strerror(errno)<<"\n";
             logger.error("Fallo el accept del cliente");
         } else{
+            pthread_mutex_lock(&mutex);
+            users_conectados++;
+            printf("MAX: %d, ACT: %d\n", max_users, users_conectados);
+            if(users_conectados==max_users) pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
+            pthread_mutex_unlock(&mutex);
             printf("accepted\n");
+            if(send(client_sockets[i], &s, sizeof(int), MSG_NOSIGNAL)<0) continue;
             std::string msj = "";
             msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
             logger.debug(msj.c_str());
             if(loguin_users(i, false, v)) break;
+            else
+            {
+                pthread_mutex_lock(&mutex);
+                users_conectados--;
+                pthread_cancel(hiloRechazarConexiones);
+                pthread_mutex_unlock(&mutex);
+            }
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
@@ -98,15 +134,27 @@ void* hilo_reconexion(void* data){
 
 void Server::reconectar_cliente(int i)
 {
+    pthread_mutex_lock(&mutex);
+    users_conectados--;
+    pthread_cancel(hiloRechazarConexiones);
+    pthread_mutex_unlock(&mutex);
+
     struct sockaddr_in client_addr;
 
     socklen_t clilen;
     clilen = sizeof(client_addr);
+    int s = 0;
     velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     while(true)
     {
         printf("esperando conexion del cliente %d\n", i);
         client_sockets[i] = accept(socket, (struct sockaddr *) &client_addr, &clilen);
+        if(send(client_sockets[i], &s, sizeof(int), MSG_NOSIGNAL)<0) continue;
+        pthread_mutex_lock(&mutex);
+        users_conectados++;
+        if(users_conectados==max_users) pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
+        pthread_mutex_unlock(&mutex);
+
         if (client_sockets[i] < 0){
             printf("fallo accept\n");
             std::cout<<"2: "<<std::strerror(errno)<<"\n";
@@ -117,6 +165,13 @@ void Server::reconectar_cliente(int i)
             msj = "@Conexion del cliente " + std::to_string(i) + " aceptada";
             logger.debug(msj.c_str());
             if(loguin_users(i, true, v)) break;
+            else
+            {
+                pthread_mutex_lock(&mutex);
+                users_conectados--;
+                pthread_cancel(hiloRechazarConexiones);
+                pthread_mutex_unlock(&mutex);
+            }
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
@@ -196,6 +251,9 @@ bool Server::iniciar(){
         pthread_join(clientes[i], NULL);
     }
 
+    pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
+    users_conectados = max_users;
+
     for(int i = 0; i<max_users; ++i){
         velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
         v->id = i;
@@ -211,13 +269,6 @@ bool Server::iniciar(){
 
     juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), max_users, this);
     printf("creo el juego\n");
-
-    /*for(int i = 0; i<max_users; i++){
-        hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
-        data->server = this;
-        data->i = i;
-        pthread_create(&clientes[i], NULL, encolar_procesar, data);
-    }*/
 
     juego->iniciarJuego(json.get_cantidad_enemigo("nivel1"), this, 40);
     cerrar();

@@ -47,6 +47,7 @@ class Server: public Estado{
         void crear_hilos_recibir();
         void cerrar_hilos_recibir();
         void vaciar_cola();
+        void rechazar_conexiones();
 
         static const int MAX_CLIENTS = 4;
 
@@ -60,7 +61,7 @@ class Server: public Estado{
         bool desc[MAX_CLIENTS];
         bool desc_usuarios[MAX_CLIENTS];
         pthread_t hiloRechazarConexiones;
-        //pthread_t hiloDesencolarProcesarEnviar;
+        int users_conectados;
         pthread_t clientes[MAX_CLIENTS];
         pthread_attr_t attr;
 

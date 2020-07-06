@@ -25,7 +25,8 @@ void Nivel3::cargarNivel(Client* client){
             enemigos.push_back(enemigo);
         } else{
             printf("creo nave jugador\n");
-            NaveJugador* nave = new NaveJugador(0, 0, pos->id);
+            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            if(strcmp(pos->descrip, "off") == 0) nave->desconectar();
             jugadores.push_back(nave);
         }
     }
