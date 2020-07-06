@@ -1,1 +1,0 @@
-27/06/2020 01:37:58.212 - ERROR: El estado obtenido es inexistente
