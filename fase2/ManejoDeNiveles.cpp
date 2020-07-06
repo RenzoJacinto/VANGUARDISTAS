@@ -14,7 +14,7 @@ ManejoDeNiveles::ManejoDeNiveles(){
 
 void ManejoDeNiveles::procesar_servidor(){
 
-    list<Nivel*>::iterator nivel;
+/*    list<Nivel*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
         (*nivel)->cargarNivel();
@@ -25,12 +25,12 @@ void ManejoDeNiveles::procesar_servidor(){
         (*nivel)->finalizar();
         delay(5);
         (*nivel)->cerrar();
-    }
+    }*/
 }
 
 void ManejoDeNiveles::procesar_cliente(){
 
-    list<Nivel*>::iterator nivel;
+/*    list<Nivel*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
         (*nivel)->cargarNivel();
@@ -41,7 +41,7 @@ void ManejoDeNiveles::procesar_cliente(){
         (*nivel)->finalizar();
         delay(5);
         (*nivel)->cerrar();
-    }
+    }*/
 }
 
 void ManejoDeNiveles::cerrar_niveles(list<Nivel*> niveles) {

@@ -132,17 +132,3 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
     return colision;
 }
 
-bool Nave::encontrarJugadores( NaveEnemiga* enemigo, vector<NaveJugador*>  jugadores )
-{
-    bool colision = false;
-    vector<NaveJugador*>::iterator pos;
-
-    for(pos = jugadores.begin();pos != jugadores.end();pos++)
-    {
-        colision = checkCollision( *pos , enemigo );
-        if (colision) break;
-    }
-
-    return colision;
-}
-

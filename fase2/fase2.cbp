@@ -81,10 +81,18 @@
 		<Unit filename="Nivel.h" />
 		<Unit filename="Nivel1.cpp" />
 		<Unit filename="Nivel1.h" />
+		<Unit filename="Nivel1Servidor.cpp" />
+		<Unit filename="Nivel1Servidor.h" />
 		<Unit filename="Nivel2.cpp" />
 		<Unit filename="Nivel2.h" />
+		<Unit filename="Nivel2Servidor.cpp" />
+		<Unit filename="Nivel2Servidor.h" />
 		<Unit filename="Nivel3.cpp" />
 		<Unit filename="Nivel3.h" />
+		<Unit filename="Nivel3Servidor.cpp" />
+		<Unit filename="Nivel3Servidor.h" />
+		<Unit filename="NivelServidor.cpp" />
+		<Unit filename="NivelServidor.h" />
 		<Unit filename="Server.cpp" />
 		<Unit filename="Server.h" />
 		<Unit filename="Temporizador.h" />
@@ -93,6 +101,9 @@
 		<Unit filename="global.h" />
 		<Unit filename="json.hpp" />
 		<Unit filename="main.cpp" />
-		<Extensions />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

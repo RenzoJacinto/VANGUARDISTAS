@@ -5,28 +5,32 @@
 #include "NaveEnemiga.h"
 #include "NaveJugador.h"
 #include "Server.h"
+#include "NivelServidor.h"
 
 class Server;
+class NivelServidor;
 
 class JuegoServidor{
 
     public:
 
         JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server);
-        void iniciarNivel(int cantidad_enemigos, Server* server, int t_niv);
-        posiciones_t* procesar(velocidades_t* v);
+        void iniciarJuego(int cantidad_enemigos, Server* server, int t_niv);
         void iniciar_reconexion(int id, Server* server, int socket_id);
-        void parallax();
+        bool esValidoReconectar();
+        int get_nivel_actual();
 
     private:
-        vector<NaveEnemiga*> enemigos;
-        vector<NaveJugador*> jugadores;
 
         double scrollingOffsetBG;
         double scrollingOffsetCity;
         double tierraInicial;
         double scrollingOffsetNube1;
         double scrollingOffsetNube2;
+
+        vector<NivelServidor*> niveles;
+
+        int nivel_actual;
 };
 
 #endif

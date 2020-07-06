@@ -17,11 +17,11 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     logger.info(mensaje.c_str());
 }
 
-void NaveEnemiga::mover( vector<NaveJugador*> jugadores ){
+void NaveEnemiga::mover( NaveJugador* jugador ){
 
     setPosX(getPosX()+desplazamiento);
 
-    if( encontrarJugadores( this , jugadores ) ){
+    if( checkCollision( jugador , this ) ){
         setPosX(getPosX()-desplazamiento);
     }
 }

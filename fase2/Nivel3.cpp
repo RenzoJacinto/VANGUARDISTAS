@@ -3,17 +3,32 @@
 
 Nivel3::Nivel3(){}
 
-void Nivel3::cargarNivel(){
+void Nivel3::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 3 ....");
 
-    cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
+    /*cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel3 inexistente, se cargo una por defecto");
         cantidad_enemigos = json.get_cantidad_enemigo_default("nivel3");
     }
     std::string mensaje = "Se cargo la cantidad de enemigos: " + std::to_string(cantidad_enemigos);
-    logger.debug(mensaje.c_str());
+    logger.debug(mensaje.c_str());*/
+
+    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    while(true){
+        pos = (posiciones_t*)client->receiveData();
+        printf("recibe nave, ID: %d\n", pos->id);
+        if(pos->id == -1) break;
+        if(pos->id>3){
+            NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
+            enemigos.push_back(enemigo);
+        } else{
+            printf("creo nave jugador\n");
+            NaveJugador* nave = new NaveJugador(0, 0, pos->id);
+            jugadores.push_back(nave);
+        }
+    }
 
     cargarImagen("nivel3", "mapaBG", &gBGTexture);
     cargarImagen("nivel3", "fondo1", &gFondo1Texture);
@@ -86,8 +101,6 @@ void Nivel3::cerrar(){
 
 void Nivel3::renderBackground(){
 
-    parallax();
-
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
 
@@ -132,4 +145,90 @@ void Nivel3::parallax(){
 
     scrollingOffsetFondo6 -= 7.5;
     if( scrollingOffsetFondo6 < -dataFondo6.w ) scrollingOffsetFondo6 = 0;
+}
+
+void Nivel3::reconectar(Client* client)
+{
+    posiciones_t* pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetBG = (double) pos->posX;
+    printf("scroll BG: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo1 = (double) pos->posX;
+    printf("scroll City: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo2 = (double) pos->posX;
+    printf("tierra: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo3 = (double) pos->posX;
+    printf("scroll nube1: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo4 = (double) pos->posX;
+    printf("scroll nube2: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo5 = (double) pos->posX;
+    printf("scroll nube2: %d\n", pos->posX);
+    pos = (posiciones_t*)client->receiveData();
+    scrollingOffsetFondo6 = (double) pos->posX;
+    printf("scroll nube2: %d\n", pos->posX);
+
+    while(true)
+    {
+        pos = (posiciones_t*)client->receiveData();
+        printf("ID: %d, STRING: %s\n", pos->id, pos->descrip);
+        if(pos->id == -1) break;
+        if(pos->id>3){
+            NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
+            enemigos.push_back(enemigo);
+        } else{
+            printf("creo nave jugador\n");
+            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            if(strcmp(pos->descrip, "off")==0) nave->desconectar();
+            jugadores.push_back(nave);
+        }
+    }
+
+    cargarImagen("nivel3", "mapaBG", &gBGTexture);
+    cargarImagen("nivel3", "fondo1", &gFondo1Texture);
+    cargarImagen("nivel3", "fondo2", &gFondo2Texture);
+    cargarImagen("nivel3", "fondo3", &gFondo3Texture);
+    cargarImagen("nivel3", "fondo4", &gFondo4Texture);
+    cargarImagen("nivel3", "fondo5", &gFondo5Texture);
+    cargarImagen("nivel3", "fondo6", &gFondo6Texture);
+
+    cargarImagen("nivel3", "finNivel", &gFinNivel);
+
+    dataBG.h = 600;
+    dataBG.w = 800;
+    dataBG.x = 0;
+    dataBG.y = 0;
+
+    dataFondo1.h = 600;
+    dataFondo1.w = 800;
+    dataFondo1.x = 0;
+    dataFondo1.y = 0;
+
+    dataFondo2.h = 600;
+    dataFondo2.w = 800;
+    dataFondo2.x = 0;
+    dataFondo2.y = 0;
+
+    dataFondo3.h = 600;
+    dataFondo3.w = 800;
+    dataFondo3.x = 0;
+    dataFondo3.y = 0;
+
+    dataFondo4.h = 600;
+    dataFondo4.w = 800;
+    dataFondo4.x = 0;
+    dataFondo4.y = 0;
+
+    dataFondo5.h = 600;
+    dataFondo5.w = 800;
+    dataFondo5.x = 0;
+    dataFondo5.y = 0;
+
+    dataFondo6.h = 600;
+    dataFondo6.w = 800;
+    dataFondo6.x = 0;
+    dataFondo6.y = 0;
 }

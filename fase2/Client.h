@@ -26,7 +26,11 @@ class Client: public Estado{
         void iniciar_juego();
         void init_menu();
         void* desencolar();
-        void reiniciar_juego();
+        void reiniciar_juego(int nivel);
+        void crear_hilo_recibir();
+        void cerrar_hilo_recibir();
+        void vaciar_cola();
+        void reiniciar_siguiente(int nivel);
 
     private:
         std::string ip;
@@ -35,7 +39,7 @@ class Client: public Estado{
         int id;
         bool terminar;
         JuegoCliente* juego;
-        pthread_t hiloEnviar;
+        pthread_t hilo_encolar;
         pthread_t hiloRecibirEncolar;
         pthread_t hiloDesencolarProcesar;
 

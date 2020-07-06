@@ -3,14 +3,18 @@
 
 #include "Nivel.h"
 #include "TextureW.h"
+#include "Client.h"
+
+class Client;
 
 class Nivel3: public Nivel{
 
     public:
         Nivel3();
-        void cargarNivel();
+        void cargarNivel(Client* client);
         void cerrar();
         void renderBackground();
+        void reconectar(Client* client);
 
         void parallax();
 

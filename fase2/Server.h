@@ -43,6 +43,10 @@ class Server: public Estado{
         void iniciar_cliente(int i);
         void reconectar_cliente(int i);
         void conectar(int i);
+        int getMaxUsers();
+        void crear_hilos_recibir();
+        void cerrar_hilos_recibir();
+        void vaciar_cola();
 
         static const int MAX_CLIENTS = 4;
 
@@ -55,7 +59,7 @@ class Server: public Estado{
         ColaMultihilo* cola;
         bool desc[MAX_CLIENTS];
         bool desc_usuarios[MAX_CLIENTS];
-        //pthread_t hiloRecibirEncolar;
+        pthread_t hiloRechazarConexiones;
         //pthread_t hiloDesencolarProcesarEnviar;
         pthread_t clientes[MAX_CLIENTS];
         pthread_attr_t attr;

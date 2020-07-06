@@ -12,7 +12,7 @@ class NaveEnemiga: public Nave {
         NaveEnemiga(int x, int y, const char* sprite);
 
 		//Mueve la Nave considerando la posicion de la Nave del jugador
-        void mover( vector<NaveJugador*> jugadores );
+		void mover( NaveJugador* jugador );
 
 		void renderizar();
 

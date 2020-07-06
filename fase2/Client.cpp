@@ -43,8 +43,9 @@ bool Client::iniciar(){
     server.sin_port = htons(puerto);
 
     logger.info("#Conexion con el servidor ...");
-    if(connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
-        printf("error conex\n");
+    if(int o = connect(socket , (struct sockaddr *)&server , sizeof(struct sockaddr_in)) < 0){
+        printf("error conex %d\n", o);
+        std::cout<<"2: "<<std::strerror(errno)<<"\n";
         logger.error("Conexion con el servidor fallida");
         return false;
     }
@@ -65,16 +66,23 @@ bool Client::iniciar(){
         printf("incio correctamente, id: %d\n", id);
 
         juego->cerrarMenu();
-        iniciar_juego();
+        juego->iniciarJuego(this, 0);
+    }
+
+    else if(strcmp(v.descrip, "off") == 0)
+    {
+        printf("reconectar\n");
+        juego->cerrarMenu();
+        printf("nivel: %d\n", v.id);
+        juego->reconectar(this, v.id);
     }
 
     else
     {
+        printf("none\n");
         juego->cerrarMenu();
-        juego->reconectar(this);
-        reiniciar_juego();
+        juego->reconectarSiguiente(this, v.id);
     }
-
     return true;
 }
 
@@ -85,13 +93,14 @@ void* hiloEncolar(void* p){
     return NULL;
 }
 
-void Client::reiniciar_juego()
+void Client::reiniciar_juego(int nivel)
 {
-    pthread_t hilo_encolar;
-    pthread_create(&hilo_encolar, NULL, hiloEncolar, this);
-    //pthread_t hilo_desencolar;
-    //pthread_create(&hilo_desencolar, NULL, hiloDesencolar, this);
-    juego->iniciarNivel(this);
+    juego->reconectar(this, nivel);
+}
+
+void Client::reiniciar_siguiente(int nivel)
+{
+    juego->reconectarSiguiente(this, nivel);
 }
 
 void* hiloDesencolar(void* p){
@@ -102,15 +111,9 @@ void* hiloDesencolar(void* p){
 }
 
 void Client::iniciar_juego(){
-    juego->cargarNivel(this);
-    printf("CLIENT carga niveles\n");
-    //char buf[5] = "ASD";
-    //send(get_socket(), buf, 5, MSG_NOSIGNAL);
-    pthread_t hilo_encolar;
-    pthread_create(&hilo_encolar, NULL, hiloEncolar, this);
     //pthread_t hilo_desencolar;
     //pthread_create(&hilo_desencolar, NULL, hiloDesencolar, this);
-    juego->iniciarNivel(this);
+    juego->iniciarJuego(this, 0);
 }
 
 void* Client::enviar(){
@@ -118,10 +121,12 @@ void* Client::enviar(){
 }
 
 void* Client::recibir_encolar(){
-    while(!terminar){
+    while(true){
         void* data = receiveData();
         if(!data) continue;
+        posiciones_t* pos = (posiciones_t*) data;
         cola->push(data);
+        if(pos->id == -1) break;
     }
     return NULL;
 }
@@ -129,8 +134,8 @@ void* Client::recibir_encolar(){
 void* Client::desencolar_procesar(){
     while(true){
         if (cola->estaVacia()) continue;
-        void* dato = cola->pop();
-        juego->procesar((posiciones_t*) dato);
+        //void* dato = cola->pop();
+        //juego->procesar((posiciones_t*) dato);
     }
     return NULL;
 }
@@ -171,7 +176,7 @@ void* Client::receiveData(){
             return NULL;
         }
     }
-    printf("recibio data no nula\n");
+    //printf("recibio data no nula\n");
 	return pos;
 }
 
@@ -222,8 +227,8 @@ bool Client::iniciarSesion(){
             veces_check++;
             int intentos = 2 - veces_check;
             printf("renderiza pantalla error\n");
-            if(v->VelX == ID_NO_LOGUEADA_RECON) printf("user %d still connected\n", v->id);
-            else juego->render_errorLogin(intentos, v->VelX);
+            //if(v->VelX == ID_NO_LOGUEADA_RECON) printf("user %d still connected\n", v->id);
+            juego->render_errorLogin(intentos, v->VelX);
             /*std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
             logger.info(msj.c_str());*/
         }
@@ -255,4 +260,21 @@ bool Client::cola_esta_vacia(){
 
 int Client::get_id() {
     return id;
+}
+
+void Client::crear_hilo_recibir()
+{
+    pthread_create(&hilo_encolar, NULL, hiloEncolar, this);
+}
+void Client::cerrar_hilo_recibir()
+{
+    pthread_cancel(hilo_encolar);
+}
+void Client::vaciar_cola()
+{
+    while(!cola->estaVacia())
+    {
+        void* dato = cola->pop();
+        free(dato);
+    }
 }

@@ -6,22 +6,32 @@
 #include "Escenario.h"
 #include "TextureW.h"
 #include "Server.h"
+#include "Client.h"
+
+class Client;
 
 class Nivel: public Escenario {
 
     public:
 
         Nivel();
-        vector<NaveEnemiga*> crear_enemigos(Server* sv);
-        bool procesar_servidor();
-        bool procesar_cliente();
+        bool iniciarNivel(Client* client);
+        void procesar(posiciones_t* pos);
         void finalizar();
+        void renderizar();
+        void aumentarRenderizados(int i);
         virtual void cerrar();
-        virtual void cargarNivel();
+        virtual void cargarNivel(Client* client);
+        virtual void reconectar(Client* client);
         virtual void renderBackground();
+        virtual void parallax();
 
-        static const int TIEMPO_NIVEL_SEGS = 240;
+        //static const int TIEMPO_NIVEL_SEGS = 240;
+
     protected:
+        int renderizados;
+        vector<NaveEnemiga*> enemigos;
+        vector<NaveJugador*> jugadores;
         int cantidad_enemigos;
         TextureW gFinNivel;
         SDL_Rect dataFinNivel;
