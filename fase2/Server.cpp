@@ -75,11 +75,14 @@ void Server::rechazar_conexiones()
     clilen = sizeof(client_addr);
     while(true)
     {
+        if(users_conectados!=max_users) return;
         printf("esperando conexiones para rechazar\n");
         int client = accept(socket, (struct sockaddr *) &client_addr, &clilen);
         send(client, &i, sizeof(int), MSG_NOSIGNAL);
+        if(users_conectados!=max_users) return;
     }
 }
+
 void* hilo_login(void* data){
     hilosServer_t* d = (hilosServer_t*) data;
     d->server->iniciar_cliente(d->i);
@@ -115,10 +118,10 @@ void Server::iniciar_cliente(int i){
             if(loguin_users(i, false, v)) break;
             else
             {
-                pthread_mutex_lock(&mutex);
+                //pthread_mutex_lock(&mutex);
                 users_conectados--;
                 pthread_cancel(hiloRechazarConexiones);
-                pthread_mutex_unlock(&mutex);
+                //pthread_mutex_unlock(&mutex);
             }
             printf("el cliente %d no pudo loguearse\n", i);
         }
@@ -134,11 +137,6 @@ void* hilo_reconexion(void* data){
 
 void Server::reconectar_cliente(int i)
 {
-    pthread_mutex_lock(&mutex);
-    users_conectados--;
-    pthread_cancel(hiloRechazarConexiones);
-    pthread_mutex_unlock(&mutex);
-
     struct sockaddr_in client_addr;
 
     socklen_t clilen;
@@ -167,10 +165,10 @@ void Server::reconectar_cliente(int i)
             if(loguin_users(i, true, v)) break;
             else
             {
-                pthread_mutex_lock(&mutex);
+                //pthread_mutex_lock(&mutex);
                 users_conectados--;
                 pthread_cancel(hiloRechazarConexiones);
-                pthread_mutex_unlock(&mutex);
+                //pthread_mutex_unlock(&mutex);
             }
             printf("el cliente %d no pudo loguearse\n", i);
         }
@@ -337,6 +335,8 @@ void* Server::receiveData(int socket){
             desconectar(socket);
             printf("ID DESC: %d\n", socket);
             desc_usuarios[id] = true;
+            pthread_cancel(hiloRechazarConexiones);
+            users_conectados--;
             reconectar_cliente(socket);
             return NULL;
         }

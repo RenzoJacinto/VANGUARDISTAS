@@ -26,13 +26,13 @@ void Nivel3Servidor::cargarNivel(Server* server, int cantidad_enemigos, int cant
 
     for(int i = 0; i<cant_jugadores; i++)
     {
-        NaveJugador* nave = new NaveJugador(200, 150*(i+1), i);
+        NaveJugador* nave = new NaveJugador(200, 100*(i+1), i);
         jugadores.push_back(nave);
 
         posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
         pos->id = i;
         pos->posX = 200;
-        pos->posY = 150*(i+1);
+        pos->posY = 100*(i+1);
         pos->descrip[0] = 0;
         if(server->desconecto(i)) strncat(pos->descrip, "off", 5);
         else strncat(pos->descrip, "on", 5);

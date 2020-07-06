@@ -48,7 +48,11 @@ bool iniciar_conexion(char* args[], int argc){
     bool ok = true;
     std::string estado_json = json.get_estado_conexion();
     if (strcmp(estado_json.c_str(), "server") == 0){
-        if(argc == 2) estado = new Server(atoi(args[1]), mutex);
+        if(argc == 2)
+        {
+            estado = new Server(atoi(args[1]), mutex);
+            logger.info("Se inicializo el server");
+        }
         else{
             logger.error("Cantidad de parametros para el server invalida");
             ok = false;
