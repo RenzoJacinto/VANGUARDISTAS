@@ -400,9 +400,10 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
                     v->id = usuarios_ingresados.at(ids);
                     printf("ID USER %s: %d", ids.c_str(), v->id);
                 }
-                if(send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0 )
+                if(send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL) < 0 ){
                     logger.error("No se envio correctamente la data");
                     printf("envio accion\n");
+                }
                 if(v->VelX == LOGIN_CORRECTO){
                     //pthread_mutex_lock(&mutex);
                     //usuarios_ingresados.insert({ids, i});

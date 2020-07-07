@@ -837,11 +837,11 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/BotonIniciar.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/BotonIniciar.h
+1594079131 /home/agustin/Desktop/taller/fase2/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -850,21 +850,22 @@
 	<string>
 	"TextureW.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/ManejoDeNiveles.h
+1594079131 /home/agustin/Desktop/taller/fase2/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Nivel.h
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
 	"TextureW.h"
 	"Server.h"
+	"Client.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/NaveEnemiga.h
+1594079131 /home/agustin/Desktop/taller/fase2/NaveEnemiga.h
 	"Nave.h"
 
-1593747303 /home/agustin/Desktop/taller/fase2/Nave.h
+1594079131 /home/agustin/Desktop/taller/fase2/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -875,10 +876,10 @@
 	"global.h"
 	"list"
 
-1593742931 /home/agustin/Desktop/taller/fase2/ManejoDeSDL.h
+1594079131 /home/agustin/Desktop/taller/fase2/ManejoDeSDL.h
 	"TextureW.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/TextureW.h
+1594079131 /home/agustin/Desktop/taller/fase2/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -886,27 +887,27 @@
 	<stdio.h>
 	<string>
 
-1593742932 /home/agustin/Desktop/taller/fase2/global.h
+1594079131 /home/agustin/Desktop/taller/fase2/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
 	"Estado.h"
 	<pthread.h>
 
-1593742931 /home/agustin/Desktop/taller/fase2/ManejoDeLog.h
+1594079131 /home/agustin/Desktop/taller/fase2/ManejoDeLog.h
 	"Logger.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Logger.h
+1594079131 /home/agustin/Desktop/taller/fase2/Logger.h
 	<iostream>
 	<fstream>
 
-1593742931 /home/agustin/Desktop/taller/fase2/ManejoDeJson.h
+1594079131 /home/agustin/Desktop/taller/fase2/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
 	"json.hpp"
 
-1593742932 /home/agustin/Desktop/taller/fase2/json.hpp
+1594079131 /home/agustin/Desktop/taller/fase2/json.hpp
 	<algorithm>
 	<cassert>
 	<ciso646>
@@ -1074,11 +1075,11 @@
 	<limits>
 	<type_traits>
 
-1593742931 /home/agustin/Desktop/taller/fase2/Escenario.h
+1594079131 /home/agustin/Desktop/taller/fase2/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Client.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -1091,29 +1092,29 @@
 	<pthread.h>
 	<thread>
 
-1593742931 /home/agustin/Desktop/taller/fase2/Client.h
+1594079131 /home/agustin/Desktop/taller/fase2/Client.h
 	"Estado.h"
 	"JuegoCliente.h"
 
-1593747826 /home/agustin/Desktop/taller/fase2/Estado.h
+1594079131 /home/agustin/Desktop/taller/fase2/Estado.h
 	<string>
 	<time.h>
 	<ctime>
 	"ColaMultihilo.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/ColaMultihilo.h
+1594079131 /home/agustin/Desktop/taller/fase2/ColaMultihilo.h
 	"Estado.h"
 	<queue>
 	<pthread.h>
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Escenario.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Estado.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Estado.cpp
 	"Estado.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Logger.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Logger.cpp
 	"Logger.h"
 	<iostream>
 	<fstream>
@@ -1122,48 +1123,48 @@
 	<time.h>
 	<math.h>
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/LoggerDebug.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/LoggerDebug.cpp
 	"LoggerDebug.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/LoggerDebug.h
+1594079131 /home/agustin/Desktop/taller/fase2/LoggerDebug.h
 	"Logger.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/LoggerError.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/LoggerError.cpp
 	"LoggerError.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/LoggerError.h
+1594079131 /home/agustin/Desktop/taller/fase2/LoggerError.h
 	"Logger.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/LoggerInfo.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/LoggerInfo.cpp
 	"LoggerInfo.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/LoggerInfo.h
+1594079131 /home/agustin/Desktop/taller/fase2/LoggerInfo.h
 	"Logger.h"
 
-1593742932 source:/home/agustin/Desktop/taller/fase2/main.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/main.cpp
 	"global.h"
 	"Menu.h"
 	"Server.h"
 	"Client.h"
 	"ManejoDeNiveles.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Menu.h
+1594079131 /home/agustin/Desktop/taller/fase2/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 	"BotonIniciar.h"
 
-1593748744 /home/agustin/Desktop/taller/fase2/Server.h
+1594079131 /home/agustin/Desktop/taller/fase2/Server.h
 	"Estado.h"
 	"json.hpp"
 	"JuegoServidor.h"
 	<unistd.h>
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/ManejoDeJson.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/ManejoDeLog.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 	"LoggerError.h"
@@ -1172,7 +1173,7 @@
 	"Logger.h"
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/ManejoDeNiveles.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
 	<time.h>
@@ -1181,42 +1182,45 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Nivel1.h
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
+	"Client.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Nivel2.h
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel2.h
 	"Nivel.h"
 	"TextureW.h"
+	"Client.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/Nivel3.h
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel3.h
 	"Nivel.h"
 	"TextureW.h"
+	"Client.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/ManejoDeSDL.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/ManejoDeSDL.cpp
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Menu.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Menu.cpp
 	"Menu.h"
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Nave.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 
-1593747571 /home/agustin/Desktop/taller/fase2/NaveJugador.h
+1594079131 /home/agustin/Desktop/taller/fase2/NaveJugador.h
 	"Nave.h"
 	"list"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/NaveEnemiga.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1593747593 source:/home/agustin/Desktop/taller/fase2/NaveJugador.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/NaveJugador.cpp
 	"NaveJugador.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Nivel.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -1232,31 +1236,32 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1593742931 /home/agustin/Desktop/taller/fase2/Temporizador.h
+1594079131 /home/agustin/Desktop/taller/fase2/Temporizador.h
 	<iostream>
 	<chrono>
 	<ctime>
 	<cmath>
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Nivel1.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel1.cpp
 	"Nivel1.h"
 	"global.h"
+	"Client.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Nivel2.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/Nivel3.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
 
-1593742931 source:/home/agustin/Desktop/taller/fase2/TextureW.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1593747826 source:/home/agustin/Desktop/taller/fase2/Server.cpp
+1594079975 source:/home/agustin/Desktop/taller/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"
@@ -5782,21 +5787,23 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1593742931 /home/agustin/Desktop/taller/fase2/JuegoServidor.h
+1594079131 /home/agustin/Desktop/taller/fase2/JuegoServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Server.h"
+	"NivelServidor.h"
 
-1593742931 /home/agustin/Desktop/taller/fase2/JuegoCliente.h
+1594079131 /home/agustin/Desktop/taller/fase2/JuegoCliente.h
 	"Client.h"
 	"Escenario.h"
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Menu.h"
+	"Nivel.h"
 
-1593748324 source:/home/agustin/Desktop/taller/fase2/JuegoCliente.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/JuegoCliente.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -5807,13 +5814,18 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1593748323 source:/home/agustin/Desktop/taller/fase2/JuegoServidor.cpp
+1594079131 source:/home/agustin/Desktop/taller/fase2/JuegoServidor.cpp
 	"JuegoServidor.h"
 	"Server.h"
 	"Nave.h"
+	"NivelServidor.h"
+	"Nivel1Servidor.h"
+	"Nivel2Servidor.h"
+	"Nivel3Servidor.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Temporizador.h"
+	<sys/socket.h>
 
 1593742931 /home/agustin/Desktop/taller2/fase2/JuegoServidor.h
 	"Nave.h"
@@ -6309,4 +6321,67 @@
 	"ManejoDeSDL.h"
 	"global.h"
 	<SDL2/SDL_ttf.h>
+
+1594079131 /home/agustin/Desktop/taller/fase2/NivelServidor.h
+	"Nave.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Server.h"
+
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel1Servidor.h
+	"Nave.h"
+	"NivelServidor.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Server.h"
+
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel2Servidor.h
+	"Nave.h"
+	"NivelServidor.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Server.h"
+
+1594079131 /home/agustin/Desktop/taller/fase2/Nivel3Servidor.h
+	"Nave.h"
+	"NivelServidor.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Server.h"
+
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel1Servidor.cpp
+	"Nivel1Servidor.h"
+	"Server.h"
+	"Nave.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Temporizador.h"
+	<sys/socket.h>
+
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel2Servidor.cpp
+	"Nivel2Servidor.h"
+	"Server.h"
+	"Nave.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Temporizador.h"
+	<sys/socket.h>
+
+1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel3Servidor.cpp
+	"Nivel3Servidor.h"
+	"Server.h"
+	"Nave.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Temporizador.h"
+	<sys/socket.h>
+
+1594079131 source:/home/agustin/Desktop/taller/fase2/NivelServidor.cpp
+	"NivelServidor.h"
+	"Temporizador.h"
+	"Server.h"
+	"NaveEnemiga.h"
+	"NaveJugador.h"
+	"Nave.h"
+	<sys/socket.h>
 

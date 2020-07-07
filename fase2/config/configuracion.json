@@ -2,7 +2,7 @@
 	"log": 3,
 	"conexion":{
 		"estado":"client",
-		"users": 1
+		"users": 4
 	},
     	"stages":{
         	"nivel1":{
