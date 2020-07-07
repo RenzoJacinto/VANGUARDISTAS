@@ -111,7 +111,7 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
     //If the closest point is inside the circle
     if( distanceSquared( enemigo->getPosX(), enemigo->getPosY(), cX, cY ) < enemigo->getRadio() * enemigo->getRadio() ){
         //This box and the circle have collided
-        return true;
+        return false;
     }
 
     //If the shapes have not collided
@@ -122,13 +122,13 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos )
 {
     bool colision = false;
-    vector<NaveEnemiga*>::iterator pos;
-
-    for(pos = enemigos.begin();pos != enemigos.end();pos++)
-    {
-        colision = checkCollision( jugador , *pos );
-        if (colision) break;
-    }
+//    vector<NaveEnemiga*>::iterator pos;
+//
+//    for(pos = enemigos.begin();pos != enemigos.end();pos++)
+//    {
+//        colision = checkCollision( jugador , *pos );
+//        if (colision) break;
+//    }
 
     return colision;
 }
