@@ -39,6 +39,7 @@ Server::Server(int port, pthread_mutex_t m){
     cant_sockets = 0;
     ult_id_enemigo = 0;
     users_conectados = 0;
+    est = "server";
 
     cola = new ColaMultihilo();
 
@@ -582,7 +583,7 @@ void Server::crear_hilos_recibir(){
 }
 
 void Server::cerrar_hilos_recibir(){
-    logger.debug("Se cierrar los hilos que se usan para recibir los mensajes de los clientes en paralelo");
+    logger.debug("Se cierran los hilos que se usan para recibir los mensajes de los clientes en paralelo");
     for(int i = 0; i<max_users; i++) {
         if(!desc[i]) pthread_cancel(clientes[i]);
     }

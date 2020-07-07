@@ -48,6 +48,7 @@ void JuegoCliente::iniciarJuego(Client* client, int nivel){
         client->cerrar_hilo_recibir();
         //nivel_actual++;
     }
+    for(int i = time(NULL) + 10; time(NULL) != i; time(NULL));
 }
 
 std::string JuegoCliente::get_id(){

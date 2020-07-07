@@ -38,6 +38,10 @@ void JuegoServidor::iniciarJuego(int cantidad_enemigos, Server* server, int t_ni
 
         server->vaciar_cola();
         nivel_actual++;
+        printf("termino el nivel %d\n", nivel_actual);
+        std::string msg = "Finalizo el nivel "+std::to_string(nivel_actual);
+        logger.info(msg.c_str());
+        for(int i = time(NULL) + 10; time(NULL) != i; time(NULL));
     }
 }
 

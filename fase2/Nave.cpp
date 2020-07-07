@@ -12,6 +12,7 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelX = 0;
     mVelY = 0;
 
+    if(strcmp(estado->est, "server") == 0) return true;
     std::string imagen = json.get_sprite_nave(tipo, subtipo);
     std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
 

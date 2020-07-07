@@ -17,6 +17,7 @@ Client::Client(char* IP, int port, pthread_mutex_t m){
     string sIP(IP);
     ip = sIP;
     mutex = m;
+    est = "client";
 
     cola = new ColaMultihilo();
     terminar = false;
@@ -55,7 +56,7 @@ bool Client::iniciar(){
         return false;
     }
     int s;
-    if(recv(socket, &s, sizeof(int), MSG_NOSIGNAL)<0) return false;
+    if(recv(socket, &s, sizeof(int), MSG_NOSIGNAL)<=0) return false;
     if(s==1){
         juego->renderServerLleno();
         juego->cerrar_ventana();
