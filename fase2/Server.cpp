@@ -16,6 +16,8 @@ void* encolar_procesar(void* p){
     hilosServer_t* data = (hilosServer_t*)p;
     printf("SERVER crea hilo encolar ID: %d\n", data->i);
     Server* sv = data->server;
+    std::string msg = "Se crea el hilo para recibir los mensajes del cliente "+std::to_string(data->i)+" y encolarlos";
+    logger.debug(msg.c_str());
     sv->recibir_encolar(data->i);
     free(data);
     return NULL;
@@ -61,6 +63,7 @@ void Server::aumentar_socket() {
 
 void* hilo_rechazar(void* p)
 {
+    logger.debug("Se crea el hilo para rechazar conexiones entrantes por servidor lleno");
     Server* server = (Server*) p;
     server->rechazar_conexiones();
     return NULL;
@@ -87,6 +90,8 @@ void Server::rechazar_conexiones()
 
 void* hilo_login(void* data){
     hilosServer_t* d = (hilosServer_t*) data;
+    std::string msg = "Se crea un hilo para manejar la autenticacion de credenciales del cliente "+std::to_string(d->i);
+    logger.debug(msg.c_str());
     d->server->iniciar_cliente(d->i);
     return NULL;
 }
@@ -261,7 +266,7 @@ bool Server::iniciar(){
         pthread_join(clientes[i], NULL);
     }
 
-    std::string msg = "@Todos los clientes se autenticaron correctamente, comenzando el juego...";
+    std::string msg = "@Todos los clientes se autenticaron correctamente.";
     logger.info(msg.c_str());
     //pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
     //users_conectados = max_users;
@@ -275,12 +280,13 @@ bool Server::iniciar(){
         free(v);
     }
 
+    msg = "@Se le notifico a todos los clientes que arranquen la creacion del juego";
     for(int i = 0; i<max_users; ++i){
         desc[i] = false;
     }
 
     juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), max_users, this);
-    printf("creo el juego\n");
+    msg = "@Se crea el juego en el servidor, iniciando...";
 
     juego->iniciarJuego(json.get_cantidad_enemigo("nivel1"), this, 40);
     cerrar();
@@ -340,8 +346,10 @@ void* Server::receiveData(int socket){
 
         if(bytes_writen <= 0 && !desc[socket]) {
             velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-            std::string msg = usuario_per_socket.at(socket);
-            int id = usuarios_ingresados.at(msg);
+            std::string user = usuario_per_socket.at(socket);
+            std::string msg = "Se desconecto el cliente "+std::to_string(socket)+", usuario "+user;
+            logger.info(msg.c_str());
+            int id = usuarios_ingresados.at(user);
             v->id = id;
             v->descrip[0] = 0;
             strncat(v->descrip, "off", 5);
@@ -367,7 +375,8 @@ void* Server::processData(void* dato){
 
 bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
 
-    logger.info("~~ Verificando las credenciales de los usuarios");
+    std::string msgg = "~~ Verificando las credenciales del usuario "+std::to_string(i);
+    logger.info(msgg.c_str());
 
     size_t size_client = sizeof(credenciales_t);
     credenciales_t cliente;
@@ -384,7 +393,7 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
             string ids(cliente.id);
             string cpass(cliente.pass);
 
-            std::cout<<"CLIENTE "<<socket<<"\n";
+            std::cout<<"CLIENTE "<<client_sockets[i]<<"\n";
             std::cout<<"ID: "<<ids<<"\n";
             std::cout<<"Pass: "<<cpass<<"\n";
 
@@ -404,6 +413,8 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
                     usuario_per_socket.insert({i, ids});
                     //pthread_mutex_unlock(&mutex);
                     //free(v);
+                    std::string msg = "Usuario "+ids+" logueado correctamente, cliente "+std::to_string(socket);
+                    logger.info(msg.c_str());
                     std::cout<<"Logueado!!\n";
                     return true;
                 }
@@ -426,6 +437,7 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
                     //pthread_mutex_unlock(&mutex);
                     std::cout<<"Logueado!!\n";
                     std::map<int, std::string>::iterator it = usuario_per_socket.find(i);
+                    std::string msg = "Usuario "+ids+" logueado correctamente, cliente "+std::to_string(socket);
                     if(it != usuario_per_socket.end()){
                         printf("actualizo valor del socket %d a %s\n", i, ids.c_str());
                         it->second = ids;
@@ -558,23 +570,29 @@ int Server::getMaxUsers(){
 }
 
 void Server::crear_hilos_recibir(){
+    logger.debug("Se crean los hilos que se usaran para recibir los mensajes de los clientes en paralelo");
     for(int i = 0; i<max_users; i++){
         hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
         data->server = this;
         data->i = i;
         if(!desc[i]) pthread_create(&clientes[i], NULL, encolar_procesar, data);
     }
+    logger.debug("Hilos creados correctamente");
 }
 
 void Server::cerrar_hilos_recibir(){
+    logger.debug("Se cierrar los hilos que se usan para recibir los mensajes de los clientes en paralelo");
     for(int i = 0; i<max_users; i++) {
         if(!desc[i]) pthread_cancel(clientes[i]);
     }
+    logger.debug("Hilos cerrados correctamente");
 }
 
 void Server::vaciar_cola(){
+    logger.debug("Se vacia la cola de mensajes");
     while(!cola->estaVacia()){
         void* dato = desencolar();
         free(dato);
     }
+    logger.debug("Cola vaciada correctamente");
 }
