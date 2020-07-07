@@ -79,6 +79,8 @@ void Server::rechazar_conexiones()
         printf("esperando conexiones para rechazar\n");
         int client = accept(socket, (struct sockaddr *) &client_addr, &clilen);
         send(client, &i, sizeof(int), MSG_NOSIGNAL);
+        std::string msg = "Se rechazo la conexion del cliente" + std::to_string(client);
+        logger.info(msg.c_str());
         if(users_conectados!=max_users) return;
     }
 }
@@ -122,7 +124,10 @@ void Server::iniciar_cliente(int i){
                 users_conectados--;
                 pthread_cancel(hiloRechazarConexiones);
                 //pthread_mutex_unlock(&mutex);
+                std::string msg = "@Se rechaza el ingreso del cliente " + std::to_string(i) +" por fallar 2 veces en el ingreso de credenciales";
+                logger.info(msg.c_str());
             }
+
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
@@ -169,10 +174,13 @@ void Server::reconectar_cliente(int i)
                 users_conectados--;
                 pthread_cancel(hiloRechazarConexiones);
                 //pthread_mutex_unlock(&mutex);
+                std::string msg = "@Se rechaza el ingreso del cliente " + std::to_string(i) +" por fallar 2 veces en el ingreso de credenciales";
+                logger.info(msg.c_str());
             }
             printf("el cliente %d no pudo loguearse\n", i);
         }
     }
+
     printf("ID NAVE RECONEXION: %d\n", v->id);
     //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     //v->id = i;
@@ -182,6 +190,8 @@ void Server::reconectar_cliente(int i)
         strncat(v->descrip, "off", 5);
         int aux = v->id;
         v->id = juego->get_nivel_actual();
+        std::string msg = "@Comienza el envio del estado actual del juego hacia el cliente "+std::to_string(i);
+        logger.info(msg.c_str());
         send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
         printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), v->id);
         v->id = aux;
@@ -190,8 +200,12 @@ void Server::reconectar_cliente(int i)
     } else{
         strncat(v->descrip, "none", 5);
         v->id = juego->get_nivel_actual() + 1;
+        std::string msg = "@El nivel esta por terminar, se le avisa al cliente "+std::to_string(i)+" que arranque el siguiente nivel";
+        logger.info(msg.c_str());
         send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
     }
+    std::string msg = "Se habilita de nuevo el enviado de mensajes al cliente "+std::to_string(i);
+    logger.info(msg.c_str());
     desc[i] = false;
     desc_usuarios[v->id] = false;
     free(v);
@@ -247,8 +261,10 @@ bool Server::iniciar(){
         pthread_join(clientes[i], NULL);
     }
 
-    pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
-    users_conectados = max_users;
+    std::string msg = "@Todos los clientes se autenticaron correctamente, comenzando el juego...";
+    logger.info(msg.c_str());
+    //pthread_create(&hiloRechazarConexiones, NULL, hilo_rechazar, this);
+    //users_conectados = max_users;
 
     for(int i = 0; i<max_users; ++i){
         velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));

@@ -1159,7 +1159,7 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1594079131 source:/home/agustin/Desktop/taller/fase2/ManejoDeJson.cpp
+1594145706 source:/home/agustin/Desktop/taller/fase2/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
@@ -6358,7 +6358,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel2Servidor.cpp
+1594083571 source:/home/agustin/Desktop/taller/fase2/Nivel2Servidor.cpp
 	"Nivel2Servidor.h"
 	"Server.h"
 	"Nave.h"

@@ -231,11 +231,11 @@ int ManejoDeJson::get_max_users(){
     try { return j_aux.at("users"); }
     catch (nlohmann::detail::out_of_range) {
         logger.error("No se encuentra la cantidad de clientes");
-        return 0;
+        return 2;
     }
     catch(nlohmann::detail::type_error){
         logger.error("La cantidad maxima de users debe ser un numero y es un string");
-        return 0;
+        return 2;
     }
 }
 
