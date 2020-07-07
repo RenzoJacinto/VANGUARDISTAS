@@ -31,10 +31,13 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_enemigos, int cant_jug
         pos->id = i;
         pos->posX = 200;
         pos->posY = 100*(i+1);
-        if(server->desconecto(i)) strncat(pos->descrip, "off", 5);
-        else strncat(pos->descrip, "on", 5);
+        if(server->desconecto(i)) {
+            printf("nave %d desconectada\n", i);
+            strcpy(pos->descrip, "off");
+        }
+        else strcpy(pos->descrip, "on");
         server->send_all(pos);
-        printf("SERVER: se crea nave jugador, id: %d\n", pos->id);
+        //printf("SERVER: se crea nave jugador, id: %d\n", pos->id);
         free(pos);
     }
 
@@ -65,7 +68,7 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_enemigos, int cant_jug
         pos->id = i+4;
         server->send_all(pos);
         free(pos);
-        printf("se crea nave enemiga\n");
+        //printf("se crea nave enemiga\n");
     }
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->id = -1;

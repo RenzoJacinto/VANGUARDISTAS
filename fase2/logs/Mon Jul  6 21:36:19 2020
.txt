@@ -1,0 +1,32 @@
+06/07/2020 21:36:19.44 - INFO: >>>> INICIANDO CLIENTE ....
+06/07/2020 21:36:19.44 - INFO: #Socket ...
+06/07/2020 21:36:19.44 - DEBUG: @Socket creado
+06/07/2020 21:36:19.44 - INFO: #Conexion con el servidor ...
+06/07/2020 21:36:21.13 - DEBUG: @Conectado
+06/07/2020 21:36:21.90 - DEBUG: Se inicializó SDL
+06/07/2020 21:36:21.90 - DEBUG: Filtrado de textura lineal seteado
+06/07/2020 21:36:21.116 - DEBUG: Se creó la ventana
+06/07/2020 21:36:21.328 - DEBUG: Se creó vSync para la ventana
+06/07/2020 21:36:21.328 - DEBUG: Se inicializó el renderizado de color
+06/07/2020 21:36:21.328 - DEBUG: Se inicializó la carga de imagenes PNG
+06/07/2020 21:36:21.329 - DEBUG: Se inicializo la carga de fuentes
+06/07/2020 21:36:21.329 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 18 para los textBox
+06/07/2020 21:36:21.329 - DEBUG: Se cargo la fuente 'Berlin Sans FB' con size 50 para el error de logueo
+06/07/2020 21:36:22.315 - DEBUG: Se cargo las imagen de seleccion de box name
+06/07/2020 21:36:22.330 - DEBUG: Se cargo las imagen de seleccion de box password
+06/07/2020 21:36:22.359 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+06/07/2020 21:36:22.359 - INFO: Se mostró el menú
+06/07/2020 21:36:29.860 - DEBUG: Se carga la imagen de error de logueo
+06/07/2020 21:36:29.860 - DEBUG: Se cargo el texto de intentos
+06/07/2020 21:36:32.17 - DEBUG: Se cargo las imagen de seleccion de box name
+06/07/2020 21:36:32.28 - DEBUG: Se cargo las imagen de seleccion de box password
+06/07/2020 21:36:32.51 - INFO: Se cargó la imagen de menú: sprites/usuario/menu/menuBG.png
+06/07/2020 21:36:32.51 - INFO: Se mostró el menú
+06/07/2020 21:36:36.467 - DEBUG: Se carga la imagen de error de logueo
+06/07/2020 21:36:36.467 - DEBUG: Se cargo el texto de intentos
+06/07/2020 21:36:39.8 - DEBUG: Se liberó memoria del renderizador
+06/07/2020 21:36:39.17 - DEBUG: Se liberó memoria de la ventana
+06/07/2020 21:36:39.17 - DEBUG: Se referenció la ventana como nula
+06/07/2020 21:36:39.17 - DEBUG: Se referenció el renderizador como nulo
+06/07/2020 21:36:39.17 - DEBUG: Se cerró IMG
+06/07/2020 21:36:39.23 - DEBUG: Se cerró SDL

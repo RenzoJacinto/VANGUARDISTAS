@@ -37,7 +37,11 @@ void JuegoCliente::iniciarJuego(Client* client, int nivel){
     for(int i = nivel; i<3;i++){
         niveles[i]->cargarNivel(client);
         client->crear_hilo_recibir();
-        if(niveles[i]->iniciarNivel(client)) break;
+        if(niveles[i]->iniciarNivel(client)) {
+            niveles[i]->cerrar();
+            client->cerrar_hilo_recibir();
+            return;
+        }
         niveles[i]->finalizar();
         niveles[i]->cerrar();
         //client->vaciar_cola();

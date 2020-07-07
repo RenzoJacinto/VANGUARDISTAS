@@ -69,7 +69,12 @@ bool Client::iniciar(){
     velocidades_t v ;
     printf("enviando\n");
 
-    recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL);
+    if(recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL)<=0)
+    {
+        renderServerCaido();
+        juego->cerrarMenu();
+        return false;
+    }
     //id = v.id;
     if(strcmp(v.descrip, "on") == 0){
         printf("incio correctamente, id: %d\n", id);

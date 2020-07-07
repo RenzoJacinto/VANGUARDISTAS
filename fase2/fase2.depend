@@ -1079,7 +1079,7 @@
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1594079131 source:/home/agustin/Desktop/taller/fase2/Client.cpp
+1594081312 source:/home/agustin/Desktop/taller/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -1247,7 +1247,7 @@
 	"global.h"
 	"Client.h"
 
-1594079131 source:/home/agustin/Desktop/taller/fase2/Nivel2.cpp
+1594083552 source:/home/agustin/Desktop/taller/fase2/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 
@@ -5803,7 +5803,7 @@
 	"Menu.h"
 	"Nivel.h"
 
-1594079131 source:/home/agustin/Desktop/taller/fase2/JuegoCliente.cpp
+1594083132 source:/home/agustin/Desktop/taller/fase2/JuegoCliente.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
