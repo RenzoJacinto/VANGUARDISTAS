@@ -73,6 +73,7 @@ void Nivel1Servidor::cargarNivel(Server* server, int cantidad_enemigos, int cant
 }
 void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id)
 {
+    logger.info("Iniciando reconexiones");
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->posX = (int)scrollingOffsetBG;
     send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);

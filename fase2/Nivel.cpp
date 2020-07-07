@@ -87,11 +87,10 @@ void Nivel::renderizar(){
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    printf("CLIENT procesa data, ID: %d\n", pos->id);
-    if(pos->id == -1){
-        printf("llego un -1\n");
-        return;
-    }
+    std::string msj = "CLIENT procesa data, ID: ";
+    std::string id = std::to_string(pos->id);
+    msj = msj + id;
+    logger.debug(msj.c_str());
     if(pos->id>3){
         aumentarRenderizados(pos->id-4);
         for(int i = 0; i < renderizados ; i++){
@@ -101,11 +100,13 @@ void Nivel::procesar(posiciones_t* pos){
         return;
     }
     if(strcmp(pos->descrip, "off") != 0){
-        printf("intenta setear posiciones\n");
         jugadores[pos->id]->setPosX(pos->posX);
         jugadores[pos->id]->setPosY(pos->posY);
+        std::string msj = "Se setearon las pocisiones de la nave con id: ";
+        std::string id = std::to_string(pos->id);
+        msj = msj + id;
+        logger.debug(msj.c_str());
         if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
-        printf("las seteo\n");
     } else{
         jugadores[pos->id]->desconectar();
     }
@@ -122,6 +123,7 @@ void Nivel::finalizar() {
 void Nivel::aumentarRenderizados(int i){
     pthread_mutex_lock(&mutex);
     if(i>renderizados)renderizados++;
+    logger.debug("Se aument la cantidad de renderizados");
     pthread_mutex_unlock(&mutex);
 }
 

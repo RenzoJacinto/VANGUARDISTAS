@@ -78,6 +78,7 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_enemigos, int cant_jug
 
 void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id)
 {
+    logger.info("Iniciando reconexiones");
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->posX = (int)scrollingOffsetPlaneta1;
     send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);

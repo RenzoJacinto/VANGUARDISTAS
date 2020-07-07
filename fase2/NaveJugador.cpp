@@ -74,6 +74,10 @@ void NaveJugador::desconectar()
 {
     conectado = false;
     gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", "jugadorOff"));
+    std::string msj = "Se desconectó la nave con id: ";
+    std::string id = std::to_string(id_nave);
+    msj = msj + id;
+    logger.info(msj.c_str());
 }
 
 bool NaveJugador::isOn()
@@ -86,5 +90,9 @@ void NaveJugador::conectar()
     conectado = true;
     std::string jug = "jugador"+std::to_string(id_nave);
     gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", jug.c_str()));
+    std::string msj = "Se conectó la nave con id: ";
+    std::string id = std::to_string(id_nave);
+    msj = msj + id;
+    logger.info(msj.c_str());
 }
 

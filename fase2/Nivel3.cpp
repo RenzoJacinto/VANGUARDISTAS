@@ -85,7 +85,7 @@ void Nivel3::cargarNivel(Client* client){
     dataFondo6.x = 0;
     dataFondo6.y = 0;
 
-     logger.info("<<<< SE CARGO EL NIVEL 1");
+     logger.info("<<<< SE CARGO EL NIVEL 3");
 }
 
 void Nivel3::cerrar(){
@@ -101,6 +101,8 @@ void Nivel3::cerrar(){
 }
 
 void Nivel3::renderBackground(){
+
+    logger.info("Renderizando background del nivel");
 
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
@@ -150,38 +152,31 @@ void Nivel3::parallax(){
 
 void Nivel3::reconectar(Client* client)
 {
+    logger.debug("Recibiendo estado actual del nivel");
     posiciones_t* pos = (posiciones_t*)client->receiveData();
     scrollingOffsetBG = (double) pos->posX;
-    printf("scroll BG: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo1 = (double) pos->posX;
-    printf("scroll City: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo2 = (double) pos->posX;
-    printf("tierra: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo3 = (double) pos->posX;
-    printf("scroll nube1: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo4 = (double) pos->posX;
-    printf("scroll nube2: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo5 = (double) pos->posX;
-    printf("scroll nube2: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetFondo6 = (double) pos->posX;
-    printf("scroll nube2: %d\n", pos->posX);
 
     while(true)
     {
         pos = (posiciones_t*)client->receiveData();
-        printf("ID: %d, STRING: %s\n", pos->id, pos->descrip);
+
         if(pos->id == -1) break;
         if(pos->id>3){
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
             enemigos.push_back(enemigo);
         } else{
-            printf("creo nave jugador\n");
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
             jugadores.push_back(nave);

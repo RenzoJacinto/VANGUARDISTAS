@@ -81,6 +81,8 @@ void Nivel2::cerrar(){
 
 void Nivel2::renderBackground(){
 
+    logger.info("Renderizando background del nivel");
+
 	gBGTexture.render(0, 0);
 
 	gPlaneta2Texture.render(scrollingOffsetPlaneta2, 100);
@@ -116,32 +118,26 @@ void Nivel2::parallax(){
 
 void Nivel2::reconectar(Client* client)
 {
+    logger.debug("Recibiendo estado actual del nivel");
     posiciones_t* pos = (posiciones_t*)client->receiveData();
     scrollingOffsetPlaneta1 = (double) pos->posX;
-    printf("scroll BG: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetPlaneta2 = (double) pos->posX;
-    printf("scroll City: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetAsteroides1 = (double) pos->posX;
-    printf("tierra: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetAsteroides2 = (double) pos->posX;
-    printf("scroll nube1: %d\n", pos->posX);
     pos = (posiciones_t*)client->receiveData();
     scrollingOffsetAsteroides3 = (double) pos->posX;
-    printf("scroll nube2: %d\n", pos->posX);
 
     while(true)
     {
         pos = (posiciones_t*)client->receiveData();
-        printf("ID: %d, STRING: %s\n", pos->id, pos->descrip);
         if(pos->id == -1) break;
         if(pos->id>3){
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
             enemigos.push_back(enemigo);
         } else{
-            printf("creo nave jugador\n");
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
             jugadores.push_back(nave);
