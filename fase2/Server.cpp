@@ -288,7 +288,8 @@ bool Server::iniciar(){
     juego = new JuegoServidor(json.get_cantidad_enemigo("nivel1"), max_users, this);
     msg = "@Se crea el juego en el servidor, iniciando...";
 
-    juego->iniciarJuego(json.get_cantidad_enemigo("nivel1"), this, 40);
+    int DURACION_NIVEL = 10;
+    juego->iniciarJuego(json.get_cantidad_enemigo("nivel1"), this, DURACION_NIVEL);
     cerrar();
 
     return true;

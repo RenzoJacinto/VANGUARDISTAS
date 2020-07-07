@@ -102,8 +102,6 @@ void Nivel3::cerrar(){
 
 void Nivel3::renderBackground(){
 
-    logger.info("Renderizando background del nivel");
-
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
 	gBGTexture.render( scrollingOffsetBG + dataBG.w, 0, &dataBG );
 

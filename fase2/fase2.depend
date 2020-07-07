@@ -339,7 +339,7 @@
 1594146910 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NaveJugador.cpp
 	"NaveJugador.h"
 
-1594148574 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
+1594149407 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -361,16 +361,16 @@
 	<ctime>
 	<cmath>
 
-1594148271 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1.cpp
+1594149472 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1.cpp
 	"Nivel1.h"
 	"global.h"
 	"Client.h"
 
-1594148313 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2.cpp
+1594149480 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 
-1594148199 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3.cpp
+1594149463 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
 
@@ -405,7 +405,7 @@
 	"Estado.h"
 	"JuegoCliente.h"
 
-1594148640 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1594149199 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"

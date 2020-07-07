@@ -81,8 +81,6 @@ void Nivel2::cerrar(){
 
 void Nivel2::renderBackground(){
 
-    logger.info("Renderizando background del nivel");
-
 	gBGTexture.render(0, 0);
 
 	gPlaneta2Texture.render(scrollingOffsetPlaneta2, 100);

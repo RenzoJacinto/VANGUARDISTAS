@@ -2,11 +2,11 @@
 	"log": 3,
 	"conexion":{
 		"estado":"client",
-		"users": 1
+		"users": 2
 	},
     	"stages":{
         	"nivel1":{
-                	"enemigos": 30,
+                	"enemigos": 5,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",

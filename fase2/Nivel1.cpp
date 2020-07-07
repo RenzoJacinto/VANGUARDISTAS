@@ -87,8 +87,6 @@ void Nivel1::cerrar(){
 
 void Nivel1::renderBackground(){
 
-    logger.info("Renderizando background del nivel");
-
     //parallax();
 
 	gBGTexture.render( scrollingOffsetBG, 0, &dataBG );
