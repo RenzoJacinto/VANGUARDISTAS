@@ -60,6 +60,7 @@ bool Client::iniciar(){
     if(s==1){
         juego->renderServerLleno();
         juego->cerrar_ventana();
+        logger.error("El servidor esta lleno, se termina la ejecucion");
         return false;
     }
     if(! iniciarSesion()){

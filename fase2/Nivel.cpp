@@ -44,6 +44,7 @@ bool Nivel::iniciarNivel(Client* client){
 
         if(! client->sendData(v)){
             client->renderServerCaido();
+            logger.error("El servidor esta caido, terminando la ejecucion...");
             free(v);
             return true;
         }
