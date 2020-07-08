@@ -32,6 +32,8 @@ class ManejoDeJson{
         std::string get_sprite_mapa_default(char const* key, char const* sp);
         int get_cantidad_enemigo_default(char const* key);
         std::string get_sprite_nave_default(char const* key, char const* sp);
+        std::string get_estado_conexion_default();
+        int get_max_users_default();
 
         //Para errores de encontrar sprite
         std::string get_imagen_default(const char* sp);

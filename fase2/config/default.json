@@ -1,5 +1,9 @@
 {
 	"log": 3,
+	"conexion":{
+		"estado":"client",
+		"users": 2
+	},
     	"stages":{
         	"nivel1":{
                 	"enemigos": 35,

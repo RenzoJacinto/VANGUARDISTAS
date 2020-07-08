@@ -202,6 +202,21 @@ int ManejoDeJson::get_nivel_de_log_default(){
     return def.at("log");
 }
 
+std::string ManejoDeJson::get_estado_conexion_default(){
+
+    json& j_aux = searchValue(def, "conexion");
+
+    logger.debug("Se obtuvo el estado del archivo de default.json");
+
+    return j_aux.at("estado");
+}
+
+int ManejoDeJson::get_max_users_default(){
+    json& j_aux = searchValue(def, "conexion");
+    logger.debug("Se obtuvo la cantidad de users del archivo de default.json");
+    return j_aux.at("users");
+}
+
 // PARA LLAMADAS DE ERROR DE ENCONTRAR SPRITE
 std::string ManejoDeJson::get_imagen_default(const char* sp){
     json& j_aux = searchValue(def, "default");
@@ -212,30 +227,38 @@ std::string ManejoDeJson::get_imagen_default(const char* sp){
 // PARA LA CONEXION
 std::string ManejoDeJson::get_estado_conexion(){
     json& j_aux = searchValue(j, "conexion");
+    if(j_aux == "errorKey"){
+        logger.error("La clave conexion no existe");
+        return get_estado_conexion_default();
+    }
 
     try { return j_aux.at("estado"); }
     catch (nlohmann::detail::out_of_range) {
         logger.error("No se encuentra el estado");
-        return "";
+        return get_estado_conexion_default();
     }
     catch(nlohmann::detail::type_error){
         logger.error("El estado especificado debe ser un string y es un numero");
-        return "";
+        return get_estado_conexion_default();
     }
 }
 
 // PARA EL SERVER
 int ManejoDeJson::get_max_users(){
     json& j_aux = searchValue(j, "conexion");
+    if(j_aux == "errorKey"){
+        logger.error("La clave conexion no existe");
+        return get_max_users_default();
+    }
 
     try { return j_aux.at("users"); }
     catch (nlohmann::detail::out_of_range) {
         logger.error("No se encuentra la cantidad de clientes");
-        return 2;
+        return get_max_users_default();
     }
     catch(nlohmann::detail::type_error){
         logger.error("La cantidad maxima de users debe ser un numero y es un string");
-        return 2;
+        return get_max_users_default();
     }
 }
 
