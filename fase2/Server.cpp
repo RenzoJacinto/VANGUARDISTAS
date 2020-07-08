@@ -190,27 +190,21 @@ void Server::reconectar_cliente(int i)
     printf("ID NAVE RECONEXION: %d\n", v->id);
     //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
     //v->id = i;
+
+    while(!juego->esValidoReconectar()){}
     v->descrip[0] = 0;
-    if(juego->esValidoReconectar())
-    {
-        strncat(v->descrip, "off", 5);
-        int aux = v->id;
-        v->id = juego->get_nivel_actual();
-        std::string msg = "@Comienza el envio del estado actual del juego hacia el cliente "+std::to_string(i);
-        logger.info(msg.c_str());
-        send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
-        printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), aux);
-        v->id = aux;
-        juego->iniciar_reconexion(v->id, this, i);
-        printf("envio datos reconexion\n");
-    } else{
-        strncat(v->descrip, "none", 5);
-        v->id = juego->get_nivel_actual() + 1;
-        std::string msg = "@El nivel esta por terminar, se le avisa al cliente "+std::to_string(i)+" que arranque el siguiente nivel";
-        logger.info(msg.c_str());
-        send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
-    }
-    std::string msg = "Se habilita de nuevo el enviado de mensajes al cliente "+std::to_string(i);
+    strncat(v->descrip, "off", 5);
+    int aux = v->id;
+    v->id = juego->get_nivel_actual();
+    std::string msg = "@Comienza el envio del estado actual del juego hacia el cliente "+std::to_string(i);
+    logger.info(msg.c_str());
+    send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
+    printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), aux);
+    v->id = aux;
+    juego->iniciar_reconexion(v->id, this, i);
+    printf("envio datos reconexion\n");
+
+    msg = "Se habilita de nuevo el enviado de mensajes al cliente "+std::to_string(i);
     logger.info(msg.c_str());
     desc[i] = false;
     desc_usuarios[v->id] = false;
@@ -389,9 +383,13 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
     int data_send = 1;
     while(data_send != 0){
         if(veces_check < 2){
-            if(recv(client_sockets[i], &cliente, size_client, MSG_NOSIGNAL) < 0)
+            printf("recibe data del cliente %d\n", i);
+            if(recv(client_sockets[i], &cliente, size_client, MSG_NOSIGNAL) < 0){
+                printf("escribe logger\n");
                 logger.error("No se recibio correctamente la data");
-
+                return false;
+            }
+            printf("OK\n");
             string ids(cliente.id);
             string cpass(cliente.pass);
 
@@ -418,6 +416,7 @@ bool Server::loguin_users(int i, bool esReconex, velocidades_t* v){
                     std::string msg = "Usuario "+ids+" logueado correctamente, cliente "+std::to_string(socket);
                     logger.info(msg.c_str());
                     std::cout<<"Logueado!!\n";
+                    //free(aux);
                     return true;
                 }
                 //free(v);

@@ -1102,7 +1102,7 @@
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1594233917 source:/home/agustin/Desktop/taller/fase2/Client.cpp
+1594243388 source:/home/agustin/Desktop/taller/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -1284,7 +1284,7 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1594233684 source:/home/agustin/Desktop/taller/fase2/Server.cpp
+1594243444 source:/home/agustin/Desktop/taller/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"
@@ -6410,7 +6410,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594236409 source:/home/agustin/Desktop/taller/fase2/NivelServidor.cpp
+1594238612 source:/home/agustin/Desktop/taller/fase2/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"

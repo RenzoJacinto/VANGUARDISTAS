@@ -211,6 +211,7 @@ bool Client::iniciarSesion(){
 
         if(send(socket, cliente, size_client, MSG_NOSIGNAL) < 0){
             logger.error("Error en el envio de la data");
+            printf("error en el send\n");
             //renderServerCaido();
             ok = false;
         }
@@ -233,6 +234,7 @@ bool Client::iniciarSesion(){
             printf("renderiza pantalla error\n");
             //if(v->VelX == ID_NO_LOGUEADA_RECON) printf("user %d still connected\n", v->id);
             juego->render_errorLogin(intentos, v->VelX);
+            //return false;
             /*std::string msj = "Error de logueo, credenciales incorrectas, quedan " + std::to_string(intentos) + " intentos";
             logger.info(msj.c_str());*/
         }
