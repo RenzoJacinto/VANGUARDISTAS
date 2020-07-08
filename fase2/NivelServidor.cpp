@@ -84,6 +84,6 @@ posiciones_t* NivelServidor::procesar(velocidades_t* v)
 
 bool NivelServidor::esValidoReconectar()
 {
-    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 5;
+    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido >= 0;
 }
 
