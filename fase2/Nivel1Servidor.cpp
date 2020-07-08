@@ -8,7 +8,7 @@
 
 class Server;
 
-Nivel1Servidor::Nivel1Servidor()
+Nivel1Servidor::Nivel1Servidor(int cant_jugadores)
 {
     cant_enemigos = json.get_cantidad_enemigo("nivel1");
 }

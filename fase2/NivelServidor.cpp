@@ -25,10 +25,10 @@ void NivelServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
     Temporizador temporizador;
     temporizador.iniciar();
 
-    float tiempo_por_enemigos = t_niv/cant_enemigos;
+    float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cant_enemigos;
     int renderizados = 1;
 
-    while( tiempo_transcurrido < t_niv ) {
+    while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();

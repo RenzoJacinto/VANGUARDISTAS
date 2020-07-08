@@ -82,6 +82,7 @@ void JuegoCliente::reconectar(Client* client, int nivel){
     niveles[nivel]->reconectar(client);
     printf("cargo los datos de reconex\n");
     client->crear_hilo_recibir();
+    printf("creo hilo\n");
     if(niveles[nivel]->iniciarNivel(client)) return;
     niveles[nivel]->finalizar();
     niveles[nivel]->cerrar();
@@ -92,8 +93,8 @@ void JuegoCliente::reconectar(Client* client, int nivel){
 
 void JuegoCliente::reconectarSiguiente(Client* client, int nivel){
     if(nivel>2) return;
-    client->recibir_encolar();
-    client->vaciar_cola();
+    //client->recibir_encolar();
+    //client->vaciar_cola();
     iniciarJuego(client, nivel);
 }
 

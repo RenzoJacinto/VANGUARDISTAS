@@ -13,9 +13,9 @@
 JuegoServidor::JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server)
 {
 
-    Nivel1Servidor* nivel1 = new Nivel1Servidor();
-    Nivel2Servidor* nivel2 = new Nivel2Servidor();
-    Nivel3Servidor* nivel3 = new Nivel3Servidor();
+    Nivel1Servidor* nivel1 = new Nivel1Servidor(cant_jugadores);
+    Nivel2Servidor* nivel2 = new Nivel2Servidor(cant_jugadores);
+    Nivel3Servidor* nivel3 = new Nivel3Servidor(cant_jugadores);
     niveles.push_back(nivel1);
     niveles.push_back(nivel2);
     niveles.push_back(nivel3);
@@ -37,11 +37,11 @@ void JuegoServidor::iniciarJuego(int cantidad_enemigos, Server* server, int t_ni
         server->cerrar_hilos_recibir();
 
         server->vaciar_cola();
-        nivel_actual++;
         printf("termino el nivel %d\n", nivel_actual);
         std::string msg = "Finalizo el nivel "+std::to_string(nivel_actual);
         logger.info(msg.c_str());
         for(int i = time(NULL) + 10; time(NULL) != i; time(NULL));
+        nivel_actual++;
     }
 }
 

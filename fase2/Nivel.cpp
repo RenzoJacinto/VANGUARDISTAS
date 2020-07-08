@@ -24,9 +24,9 @@ Nivel::Nivel(){
 
 bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
-
+    printf("intenta gettear nave %d\n", client->get_id());
     NaveJugador* jugador1 = jugadores[client->get_id()];
-
+    printf("aaa\n");
     while( usuarioNoRequieraSalir(quit) ){
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;

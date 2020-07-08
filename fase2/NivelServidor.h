@@ -20,10 +20,11 @@ class NivelServidor{
         virtual void iniciar_reconexion(int id, Server* server, int socket_id);
         virtual void parallax();
 
-        static const int TIEMPO_NIVEL_SEGS = 240;
+        static const int TIEMPO_NIVEL_SEGS = 40;
     protected:
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
+        vector<posiciones_t*> pos_iniciales;
         int cant_enemigos;
         int tiempo_transcurrido;
 };

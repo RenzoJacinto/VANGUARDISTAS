@@ -199,7 +199,7 @@ void Server::reconectar_cliente(int i)
         std::string msg = "@Comienza el envio del estado actual del juego hacia el cliente "+std::to_string(i);
         logger.info(msg.c_str());
         send(client_sockets[i], v, sizeof(velocidades_t), MSG_NOSIGNAL);
-        printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), v->id);
+        printf("relogueo el socket %d, con usuario %s e ID: %d\n", i, usuario_per_socket.at(i).c_str(), aux);
         v->id = aux;
         juego->iniciar_reconexion(v->id, this, i);
         printf("envio datos reconexion\n");
