@@ -63,7 +63,7 @@
 	<iostream>
 	<fstream>
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
+1594245479 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
@@ -237,7 +237,7 @@
 	<limits>
 	<type_traits>
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
+1594244821 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.h
 	<string>
 	<time.h>
 	<ctime>
@@ -323,7 +323,7 @@
 	"TextureW.h"
 	"BotonIniciar.h"
 
-1594079748 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nave.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
@@ -336,10 +336,10 @@
 1594079748 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1594146910 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NaveJugador.cpp
+1594245479 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NaveJugador.cpp
 	"NaveJugador.h"
 
-1594149407 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -366,7 +366,7 @@
 	"global.h"
 	"Client.h"
 
-1594149480 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 
@@ -380,7 +380,7 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1594145838 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
+1594245479 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
@@ -388,7 +388,7 @@
 1594079748 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Estado.cpp
 	"Estado.h"
 
-1594083818 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -405,7 +405,7 @@
 	"Estado.h"
 	"JuegoCliente.h"
 
-1594149199 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"
@@ -6426,7 +6426,7 @@
 	"Server.h"
 	"NivelServidor.h"
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NivelServidor.h
+1594244821 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -6441,7 +6441,7 @@
 	"Menu.h"
 	"Nivel.h"
 
-1594083818 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/JuegoCliente.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/JuegoCliente.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -6452,7 +6452,7 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1594079748 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/JuegoServidor.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/JuegoServidor.cpp
 	"JuegoServidor.h"
 	"Server.h"
 	"Nave.h"
@@ -6465,28 +6465,28 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1Servidor.h
+1594244821 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1Servidor.h
 	"Nave.h"
 	"NivelServidor.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Server.h"
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2Servidor.h
+1594244821 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2Servidor.h
 	"Nave.h"
 	"NivelServidor.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Server.h"
 
-1594079748 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3Servidor.h
+1594244821 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3Servidor.h
 	"Nave.h"
 	"NivelServidor.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Server.h"
 
-1594148416 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1Servidor.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel1Servidor.cpp
 	"Nivel1Servidor.h"
 	"Server.h"
 	"Nave.h"
@@ -6495,7 +6495,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594148425 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2Servidor.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel2Servidor.cpp
 	"Nivel2Servidor.h"
 	"Server.h"
 	"Nave.h"
@@ -6504,7 +6504,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594148432 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3Servidor.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/Nivel3Servidor.cpp
 	"Nivel3Servidor.h"
 	"Server.h"
 	"Nave.h"
@@ -6513,7 +6513,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1594079748 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NivelServidor.cpp
+1594244821 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase2/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
