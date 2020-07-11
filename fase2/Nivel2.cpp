@@ -6,6 +6,7 @@ Nivel2::Nivel2(){}
 void Nivel2::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 2 ....");
+    gMusic = sounds.loadMusic("sounds/nivel2A.wav");
 
     /*cantidad_enemigos = json.get_cantidad_enemigo("nivel2");
     if(cantidad_enemigos == 0){
@@ -75,6 +76,7 @@ void Nivel2::cerrar(){
 	gAsteroides1Texture.free();
 	gAsteroides2Texture.free();
 	gAsteroides3Texture.free();
+
 
 	gFinNivel.free();
 }

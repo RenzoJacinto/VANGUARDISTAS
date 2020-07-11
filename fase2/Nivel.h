@@ -36,6 +36,8 @@ class Nivel: public Escenario {
         int cantidad_enemigos;
         TextureW gFinNivel;
         SDL_Rect dataFinNivel;
+
+        Mix_Music *gMusic;
 };
 
 #endif

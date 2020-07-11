@@ -8,13 +8,11 @@
 
 class Server;
 
-Nivel1Servidor::Nivel1Servidor(int cant_jugadores)
-{
+Nivel1Servidor::Nivel1Servidor(int cant_jugadores){
     cant_enemigos = json.get_cantidad_enemigo("nivel1");
 }
 
-void Nivel1Servidor::cargarNivel(Server* server, int cantidad_enemigos, int cant_jugadores)
-{
+void Nivel1Servidor::cargarNivel(Server* server, int cantidad_enemigos, int cant_jugadores){
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
     tierraInicial = 700;

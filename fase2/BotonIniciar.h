@@ -14,7 +14,7 @@ class BotonIniciar{
     public:
         BotonIniciar();
 
-        bool handleEvent( SDL_Event& e );
+        bool handleEvent( SDL_Event& e , Mix_Music* gMusic);
         int mouseEvent(SDL_Event& e);
         bool clickOnBoxName(int x, int y);
         bool clickOnBoxPass(int x, int y);
@@ -28,6 +28,7 @@ class BotonIniciar{
         static const int SELECT_NAME = 0;
         static const int SELECT_PASS = 1;
         static const int NONE_SELECT = -1;
+        static const int NONE_CLICK = 2;
 
         // Posiciones de las box
         static const int INIT_X_TEXT_NAME = 73;
@@ -51,6 +52,7 @@ class BotonIniciar{
 
         TextureW gSelectName;
         TextureW gSelectPass;
+        TextureW gNoneSelect;
 
         int box;
 };

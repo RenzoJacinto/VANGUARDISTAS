@@ -22,7 +22,7 @@ class NaveJugador: public Nave {
 		static const int NAVE_VEL = 5;
 
         //Toma las teclas oprimidas y ajusta la velocidad de la Nave
-		void handleEvent( SDL_Event& e );
+		void handleEvent( SDL_Event& e , Mix_Music* gMusic);
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		void mover( vector<NaveEnemiga*>  enemigo );

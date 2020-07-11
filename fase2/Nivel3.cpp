@@ -7,6 +7,8 @@ void Nivel3::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 3 ....");
 
+    gMusic = sounds.loadMusic("sounds/nivel3.wav");
+
     /*cantidad_enemigos = json.get_cantidad_enemigo("nivel3");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel3 inexistente, se cargo una por defecto");

@@ -9,6 +9,7 @@ ManejoDeLog logger;
 ManejoDeJson json;
 Estado* estado;
 pthread_mutex_t mutex;
+ManejoDeSonidos sounds;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 

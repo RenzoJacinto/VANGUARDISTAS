@@ -13,7 +13,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
-void NaveJugador::handleEvent( SDL_Event& e ){
+void NaveJugador::handleEvent( SDL_Event& e , Mix_Music* gMusic){
 
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 ){
         // Ajusta la velocidad
@@ -22,10 +22,10 @@ void NaveJugador::handleEvent( SDL_Event& e ){
             case SDLK_DOWN: mVelY += NAVE_VEL; break;
             case SDLK_LEFT: mVelX -= NAVE_VEL; break;
             case SDLK_RIGHT: mVelX += NAVE_VEL; break;
+            case SDLK_m: sounds.pauseMusic(gMusic); break;
+            case SDLK_s: sounds.pauseEffects(); break;
         }
-    }
-
-    else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
+    } else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
         // Ajusta la velocidad
         switch( e.key.keysym.sym ){
             case SDLK_UP: mVelY += NAVE_VEL; break;
@@ -34,6 +34,7 @@ void NaveJugador::handleEvent( SDL_Event& e ){
             case SDLK_RIGHT: mVelX -= NAVE_VEL; break;
         }
     }
+
 }
 
 void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){

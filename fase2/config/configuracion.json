@@ -2,11 +2,11 @@
 	"log": 3,
 	"conexion":{
 		"estado":"client",
-		"users": 2
+		"users": 1
 	},
     	"stages":{
         	"nivel1":{
-                	"enemigos": 5,
+                	"enemigos": 30,
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
@@ -44,7 +44,7 @@
     	},
     	"naves":{
         	"jugador":{
-		        "jugador0":"sprites/usuario/naves/jugador/nave1.png",
+		        "jugador20":"sprites/usuario/naves/jugador/nave1.png",
 			"jugador1":"sprites/usuario/naves/jugador/nave2.png",
 			"jugador2":"sprites/usuario/naves/jugador/nave3.png",
 			"jugador3":"sprites/usuario/naves/jugador/nave4.png",
@@ -61,6 +61,7 @@
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
 		"selectPass": "sprites/usuario/menu/selectPass.png",
+		"noneSelect": "sprites/usuario/menu/noneSelect.png",
 		"errorLogin": "sprites/usuario/menu/errorLogin.png",
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",

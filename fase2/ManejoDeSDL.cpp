@@ -50,6 +50,11 @@ bool ManejoDeSDL::iniciarSDL(){
 					ok = false;
 				} else logger.debug("Se inicializó la carga de imagenes PNG");
 
+				if( Mix_OpenAudio( 44100, MIX_DEFAULT_FORMAT, 2, 2048 ) < 0 ){
+					logger.error(Mix_GetError());
+					ok = false;
+				} else logger.debug("Se inicializo el audio");
+
 				if( TTF_Init() == -1 ){
 					logger.error( "SDL_ttf no se pudo inicializar");
 					ok = false;
@@ -90,6 +95,8 @@ void ManejoDeSDL::cerrar(){
 	TTF_CloseFont(gFontLog);
 	TTF_CloseFont(gFontBox);
 
+    Mix_Quit();
+    logger.debug("Se cerro MIX_SOUND");
 	IMG_Quit();
 	logger.debug("Se cerró IMG");
 	SDL_Quit();

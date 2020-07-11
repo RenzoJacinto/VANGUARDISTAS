@@ -32,6 +32,9 @@ void Menu::procesar(){
     logger.info("Se mostró el menú");
     bt.inicializar_credenciales();
 
+    Mix_Music* gMusic = sounds.loadMusic("sounds/menu1.wav");
+    if(gMusic != NULL) sounds.playMusic(gMusic);
+
     SDL_RenderClear( sdl.getRenderer() );
     gMenuBGTexture.render( 0, 0, &dataMenu );
 
@@ -41,13 +44,15 @@ void Menu::procesar(){
         SDL_StartTextInput();
         while( hayEventos() ){
             if( eventoEsSalir() ) quit = true;
-            if(! bt.handleEvent( e )){
+            if(! bt.handleEvent( e , gMusic)){
                 quit = true;
             }
         }
         SDL_RenderPresent( sdl.getRenderer() );
         SDL_StopTextInput();
     }
+    sounds.stopMusic();
+    sounds.freeMusic(gMusic);
 }
 
 void Menu::cerrar(){

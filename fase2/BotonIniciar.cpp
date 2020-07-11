@@ -2,15 +2,16 @@
 #include "ManejoDeNiveles.h"
 
 BotonIniciar::BotonIniciar(){
-    box = NONE_SELECT;
+    box = NONE_CLICK;
 }
 
-bool BotonIniciar::handleEvent( SDL_Event& e ){
+bool BotonIniciar::handleEvent( SDL_Event& e , Mix_Music* gMusic){
     std::string inputTxt = "";
     bool backspace = false;
     int click_act = mouseEvent(e);
     if(click_act == SELECT_NAME) box = SELECT_NAME;
     if(click_act == SELECT_PASS) box = SELECT_PASS;
+    if(click_act == NONE_SELECT) box = NONE_SELECT;
 
     if( e.type == SDL_KEYDOWN){
         //Handle backspace
@@ -23,11 +24,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
 		}
 
         // CUANDO SE APRETA ENTER (QUEDAN LOS ESTADOS FINALES DE ID Y PASS)
-        if( e.key.keysym.sym == SDLK_RETURN){
-            //ManejoDeNiveles niveles;
-            //niveles.procesar();
-            return false;
-        }
+        if( e.key.keysym.sym == SDLK_RETURN) return false;
 
     } else if( e.type == SDL_TEXTINPUT ){
         if( !( SDL_GetModState() & KMOD_CTRL && ( e.text.text[ 0 ] == 'c' || e.text.text[ 0 ] == 'C' || e.text.text[ 0 ] == 'v' || e.text.text[ 0 ] == 'V' ) ) ){
@@ -55,6 +52,9 @@ bool BotonIniciar::handleEvent( SDL_Event& e ){
             if(! gPass.loadFromRenderedText(pass.c_str(), ""))
                 logger.error("No se pudo cargar la textura del texto");
         }
+    } else if(box == NONE_SELECT){
+        gNoneSelect.render(0,0);
+        if(inputTxt == "m") sounds.pauseMusic(gMusic);
     }
 
     if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
@@ -71,9 +71,10 @@ int BotonIniciar::mouseEvent(SDL_Event& e){
 
 		if(clickOnBoxName(x, y)) return SELECT_NAME;
         else if(clickOnBoxPass(x, y)) return SELECT_PASS;
+        else return NONE_SELECT;
 
 	}
-	return NONE_SELECT;
+	return NONE_CLICK;
 }
 
 bool BotonIniciar::clickOnBoxName(int x, int y){
@@ -115,4 +116,9 @@ void BotonIniciar::cargarImagenes(){
     if(! gSelectPass.loadFromFile(file.c_str()))
         logger.error("No se pudo cargar la textura del select password");
     else logger.debug("Se cargo las imagen de seleccion de box password");
+
+    file = json.get_sprite_menu("noneSelect");
+    if(! gNoneSelect.loadFromFile(file.c_str()))
+        logger.error("No se pudo cargar la textura del none select");
+    else logger.debug("Se cargo las imagen de seleccion de none select box");
 }

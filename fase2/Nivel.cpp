@@ -26,11 +26,13 @@ bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
     printf("intenta gettear nave %d\n", client->get_id());
     NaveJugador* jugador1 = jugadores[client->get_id()];
-    printf("aaa\n");
+    //printf("aaa\n");
+    sounds.playMusic(gMusic);
+
     while( usuarioNoRequieraSalir(quit) ){
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
-            jugador1->handleEvent( e );
+            jugador1->handleEvent( e, gMusic);
         }
 
         velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
@@ -107,6 +109,10 @@ void Nivel::procesar(posiciones_t* pos){
 }
 
 void Nivel::finalizar() {
+
+    sounds.stopMusic();
+    sounds.freeMusic(gMusic);
+
     logger.info("Finalizó el nivel");
     gFinNivel.render(0,0, &dataFinNivel);
     SDL_RenderPresent( sdl.getRenderer() );

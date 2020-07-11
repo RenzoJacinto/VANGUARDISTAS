@@ -10,6 +10,8 @@ void Nivel1::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 1 ....");
 
+    gMusic = sounds.loadMusic("sounds/nivel1A.wav");
+
     /*cantidad_enemigos = json.get_cantidad_enemigo("nivel1");
     if(cantidad_enemigos == 0){
         logger.error("Cantidad de enemigos del nivel1 inexistente, se cargo una por defecto");
