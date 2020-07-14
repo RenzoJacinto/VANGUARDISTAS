@@ -3,6 +3,7 @@
 
 #include "Nave.h"
 #include "list"
+#include "Misil.h"
 
 class NaveEnemiga;
 
@@ -22,7 +23,7 @@ class NaveJugador: public Nave {
 		static const int NAVE_VEL = 5;
 
         //Toma las teclas oprimidas y ajusta la velocidad de la Nave
-		void handleEvent( SDL_Event& e , Mix_Music* gMusic);
+		void handleEvent( SDL_Event& e , Mix_Music* gMusic, int* misil);
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		void mover( vector<NaveEnemiga*>  enemigo );

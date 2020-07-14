@@ -13,7 +13,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
-void NaveJugador::handleEvent( SDL_Event& e , Mix_Music* gMusic){
+void NaveJugador::handleEvent( SDL_Event& e , Mix_Music* gMusic, int* misil){
 
 	if( e.type == SDL_KEYDOWN && e.key.repeat == 0 ){
         // Ajusta la velocidad
@@ -24,6 +24,7 @@ void NaveJugador::handleEvent( SDL_Event& e , Mix_Music* gMusic){
             case SDLK_RIGHT: mVelX += NAVE_VEL; break;
             case SDLK_m: sounds.pauseMusic(gMusic); break;
             case SDLK_s: sounds.pauseEffects(); break;
+            case SDLK_RETURN: *misil = 0; break;
         }
     } else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
         // Ajusta la velocidad

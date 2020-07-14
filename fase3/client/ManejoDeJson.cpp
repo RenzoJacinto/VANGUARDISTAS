@@ -105,37 +105,38 @@ std::string ManejoDeJson::get_sprite_mapa(char const* key, const char* sp){
     }
 }
 
-int ManejoDeJson::get_cantidad_enemigo(const char* key){
-
-    json& j_aux = searchValue(j, "stages");
-    if(j_aux == "errorKey") return get_cantidad_enemigo_default(key);
-    json& j_nivel = searchValue(j_aux, key);
-    if(j_nivel == "errorKey") return get_cantidad_enemigo_default(key);
-
-
-    try{return j_nivel.at("enemigos");}
-    catch (nlohmann::detail::out_of_range) {
-        std::string mensaje1 = "No se encontro la clave enemigos. Se obtiene de default.json";
-        logger.error(mensaje1.c_str());
-        return get_cantidad_enemigo_default(key);
-    }
-    catch(nlohmann::detail::type_error){
-        std::string mensaje1 = "La cantidad de enemigos, debe ser un numero y es un string. Se obtiene de default.json";
-        logger.error(mensaje1.c_str());
-        return get_cantidad_enemigo_default(key);
-    }
-}
-
 std::string ManejoDeJson::get_sprite_nave(const char* key, const char* sp){
 
-    json& j_aux = searchValue(j, "naves");
+    json& j_aux = searchValue(j, key);
     if(j_aux == "errorKey") return get_sprite_nave_default(key, sp);
-    json& j_nave = searchValue(j_aux, key);
+    json& j_nave = searchValue(j_aux, sp);
     if(j_nave == "errorKey") return get_sprite_nave_default(key, sp);
 
     string sSP(sp);
 
-    try{return  j_nave.at(sp);}
+    try{return  j_nave.at("nave");}
+    catch (nlohmann::detail::out_of_range) {
+        std::string mensaje1 = "No se encontro el sprite: " + sSP + ". Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
+    catch(nlohmann::detail::type_error){
+        std::string mensaje1 = "El sprite " + sSP + ", debe ser un string y es un numero. Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
+}
+
+std::string ManejoDeJson::get_sprite_tiro(const char* key, const char* sp){
+
+    json& j_aux = searchValue(j, key);
+    if(j_aux == "errorKey") return get_sprite_nave_default(key, sp);
+    json& j_nave = searchValue(j_aux, sp);
+    if(j_nave == "errorKey") return get_sprite_nave_default(key, sp);
+
+    string sSP(sp);
+
+    try{return  j_nave.at("shot");}
     catch (nlohmann::detail::out_of_range) {
         std::string mensaje1 = "No se encontro el sprite: " + sSP + ". Se obtiene de default.json";
         logger.error(mensaje1.c_str());
@@ -164,27 +165,17 @@ std::string ManejoDeJson::get_sprite_mapa_default(char const* key, const char* s
     return j_sprites.at(sp);
 }
 
-int ManejoDeJson::get_cantidad_enemigo_default(const char* key){
-
-    json& j_aux = searchValue(def, "stages");
-    json& j_nivel = searchValue(j_aux, key);
-
-    logger.debug("Se obtuvo de default.json la cantidad de enemigos");
-
-    return j_nivel.at("enemigos");
-}
-
 std::string ManejoDeJson::get_sprite_nave_default(const char* key, const char* sp){
 
-    json& j_aux = searchValue(def, "naves");
-    json& j_nivel = searchValue(j_aux, key);
+    json& j_aux = searchValue(def, key);
+    json& j_nave = searchValue(j_aux, sp);
 
     string sSP(sp);
     std::string mensaje = "Se obtuvo de default.json el sprite: " + sSP;
 
     logger.debug(mensaje.c_str());
 
-    return j_nivel.at(sp);
+    return j_nave.at("nave");
 }
 
 std::string ManejoDeJson::get_sprite_menu_default(const char* sp){
@@ -201,6 +192,28 @@ std::string ManejoDeJson::get_sprite_menu_default(const char* sp){
 int ManejoDeJson::get_nivel_de_log_default(){
     logger.debug("Se obtuvo el nivel de log de default.json");
     return def.at("log");
+}
+
+std::string ManejoDeJson::get_sprite_tiro_default(const char* key, const char* sp){
+
+    json& j_aux = searchValue(j, key);
+    if(j_aux == "errorKey") return get_sprite_nave_default(key, sp);
+    json& j_nave = searchValue(j_aux, sp);
+    if(j_nave == "errorKey") return get_sprite_nave_default(key, sp);
+
+    string sSP(sp);
+
+    try{return  j_nave.at("shot");}
+    catch (nlohmann::detail::out_of_range) {
+        std::string mensaje1 = "No se encontro el sprite: " + sSP + ". Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
+    catch(nlohmann::detail::type_error){
+        std::string mensaje1 = "El sprite " + sSP + ", debe ser un string y es un numero. Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sprite_nave_default(key, sp);
+    }
 }
 
 // PARA LLAMADAS DE ERROR DE ENCONTRAR SPRITE

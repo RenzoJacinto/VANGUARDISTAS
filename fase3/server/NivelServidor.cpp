@@ -58,21 +58,28 @@ posiciones_t* NivelServidor::procesar(velocidades_t* v){
     pos->id = id;
     pos->posX = 0;
     pos->posY = 0;
-    if(id>3){
-        for(int i = 0; i < id - 4; i++){
-            enemigos[i]->mover(jugadores[0]);
-        }
-        parallax();
-    } else if(strcmp(v->descrip, "off") != 0){
-        jugadores[id]->setVelX(vx);
-        jugadores[id]->setVelY(vy);
-        jugadores[id]->mover(enemigos);
-        pos->posX = jugadores[id]->getPosX();
-        pos->posY = jugadores[id]->getPosY();
+    if(strcmp(v->descrip, "shot") == 0){
+        std::cout<<"x: "<<vx<<"\n";
+        std::cout<<"y: "<<vy<<"\n";
+        std::cout<<"-------------\n";
+        pos->posX = vx;
+        pos->posY = vy;
+    } else{
+        if(id>3){
+            for(int i = 0; i < id - 4; i++){
+                enemigos[i]->mover(jugadores[0]);
+            }
+            parallax();
+        } else if(strcmp(v->descrip, "off") != 0){
+            jugadores[id]->setVelX(vx);
+            jugadores[id]->setVelY(vy);
+            jugadores[id]->mover(enemigos);
+            pos->posX = jugadores[id]->getPosX();
+            pos->posY = jugadores[id]->getPosY();
 
+        }
     }
-    pos->descrip[0] = 0;
-    strncat(pos->descrip, v->descrip, 5);
+    strcpy(pos->descrip, v->descrip);
     free(v);
     return pos;
 }

@@ -6,6 +6,7 @@
 #include "Escenario.h"
 #include "TextureW.h"
 #include "Client.h"
+#include "Misil.h"
 
 class Client;
 
@@ -34,6 +35,7 @@ class Nivel: public Escenario {
         int renderizados;
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
+        vector<Misil*> misiles;
         int cantidad_enemigos;
         TextureW gFinNivel;
         SDL_Rect dataFinNivel;

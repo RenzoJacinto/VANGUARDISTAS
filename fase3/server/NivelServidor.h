@@ -5,6 +5,7 @@
 #include "NaveEnemiga.h"
 #include "NaveJugador.h"
 #include "Server.h"
+#include "Misil.h"
 
 class Server;
 
@@ -28,6 +29,7 @@ class NivelServidor{
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
         vector<posiciones_t*> pos_iniciales;
+        vector<Misil*> misiles;
         int cant_enemigos;
         int tiempo_transcurrido;
 };

@@ -24,14 +24,25 @@ bool Nivel::iniciarNivel(Client* client){
     //printf("aaa\n");
     sounds.playMusic(gMusic);
 
+    int id_nave = jugador1->get_id();
+
     while( usuarioNoRequieraSalir(quit) ){
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
-            jugador1->handleEvent( e, gMusic);
+            int new_misil = 1;
+            jugador1->handleEvent( e, gMusic, &new_misil);
+            if(new_misil == 0){
+                velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
+                v_shot->id = id_nave;
+                strcpy(v_shot->descrip, "shot");
+                v_shot->VelX = jugador1->getPosX();
+                v_shot->VelY = jugador1->getPosY();
+                client->sendData(v_shot);
+            }
         }
 
         velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-        v->id = client->get_id();
+        v->id = id_nave;
         v->descrip[0] = 0;
         strncat(v->descrip, "on", 5);
         v->VelX = jugador1->getVelX();
@@ -45,6 +56,17 @@ bool Nivel::iniciarNivel(Client* client){
             free(v);
             return true;
         }
+
+        /*vector<Misil*>::iterator pos_m;
+        for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++){
+            velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
+            v_shot->id = id_nave;
+            strcpy(v_shot->descrip, "shot");
+            v_shot->VelX = (*pos_m)->getVel();
+            v_shot->VelY = 0;
+            client->sendData(v_shot);
+        }*/
+        //misiles.clear();
 
         while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
@@ -79,26 +101,42 @@ void Nivel::renderizar(){
             enemigos[i]->renderizar();
         }
 
+        vector<Misil*>::iterator pos_m;
+        std::cout<<"SIZE_REND: "<<misiles.size()<<"\n";
+        for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++){
+            (*pos_m)->mover();
+            (*pos_m)->renderizar();
+        }
+
         //Todo este bloque deberiamos declararlo en otro lado
 
         SDL_RenderPresent( sdl.getRenderer() );
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    if(pos->id>3){
-        aumentarRenderizados(pos->id-4);
-        for(int i = 0; i < renderizados ; i++){
-            enemigos[i]->mover(jugadores[0]);
-        }
-        parallax();
-        return;
-    }
-    if(strcmp(pos->descrip, "off") != 0){
-        jugadores[pos->id]->setPosX(pos->posX);
-        jugadores[pos->id]->setPosY(pos->posY);
-        if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
+    if(strcmp(pos->descrip, "shot") == 0){
+        std::cout<<"x: "<<pos->posX<<"\n";
+        std::cout<<"y: "<<pos->posY<<"\n";
+        std::cout<<"-------------\n";
+        Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
+        misiles.push_back(misil);
+        std::cout<<"SIZE: "<<misiles.size()<<"\n";
     } else{
-        jugadores[pos->id]->desconectar();
+        if(pos->id>3){
+            aumentarRenderizados(pos->id-4);
+            for(int i = 0; i < renderizados ; i++){
+                enemigos[i]->mover(jugadores[0]);
+            }
+            parallax();
+            return;
+        }
+        if(strcmp(pos->descrip, "off") != 0){
+            jugadores[pos->id]->setPosX(pos->posX);
+            jugadores[pos->id]->setPosY(pos->posY);
+            if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
+        } else{
+            jugadores[pos->id]->desconectar();
+        }
     }
     free(pos);
 }
