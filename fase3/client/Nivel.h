@@ -35,12 +35,14 @@ class Nivel: public Escenario {
         int renderizados;
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
-        vector<Misil*> misiles;
+        list<Misil*> misiles;
         int cantidad_enemigos;
         TextureW gFinNivel;
         SDL_Rect dataFinNivel;
 
         Mix_Music *gMusic;
+
+        Mix_Chunk *shotFX;
 };
 
 #endif

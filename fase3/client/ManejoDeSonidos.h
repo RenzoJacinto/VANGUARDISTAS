@@ -22,9 +22,10 @@ class ManejoDeSonidos{
         void pauseEffects();
 
         static const int PAUSED = 1;
-        static const int PLAYING = 0;
+        static const int NO_PLAYING = 0;
     private:
         bool effectsOff;
+        bool musicOff;
 
 };
 

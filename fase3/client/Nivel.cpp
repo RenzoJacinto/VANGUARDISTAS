@@ -21,6 +21,7 @@ bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
     printf("intenta gettear nave %d\n", client->get_id());
     NaveJugador* jugador1 = jugadores[client->get_id()];
+    shotFX = sounds.loadEffect("sounds/shot.wav");
     //printf("aaa\n");
     sounds.playMusic(gMusic);
 
@@ -90,7 +91,18 @@ void Nivel::renderizar(){
         SDL_RenderClear( sdl.getRenderer() );
         renderBackground();
 
+        list<Misil*>::iterator pos_m = misiles.begin();
+        while(pos_m != misiles.end()){
+            (*pos_m)->mover();
+            if(! (*pos_m)->renderizar()){
+                if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
+            }
+            pos_m++;
+        }
+        std::cout<<"SIZE: "<<misiles.size()<<"\n";
+
         //render jugador
+
         vector<NaveJugador*>::iterator pos;
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             (*pos)->renderizar();
@@ -101,13 +113,6 @@ void Nivel::renderizar(){
             enemigos[i]->renderizar();
         }
 
-        vector<Misil*>::iterator pos_m;
-        std::cout<<"SIZE_REND: "<<misiles.size()<<"\n";
-        for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++){
-            (*pos_m)->mover();
-            (*pos_m)->renderizar();
-        }
-
         //Todo este bloque deberiamos declararlo en otro lado
 
         SDL_RenderPresent( sdl.getRenderer() );
@@ -115,12 +120,12 @@ void Nivel::renderizar(){
 
 void Nivel::procesar(posiciones_t* pos){
     if(strcmp(pos->descrip, "shot") == 0){
-        std::cout<<"x: "<<pos->posX<<"\n";
+        /*std::cout<<"x: "<<pos->posX<<"\n";
         std::cout<<"y: "<<pos->posY<<"\n";
-        std::cout<<"-------------\n";
+        std::cout<<"-------------\n";*/
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
-        std::cout<<"SIZE: "<<misiles.size()<<"\n";
+        sounds.playEffect(shotFX);
     } else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-4);
@@ -145,6 +150,8 @@ void Nivel::finalizar() {
 
     sounds.stopMusic();
     sounds.freeMusic(gMusic);
+
+    sounds.freeEffect(shotFX);
 
     logger.info("Finalizó el nivel");
     gFinNivel.render(0,0, &dataFinNivel);

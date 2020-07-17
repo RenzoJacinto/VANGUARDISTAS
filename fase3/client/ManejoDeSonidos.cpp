@@ -3,6 +3,7 @@
 
 ManejoDeSonidos::ManejoDeSonidos(){
     effectsOff = false;
+    musicOff = false;
 }
 
 // MUSIC
@@ -17,15 +18,22 @@ Mix_Music* ManejoDeSonidos::loadMusic(const char* file){
 }
 
 void ManejoDeSonidos::playMusic(Mix_Music* music){
-    if(music != NULL) Mix_PlayMusic( music, -1 );
+    if(music != NULL && !musicOff) Mix_PlayMusic( music, -1 );
 }
 
 void ManejoDeSonidos::pauseMusic(Mix_Music* music){
-    if( Mix_PlayingMusic() == PLAYING ) Mix_PlayMusic( music, -1 );
-    else{
+    if( Mix_PlayingMusic() == NO_PLAYING ){
+        musicOff = false;
+        Mix_PlayMusic( music, -1 );
+    } else{
         // Si esta pausada, que arranque
-        if( Mix_PausedMusic() == PAUSED ) Mix_ResumeMusic();
-        else Mix_PauseMusic();
+        if( Mix_PausedMusic() == PAUSED ){
+            musicOff = false;
+            Mix_ResumeMusic();
+        } else{
+            musicOff = true;
+            Mix_PauseMusic();
+        }
     }
 }
 

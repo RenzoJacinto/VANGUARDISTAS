@@ -9,8 +9,6 @@
 #include <string>
 
 #include "TextureW.h"
-#include "ManejoDeSonidos.h"
-#include "global.h"
 
 class BotonIniciar{
     public:
