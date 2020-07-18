@@ -59,9 +59,9 @@ posiciones_t* NivelServidor::procesar(velocidades_t* v){
     pos->posX = 0;
     pos->posY = 0;
     if(strcmp(v->descrip, "shot") == 0){
-        std::cout<<"x: "<<vx<<"\n";
+        /*std::cout<<"x: "<<vx<<"\n";
         std::cout<<"y: "<<vy<<"\n";
-        std::cout<<"-------------\n";
+        std::cout<<"-------------\n";*/
         pos->posX = vx;
         pos->posY = vy;
     } else{
