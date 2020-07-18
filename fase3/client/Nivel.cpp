@@ -99,7 +99,7 @@ void Nivel::renderizar(){
             }
             pos_m++;
         }
-        std::cout<<"SIZE: "<<misiles.size()<<"\n";
+        //std::cout<<"SIZE: "<<misiles.size()<<"\n";
 
         //render jugador
 
@@ -176,7 +176,7 @@ void Nivel::setNaves(Client* client){
             enemigos.push_back(enemigo);
         } else{
             printf("creo nave jugador\n");
-            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id, client->get_id_user(pos->id));
             if(strcmp(pos->descrip, "off") == 0) {
                 printf("nave off\n");
                 nave->desconectar();

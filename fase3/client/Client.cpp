@@ -67,11 +67,19 @@ bool Client::iniciar(){
         return false;
     }
 
-    velocidades_t v ;
-    printf("enviando\n");
+    // recibe las ids de los jugadores
+    credenciales_t user;
+    strcpy(user.pass, "a");
+    while(strcmp(user.pass, "corte") != 0){
+        if(recv(socket , &user, sizeof(credenciales_t), MSG_NOSIGNAL) > 0){
+            string id_user(user.id);
+            id_users.push_back(id_user);
+        } else break;
+    }
 
-    if(recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL)<=0)
-    {
+
+    velocidades_t v ;
+    if(recv(socket , &v, sizeof(velocidades_t), MSG_NOSIGNAL)<=0){
         renderServerCaido();
         juego->cerrarMenu();
         return false;
@@ -91,6 +99,8 @@ bool Client::iniciar(){
         juego->cerrarMenu();
         juego->reconectarSiguiente(this, v.id);
     }
+
+
     return true;
 }
 
@@ -208,6 +218,8 @@ bool Client::iniciarSesion(){
         strcpy(cliente->id,juego->get_id().c_str());
         strcpy(cliente->pass,juego->get_password().c_str());
 
+        id_users.push_back(string(cliente->id));
+
         if(send(socket, cliente, size_client, MSG_NOSIGNAL) < 0){
             logger.error("Error en el envio de la data");
             printf("error en el send\n");
@@ -282,4 +294,10 @@ void Client::vaciar_cola(){
 
 void Client::renderServerCaido(){
     juego->renderServerCaido();
+}
+
+std::string Client::get_id_user(int id_user){
+    if(id_user < id) return id_users[id_user + 1];
+    else if(id_user == id) return id_users[0];
+    else return id_users[id_user];
 }

@@ -11,7 +11,7 @@ class NaveJugador: public Nave {
 
     public:
 
-        NaveJugador( int x, int y, int id);
+        NaveJugador( int x, int y, int id, std::string id_user);
         int get_id();
 
         //Las dimensiones de la Nave del Jugador
@@ -44,6 +44,8 @@ class NaveJugador: public Nave {
 
         int alto,ancho;
         bool conectado;
+
+        TextureW textureID;
 };
 
 #endif // NAVEJUGADOR_H

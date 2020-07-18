@@ -118,7 +118,7 @@ void Nivel2::reconectar(Client* client)
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
             enemigos.push_back(enemigo);
         } else{
-            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id);
+            NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id, client->get_id_user(pos->id));
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
             printf("crea nave jug\n");
             jugadores.push_back(nave);

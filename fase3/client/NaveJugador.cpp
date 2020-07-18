@@ -1,8 +1,12 @@
 #include "NaveJugador.h"
 
-NaveJugador::NaveJugador( int x, int y, int id){
+NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
     std::string jug = "jugador"+std::to_string(id);
+
+    if(! textureID.loadFromRenderedText(id_user.c_str(), "box"))
+        logger.error("No se pudo cargar el id del jugador");
+    else logger.debug("Se cargo el id del jugador");
 
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
@@ -59,6 +63,7 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
 void NaveJugador::renderizar(){
 	gNaveTexture.render(getPosX(), getPosY());
+    textureID.render(getPosX()+ textureID.getWidth() - 1, getPosY() + (3/2) * NAVE_HEIGHT);
 }
 
 int NaveJugador::getAlto(){

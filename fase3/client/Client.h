@@ -33,6 +33,8 @@ class Client{
 
         void renderServerCaido();
 
+        std::string get_id_user(int id_user);
+
     private:
         int puerto;
         std::string ip;
@@ -44,6 +46,8 @@ class Client{
         pthread_t hilo_encolar;
         pthread_t hiloRecibirEncolar;
         pthread_t hiloDesencolarProcesar;
+
+        std::vector<std::string> id_users;
 
 };
 
