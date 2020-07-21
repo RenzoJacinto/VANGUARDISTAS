@@ -8,7 +8,6 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         mensaje = "Se creo el " + sp;
         logger.debug(mensaje.c_str());
     }
-
     if(sp == "enemigo3" || sp == "enemigo4") desplazamiento = 1;
     else desplazamiento = -1;
 
@@ -54,4 +53,16 @@ int NaveEnemiga::getAnchoImagen(){
 
 char* NaveEnemiga::getClave(){
     return clave;
+}
+
+bool NaveEnemiga::impacto_misil(int x_misil, int y_misil){
+    bool ok = false;
+    if(x_misil >= mPosX && x_misil <= mPosX + ancho){
+        if(y_misil >= mPosY && y_misil <= mPosY + alto){
+            std::cout<<"IMPACTO EL PIBE\n";
+            ok = true;
+        }
+    }
+
+    return ok;
 }

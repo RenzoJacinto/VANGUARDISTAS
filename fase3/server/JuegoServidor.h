@@ -14,8 +14,8 @@ class JuegoServidor{
 
     public:
 
-        JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server);
-        void iniciarJuego(int cantidad_enemigos, Server* server, int t_niv);
+        JuegoServidor(int cant_jugadores, Server* server);
+        void iniciarJuego(Server* server, int t_niv);
         void iniciar_reconexion(int id, Server* server, int socket_id);
         bool esValidoReconectar();
         int get_nivel_actual();

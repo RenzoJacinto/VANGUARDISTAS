@@ -12,13 +12,13 @@ NivelServidor::NivelServidor(){
     tiempo_transcurrido = 0;
 }
 
-void NivelServidor::cargarNivel(Server* server, int cant_enemigos, int cant_jugadores){}
+void NivelServidor::cargarNivel(Server* server, int cant_jugadores){}
 
 void NivelServidor::parallax(){}
 
 void NivelServidor::iniciar_reconexion(int id, Server* server, int socket_id){}
 
-void NivelServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_niv){
+void NivelServidor::iniciarNivel(Server* server, int t_niv){
     //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
     Temporizador temporizador;
     temporizador.iniciar();
@@ -37,10 +37,29 @@ void NivelServidor::iniciarNivel(int cantidad_enemigos, Server* server, int t_ni
         }
         //printf("encola enemigo\n");
         tiempo_transcurrido = temporizador.transcurridoEnSegundos();
-        if(tiempo_transcurrido/renderizados > tiempo_por_enemigos && renderizados<cantidad_enemigos) renderizados++;
+        if(tiempo_transcurrido/renderizados > tiempo_por_enemigos && renderizados<cant_enemigos) renderizados++;
         velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
         v->id = renderizados+4;
         server->encolar(v);
+        //free(v);
+
+        list<Misil*>::iterator pos_m = misiles.begin();
+        while(pos_m != misiles.end()){
+            if(! (*pos_m)->mover(enemigos, renderizados)){
+                if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
+            } else{
+                posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+                strcpy(pos->descrip, "shot1");
+                pos->id = (*pos_m)->get_id();
+                pos->posX = (*pos_m)->getPosX();
+                pos->posY = (*pos_m)->getPosY();
+                server->send_all(pos);
+                free(pos);
+            }
+            pos_m++;
+        }
+
+
     }
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->id = -1;
@@ -58,12 +77,12 @@ posiciones_t* NivelServidor::procesar(velocidades_t* v){
     pos->id = id;
     pos->posX = 0;
     pos->posY = 0;
-    if(strcmp(v->descrip, "shot") == 0){
-        /*std::cout<<"x: "<<vx<<"\n";
-        std::cout<<"y: "<<vy<<"\n";
-        std::cout<<"-------------\n";*/
+    if(strcmp(v->descrip, "shot0") == 0){
+        Misil* misil = new Misil(vx, vy, id);
+        misiles.push_back(misil);
         pos->posX = vx;
         pos->posY = vy;
+        pos->id = misil->get_id();
     } else{
         if(id>3){
             for(int i = 0; i < id - 4; i++){
@@ -88,7 +107,7 @@ bool NivelServidor::esValidoReconectar(){
     return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0;
 }
 
-void NivelServidor::setNaves(Server* server, int cant_enemigos, int cant_jugadores){
+void NivelServidor::setNaves(Server* server, int cant_jugadores){
     for(int i = 0; i<cant_jugadores; i++){
         NaveJugador* nave = new NaveJugador(200, 100*(i+1), i);
         jugadores.push_back(nave);

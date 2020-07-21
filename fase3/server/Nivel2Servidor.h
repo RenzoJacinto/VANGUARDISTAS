@@ -13,8 +13,8 @@ class Nivel2Servidor: public NivelServidor {
 
     public:
 
-        Nivel2Servidor(int cant_jugadores);
-        void cargarNivel(Server* server, int cantidad_enemigos, int cant_jugadores);
+        Nivel2Servidor();
+        void cargarNivel(Server* server, int cant_jugadores);
         void iniciar_reconexion(int id, Server* server, int socket_id);
         void parallax();
 

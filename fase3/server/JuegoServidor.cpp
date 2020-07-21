@@ -10,11 +10,11 @@
 #include "Temporizador.h"
 #include <sys/socket.h>
 
-JuegoServidor::JuegoServidor(int cant_enemigos, int cant_jugadores, Server* server){
+JuegoServidor::JuegoServidor(int cant_jugadores, Server* server){
 
-    Nivel1Servidor* nivel1 = new Nivel1Servidor(cant_jugadores);
-    Nivel2Servidor* nivel2 = new Nivel2Servidor(cant_jugadores);
-    Nivel3Servidor* nivel3 = new Nivel3Servidor(cant_jugadores);
+    Nivel1Servidor* nivel1 = new Nivel1Servidor();
+    Nivel2Servidor* nivel2 = new Nivel2Servidor();
+    Nivel3Servidor* nivel3 = new Nivel3Servidor();
     niveles.push_back(nivel1);
     niveles.push_back(nivel2);
     niveles.push_back(nivel3);
@@ -22,15 +22,15 @@ JuegoServidor::JuegoServidor(int cant_enemigos, int cant_jugadores, Server* serv
     nivel_actual = 0;
 }
 
-void JuegoServidor::iniciarJuego(int cantidad_enemigos, Server* server, int t_niv){
+void JuegoServidor::iniciarJuego(Server* server, int t_niv){
     vector<NivelServidor*>::iterator nivel;
     for(nivel = niveles.begin(); nivel != niveles.end(); nivel++){
 
-        (*nivel)->cargarNivel(server, cantidad_enemigos, server->getMaxUsers());
+        (*nivel)->cargarNivel(server, server->getMaxUsers());
 
         server->crear_hilos_recibir();
 
-        (*nivel)->iniciarNivel(cantidad_enemigos, server, t_niv);
+        (*nivel)->iniciarNivel(server, t_niv);
 
         server->cerrar_hilos_recibir();
 

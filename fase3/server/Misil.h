@@ -2,6 +2,7 @@
 #define MISIL_H
 
 #include "global.h"
+#include "NaveEnemiga.h"
 
 class Misil{
 
@@ -16,10 +17,10 @@ class Misil{
 		static const int MISIL_HEIGHT = 34;
 
 		//Velocidad de la Nave del Jugador
-		static const int MISIL_VEL = 15;
+		static const int MISIL_VEL = 8;
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		bool mover();
+		bool mover(vector<NaveEnemiga*> enemigos, int renderizados);
 
         int getAlto();
 
@@ -27,6 +28,7 @@ class Misil{
 
         int getVel();
         int getPosX();
+        int getPosY();
 
     private:
         int alto;

@@ -24,6 +24,8 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
+		bool impacto_misil(int x_misil, int y_misil);
+
     protected:
 
         int radio;

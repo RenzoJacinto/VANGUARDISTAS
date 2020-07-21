@@ -3,7 +3,7 @@
 Misil::Misil( int x_parm, int y_parm, int id_parm){
     alto = MISIL_HEIGHT;
     ancho = MISIL_WIDTH;
-    id = id_parm;
+    id = id_parm * 10;
 
     x = x_parm;
     y = y_parm;
@@ -11,10 +11,14 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
 
 }
 
-bool Misil::mover(){
-
+bool Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
     x+=vel;
-    return (x < SCREEN_HEIGHT && x > 0);
+    if(x <= 0 || x >= SCREEN_WIDTH) return false;
+    for(int i=0; i<renderizados; i++){
+        if(enemigos[i]->impacto_misil(x, y) ) id += i+4;
+
+    }
+    return true;
 }
 
 int Misil::getAlto(){
@@ -26,7 +30,7 @@ int Misil::getAncho(){
 }
 
 int Misil::get_id(){
-    return id_nave;
+    return id;
 }
 
 int Misil::getVel(){
@@ -35,5 +39,9 @@ int Misil::getVel(){
 
 int Misil::getPosX(){
     return x;
+}
+
+int Misil::getPosY(){
+    return y;
 }
 

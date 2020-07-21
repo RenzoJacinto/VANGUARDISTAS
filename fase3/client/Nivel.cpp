@@ -35,10 +35,11 @@ bool Nivel::iniciarNivel(Client* client){
             if(new_misil == 0){
                 velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
                 v_shot->id = id_nave;
-                strcpy(v_shot->descrip, "shot");
+                strcpy(v_shot->descrip, "shot0");
                 v_shot->VelX = jugador1->getPosX();
                 v_shot->VelY = jugador1->getPosY();
                 client->sendData(v_shot);
+                free(v_shot);
             }
         }
 
@@ -57,17 +58,6 @@ bool Nivel::iniciarNivel(Client* client){
             free(v);
             return true;
         }
-
-        /*vector<Misil*>::iterator pos_m;
-        for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++){
-            velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
-            v_shot->id = id_nave;
-            strcpy(v_shot->descrip, "shot");
-            v_shot->VelX = (*pos_m)->getVel();
-            v_shot->VelY = 0;
-            client->sendData(v_shot);
-        }*/
-        //misiles.clear();
 
         while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
@@ -93,10 +83,9 @@ void Nivel::renderizar(){
 
         list<Misil*>::iterator pos_m = misiles.begin();
         while(pos_m != misiles.end()){
-            (*pos_m)->mover();
-            if(! (*pos_m)->renderizar()){
-                if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
-            }
+            //(*pos_m)->mover();
+            (*pos_m)->renderizar();
+            if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
             pos_m++;
         }
         //std::cout<<"SIZE: "<<misiles.size()<<"\n";
@@ -119,13 +108,13 @@ void Nivel::renderizar(){
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    if(strcmp(pos->descrip, "shot") == 0){
-        /*std::cout<<"x: "<<pos->posX<<"\n";
-        std::cout<<"y: "<<pos->posY<<"\n";
-        std::cout<<"-------------\n";*/
+    std::string s0 = "shot0";
+    std::string s1 = "shot1";
+    if(s0 == pos->descrip || s1 == pos->descrip){
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
-        sounds.playEffect(shotFX);
+        //misil->renderizar();
+        if(s0 == pos->descrip) sounds.playEffect(shotFX);
     } else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-4);

@@ -1,7 +1,16 @@
 #include "Misil.h"
 
 Misil::Misil( int x_parm, int y_parm, int id_parm){
-    std::string jug = "jugador"+std::to_string(id_parm);
+    int div = id_parm / 10;
+    int rem = id_parm % 10;
+
+    id_lanzada = div;
+    id_recibida = rem;
+
+    /*std::cout<<id_lanzada<<"\n";
+    std::cout<<id_recibida<<"\n";*/
+
+    std::string jug = "jugador"+std::to_string(id_lanzada);
 
     std::string sp = json.get_sprite_tiro("jugador", jug.c_str());
     if(! misilTexture.loadFromFile(sp.c_str())){
@@ -14,7 +23,6 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
 
     alto = MISIL_HEIGHT;
     ancho = MISIL_WIDTH;
-    id = id_parm;
 
     x = x_parm;
     y = y_parm;
@@ -28,7 +36,7 @@ void Misil::mover(){
 
 bool Misil::renderizar(){
     bool ok = false;
-    if(x < SCREEN_WIDTH && x > 0){
+    if(id_recibida == 0){
         misilTexture.render(x, y);
         ok = true;
     }

@@ -33,7 +33,8 @@ class Misil{
         TextureW misilTexture;
         int alto;
         int ancho;
-        int id;
+        int id_lanzada;
+        int id_recibida;
 
         int vel;
         int x;

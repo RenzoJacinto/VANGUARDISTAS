@@ -8,11 +8,11 @@
 
 class Server;
 
-Nivel2Servidor::Nivel2Servidor(int cant_jugadores){
+Nivel2Servidor::Nivel2Servidor(){
     cant_enemigos = json.get_cantidad_enemigo("nivel2");
 }
 
-void Nivel2Servidor::cargarNivel(Server* server, int cant_enemigos, int cant_jugadores){
+void Nivel2Servidor::cargarNivel(Server* server, int cant_jugadores){
 
     scrollingOffsetPlaneta1 = 300;
     scrollingOffsetPlaneta2 = 1000;
@@ -24,7 +24,7 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_enemigos, int cant_jug
     anchoBG = 800;
     anchoAst = 872;
 
-    setNaves(server, cant_enemigos, cant_jugadores);
+    setNaves(server, cant_jugadores);
 }
 
 void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
