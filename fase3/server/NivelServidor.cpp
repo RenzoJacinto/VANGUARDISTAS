@@ -39,24 +39,42 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         tiempo_transcurrido = temporizador.transcurridoEnSegundos();
         if(tiempo_transcurrido/renderizados > tiempo_por_enemigos && renderizados<cant_enemigos) renderizados++;
         velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
+        strcpy(v->descrip, "rend");
         v->id = renderizados+4;
         server->encolar(v);
         //free(v);
 
         list<Misil*>::iterator pos_m = misiles.begin();
+        if(misiles.size() > 0) std::cout<<"N ESTA VACIA\n";
+        bool r = false;
         while(pos_m != misiles.end()){
-            if(! (*pos_m)->mover(enemigos, renderizados)){
-                if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
+            std::cout<<"ENTRE\n";
+            bool ok = (*pos_m)->mover(enemigos, renderizados);
+            if(!ok){
+                pos_m = misiles.erase(pos_m);
+                if(pos_m == misiles.end()){
+                    r = true;
+                    if(misiles.size() == 0) std::cout<<"VACIAAAAA\n";
+                    std::cout<<"FIN\n";
+                }
             } else{
-                posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-                strcpy(pos->descrip, "shot1");
-                pos->id = (*pos_m)->get_id();
-                pos->posX = (*pos_m)->getPosX();
-                pos->posY = (*pos_m)->getPosY();
-                server->send_all(pos);
-                free(pos);
+                velocidades_t* vel = (velocidades_t*)malloc(sizeof(velocidades_t));
+                strcpy(vel->descrip, "shot1");
+                vel->id = (*pos_m)->get_id();
+                vel->VelX = (*pos_m)->getPosX();
+                vel->VelY = (*pos_m)->getPosY();
+                /*std::cout<<"X: "<<vel->VelX<<"\n";
+                std::cout<<"Y: "<<vel->VelY<<"\n";
+                std::cout<<"ID: "<<vel->id<<"\n";
+                std::cout<<"----------\n";*/
+                server->encolar(vel);
             }
             pos_m++;
+
+        }
+        if(r){
+            std::cout<<"SIZE;: "<<misiles.size()<<"\n";
+            std::cout<<"SALIO\n";
         }
 
 
@@ -77,7 +95,15 @@ posiciones_t* NivelServidor::procesar(velocidades_t* v){
     pos->id = id;
     pos->posX = 0;
     pos->posY = 0;
-    if(strcmp(v->descrip, "shot0") == 0){
+    if(strcmp(v->descrip, "shot1") == 0 ){
+        pos->posX = vx;
+        pos->posY = vy;
+        /*std::cout<<"S1....\n";
+        std::cout<<"Y: "<<vx<<"\n";
+        std::cout<<"Y: "<<vy<<"\n";
+        std::cout<<"ID: "<<id<<"\n";
+        std::cout<<"----------\n";*/
+    } else if(strcmp(v->descrip, "shot0") == 0){
         Misil* misil = new Misil(vx, vy, id);
         misiles.push_back(misil);
         pos->posX = vx;

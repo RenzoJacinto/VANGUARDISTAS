@@ -7,9 +7,6 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
     id_lanzada = div;
     id_recibida = rem;
 
-    /*std::cout<<id_lanzada<<"\n";
-    std::cout<<id_recibida<<"\n";*/
-
     std::string jug = "jugador"+std::to_string(id_lanzada);
 
     std::string sp = json.get_sprite_tiro("jugador", jug.c_str());
@@ -52,7 +49,7 @@ int Misil::getAncho(){
 }
 
 int Misil::get_id(){
-    return id_nave;
+    return id_lanzada*10 + id_recibida;
 }
 
 int Misil::getVel(){

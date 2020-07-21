@@ -304,12 +304,14 @@ bool Server::iniciar(){
 
 void Server::encolar(void* dato) {
     velocidades_t* v = (velocidades_t*) dato;
-    if(v->id>3 && v->id == ult_id_enemigo) {
-        free(v);
-        return;
+    if(strcmp(v->descrip, "shot0") != 0 && strcmp(v->descrip, "shot0") != 0){
+        if(v->id>3 && v->id == ult_id_enemigo) {
+            free(v);
+            return;
+        }
+        //printf("ID A ENCOLAR: %d\n", v->id);
+        ult_id_enemigo = v->id;
     }
-    //printf("ID A ENCOLAR: %d\n", v->id);
-    ult_id_enemigo = v->id;
     cola->push(dato);
 }
 

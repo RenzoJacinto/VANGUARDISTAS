@@ -28,6 +28,11 @@ bool Nivel::iniciarNivel(Client* client){
     int id_nave = jugador1->get_id();
 
     while( usuarioNoRequieraSalir(quit) ){
+
+        SDL_RenderClear( sdl.getRenderer() );
+
+        renderBackground();
+
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
             int new_misil = 1;
@@ -78,15 +83,11 @@ bool Nivel::iniciarNivel(Client* client){
 }
 void Nivel::renderizar(){
 
-        SDL_RenderClear( sdl.getRenderer() );
-        renderBackground();
-
         list<Misil*>::iterator pos_m = misiles.begin();
         while(pos_m != misiles.end()){
             //(*pos_m)->mover();
             (*pos_m)->renderizar();
-            if((*pos_m) > 0) pos_m = misiles.erase(pos_m);
-            pos_m++;
+            pos_m = misiles.erase(pos_m);
         }
         //std::cout<<"SIZE: "<<misiles.size()<<"\n";
 
@@ -108,13 +109,15 @@ void Nivel::renderizar(){
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    std::string s0 = "shot0";
-    std::string s1 = "shot1";
-    if(s0 == pos->descrip || s1 == pos->descrip){
+    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
-        misiles.push_back(misil);
-        //misil->renderizar();
-        if(s0 == pos->descrip) sounds.playEffect(shotFX);
+        //misiles.push_back(misil);
+        misil->renderizar();
+        std::cout<<"X: "<<pos->posX<<"\n";
+        std::cout<<"Y: "<<pos->posY<<"\n";
+        std::cout<<misil->get_id()<<"\n";
+        std::cout<<"------------\n";
+        if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
     } else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-4);
