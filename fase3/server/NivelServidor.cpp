@@ -10,6 +10,7 @@ class Server;
 
 NivelServidor::NivelServidor(){
     tiempo_transcurrido = 0;
+    renderizados = 1;
 }
 
 void NivelServidor::cargarNivel(Server* server, int cant_jugadores){}
@@ -24,15 +25,15 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     temporizador.iniciar();
 
     float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cant_enemigos;
-    int renderizados = 1;
+    //int renderizados = 1;
 
     while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
-            posiciones_t* pos = procesar((velocidades_t*)dato);
+            posiciones_t* pos = procesar(server, (velocidades_t*)dato);
             //std::cout<<"ID: "<< pos->id<<"X: "<<pos->posX<<"Y: "<<pos->posY;
-            server->send_all(pos);
+            //server->send_all(pos);
             free(pos);
         }
         //printf("encola enemigo\n");
@@ -44,7 +45,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         server->encolar(v);
         //free(v);
 
-        list<Misil*>::iterator pos_m = misiles.begin();
+        /*list<Misil*>::iterator pos_m = misiles.begin();
         if(misiles.size() > 0) std::cout<<"N ESTA VACIA\n";
         bool r = false;
         while(pos_m != misiles.end()){
@@ -63,10 +64,10 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
                 vel->id = (*pos_m)->get_id();
                 vel->VelX = (*pos_m)->getPosX();
                 vel->VelY = (*pos_m)->getPosY();
-                /*std::cout<<"X: "<<vel->VelX<<"\n";
+                std::cout<<"X: "<<vel->VelX<<"\n";
                 std::cout<<"Y: "<<vel->VelY<<"\n";
                 std::cout<<"ID: "<<vel->id<<"\n";
-                std::cout<<"----------\n";*/
+                std::cout<<"----------\n";
                 server->encolar(vel);
             }
             pos_m++;
@@ -75,7 +76,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         if(r){
             std::cout<<"SIZE;: "<<misiles.size()<<"\n";
             std::cout<<"SALIO\n";
-        }
+        }*/
 
 
     }
@@ -86,42 +87,62 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
 
 }
 
-posiciones_t* NivelServidor::procesar(velocidades_t* v){
+posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
     int id = v->id;
     int vx = v->VelX;
     int vy = v->VelY;
     //printf("SERVER proceso un dato, ID: %d\n", id);
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->id = id;
+    strcpy(pos->descrip, v->descrip);
     pos->posX = 0;
     pos->posY = 0;
-    if(strcmp(v->descrip, "shot1") == 0 ){
-        pos->posX = vx;
-        pos->posY = vy;
-        /*std::cout<<"S1....\n";
-        std::cout<<"Y: "<<vx<<"\n";
-        std::cout<<"Y: "<<vy<<"\n";
-        std::cout<<"ID: "<<id<<"\n";
-        std::cout<<"----------\n";*/
-    } else if(strcmp(v->descrip, "shot0") == 0){
+    if(strcmp(v->descrip, "shot0") == 0){
         Misil* misil = new Misil(vx, vy, id);
         misiles.push_back(misil);
         pos->posX = vx;
         pos->posY = vy;
         pos->id = misil->get_id();
+        server->send_all(pos);
     } else{
-        if(id>3){
-            for(int i = 0; i < id - 4; i++){
+        if(id>3)
+        {
+            for(int i = 0; i < id - 4; i++)
+            {
                 enemigos[i]->mover(jugadores[0]);
+                pos->posX = enemigos[i]->getPosX();
+                pos->posY = enemigos[i]->getPosY();
+                pos->id = i+4;
+                strcpy(pos->descrip, "ASD");
+                server->send_all(pos);
             }
             parallax();
-        } else if(strcmp(v->descrip, "off") != 0){
+            list<Misil*>::iterator pos_m = misiles.begin();
+            while(pos_m != misiles.end()){
+                bool ok = (*pos_m)->mover(enemigos, renderizados);
+                if(!ok){
+                    pos_m = misiles.erase(pos_m);
+                }
+                else
+                {
+                    strcpy(pos->descrip, "shot1");
+                    pos->id = (*pos_m)->get_id();
+                    pos->posX = (*pos_m)->getPosX();
+                    pos->posY = (*pos_m)->getPosY();
+                    server->send_all(pos);
+                }
+                pos_m++;
+            }
+
+        }
+        else if(strcmp(v->descrip, "off") != 0)
+        {
             jugadores[id]->setVelX(vx);
             jugadores[id]->setVelY(vy);
             jugadores[id]->mover(enemigos);
             pos->posX = jugadores[id]->getPosX();
             pos->posY = jugadores[id]->getPosY();
-
+            server->send_all(pos);
         }
     }
     strcpy(pos->descrip, v->descrip);

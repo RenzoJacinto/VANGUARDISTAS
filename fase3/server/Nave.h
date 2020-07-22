@@ -1,13 +1,8 @@
 #ifndef NAVE_H_
 #define NAVE_H_
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
-#include <SDL2/SDL_mixer.h>
 #include <stdio.h>
 #include <string>
-#include "ManejoDeSDL.h"
 #include "global.h"
 #include "list"
 
@@ -19,9 +14,7 @@ class Nave{
     public:
 
         //Se inicializa la Nave en esas coordenadas
-		bool crearNave( int x, int y, const char* tipo, const char* subtipo);
-
-		void cerrarNave();
+		bool crearNave( int x, int y);
 
 		int getPosX();
 
@@ -53,8 +46,6 @@ class Nave{
 
 		//La velocidad de la Nave
 		int mVelX, mVelY;
-
-        TextureW gNaveTexture;
 
 };
 

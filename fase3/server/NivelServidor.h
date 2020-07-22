@@ -15,7 +15,7 @@ class NivelServidor{
 
         NivelServidor();
         void iniciarNivel(Server* server, int t_niv);
-        posiciones_t* procesar(velocidades_t* v);
+        posiciones_t* procesar(Server* server, velocidades_t* v);
         bool esValidoReconectar();
         virtual void cargarNivel(Server* server, int cant_jugadores);
         virtual void iniciar_reconexion(int id, Server* server, int socket_id);
@@ -32,6 +32,7 @@ class NivelServidor{
         list<Misil*> misiles;
         int cant_enemigos;
         int tiempo_transcurrido;
+        int renderizados;
 };
 
 #endif

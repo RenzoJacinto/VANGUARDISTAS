@@ -14,8 +14,6 @@ class NaveEnemiga: public Nave {
 		//Mueve la Nave considerando la posicion de la Nave del jugador
 		void mover( NaveJugador* jugador );
 
-		void renderizar();
-
 		int getRadio();
 
 		const char* getImagen();
@@ -26,19 +24,23 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
+		bool impacto_misil(int x_misil, int y_misil);
+
     protected:
 
         int radio;
+        int alto;
+        int ancho;
 
         const char* imagen;
 
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];
-        const char* sEnemigo1;
+        /*const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;
-        const char* sEnemigo4;
+        const char* sEnemigo4;*/
 };
 
 #endif // NAVEENEMIGA_H
