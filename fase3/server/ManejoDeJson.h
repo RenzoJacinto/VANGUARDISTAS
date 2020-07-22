@@ -19,15 +19,22 @@ class ManejoDeJson{
         //para todos
         nlohmann::json& searchValue(nlohmann::json& j_aux, const char* key);
 
+        //para los de config
+        std::string get_sprite_menu(const char* sp);
         int get_nivel_de_log();
-        int get_cantidad_enemigo(const char* key);
-        int get_max_users();
+        std::string get_sprite_mapa(char const* key, char const* sp);
+        std::string get_sprite_nave(char const* key, char const* sp);
+        std::string get_sprite_tiro(char const* key, char const* sp);
 
-        //errores de clave
+        //Para los de default
+        std::string get_sprite_menu_default(const char* sp);
         int get_nivel_de_log_default();
-        int get_cantidad_enemigo_default(const char* key);
-        int get_max_users_default();
+        std::string get_sprite_mapa_default(char const* key, char const* sp);
+        std::string get_sprite_nave_default(char const* key, char const* sp);
+        std::string get_sprite_tiro_default(char const* key, char const* sp);
 
+        //Para errores de encontrar sprite
+        std::string get_imagen_default(const char* sp);
 
     private:
 

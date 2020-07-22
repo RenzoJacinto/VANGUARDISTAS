@@ -1,9 +1,25 @@
 #include "Misil.h"
 
 Misil::Misil( int x_parm, int y_parm, int id_parm){
+    int div = id_parm / 10;
+    int rem = id_parm % 10;
+
+    id_lanzada = div;
+    id_recibida = rem;
+
+    std::string jug = "jugador"+std::to_string(id_lanzada);
+
+    std::string sp = json.get_sprite_tiro("jugador", jug.c_str());
+    if(! misilTexture.loadFromFile(sp.c_str())){
+        jug = "No se pudo cargar la imagen del disparo para " + jug;
+        logger.error(jug.c_str());
+        //sp = json.get_imagen_default("tiro");
+        sp = json.get_imagen_default("nave");
+        misilTexture.loadFromFile(sp.c_str());
+    }
+
     alto = MISIL_HEIGHT;
     ancho = MISIL_WIDTH;
-    id = id_parm * 10;
 
     x = x_parm;
     y = y_parm;
@@ -11,14 +27,17 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
 
 }
 
-bool Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
-    x+=vel;
-    if(x >= SCREEN_WIDTH) return false;
-    /*for(int i=0; i<renderizados; i++){
-        enemigos[i]->impacto_misil(x, y);
+void Misil::mover(){
+    x += vel;
+}
 
-    }*/
-    return true;
+bool Misil::renderizar(){
+    bool ok = false;
+    if(id_recibida == 0){
+        misilTexture.render(x, y);
+        ok = true;
+    }
+    return ok;
 }
 
 int Misil::getAlto(){
@@ -30,18 +49,10 @@ int Misil::getAncho(){
 }
 
 int Misil::get_id(){
-    return id;
+    return id_lanzada*10 + id_recibida;
 }
 
 int Misil::getVel(){
     return vel;
-}
-
-int Misil::getPosX(){
-    return x;
-}
-
-int Misil::getPosY(){
-    return y;
 }
 

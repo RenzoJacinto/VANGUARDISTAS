@@ -3,6 +3,7 @@
 
 #include "Nave.h"
 #include "list"
+#include "Misil.h"
 
 class NaveEnemiga;
 
@@ -10,7 +11,7 @@ class NaveJugador: public Nave {
 
     public:
 
-        NaveJugador( int x, int y, int id);
+        NaveJugador( int x, int y, int id, std::string id_user);
         int get_id();
 
         //Las dimensiones de la Nave del Jugador
@@ -21,8 +22,13 @@ class NaveJugador: public Nave {
 		//Velocidad de la Nave del Jugador
 		static const int NAVE_VEL = 5;
 
+        //Toma las teclas oprimidas y ajusta la velocidad de la Nave
+		void handleEvent( SDL_Event& e , Mix_Music* gMusic, int* misil);
+
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		void mover( vector<NaveEnemiga*>  enemigo );
+
+		void renderizar();
 
         int getAlto();
 
@@ -38,6 +44,8 @@ class NaveJugador: public Nave {
 
         int alto,ancho;
         bool conectado;
+
+        TextureW textureID;
 };
 
 #endif // NAVEJUGADOR_H

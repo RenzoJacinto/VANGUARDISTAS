@@ -1,12 +1,14 @@
 #include "global.h"
-#include "Server.h"
+#include "Menu.h"
+#include "Client.h"
+#include "ManejoDeNiveles.h"
 
-
+ManejoDeSDL sdl;
 ManejoDeLog logger;
 ManejoDeJson json;
-Server* server;
+Client* cliente;
 pthread_mutex_t mutex;
-
+ManejoDeSonidos sounds;
 
 //static int CANTIDAD_PARAMETROS_VALIDOS = 2;
 
@@ -24,32 +26,31 @@ int main( int argc, char* argv[] ){
 
     if(!iniciar_conexion(argv, argc)){
         logger.cerrar();
-        free(server);
+        free(cliente);
         return 0;
     }
-    if(server != NULL) server->iniciar();
+    if(cliente != NULL) cliente->iniciar();
     else{
         logger.error("Parametros invalidos");
         logger.cerrar();
-        free(server);
+        free(cliente);
         return 0;
     }
 
     //Libera la memoria allocada
     logger.cerrar();
-    free(server);
+    free(cliente);
 	return 0;
 }
 
 bool iniciar_conexion(char* args[], int argc){
     pthread_mutex_init(&mutex, NULL);
     bool ok = true;
-    if(argc == 2){
-        server = new Server(atoi(args[1]), mutex);
-        logger.info("Se inicializo el server");
-    } else{
-        logger.error("Cantidad de parametros para el server invalida");
+    if(argc == 3) cliente = new Client(args[1], atoi(args[2]), mutex);
+    else{
+        logger.error("Cantidad de parametros para el cliente invalida");
         ok = false;
     }
+
     return ok;
 }
