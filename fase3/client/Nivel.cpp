@@ -111,20 +111,18 @@ void Nivel::renderizar(){
 void Nivel::procesar(posiciones_t* pos){
     if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
-        //misiles.push_back(misil);
-        misil->renderizar();
-        std::cout<<"X: "<<pos->posX<<"\n";
+        misiles.push_back(misil);
+        //misil->renderizar();
+        /*std::cout<<"X: "<<pos->posX<<"\n";
         std::cout<<"Y: "<<pos->posY<<"\n";
         std::cout<<misil->get_id()<<"\n";
-        std::cout<<"------------\n";
+        std::cout<<"------------\n";*/
         if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
     } else{
         if(pos->id>3){
-            aumentarRenderizados(pos->id-4);
-            for(int i = 0; i < renderizados ; i++){
-                enemigos[i]->mover(jugadores[0]);
-            }
-            parallax();
+            aumentarRenderizados(pos->id-3);
+            enemigos[pos->id - 4]->mover(jugadores[0]);
+            if(pos->id-3 == renderizados) parallax();
             return;
         }
         if(strcmp(pos->descrip, "off") != 0){
