@@ -79,7 +79,7 @@ int NaveJugador::get_id(){
 
 void NaveJugador::desconectar(){
     conectado = false;
-    if(!gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", "jugadorOff"))){
+    if(!gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", "jugadorOff", "nave"))){
         logger.error("La imagen de la nave desconectada no existe");
         gNaveTexture.loadFromFile(json.get_imagen_default("nave"));
     }
@@ -96,7 +96,7 @@ bool NaveJugador::isOn(){
 void NaveJugador::conectar(){
     conectado = true;
     std::string jug = "jugador"+std::to_string(id_nave);
-    if(!gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", jug.c_str()))){
+    if(!gNaveTexture.loadFromFile(json.get_sprite_nave("jugador", jug.c_str(), "nave"))){
         logger.error("La imagen del jugador no existe");
         gNaveTexture.loadFromFile("nave");
     }

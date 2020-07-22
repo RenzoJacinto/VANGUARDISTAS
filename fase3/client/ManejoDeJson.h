@@ -23,15 +23,13 @@ class ManejoDeJson{
         std::string get_sprite_menu(const char* sp);
         int get_nivel_de_log();
         std::string get_sprite_mapa(char const* key, char const* sp);
-        std::string get_sprite_nave(char const* key, char const* sp);
-        std::string get_sprite_tiro(char const* key, char const* sp);
+        std::string get_sprite_nave(char const* key, char const* tipo, char const *sp);
 
         //Para los de default
         std::string get_sprite_menu_default(const char* sp);
         int get_nivel_de_log_default();
         std::string get_sprite_mapa_default(char const* key, char const* sp);
-        std::string get_sprite_nave_default(char const* key, char const* sp);
-        std::string get_sprite_tiro_default(char const* key, char const* sp);
+        std::string get_sprite_nave_default(char const* key, char const* tipo, char const *sp);
 
         //Para errores de encontrar sprite
         std::string get_imagen_default(const char* sp);

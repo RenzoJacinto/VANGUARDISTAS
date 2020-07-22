@@ -9,7 +9,7 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
 
     std::string jug = "jugador"+std::to_string(id_lanzada);
 
-    std::string sp = json.get_sprite_tiro("jugador", jug.c_str());
+    std::string sp = json.get_sprite_nave("jugador", jug.c_str(), "shot");
     if(! misilTexture.loadFromFile(sp.c_str())){
         jug = "No se pudo cargar la imagen del disparo para " + jug;
         logger.error(jug.c_str());

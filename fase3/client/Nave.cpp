@@ -12,7 +12,9 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelX = 0;
     mVelY = 0;
 
-    std::string imagen = json.get_sprite_nave(tipo, subtipo);
+    boom = false;
+
+    std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
     std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
 
     if(!gNaveTexture.loadFromFile(imagen)){
@@ -21,6 +23,13 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
         gNaveTexture.loadFromFile(imagen.c_str());
     }
     string dir(imagen);
+    if(! textureBoom.loadFromFile(json.get_sprite_nave(tipo, subtipo, "boom")))
+        logger.error("No se pudo cargar la textura de la explosion");
+    else{
+        mensaje = "Se cargo el boom con imagen: " + dir;
+        logger.debug(mensaje.c_str());
+    }
+
     mensaje = "Se cargo la nave con imagen: " + dir;
     logger.debug(mensaje.c_str());
     return true;
@@ -28,6 +37,7 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
 
 void Nave::cerrarNave(){
     gNaveTexture.free();
+    textureBoom.free();
 }
 
 int Nave::getPosX(){
@@ -130,5 +140,49 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
 //    }
 
     return colision;
+}
+
+void Nave::renderBoom(){
+    int frames = 6;
+    SDL_Rect dataBoom[frames];
+    if(! boom){
+        dataBoom[ 0 ].x =   0;
+        dataBoom[ 0 ].y =   0;
+        dataBoom[ 0 ].w =  134;
+        dataBoom[ 0 ].h = 236;
+
+        dataBoom[ 1 ].x =  134;
+        dataBoom[ 1 ].y =   0;
+        dataBoom[ 1 ].w =  144;
+        dataBoom[ 1 ].h = 236;
+
+        dataBoom[ 2 ].x = 278;
+        dataBoom[ 2 ].y =   0;
+        dataBoom[ 2 ].w =  182;
+        dataBoom[ 2 ].h = 236;
+
+        dataBoom[ 3 ].x = 460;
+        dataBoom[ 3 ].y =   0;
+        dataBoom[ 3 ].w =  232;
+        dataBoom[ 3 ].h = 236;
+
+        dataBoom[ 4 ].x = 692;
+        dataBoom[ 4 ].y =   0;
+        dataBoom[ 4 ].w =  142;
+        dataBoom[ 4 ].h = 236;
+
+        dataBoom[ 5 ].x = 834;
+        dataBoom[ 5 ].y =   0;
+        dataBoom[ 5 ].w =  166;
+        dataBoom[ 5 ].h = 236;
+
+        int actualFrame = 0;
+        while(actualFrame/4 < frames){
+            SDL_Rect* currentClip = &dataBoom[ actualFrame / 4 ];
+            textureBoom.render(mPosX, mPosY, currentClip );
+            actualFrame++;
+        }
+        boom = true;
+    }
 }
 

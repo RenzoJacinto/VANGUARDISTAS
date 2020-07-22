@@ -47,7 +47,6 @@ int NaveEnemiga::getAnchoImagen(){
 	return gNaveTexture.getWidth();
 }
 
-char* NaveEnemiga::getClave()
-{
+char* NaveEnemiga::getClave(){
     return clave;
 }

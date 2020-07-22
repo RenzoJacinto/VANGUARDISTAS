@@ -45,6 +45,8 @@ class Nave{
 
 		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
 
+		void renderBoom();
+
 
     protected:
 
@@ -55,6 +57,9 @@ class Nave{
 		int mVelX, mVelY;
 
         TextureW gNaveTexture;
+        TextureW textureBoom;
+
+        bool boom;
 
 };
 

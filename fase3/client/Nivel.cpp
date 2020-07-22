@@ -101,6 +101,7 @@ void Nivel::renderizar(){
         //render enemigos
         for(int i = 0; i < renderizados; i++){
             enemigos[i]->renderizar();
+            enemigos[i]->renderBoom();
         }
 
         //Todo este bloque deberiamos declararlo en otro lado
