@@ -14,7 +14,7 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
         jug = "No se pudo cargar la imagen del disparo para " + jug;
         logger.error(jug.c_str());
         //sp = json.get_imagen_default("tiro");
-        sp = json.get_imagen_default("nave");
+        sp = json.get_imagen_default("tiro");
         misilTexture.loadFromFile(sp.c_str());
     }
 

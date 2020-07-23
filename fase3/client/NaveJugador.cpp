@@ -62,8 +62,8 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 }
 
 void NaveJugador::renderizar(){
-	gNaveTexture.render(getPosX(), getPosY());
-    textureID.render(getPosX()+ textureID.getWidth() - 1, getPosY() + (3/2) * NAVE_HEIGHT);
+	gNaveTexture.render(mPosX, mPosY);
+    textureID.render(mPosX, mPosY + (3/2) * NAVE_HEIGHT);
 }
 
 int NaveJugador::getAlto(){

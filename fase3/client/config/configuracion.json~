@@ -64,25 +64,19 @@
         },
         "enemigas":{
 		"enemigo1":{
-			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
-			"nave":"sprites/usuario/naves/enemigas/enemigo1.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png"
+			"nave":"sprites/usuario/naves/enemigas/enemigo1.png"
 		},
 		"enemigo2":{
-			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
-			"nave":"sprites/usuario/naves/enemigas/enemigo2.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png"
+			"nave":"sprites/usuario/naves/enemigas/enemigo2.png"
 		},
 		"enemigo3":{
-			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
-			"nave":"sprites/usuario/naves/enemigas/enemigo3.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png"
+			"nave":"sprites/usuario/naves/enemigas/enemigo3.png"
 		},
 		"enemigo4":{
-			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
-			"nave":"sprites/usuario/naves/enemigas/enemigo4.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png"
-		}
+			"nave":"sprites/usuario/naves/enemigas/enemigo4.png"
+		},
+		"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
+		"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png"
 	},
     	"menu":{
 		"menu":"sprites/usuario/menu/menuBG.png",
