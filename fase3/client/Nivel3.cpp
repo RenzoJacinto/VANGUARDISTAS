@@ -205,4 +205,6 @@ void Nivel3::reconectar(Client* client)
     dataFondo6.w = 800;
     dataFondo6.x = 0;
     dataFondo6.y = 0;
+
+    gMusic = sounds.loadMusic("sounds/nivel3.wav");
 }

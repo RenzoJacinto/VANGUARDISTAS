@@ -13,14 +13,14 @@ class Misil{
 
         //Las dimensiones de la Nave del Jugador
         int id_nave;
-		static const int MISIL_WIDTH = 80;
-		static const int MISIL_HEIGHT = 34;
+		static const int MISIL_WIDTH = 33;
+		static const int MISIL_HEIGHT = 20;
 
 		//Velocidad de la Nave del Jugador
-		static const int MISIL_VEL = 8;
+		static const int MISIL_VEL = 15;
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		bool mover(vector<NaveEnemiga*> enemigos, int renderizados);
+		int mover(vector<NaveEnemiga*> enemigos, int renderizados);
 
         int getAlto();
 

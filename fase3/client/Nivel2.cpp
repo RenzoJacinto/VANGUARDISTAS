@@ -148,4 +148,6 @@ void Nivel2::reconectar(Client* client)
     dataAsteroides3.w = 872;
     dataAsteroides3.x = 0;
     dataAsteroides3.y = 0;
+
+    gMusic = sounds.loadMusic("sounds/nivel2A.wav");
 }

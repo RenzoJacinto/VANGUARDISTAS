@@ -154,4 +154,6 @@ void Nivel1::reconectar(Client* client)
     dataNube2.w = 800;
     dataNube2.x = 0;
     dataNube2.y = 0;
+
+    gMusic = sounds.loadMusic("sounds/nivel1A.wav");
 }

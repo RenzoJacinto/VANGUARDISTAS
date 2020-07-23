@@ -16,12 +16,26 @@ Nivel::Nivel(){
     renderizados = 1;
 }
 
+void* renderEnemies(void* p)
+{
+    Nivel* niv = (Nivel*)p;
+    niv->renderEnemigos();
+    return NULL;
+}
+
+void* renderBoom(void* p)
+{
+    Nivel* niv = (Nivel*)p;
+    niv->renderBooms();
+    return NULL;
+}
 
 bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
     printf("intenta gettear nave %d\n", client->get_id());
     NaveJugador* jugador1 = jugadores[client->get_id()];
     shotFX = sounds.loadEffect("sounds/shot.wav");
+    explosion = sounds.loadEffect("sounds/explocion.wav");
     //printf("aaa\n");
     sounds.playMusic(gMusic);
 
@@ -32,6 +46,8 @@ bool Nivel::iniciarNivel(Client* client){
         SDL_RenderClear( sdl.getRenderer() );
 
         renderBackground();
+
+        renderizar();
 
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
@@ -75,7 +91,7 @@ bool Nivel::iniciarNivel(Client* client){
 
         free(v);
 
-        renderizar();
+        //renderizar();
 
     }
     client->finalizar();
@@ -98,31 +114,38 @@ void Nivel::renderizar(){
             (*pos)->renderizar();
         }
 
-        //render enemigos
         for(int i = 0; i < renderizados; i++){
-            enemigos[i]->renderizar();
-            enemigos[i]->renderBoom();
+            if(enemigos[i]->isAlive()) enemigos[i]->renderizar();
         }
 
+        for(int i = 0; i < renderizados; i++){
+            if(enemigos[i]->boomAvailable())
+            {
+                sounds.playEffect(explosion);
+                enemigos[i]->renderBoom();
+            }
+        }
         //Todo este bloque deberiamos declararlo en otro lado
 
         SDL_RenderPresent( sdl.getRenderer() );
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
+    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0)
+    {
+        if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
-        //misil->renderizar();
-        /*std::cout<<"X: "<<pos->posX<<"\n";
-        std::cout<<"Y: "<<pos->posY<<"\n";
-        std::cout<<misil->get_id()<<"\n";
-        std::cout<<"------------\n";*/
-        if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
-    } else{
+    }
+    else if(strcmp(pos->descrip, "hit") == 0)
+    {
+        if(enemigos[pos->id - 4]->isAlive()) enemigos[pos->id - 4]->die();
+    }
+    else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-3);
-            enemigos[pos->id - 4]->mover(jugadores[0]);
+            enemigos[pos->id - 4]->setPosX(pos->posX);
+            enemigos[pos->id - 4]->setPosY(pos->posY);
             if(pos->id-3 == renderizados) parallax();
             return;
         }
@@ -174,6 +197,19 @@ void Nivel::setNaves(Client* client){
             }
             jugadores.push_back(nave);
         }
+    }
+}
+
+void Nivel::renderEnemigos()
+{
+    for(int i = 0; i < renderizados; i++){
+        if(enemigos[i]->isAlive()) enemigos[i]->renderizar();
+    }
+}
+void Nivel::renderBooms()
+{
+    for(int i = 0; i < renderizados; i++){
+        if(enemigos[i]->boomAvailable()) enemigos[i]->renderBoom();
     }
 }
 

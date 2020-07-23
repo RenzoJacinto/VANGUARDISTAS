@@ -24,7 +24,7 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
-		bool impacto_misil(int x_misil, int y_misil);
+		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil);
 
     protected:
 

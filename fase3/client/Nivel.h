@@ -21,6 +21,8 @@ class Nivel: public Escenario {
         void renderizar();
         void aumentarRenderizados(int i);
         void setNaves(Client* client);
+        void renderEnemigos();
+        void renderBooms();
 
         virtual void cerrar();
         virtual void cargarNivel(Client* client);
@@ -41,7 +43,7 @@ class Nivel: public Escenario {
         SDL_Rect dataFinNivel;
 
         Mix_Music *gMusic;
-
+        Mix_Chunk *explosion;
         Mix_Chunk *shotFX;
 };
 

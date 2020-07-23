@@ -55,13 +55,24 @@ char* NaveEnemiga::getClave(){
     return clave;
 }
 
-bool NaveEnemiga::impacto_misil(int x_misil, int y_misil){
+bool NaveEnemiga::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil){
     bool ok = false;
-    if(x_misil >= mPosX && x_misil <= mPosX + ancho){
-        if(y_misil >= mPosY && y_misil <= mPosY + alto){
-            std::cout<<"IMPACTO EL PIBE\n";
-            ok = true;
-        }
+
+    bool a = (x_misil >= mPosX - radio && x_misil <= mPosX - radio + ancho);
+    bool b = (x_misil+ancho_misil >= mPosX - radio && x_misil+ancho_misil <= mPosX - radio + ancho);
+
+    bool c = (y_misil >= mPosY - radio && y_misil <= mPosY - radio + alto);
+    bool d = (y_misil+alto_misil >= mPosY - radio && y_misil+alto_misil <= mPosY - radio + alto);
+
+    bool colisionX = (a || b);
+    bool colisionY = (c || d);
+
+    //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
+
+    if(colisionX && colisionY)
+    {
+        std::cout<<"IMPACTO EL PIBE\n";
+        ok = true;
     }
 
     return ok;

@@ -11,14 +11,13 @@ Misil::Misil( int x_parm, int y_parm, int id_parm){
 
 }
 
-bool Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
+int Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
     x+=vel;
-    if(x >= SCREEN_WIDTH) return false;
-    /*for(int i=0; i<renderizados; i++){
-        enemigos[i]->impacto_misil(x, y);
-
-    }*/
-    return true;
+    if(x >= SCREEN_WIDTH) return -1;
+    for(int i=0; i<renderizados; i++){
+        if( enemigos[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT) ) return i+4;
+    }
+    return 0;
 }
 
 int Misil::getAlto(){

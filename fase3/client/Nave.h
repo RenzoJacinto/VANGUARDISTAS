@@ -47,6 +47,11 @@ class Nave{
 
 		void renderBoom();
 
+		bool isAlive();
+
+        void die();
+
+        bool boomAvailable();
 
     protected:
 
@@ -59,6 +64,7 @@ class Nave{
         TextureW gNaveTexture;
         TextureW textureBoom;
 
+        bool alive;
         bool boom;
 
 };

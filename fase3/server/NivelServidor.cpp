@@ -119,19 +119,30 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
             parallax();
             list<Misil*>::iterator pos_m = misiles.begin();
             while(pos_m != misiles.end()){
-                bool ok = (*pos_m)->mover(enemigos, renderizados);
-                if(!ok){
+                int ok = (*pos_m)->mover(enemigos, renderizados);
+                if(ok == -1){
                     pos_m = misiles.erase(pos_m);
+                    printf("borra misil\n");
                 }
-                else
+                else if(ok == 0)
                 {
+                    printf("no impacto\n");
                     strcpy(pos->descrip, "shot1");
                     pos->id = (*pos_m)->get_id();
                     pos->posX = (*pos_m)->getPosX();
                     pos->posY = (*pos_m)->getPosY();
                     server->send_all(pos);
+                    pos_m++;
                 }
-                pos_m++;
+                else
+                {
+                    printf("impacto\n");
+                    pos->id = ok;
+                    strcpy(pos->descrip, "hit");
+                    server->send_all(pos);
+                    pos_m = misiles.erase(pos_m);
+                }
+
             }
 
         }
