@@ -184,7 +184,6 @@ void Nave::renderBoom(){
         int h = dataBoom[ actualFrame/6 ].h;
         textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
         printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
-        SDL_RenderPresent( sdl.getRenderer() );
         actualFrame++;
     }
 
@@ -206,4 +205,6 @@ void Nave::die()
     alive = false;
     boom = true;
 }
+
+void Nave::destruiNave() {}
 
