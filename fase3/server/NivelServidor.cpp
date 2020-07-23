@@ -105,10 +105,8 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
         pos->id = misil->get_id();
         server->send_all(pos);
     } else{
-        if(id>3)
-        {
-            for(int i = 0; i < id - 4; i++)
-            {
+        if(id>3){
+            for(int i = 0; i < id - 4; i++){
                 enemigos[i]->mover(jugadores[0]);
                 pos->posX = enemigos[i]->getPosX();
                 pos->posY = enemigos[i]->getPosY();

@@ -45,7 +45,8 @@ class NaveJugador: public Nave {
         int alto,ancho;
         bool conectado;
 
-        TextureW textureID;
+        std::string id_cliente;
+        TextureW textureVida;
 };
 
 #endif // NAVEJUGADOR_H

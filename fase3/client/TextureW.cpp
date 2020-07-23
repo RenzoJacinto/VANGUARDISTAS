@@ -40,10 +40,14 @@ bool TextureW::loadFromFile( std::string path ){
 bool TextureW::loadFromRenderedText( std::string textureText, std::string action){
 	//Get rid of preexisting texture
 	//free();
+	SDL_Color textColor = { 34, 177, 76, 255 };
 	TTF_Font* font = sdl.getFontBox();
 	if(action == "log") font = sdl.getFontLog();
+	else if(action == "game"){
+        textColor = {128,128,0,255};
+        font = sdl.getFontLog();
+	}
 
-    SDL_Color textColor = { 34, 177, 76, 255 };
 
 	//Render text surface
 	SDL_Surface* textSurface = TTF_RenderText_Solid( font, textureText.c_str(), textColor );

@@ -4,12 +4,14 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
     std::string jug = "jugador"+std::to_string(id);
 
-    if(! textureID.loadFromRenderedText(id_user.c_str(), "box"))
-        logger.error("No se pudo cargar el id del jugador");
-    else logger.debug("Se cargo el id del jugador");
+    if(! textureVida.loadFromFile("sprites/usuario/puntos/barraVida.png")){
+        logger.error("No se pudo cargar la barra de vida");
+        textureVida.loadFromFile(json.get_imagen_default("nave"));
+    } else logger.debug("Se cargo la barra de vida");
 
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
+    id_cliente = id_user;
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
     id_nave = id;
@@ -63,7 +65,12 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
 void NaveJugador::renderizar(){
 	gNaveTexture.render(mPosX, mPosY);
-    textureID.render(mPosX, mPosY + (3/2) * NAVE_HEIGHT);
+
+	//Renderizar vida!
+    SDL_Rect vida = { mPosX+3, mPosY+NAVE_HEIGHT+6, NAVE_WIDTH-3, 4 };
+    SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0x00, 0x00, 0xFF );
+    SDL_RenderFillRect( sdl.getRenderer(), &vida );
+    textureVida.render(mPosX, mPosY+NAVE_HEIGHT+2);
 }
 
 int NaveJugador::getAlto(){

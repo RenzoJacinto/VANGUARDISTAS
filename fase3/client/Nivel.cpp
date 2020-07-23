@@ -41,11 +41,16 @@ bool Nivel::iniciarNivel(Client* client){
 
     int id_nave = jugador1->get_id();
 
+    TextureW barras;
+    barras.loadFromFile("sprites/usuario/puntos/puntajes.png");
+
     while( usuarioNoRequieraSalir(quit) ){
 
         SDL_RenderClear( sdl.getRenderer() );
 
         renderBackground();
+
+        barras.render(0,0);
 
         renderizar();
 

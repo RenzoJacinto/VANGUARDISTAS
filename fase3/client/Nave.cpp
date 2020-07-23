@@ -129,13 +129,11 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 }
 
 //En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
-bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos )
-{
+bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos ){
     bool colision = false;
     vector<NaveEnemiga*>::iterator pos;
 
-    for(pos = enemigos.begin();pos != enemigos.end();pos++)
-    {
+    for(pos = enemigos.begin();pos != enemigos.end();pos++){
         colision = checkCollision( jugador , *pos );
         if (colision) break;
     }
@@ -177,34 +175,29 @@ void Nave::renderBoom(){
     dataBoom[ 5 ].h = 236;
 
     int actualFrame = 0;
-    while(actualFrame/6 < frames)
-    {
+    while(actualFrame/6 < frames){
         SDL_Rect* currentClip = &dataBoom[ actualFrame/6 ];
         int w = dataBoom[ actualFrame/6 ].w;
         int h = dataBoom[ actualFrame/6 ].h;
         textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
         printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
+        SDL_RenderPresent( sdl.getRenderer() );
         actualFrame++;
     }
 
     boom = false;
 }
 
-bool Nave::isAlive()
-{
+bool Nave::isAlive(){
     return alive;
 }
 
-bool Nave::boomAvailable()
-{
+bool Nave::boomAvailable(){
     return boom;
 }
 
-void Nave::die()
-{
+void Nave::die(){
     alive = false;
     boom = true;
 }
-
-void Nave::destruiNave() {}
 

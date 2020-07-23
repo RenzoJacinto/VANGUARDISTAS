@@ -38,6 +38,7 @@ class ManejoDeSDL{
 
         TTF_Font* getFontBox();
         TTF_Font* getFontLog();
+        TTF_Font* getFontGame();
 
     private:
 
