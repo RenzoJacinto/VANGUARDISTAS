@@ -44,6 +44,8 @@ class Nave{
         //Las coordenadas X e Y de la Nave
 		int mPosX, mPosY;
 
+		int energia_actual;
+		int energia_total;
 		//La velocidad de la Nave
 		int mVelX, mVelY;
 

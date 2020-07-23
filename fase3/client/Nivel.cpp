@@ -144,7 +144,7 @@ void Nivel::procesar(posiciones_t* pos){
     }
     else if(strcmp(pos->descrip, "hit") == 0)
     {
-        if(enemigos[pos->id - 4]->isAlive()) enemigos[pos->id - 4]->die();
+        enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
     }
     else{
         if(pos->id>3){

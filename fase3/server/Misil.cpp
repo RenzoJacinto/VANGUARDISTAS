@@ -15,7 +15,7 @@ int Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
     x+=vel;
     if(x >= SCREEN_WIDTH) return -1;
     for(int i=0; i<renderizados; i++){
-        if( enemigos[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT) ) return i+4;
+        if ( enemigos[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT) ) return i+4;
     }
     return 0;
 }

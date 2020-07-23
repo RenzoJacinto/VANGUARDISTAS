@@ -26,6 +26,12 @@ class NaveEnemiga: public Nave {
 
 		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil);
 
+		bool isAlive();
+
+		int getVidaActual();
+
+		int getVidaTotal();
+
     protected:
 
         int radio;
@@ -37,6 +43,7 @@ class NaveEnemiga: public Nave {
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];
+        bool alive;
         /*const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;

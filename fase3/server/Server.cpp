@@ -181,7 +181,23 @@ void Server::reconectar_cliente(int i){
 
     printf("ID NAVE RECONEXION: %d\n", v->id);
     //velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
-    //v->id = i;
+
+    int client_socket = get_socket(i);
+    for(int j=0; j<max_users; j++){
+        if(j != i){
+            credenciales_t* id = (credenciales_t*)malloc(sizeof(credenciales_t));
+            strcpy(id->id, usuario_per_socket.at(j).c_str());
+            std::string id_int = std::to_string(j);
+            strcpy(id->pass, id_int.c_str());
+            send(client_socket, id, sizeof(credenciales_t), MSG_NOSIGNAL);
+            free(id);
+        }
+
+    }
+    credenciales_t* corte_envio_users = (credenciales_t*)malloc(sizeof(credenciales_t));
+    strcpy(corte_envio_users->pass, "corte");
+    send(client_socket, corte_envio_users, sizeof(credenciales_t), MSG_NOSIGNAL);
+    free(corte_envio_users);
 
     while(!juego->esValidoReconectar()){}
     v->descrip[0] = 0;
