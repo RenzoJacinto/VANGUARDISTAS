@@ -28,6 +28,8 @@ class NaveEnemiga: public Nave {
 
 		void setEnergias(int actual, int total);
 
+		void setEnergiasReconex(int actual, int total);
+
     protected:
 
         int radio;
@@ -36,6 +38,9 @@ class NaveEnemiga: public Nave {
 
         int energia_actual;
         int energia_total;
+
+        TextureW textureVida;
+
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];

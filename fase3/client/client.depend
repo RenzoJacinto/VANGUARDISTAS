@@ -1782,7 +1782,7 @@
 	"Client.h"
 	"Misil.h"
 
-1595545617 /home/agus/Desktop/puntos/fase3/client/NaveEnemiga.h
+1595557331 /home/agus/Desktop/puntos/fase3/client/NaveEnemiga.h
 	"Nave.h"
 
 1595537700 /home/agus/Desktop/puntos/fase3/client/Nave.h
@@ -2144,16 +2144,16 @@
 1595537700 source:/home/agus/Desktop/puntos/fase3/client/Misil.cpp
 	"Misil.h"
 
-1595537700 source:/home/agus/Desktop/puntos/fase3/client/Nave.cpp
+1595560656 source:/home/agus/Desktop/puntos/fase3/client/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 
-1595545617 source:/home/agus/Desktop/puntos/fase3/client/NaveEnemiga.cpp
+1595557311 source:/home/agus/Desktop/puntos/fase3/client/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1595537700 source:/home/agus/Desktop/puntos/fase3/client/NaveJugador.cpp
+1595555546 source:/home/agus/Desktop/puntos/fase3/client/NaveJugador.cpp
 	"NaveJugador.h"
 
 1595545722 source:/home/agus/Desktop/puntos/fase3/client/Nivel.cpp

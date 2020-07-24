@@ -67,8 +67,8 @@ void NaveJugador::renderizar(){
 	gNaveTexture.render(mPosX, mPosY);
 
 	//Renderizar vida!
-    SDL_Rect vida = { mPosX+3, mPosY+NAVE_HEIGHT+6, NAVE_WIDTH-3, 4 };
-    SDL_SetRenderDrawColor( sdl.getRenderer(), 0xFF, 0x00, 0x00, 0xFF );
+    SDL_Rect vida = { mPosX+2, mPosY+NAVE_HEIGHT+2, NAVE_WIDTH, 10 };
+    SDL_SetRenderDrawColor( sdl.getRenderer(), 0x00, 0xFF, 0x00, 0xFF );
     SDL_RenderFillRect( sdl.getRenderer(), &vida );
     textureVida.render(mPosX, mPosY+NAVE_HEIGHT+2);
 }

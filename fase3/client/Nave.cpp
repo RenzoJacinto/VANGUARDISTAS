@@ -175,10 +175,10 @@ void Nave::renderBoom(){
     dataBoom[ 5 ].h = 236;
 
     int actualFrame = 0;
-    while(actualFrame/6 < frames){
-        SDL_Rect* currentClip = &dataBoom[ actualFrame/6 ];
-        int w = dataBoom[ actualFrame/6 ].w;
-        int h = dataBoom[ actualFrame/6 ].h;
+    while(actualFrame/4 < frames){
+        SDL_Rect* currentClip = &dataBoom[ actualFrame/4 ];
+        int w = dataBoom[ actualFrame/4 ].w;
+        int h = dataBoom[ actualFrame/4 ].h;
         textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
         printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
         SDL_RenderPresent( sdl.getRenderer() );
