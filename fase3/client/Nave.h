@@ -53,6 +53,13 @@ class Nave{
 
         bool boomAvailable();
 
+        void set_animations(const char* tipo, const char* subtipo);
+        void setEnergias(int actual, int total);
+		void setEnergiasReconex(int actual, int total);
+
+        static const int FRAMES_BOOM = 6;
+        static const int FRAMES_HIT_RECEIVE = 5;
+
     protected:
 
         //Las coordenadas X e Y de la Nave
@@ -63,9 +70,20 @@ class Nave{
 
         TextureW gNaveTexture;
         TextureW textureBoom;
+        TextureW textureVida;
+        TextureW textureHitReceive;
+
+        SDL_Rect dataBoom[FRAMES_BOOM];
+        SDL_Rect dataHitReceive[FRAMES_HIT_RECEIVE];
+
+        int framesBoom;
+        int framesHitReceive;
 
         bool alive;
         bool boom;
+
+        int energia_actual;
+        int energia_total;
 
 };
 

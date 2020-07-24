@@ -23,14 +23,10 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
         imagen = json.get_imagen_default("nave");
         gNaveTexture.loadFromFile(imagen.c_str());
     }
-    string dir(imagen);
-    if(! textureBoom.loadFromFile(json.get_sprite_nave(tipo, subtipo, "boom")))
-        logger.error("No se pudo cargar la textura de la explosion");
-    else{
-        mensaje = "Se cargo el boom con imagen: " + dir;
-        logger.debug(mensaje.c_str());
-    }
 
+    // SETEANDO LAS ANIMACIONES Y DEMAS
+    set_animations(tipo, subtipo);
+    string dir(imagen);
     mensaje = "Se cargo la nave con imagen: " + dir;
     logger.debug(mensaje.c_str());
     return true;
@@ -142,8 +138,52 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
 }
 
 void Nave::renderBoom(){
-    int frames = 6;
-    SDL_Rect dataBoom[frames];
+
+    int actualFrame = 0;
+    while(actualFrame/4 < framesBoom){
+        SDL_Rect* currentClip = &dataBoom[ actualFrame/4 ];
+        int w = dataBoom[ actualFrame/4 ].w;
+        int h = dataBoom[ actualFrame/4 ].h;
+        textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
+        printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
+        SDL_RenderPresent( sdl.getRenderer() );
+        actualFrame++;
+    }
+
+    boom = false;
+}
+
+bool Nave::isAlive(){
+    return alive;
+}
+
+bool Nave::boomAvailable(){
+    return boom;
+}
+
+void Nave::die(){
+    alive = false;
+    boom = true;
+}
+
+void Nave::set_animations(const char* tipo, const char* subtipo){
+
+
+    if(! textureBoom.loadFromFile(json.get_sprite_nave(tipo, subtipo, "boom"))){
+        logger.error("No se pudo cargar la textura de la explosion");
+    } else{
+        logger.debug("Se cargo la textura de la explocion de la nave");
+    }
+
+    if(! textureHitReceive.loadFromFile(json.get_sprite_nave(tipo, subtipo, "receiveHit"))){
+        logger.error("No se pudo cargar la textura del disparo recibido");
+    } else logger.debug("Se cargo el efecto de hit recibido");
+
+    if(! textureVida.loadFromFile(json.get_sprite_nave(tipo, subtipo, "lifeBox"))){
+        logger.error("No se pudo cargar la barra de vida");
+    } else logger.debug("Se cargo la barra de vida");
+
+    framesBoom = FRAMES_BOOM;
     dataBoom[ 0 ].x =   0;
     dataBoom[ 0 ].y =   0;
     dataBoom[ 0 ].w =  134;
@@ -174,30 +214,50 @@ void Nave::renderBoom(){
     dataBoom[ 5 ].w =  166;
     dataBoom[ 5 ].h = 236;
 
-    int actualFrame = 0;
-    while(actualFrame/4 < frames){
-        SDL_Rect* currentClip = &dataBoom[ actualFrame/4 ];
-        int w = dataBoom[ actualFrame/4 ].w;
-        int h = dataBoom[ actualFrame/4 ].h;
-        textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
-        printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
-        SDL_RenderPresent( sdl.getRenderer() );
-        actualFrame++;
+    framesHitReceive = FRAMES_HIT_RECEIVE;
+    dataHitReceive[ 0 ].x =   0;
+    dataHitReceive[ 0 ].y =   0;
+    dataHitReceive[ 0 ].w =  134;
+    dataHitReceive[ 0 ].h = 32;
+
+    dataHitReceive[ 1 ].x =  32;
+    dataHitReceive[ 1 ].y =   0;
+    dataHitReceive[ 1 ].w =  32;
+    dataHitReceive[ 1 ].h = 32;
+
+    dataHitReceive[ 2 ].x = 64;
+    dataHitReceive[ 2 ].y =   0;
+    dataHitReceive[ 2 ].w =  32;
+    dataHitReceive[ 2 ].h = 32;
+
+    dataHitReceive[ 3 ].x = 96;
+    dataHitReceive[ 3 ].y =   0;
+    dataHitReceive[ 3 ].w =  32;
+    dataHitReceive[ 3 ].h = 32;
+
+    dataHitReceive[ 4 ].x = 128;
+    dataHitReceive[ 4 ].y =   0;
+    dataHitReceive[ 4 ].w =  32;
+    dataHitReceive[ 4 ].h = 32;
+}
+
+void Nave::setEnergias(int actual, int total){
+    energia_actual = actual;
+    energia_total = total;
+    if(energia_actual == 0) die();
+    else{
+        int actualFrame = 0;
+        while(actualFrame/4 < framesHitReceive){
+            SDL_Rect* currentClip = &dataHitReceive[ actualFrame/4 ];
+            textureHitReceive.render(mPosX, mPosY, currentClip );
+            SDL_RenderPresent( sdl.getRenderer() );
+            actualFrame++;
+        }
     }
-
-    boom = false;
 }
 
-bool Nave::isAlive(){
-    return alive;
+void Nave::setEnergiasReconex(int actual, int total){
+    energia_actual = actual;
+    energia_total = total;
+    if(energia_actual == 0) alive = false;
 }
-
-bool Nave::boomAvailable(){
-    return boom;
-}
-
-void Nave::die(){
-    alive = false;
-    boom = true;
-}
-

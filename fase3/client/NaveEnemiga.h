@@ -26,20 +26,13 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
-		void setEnergias(int actual, int total);
 
-		void setEnergiasReconex(int actual, int total);
 
     protected:
 
         int radio;
 
         const char* imagen;
-
-        int energia_actual;
-        int energia_total;
-
-        TextureW textureVida;
 
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;

@@ -4,11 +4,6 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
     std::string jug = "jugador"+std::to_string(id);
 
-    if(! textureVida.loadFromFile("sprites/usuario/puntos/barraVida.png")){
-        logger.error("No se pudo cargar la barra de vida");
-        textureVida.loadFromFile(json.get_imagen_default("nave"));
-    } else logger.debug("Se cargo la barra de vida");
-
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
     id_cliente = id_user;

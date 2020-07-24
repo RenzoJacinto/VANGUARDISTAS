@@ -45,6 +45,7 @@ class Nivel: public Escenario {
         Mix_Music *gMusic;
         Mix_Chunk *explosion;
         Mix_Chunk *shotFX;
+        Mix_Chunk *hitReceiveFX;
 };
 
 #endif

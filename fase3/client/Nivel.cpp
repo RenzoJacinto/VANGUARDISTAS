@@ -36,6 +36,7 @@ bool Nivel::iniciarNivel(Client* client){
     NaveJugador* jugador1 = jugadores[client->get_id()];
     shotFX = sounds.loadEffect("sounds/shot.wav");
     explosion = sounds.loadEffect("sounds/explocion.wav");
+    hitReceiveFX = sounds.loadEffect("sounds/hit_receive.wav");
     //printf("aaa\n");
     sounds.playMusic(gMusic);
 
@@ -136,14 +137,13 @@ void Nivel::renderizar(){
 }
 
 void Nivel::procesar(posiciones_t* pos){
-    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0)
-    {
+    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
         if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
     }
-    else if(strcmp(pos->descrip, "hit") == 0)
-    {
+    else if(strcmp(pos->descrip, "hit") == 0){
+        sounds.playEffect(hitReceiveFX);
         enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
     }
     else{
