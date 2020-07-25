@@ -7,7 +7,7 @@ void Nivel3::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 3 ....");
 
-    gMusic = sounds.loadMusic("sounds/nivel3.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel3").c_str());
 
     setNaves(client);
 
@@ -206,5 +206,5 @@ void Nivel3::reconectar(Client* client)
     dataFondo6.x = 0;
     dataFondo6.y = 0;
 
-    gMusic = sounds.loadMusic("sounds/nivel3.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel3").c_str());
 }

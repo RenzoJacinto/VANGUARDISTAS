@@ -12,6 +12,8 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     energia_actual = -1;
     energia_total = -1;
 
+    vidas = CANT_VIDAS_ENEMIGO;
+
     if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
 

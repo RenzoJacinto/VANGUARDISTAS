@@ -128,6 +128,25 @@ std::string ManejoDeJson::get_sprite_nave(const char* key, const char* tipo, con
     }
 }
 
+ std::string ManejoDeJson::get_sprite_puntajes(const char* sp){
+    json& j_aux = searchValue(j, "puntajes");
+    if(j_aux == "errorKey") return get_sprite_puntajes_default(sp);
+
+    string sSP(sp);
+
+    try { return j_aux.at(sp); }
+    catch (nlohmann::detail::out_of_range) {
+        std::string msj = "No se encontro el sprite " + sSP + " de puntajes. Se obtiene de default.json";
+        logger.error(msj.c_str());
+        return get_sprite_puntajes_default(sp);
+    }
+    catch(nlohmann::detail::type_error){
+        logger.error("El sprite buscado debe ser un string y es un numero");
+        return get_sprite_puntajes_default(sp);
+    }
+
+ }
+
 // PARA LOS DE DEFAULT (SOLO LLAMADAS EN CASOS DE ERROR DE CLAVE)
 
 std::string ManejoDeJson::get_sprite_mapa_default(char const* key, const char* sp){
@@ -174,11 +193,60 @@ int ManejoDeJson::get_nivel_de_log_default(){
     return def.at("log");
 }
 
+std::string ManejoDeJson::get_sprite_puntajes_default(const char* sp){
+
+    json& j_aux = searchValue(def, "puntajes");
+
+    string sSP(sp);
+    std::string msj = "Se obtuvo el sprite " + sSP + " de puntajes de default.json";
+    logger.debug(msj.c_str());
+
+    return j_aux.at(sp);
+}
+
+std::string ManejoDeJson::get_sound_default(char const* tipo, const char* snd){
+
+    json& j_aux = searchValue(def, "sounds");
+    json& j_sound = searchValue(j_aux, tipo);
+
+
+    string sSP(snd);
+    std::string mensaje = "Se obtuvo el sprite: " + sSP + " de sonidos de default.json";
+    logger.debug(mensaje.c_str());
+
+    return j_sound.at(snd);
+}
+
 
 // PARA LLAMADAS DE ERROR DE ENCONTRAR SPRITE
 std::string ManejoDeJson::get_imagen_default(const char* sp){
     json& j_aux = searchValue(def, "default");
     logger.debug("Se obtuvo la imagen de error, que muestra inexistencia de imagen");
     return j_aux.at(sp);
+}
+
+
+// PARA LOS SONIDOS
+
+std::string ManejoDeJson::get_sound(char const* tipo, const char* snd){
+
+    json& j_aux = searchValue(j, "sounds");
+    if(j_aux == "errorKey") return get_sound_default(tipo, snd);
+    json& j_sound = searchValue(j_aux, tipo);
+    if(j_sound == "errorKey") return get_sound_default(tipo, snd);
+
+    string sSP(snd);
+
+    try{return  j_sound.at(snd);}
+    catch (nlohmann::detail::out_of_range) {
+        std::string mensaje1 = "No se encontro el sprite: " + sSP + ". Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sound_default(tipo, snd);
+    }
+    catch(nlohmann::detail::type_error){
+        std::string mensaje1 = "El sprite " + sSP + ", debe ser un string y es un numero. Se obtiene de default.json";
+        logger.error(mensaje1.c_str());
+        return get_sound_default(tipo, snd);
+    }
 }
 

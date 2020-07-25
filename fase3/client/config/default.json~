@@ -1,12 +1,8 @@
 {
 	"log": 3,
-	"conexion":{
-		"estado":"client",
-		"users": 2
-	},
     	"stages":{
         	"nivel1":{
-                	"enemigos": 35,
+			
                 	"sprites":{
 		            	"mapaBG":"sprites/usuario/niveles/nivel1/bg.png",
 		            	"ciudad":"sprites/usuario/niveles/nivel1/ciudad.png",
@@ -17,7 +13,6 @@
 			}
             	},
            	"nivel2":{
-                	"enemigos": 20,
                 	"sprites":{
 				"mapaBG":"sprites/usuario/niveles/nivel2/bg2.png",
 				"planeta1":"sprites/usuario/niveles/nivel2/planeta1.png",
@@ -29,7 +24,6 @@
                 	}
             	},
 	    	"nivel3":{
-                	"enemigos": 15,
                 	"sprites":{
 		        	"mapaBG":"sprites/usuario/niveles/nivel3/bg.png",
 		        	"fondo1":"sprites/usuario/niveles/nivel3/fondo1.png",
@@ -42,31 +36,100 @@
                 	}
            	}
     	},
-    	"naves":{
-        	"jugador":{
-		        "jugador0":"sprites/usuario/naves/jugador/nave1.png",
-			"jugador1":"sprites/usuario/naves/jugador/nave2.png",
-			"jugador2":"sprites/usuario/naves/jugador/nave3.png",
-			"jugador3":"sprites/usuario/naves/jugador/nave4.png",
-			"jugadorOff":"sprites/usuario/naves/jugador/naveDesconexion.png"
-            	},
-            	"enemigas":{
-		        "enemigo1":"sprites/usuario/naves/enemigas/enemigo1.png",
-		        "enemigo2":"sprites/usuario/naves/enemigas/enemigo2.png",
-		        "enemigo3":"sprites/usuario/naves/enemigas/enemigo3.png",
-		        "enemigo4":"sprites/usuario/naves/enemigas/enemigo4.png"
+    	"jugador":{
+		"jugador0":{
+			"nave":"sprites/usuario/naves/jugador/nave1.png",
+			"boom":"sprites/usuario/naves/jugador/boom1.png",
+			"shot":"sprites/usuario/naves/jugador/tiro1.png",
+			"receiveHit":"sprites/usuario/naves/jugador/hit_receive1.png",
+			"lifeBox":"sprites/usuario/puntos/barraVida.png"
+		},
+		"jugador1":{
+			"nave":"sprites/usuario/naves/jugador/nave2.png",
+			"boom":"sprites/usuario/naves/jugador/boom2.png",
+			"shot":"sprites/usuario/naves/jugador/tiro2.png",
+			"receiveHit":"sprites/usuario/naves/jugador/hit_receive2.png",
+			"lifeBox":"sprites/usuario/puntos/barraVida.png"
+		},
+		"jugador2":{
+			"nave":"sprites/usuario/naves/jugador/nave3.png",
+			"boom":"sprites/usuario/naves/jugador/boom3.png",
+			"shot":"sprites/usuario/naves/jugador/tiro3.png",
+			"receiveHit":"sprites/usuario/naves/jugador/hit_receive3.png",
+			"lifeBox":"sprites/usuario/puntos/barraVida.png"
+		},
+		"jugador3":{
+			"nave":"sprites/usuario/naves/jugador/nave4.png",
+			"boom":"sprites/usuario/naves/jugador/boom4.png",
+			"shot":"sprites/usuario/naves/jugador/tiro4.png",
+			"receiveHit":"sprites/usuario/naves/jugador/hit_receive4.png",
+			"lifeBox":"sprites/usuario/puntos/barraVida.png"
+		},
+		"jugadorOff":{
+			"nave":"sprites/usuario/naves/jugador/naveDesconexion.png",
+			"boom":"sprites/usuario/naves/jugador/boomOff.png"
 		}
-    	},
+        },
+        "enemigas":{
+		"enemigo1":{
+			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
+			"nave":"sprites/usuario/naves/enemigas/enemigo1.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
+			"lifeBox":"sprites/usuario/puntos/barraVidaTipo1.png"
+		},
+		"enemigo2":{
+			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
+			"nave":"sprites/usuario/naves/enemigas/enemigo2.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
+			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
+
+		},
+		"enemigo3":{
+			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
+			"nave":"sprites/usuario/naves/enemigas/enemigo3.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
+			"lifeBox":"sprites/usuario/puntos/barraVidaTipo1.png"
+		},
+		"enemigo4":{
+			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
+			"nave":"sprites/usuario/naves/enemigas/enemigo4.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
+			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
+		}
+	},
     	"menu":{
 		"menu":"sprites/usuario/menu/menuBG.png",
 		"selectName": "sprites/usuario/menu/selectName.png",
 		"selectPass": "sprites/usuario/menu/selectPass.png",
+		"noneSelect": "sprites/usuario/menu/noneSelect.png",
 		"errorLogin": "sprites/usuario/menu/errorLogin.png",
 		"errorLoginID": "sprites/usuario/menu/errorLoginID.png",
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
 		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
 		"idNoConectada":"sprites/usuario/menu/idNoConectada.png",
 		"serverCerrado":"sprites/usuario/menu/serverCerrado.png"
+	},
+	"puntajes":{
+		"box":"sprites/usuario/puntos/puntajes.png",
+		"life":"sprites/usuario/puntos/vida.png"
+	},
+	"sounds":{
+		"FX":{
+			"shot":"sounds/shot.wav",
+			"receiveHit":"sounds/hit_receive.wav",
+			"boom":"sounds/explocion.wav",
+			"lifeDown":"sounds/life_down.wav"
+		},
+		"music":{
+			"menu":"sounds/menu1.wav",
+			"nivel1":"sounds/nivel1A.wav",
+			"nivel2":"sounds/nivel2A.wav",
+			"nivel3":"sounds/nivel3.wav"
+		}
 	},
 	"default": {
 		"nave": "sprites/default/nave.png",

@@ -12,7 +12,6 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelX = 0;
     mVelY = 0;
 
-    alive = true;
     boom = false;
 
     std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
@@ -154,7 +153,7 @@ void Nave::renderBoom(){
 }
 
 bool Nave::isAlive(){
-    return alive;
+    return vidas != 0;
 }
 
 bool Nave::boomAvailable(){
@@ -162,7 +161,7 @@ bool Nave::boomAvailable(){
 }
 
 void Nave::die(){
-    alive = false;
+    vidas--;
     boom = true;
 }
 
@@ -249,7 +248,9 @@ void Nave::setEnergias(int actual, int total){
         int actualFrame = 0;
         while(actualFrame/4 < framesHitReceive){
             SDL_Rect* currentClip = &dataHitReceive[ actualFrame/4 ];
-            textureHitReceive.render(mPosX, mPosY, currentClip );
+            int w = dataBoom[ actualFrame/4 ].w;
+            int h = dataBoom[ actualFrame/4 ].h;
+            textureHitReceive.render(mPosX - 2 * w, mPosY - 2 * h, currentClip );
             SDL_RenderPresent( sdl.getRenderer() );
             actualFrame++;
         }
@@ -259,5 +260,5 @@ void Nave::setEnergias(int actual, int total){
 void Nave::setEnergiasReconex(int actual, int total){
     energia_actual = actual;
     energia_total = total;
-    if(energia_actual == 0) alive = false;
+    if(energia_actual == 0) vidas--;
 }

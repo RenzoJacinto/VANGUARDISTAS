@@ -16,15 +16,13 @@ Nivel::Nivel(){
     renderizados = 1;
 }
 
-void* renderEnemies(void* p)
-{
+void* renderEnemies(void* p){
     Nivel* niv = (Nivel*)p;
     niv->renderEnemigos();
     return NULL;
 }
 
-void* renderBoom(void* p)
-{
+void* renderBoom(void* p){
     Nivel* niv = (Nivel*)p;
     niv->renderBooms();
     return NULL;
@@ -33,27 +31,34 @@ void* renderBoom(void* p)
 bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
     printf("intenta gettear nave %d\n", client->get_id());
+
     NaveJugador* jugador1 = jugadores[client->get_id()];
-    shotFX = sounds.loadEffect("sounds/shot.wav");
-    explosion = sounds.loadEffect("sounds/explocion.wav");
-    hitReceiveFX = sounds.loadEffect("sounds/hit_receive.wav");
-    //printf("aaa\n");
+
+    shotFX = sounds.loadEffect(json.get_sound("FX","shot").c_str());
+    explosion = sounds.loadEffect(json.get_sound("FX","boom").c_str());
+    hitReceiveFX = sounds.loadEffect(json.get_sound("FX","receiveHit").c_str());
+    lifeDownFX = sounds.loadEffect(json.get_sound("FX", "lifeDown").c_str());
+
+
     sounds.playMusic(gMusic);
 
     int id_nave = jugador1->get_id();
 
-    TextureW barras;
-    barras.loadFromFile("sprites/usuario/puntos/puntajes.png");
+    if(! lifeTexture.loadFromFile(json.get_sprite_puntajes("life")))
+        logger.error("No se pudo cargar la textura de la vida");
+
+    if(! puntajesBoxTexture.loadFromFile(json.get_sprite_puntajes("box")))
+        logger.error("No se pudo cargar la textura de los puntajes");
+
 
     while( usuarioNoRequieraSalir(quit) ){
 
         SDL_RenderClear( sdl.getRenderer() );
 
+        //renders
         renderBackground();
-
-        barras.render(0,0);
-
-        renderizar();
+        renderPuntajes();
+        renderizar(id_nave);
 
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
@@ -103,7 +108,7 @@ bool Nivel::iniciarNivel(Client* client){
     client->finalizar();
     return quit;
 }
-void Nivel::renderizar(){
+void Nivel::renderizar(int id_nave){
 
         list<Misil*>::iterator pos_m = misiles.begin();
         while(pos_m != misiles.end()){
@@ -118,6 +123,12 @@ void Nivel::renderizar(){
         vector<NaveJugador*>::iterator pos;
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             (*pos)->renderizar();
+            if((*pos)->boomAvailable()){
+                sounds.playEffect(explosion);
+                (*pos)->renderBoom();
+                if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
+
+            }
         }
 
         for(int i = 0; i < renderizados; i++){
@@ -125,8 +136,7 @@ void Nivel::renderizar(){
         }
 
         for(int i = 0; i < renderizados; i++){
-            if(enemigos[i]->boomAvailable())
-            {
+            if(enemigos[i]->boomAvailable()){
                 sounds.playEffect(explosion);
                 enemigos[i]->renderBoom();
             }
@@ -205,17 +215,59 @@ void Nivel::setNaves(Client* client){
     }
 }
 
-void Nivel::renderEnemigos()
-{
+void Nivel::renderEnemigos(){
     for(int i = 0; i < renderizados; i++){
         if(enemigos[i]->isAlive()) enemigos[i]->renderizar();
     }
 }
-void Nivel::renderBooms()
-{
+void Nivel::renderBooms(){
     for(int i = 0; i < renderizados; i++){
         if(enemigos[i]->boomAvailable()) enemigos[i]->renderBoom();
     }
+}
+
+void Nivel::renderPuntajes(){
+
+    puntajesBoxTexture.render(0,0);
+
+    TextureW nameTexture;
+    int size_box_name = 132;
+
+    int size_life = lifeTexture.getWidth();
+
+    int y_name = 16;
+    int x_name = 0;
+
+    int y_life = 38;
+    int x_life = 0;
+
+    vector<NaveJugador*>::iterator pos;
+    for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
+        int id = (*pos)->get_id();
+        if(id == 0 || id == 3){
+            x_name = id * 600 + 36;
+            x_life = id * 600 + 25;
+        } else{
+            x_name = id*200 + 38;
+            x_life = id*200 + 27;
+        }
+
+        std::string name = (*pos)->get_name();
+        if(! nameTexture.loadFromRenderedText(name, "game"))
+            logger.error("No se pudo cargar el id del jugador");
+        else{
+            int center = size_box_name - nameTexture.getWidth();
+            center = center/2;
+            nameTexture.render(x_name + center, y_name);
+        }
+
+        int cant_vidas = (*pos)->get_cant_vidas();
+        for(int i=0; i<cant_vidas; i++){
+            lifeTexture.render(x_life + i*size_life, y_life);
+        }
+    }
+
+    nameTexture.free();
 }
 
 void Nivel::parallax(){}

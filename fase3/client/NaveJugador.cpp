@@ -6,6 +6,7 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
 
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
+    vidas = CANT_VIDAS_JUGADOR;
     id_cliente = id_user;
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
@@ -106,5 +107,13 @@ void NaveJugador::conectar(){
     std::string id = std::to_string(id_nave);
     msj = msj + id;
     logger.info(msj.c_str());
+}
+
+std::string NaveJugador::get_name(){
+    return id_cliente;
+}
+
+int NaveJugador::get_cant_vidas(){
+    return vidas;
 }
 

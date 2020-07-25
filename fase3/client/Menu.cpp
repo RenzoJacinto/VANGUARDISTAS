@@ -32,7 +32,7 @@ void Menu::procesar(){
     logger.info("Se mostró el menú");
     bt.inicializar_credenciales();
 
-    Mix_Music* gMusic = sounds.loadMusic("sounds/menu1.wav");
+    Mix_Music* gMusic = sounds.loadMusic(json.get_sound("music", "menu").c_str());
     if(gMusic != NULL) sounds.playMusic(gMusic);
 
     SDL_RenderClear( sdl.getRenderer() );

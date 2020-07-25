@@ -10,7 +10,7 @@ void Nivel1::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 1 ....");
 
-    gMusic = sounds.loadMusic("sounds/nivel1A.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel1").c_str());
 
     setNaves(client);
 
@@ -155,5 +155,5 @@ void Nivel1::reconectar(Client* client)
     dataNube2.x = 0;
     dataNube2.y = 0;
 
-    gMusic = sounds.loadMusic("sounds/nivel1A.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel1").c_str());
 }

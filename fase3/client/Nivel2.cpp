@@ -6,7 +6,7 @@ Nivel2::Nivel2(){}
 void Nivel2::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 2 ....");
-    gMusic = sounds.loadMusic("sounds/nivel2A.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel2").c_str());
 
     setNaves(client);
 
@@ -149,5 +149,5 @@ void Nivel2::reconectar(Client* client)
     dataAsteroides3.x = 0;
     dataAsteroides3.y = 0;
 
-    gMusic = sounds.loadMusic("sounds/nivel2A.wav");
+    gMusic = sounds.loadMusic(json.get_sound("music", "nivel2").c_str());
 }

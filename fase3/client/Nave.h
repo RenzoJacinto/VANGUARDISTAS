@@ -59,6 +59,8 @@ class Nave{
 
         static const int FRAMES_BOOM = 6;
         static const int FRAMES_HIT_RECEIVE = 5;
+        static const int CANT_VIDAS_JUGADOR = 3;
+        static const int CANT_VIDAS_ENEMIGO = 1;
 
     protected:
 
@@ -85,6 +87,7 @@ class Nave{
         int energia_actual;
         int energia_total;
 
+        int vidas;
 };
 
 #endif /* NAVE_H_ */

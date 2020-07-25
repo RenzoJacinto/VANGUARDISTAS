@@ -40,6 +40,9 @@ class NaveJugador: public Nave {
 
         void conectar();
 
+        std::string get_name();
+        int get_cant_vidas();
+
     private:
 
         int alto,ancho;
