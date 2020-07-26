@@ -26,7 +26,7 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
-
+        int getScore();
 
     protected:
 
@@ -37,6 +37,7 @@ class NaveEnemiga: public Nave {
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];
+        int score;
         const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;

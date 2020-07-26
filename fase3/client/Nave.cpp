@@ -144,7 +144,7 @@ void Nave::renderBoom(){
         int w = dataBoom[ actualFrame/4 ].w;
         int h = dataBoom[ actualFrame/4 ].h;
         textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
-        printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
+        //printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
         SDL_RenderPresent( sdl.getRenderer() );
         actualFrame++;
     }
@@ -242,9 +242,8 @@ void Nave::set_animations(const char* tipo, const char* subtipo){
 
 void Nave::setEnergias(int actual, int total){
     energia_actual = actual;
-    energia_total = total;
     if(energia_actual == 0) die();
-    else{
+    /*else{
         int actualFrame = 0;
         while(actualFrame/4 < framesHitReceive){
             SDL_Rect* currentClip = &dataHitReceive[ actualFrame/4 ];
@@ -254,11 +253,10 @@ void Nave::setEnergias(int actual, int total){
             SDL_RenderPresent( sdl.getRenderer() );
             actualFrame++;
         }
-    }
+    }*/
 }
 
 void Nave::setEnergiasReconex(int actual, int total){
     energia_actual = actual;
-    energia_total = total;
     if(energia_actual == 0) vidas--;
 }

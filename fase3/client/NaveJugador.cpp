@@ -6,6 +6,7 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
 
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
+    score = 0;
     vidas = CANT_VIDAS_JUGADOR;
     id_cliente = id_user;
     alto = NAVE_HEIGHT;
@@ -117,3 +118,13 @@ int NaveJugador::get_cant_vidas(){
     return vidas;
 }
 
+void NaveJugador::addScore(int puntos)
+{
+    printf("score: %d\n", score);
+    score += puntos;
+}
+
+int NaveJugador::getScore()
+{
+    return score;
+}

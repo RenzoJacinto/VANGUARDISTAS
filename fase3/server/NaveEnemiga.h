@@ -32,6 +32,8 @@ class NaveEnemiga: public Nave {
 
 		int getVidaTotal();
 
+		int getScore();
+
     protected:
 
         int radio;
@@ -44,6 +46,7 @@ class NaveEnemiga: public Nave {
         int desplazamiento;
         char clave[15];
         bool alive;
+        int score;
         /*const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;

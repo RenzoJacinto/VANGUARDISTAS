@@ -17,6 +17,19 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
 
+    if(sp == "enemigo1" || sp == "enemigo3")
+    {
+        energia_total = 100;
+        energia_actual = 100;
+        score = 500;
+    }
+    else
+    {
+        energia_total = 200;
+        energia_actual = 200;
+        score = 1000;
+    }
+
     clave[0] = 0;
     strncat(clave, sprite, 15);
     radio=getAltoImagen()/2;
@@ -37,7 +50,7 @@ void NaveEnemiga::renderizar(){
 
     gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
     int w = getAnchoImagen();
-    if(energia_total != -1) w = (int) (w * energia_actual / energia_total);
+    w = (int) (w * energia_actual / energia_total);
     SDL_Rect vida = { mPosX-getRadio()+5, mPosY+getRadio()+6, w, 10 };
     SDL_SetRenderDrawColor( sdl.getRenderer(), 0x00, 0xFF, 0x00, 0xFF );
     SDL_RenderFillRect( sdl.getRenderer(), &vida );
@@ -62,4 +75,9 @@ int NaveEnemiga::getAnchoImagen(){
 
 char* NaveEnemiga::getClave(){
     return clave;
+}
+
+int NaveEnemiga::getScore()
+{
+    return score;
 }

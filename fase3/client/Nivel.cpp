@@ -155,6 +155,8 @@ void Nivel::procesar(posiciones_t* pos){
     else if(strcmp(pos->descrip, "hit") == 0){
         sounds.playEffect(hitReceiveFX);
         enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
+        int score = enemigos[pos->id -4]->getScore();
+        if(!enemigos[pos->id -4]->isAlive()) jugadores[pos->posY]->addScore(score);
     }
     else{
         if(pos->id>3){
@@ -169,6 +171,7 @@ void Nivel::procesar(posiciones_t* pos){
             jugadores[pos->id]->setPosY(pos->posY);
             if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
         } else{
+            printf("desconectado\n");
             jugadores[pos->id]->desconectar();
         }
     }
@@ -231,6 +234,7 @@ void Nivel::renderPuntajes(){
     puntajesBoxTexture.render(0,0);
 
     TextureW nameTexture;
+    TextureW scoreTexture;
     int size_box_name = 132;
 
     int size_life = lifeTexture.getWidth();
@@ -241,24 +245,34 @@ void Nivel::renderPuntajes(){
     int y_life = 38;
     int x_life = 0;
 
+    int y_score = 35;
+    int x_score = 0;
+
     vector<NaveJugador*>::iterator pos;
     for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
         int id = (*pos)->get_id();
         if(id == 0 || id == 3){
             x_name = id * 600 + 36;
             x_life = id * 600 + 25;
+            x_score = id * 600 + 75;
         } else{
             x_name = id*200 + 38;
             x_life = id*200 + 27;
+            x_score = id*200 + 81;
         }
 
         std::string name = (*pos)->get_name();
+        int score = (*pos)->getScore();
+        std::string puntos = std::to_string(score);
         if(! nameTexture.loadFromRenderedText(name, "game"))
             logger.error("No se pudo cargar el id del jugador");
+        if(! scoreTexture.loadFromRenderedText(puntos, "game"))
+            logger.error("No se pudo cargar el score del jugador");
         else{
             int center = size_box_name - nameTexture.getWidth();
             center = center/2;
             nameTexture.render(x_name + center, y_name);
+            scoreTexture.render(x_score + center, y_score);
         }
 
         int cant_vidas = (*pos)->get_cant_vidas();

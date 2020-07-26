@@ -15,11 +15,13 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     if(sp == "enemigo1" || sp == "enemigo3"){
         alto = 80;
         ancho = 80;
+        score = 500;
         energia_actual = 100;
         energia_total = 100;
     } else{
         alto = 63;
         ancho = 63;
+        score = 1000;
         energia_actual = 200;
         energia_total = 200;
     }
@@ -102,4 +104,9 @@ int NaveEnemiga::getVidaActual()
 int NaveEnemiga::getVidaTotal()
 {
     return energia_total;
+}
+
+int NaveEnemiga::getScore()
+{
+    return score;
 }

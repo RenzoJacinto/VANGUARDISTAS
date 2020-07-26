@@ -40,6 +40,10 @@ class NaveJugador: public Nave {
 
         void conectar();
 
+        void addScore(int puntos);
+
+        int getScore();
+
         std::string get_name();
         int get_cant_vidas();
 
@@ -47,7 +51,7 @@ class NaveJugador: public Nave {
 
         int alto,ancho;
         bool conectado;
-
+        int score;
         std::string id_cliente;
 };
 
