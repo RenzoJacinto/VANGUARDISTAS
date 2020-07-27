@@ -24,29 +24,15 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
-		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil);
-
-		bool isAlive();
-
-		int getVidaActual();
-
-		int getVidaTotal();
-
-		int getScore();
-
     protected:
-
-        int radio;
-        int alto;
-        int ancho;
 
         const char* imagen;
 
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];
-        bool alive;
-        int score;
+
+
         /*const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;

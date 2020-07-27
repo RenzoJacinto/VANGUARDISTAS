@@ -26,17 +26,18 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         energia_total = 200;
     }
 
+    vidas = 1;
+
     //clave[0] = 0;
     strcpy(clave, sprite);
     radio=alto/2;
-    alive = true;
     mensaje = "<<<< SE CARGO LA NAVE " + sp;
     logger.info(mensaje.c_str());
 }
 
 void NaveEnemiga::mover( NaveJugador* jugador ){
 
-    if(!alive) return;
+    if(!isAlive()) return;
     setPosX(getPosX()+desplazamiento);
 
     if( checkCollision( jugador , this ) ){
@@ -62,51 +63,4 @@ int NaveEnemiga::getAnchoImagen(){
 
 char* NaveEnemiga::getClave(){
     return clave;
-}
-
-bool NaveEnemiga::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil){
-
-    if(!alive) return false;
-    bool ok = false;
-
-    bool a = (x_misil >= mPosX - radio && x_misil <= mPosX - radio + ancho);
-    bool b = (x_misil+ancho_misil >= mPosX - radio && x_misil+ancho_misil <= mPosX - radio + ancho);
-
-    bool c = (y_misil >= mPosY - radio && y_misil <= mPosY - radio + alto);
-    bool d = (y_misil+alto_misil >= mPosY - radio && y_misil+alto_misil <= mPosY - radio + alto);
-
-    bool colisionX = (a || b);
-    bool colisionY = (c || d);
-
-    //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
-
-    if(colisionX && colisionY)
-    {
-        energia_actual -= 50;
-        if(energia_actual <= 0) alive = false;
-        std::cout<<"IMPACTO EL PIBE\n";
-        ok = true;
-    }
-
-    return ok;
-}
-
-bool NaveEnemiga::isAlive()
-{
-    return energia_actual > 0;
-}
-
-int NaveEnemiga::getVidaActual()
-{
-    return energia_actual;
-}
-
-int NaveEnemiga::getVidaTotal()
-{
-    return energia_total;
-}
-
-int NaveEnemiga::getScore()
-{
-    return score;
 }

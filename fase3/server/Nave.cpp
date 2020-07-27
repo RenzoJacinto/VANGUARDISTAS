@@ -12,6 +12,8 @@ bool Nave::crearNave( int x, int y){
     mVelX = 0;
     mVelY = 0;
 
+    mode_test = false;
+
     return true;
 }
 
@@ -103,8 +105,7 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 }
 
 //En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
-bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos )
-{
+bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos ){
     bool colision = false;
     vector<NaveEnemiga*>::iterator pos;
 
@@ -115,5 +116,46 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
     }
 
     return colision;
+}
+
+
+bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil){
+
+    if(! isAlive()) return false;
+    bool ok = false;
+
+    bool a = (x_misil >= mPosX - radio && x_misil <= mPosX - radio + ancho);
+    bool b = (x_misil+ancho_misil >= mPosX - radio && x_misil+ancho_misil <= mPosX - radio + ancho);
+
+    bool c = (y_misil >= mPosY - radio && y_misil <= mPosY - radio + alto);
+    bool d = (y_misil+alto_misil >= mPosY - radio && y_misil+alto_misil <= mPosY - radio + alto);
+
+    bool colisionX = (a || b);
+    bool colisionY = (c || d);
+
+    //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
+    if(colisionX && colisionY && !mode_test){
+        energia_actual -= 50;
+        if(energia_actual <= 0) vidas--;
+        ok = true;
+    }
+
+    return ok;
+}
+
+bool Nave::isAlive(){
+    return vidas > 0;
+}
+
+int Nave::getVidaActual(){
+    return energia_actual;
+}
+
+int Nave::getVidaTotal(){
+    return energia_total;
+}
+
+int Nave::getScore(){
+    return score;
 }
 

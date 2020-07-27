@@ -50,6 +50,9 @@ bool Nivel::iniciarNivel(Client* client){
     if(! puntajesBoxTexture.loadFromFile(json.get_sprite_puntajes("box")))
         logger.error("No se pudo cargar la textura de los puntajes");
 
+    int MODO_TEST = -1;
+    int MISIL = 0;
+    int NONE = 1;
 
     while( usuarioNoRequieraSalir(quit) ){
 
@@ -62,14 +65,20 @@ bool Nivel::iniciarNivel(Client* client){
 
         while( hayEventos() ) {
             if( eventoEsSalir() ) quit = true;
-            int new_misil = 1;
+            int new_misil = NONE;
             jugador1->handleEvent( e, gMusic, &new_misil);
-            if(new_misil == 0){
+            if(new_misil == MISIL){
                 velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
                 v_shot->id = id_nave;
                 strcpy(v_shot->descrip, "shot0");
                 v_shot->VelX = jugador1->getPosX();
                 v_shot->VelY = jugador1->getPosY();
+                client->sendData(v_shot);
+                free(v_shot);
+            } else if(new_misil == MODO_TEST){
+                velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
+                v_shot->id = id_nave;
+                strcpy(v_shot->descrip, "test");
                 client->sendData(v_shot);
                 free(v_shot);
             }
@@ -147,6 +156,12 @@ void Nivel::renderizar(int id_nave){
 }
 
 void Nivel::procesar(posiciones_t* pos){
+
+    if(strcmp(pos->descrip, "test") == 0){
+        jugadores[pos->id]->set_modeTest();
+        return;
+    }
+
     if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
         if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);

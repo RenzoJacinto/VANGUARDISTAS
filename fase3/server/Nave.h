@@ -38,6 +38,16 @@ class Nave{
 
 		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
 
+		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil);
+
+		bool isAlive();
+
+		int getVidaActual();
+
+		int getVidaTotal();
+
+		int getScore();
+
 
     protected:
 
@@ -48,6 +58,16 @@ class Nave{
 		int energia_total;
 		//La velocidad de la Nave
 		int mVelX, mVelY;
+
+		bool mode_test;
+
+		int vidas;
+
+        int radio;
+        int alto;
+        int ancho;
+
+        int score;
 
 };
 

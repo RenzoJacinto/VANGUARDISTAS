@@ -23,6 +23,8 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
         gNaveTexture.loadFromFile(imagen.c_str());
     }
 
+    mode_test = false;
+
     // SETEANDO LAS ANIMACIONES Y DEMAS
     set_animations(tipo, subtipo);
     string dir(imagen);
@@ -174,9 +176,9 @@ void Nave::set_animations(const char* tipo, const char* subtipo){
         logger.debug("Se cargo la textura de la explocion de la nave");
     }
 
-    if(! textureHitReceive.loadFromFile(json.get_sprite_nave(tipo, subtipo, "receiveHit"))){
+    /*if(! textureHitReceive.loadFromFile(json.get_sprite_nave(tipo, subtipo, "receiveHit"))){
         logger.error("No se pudo cargar la textura del disparo recibido");
-    } else logger.debug("Se cargo el efecto de hit recibido");
+    } else logger.debug("Se cargo el efecto de hit recibido");*/
 
     if(! textureVida.loadFromFile(json.get_sprite_nave(tipo, subtipo, "lifeBox"))){
         logger.error("No se pudo cargar la barra de vida");
@@ -212,7 +214,7 @@ void Nave::set_animations(const char* tipo, const char* subtipo){
     dataBoom[ 5 ].y =   0;
     dataBoom[ 5 ].w =  166;
     dataBoom[ 5 ].h = 236;
-
+    /*
     framesHitReceive = FRAMES_HIT_RECEIVE;
     dataHitReceive[ 0 ].x =   0;
     dataHitReceive[ 0 ].y =   0;
@@ -237,12 +239,14 @@ void Nave::set_animations(const char* tipo, const char* subtipo){
     dataHitReceive[ 4 ].x = 128;
     dataHitReceive[ 4 ].y =   0;
     dataHitReceive[ 4 ].w =  32;
-    dataHitReceive[ 4 ].h = 32;
+    dataHitReceive[ 4 ].h = 32;*/
 }
 
 void Nave::setEnergias(int actual, int total){
-    energia_actual = actual;
-    if(energia_actual == 0) die();
+    if(! mode_test){
+        energia_actual = actual;
+        if(energia_actual == 0) die();
+    }
     /*else{
         int actualFrame = 0;
         while(actualFrame/4 < framesHitReceive){

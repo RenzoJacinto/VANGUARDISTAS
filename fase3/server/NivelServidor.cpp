@@ -97,6 +97,13 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
     strcpy(pos->descrip, v->descrip);
     pos->posX = 0;
     pos->posY = 0;
+
+    if(strcmp(v->descrip, "test") == 0){
+        jugadores[id]->set_modeTest();
+        server->send_all(pos);
+        return pos;
+    }
+
     if(strcmp(v->descrip, "shot0") == 0){
         Misil* misil = new Misil(vx, vy, id);
         misiles.push_back(misil);
@@ -121,9 +128,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 if(ok == -1){
                     pos_m = misiles.erase(pos_m);
                     //printf("borra misil\n");
-                }
-                else if(ok == 0)
-                {
+                } else if(ok == 0){
                     //printf("no impacto\n");
                     strcpy(pos->descrip, "shot1");
                     pos->id = (*pos_m)->get_id();
@@ -131,9 +136,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                     pos->posY = (*pos_m)->getPosY();
                     server->send_all(pos);
                     pos_m++;
-                }
-                else
-                {
+                } else{
                     //printf("impacto\n");
                     pos->id = ok;
                     pos->posX = enemigos[ok-4]->getVidaActual();
@@ -145,19 +148,14 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
 
             }
 
-        }
-        else if(strcmp(v->descrip, "off") != 0)
-        {
+        } else if(strcmp(v->descrip, "off") != 0){
             jugadores[id]->setVelX(vx);
             jugadores[id]->setVelY(vy);
             jugadores[id]->mover(enemigos);
             pos->posX = jugadores[id]->getPosX();
             pos->posY = jugadores[id]->getPosY();
             server->send_all(pos);
-        }
-
-        else if(strcmp(v->descrip, "off") == 0)
-        {
+        } else if(strcmp(v->descrip, "off") == 0){
             //jugadores[id]->desconectar();
             pos->id = id;
             strcpy(pos->descrip, "off");

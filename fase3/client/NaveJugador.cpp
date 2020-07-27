@@ -28,6 +28,7 @@ void NaveJugador::handleEvent( SDL_Event& e , Mix_Music* gMusic, int* misil){
             case SDLK_m: sounds.pauseMusic(gMusic); break;
             case SDLK_s: sounds.pauseEffects(); break;
             case SDLK_RETURN: *misil = 0; break;
+            case SDLK_t: *misil = -1; break;
         }
     } else if( e.type == SDL_KEYUP && e.key.repeat == 0 ){
         // Ajusta la velocidad
@@ -68,6 +69,14 @@ void NaveJugador::renderizar(){
     SDL_SetRenderDrawColor( sdl.getRenderer(), 0x00, 0xFF, 0x00, 0xFF );
     SDL_RenderFillRect( sdl.getRenderer(), &vida );
     textureVida.render(mPosX, mPosY+NAVE_HEIGHT+2);
+
+    //Renderizo un string que dice que esta en modo test
+    if(mode_test){
+        TextureW textureTest;
+        textureTest.loadFromRenderedText("<Test>", "box");
+        int x_test = NAVE_WIDTH - textureTest.getWidth();
+        textureTest.render(mPosX + x_test/2 , mPosY - NAVE_HEIGHT/2 - 1 );
+    }
 }
 
 int NaveJugador::getAlto(){
@@ -118,13 +127,17 @@ int NaveJugador::get_cant_vidas(){
     return vidas;
 }
 
-void NaveJugador::addScore(int puntos)
-{
+void NaveJugador::addScore(int puntos){
     printf("score: %d\n", score);
     score += puntos;
 }
 
-int NaveJugador::getScore()
-{
+int NaveJugador::getScore(){
     return score;
+}
+
+void NaveJugador::set_modeTest(){
+    // si no esta activado lo activa y visceversa
+    if(! mode_test) mode_test = true;
+    else mode_test = false;
 }

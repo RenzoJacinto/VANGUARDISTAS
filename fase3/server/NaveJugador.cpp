@@ -6,6 +6,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
 
     if(crearNave(x, y)) logger.debug("Se creo la nave jugador");
 
+    vidas = 3;
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
     id_nave = id;
@@ -61,5 +62,11 @@ void NaveJugador::conectar(){
     std::string id = std::to_string(id_nave);
     msj = msj + id;
     logger.info(msj.c_str());
+}
+
+void NaveJugador::set_modeTest(){
+    // si no esta activado lo activa y visceversa
+    if(! mode_test) mode_test = true;
+    else mode_test = false;
 }
 

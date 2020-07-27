@@ -73,16 +73,18 @@ class Nave{
         TextureW gNaveTexture;
         TextureW textureBoom;
         TextureW textureVida;
-        TextureW textureHitReceive;
+        //TextureW textureHitReceive;
 
         SDL_Rect dataBoom[FRAMES_BOOM];
-        SDL_Rect dataHitReceive[FRAMES_HIT_RECEIVE];
+        //SDL_Rect dataHitReceive[FRAMES_HIT_RECEIVE];
 
         int framesBoom;
-        int framesHitReceive;
+        //int framesHitReceive;
 
         bool alive;
         bool boom;
+
+        bool mode_test;
 
         int energia_actual;
         int energia_total;

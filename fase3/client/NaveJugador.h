@@ -47,6 +47,8 @@ class NaveJugador: public Nave {
         std::string get_name();
         int get_cant_vidas();
 
+        void set_modeTest();
+
     private:
 
         int alto,ancho;

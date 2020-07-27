@@ -34,6 +34,8 @@ class NaveJugador: public Nave {
 
         void conectar();
 
+        void set_modeTest();
+
     private:
 
         int alto,ancho;
