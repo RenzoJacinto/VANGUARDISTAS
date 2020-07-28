@@ -3,7 +3,7 @@
 Misil::Misil( int x_parm, int y_parm, int id_parm){
     alto = MISIL_HEIGHT;
     ancho = MISIL_WIDTH;
-    id = id_parm * 10;
+    id = id_parm;
 
     x = x_parm;
     y = y_parm;
@@ -17,7 +17,17 @@ int Misil::mover(vector<NaveEnemiga*> enemigos, int renderizados){
     for(int i=0; i<renderizados; i++){
         if ( enemigos[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT) ) return i+4;
     }
-    return 0;
+    return -2;
+}
+
+int Misil::mover(vector<NaveJugador*> jugadores){
+    x+=vel;
+    if(x >= SCREEN_WIDTH) return -1;
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+        if ( jugadores[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT) ) return i;
+    }
+    return -2;
 }
 
 int Misil::getAlto(){

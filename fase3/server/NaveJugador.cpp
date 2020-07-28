@@ -6,6 +6,11 @@ NaveJugador::NaveJugador( int x, int y, int id){
 
     if(crearNave(x, y)) logger.debug("Se creo la nave jugador");
 
+    energia_actual = 200;
+    energia_total = 200;
+
+    score = 0;
+
     vidas = 3;
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
@@ -68,5 +73,9 @@ void NaveJugador::set_modeTest(){
     // si no esta activado lo activa y visceversa
     if(! mode_test) mode_test = true;
     else mode_test = false;
+}
+
+int NaveJugador::getVidas(){
+    return vidas;
 }
 

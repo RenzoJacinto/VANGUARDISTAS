@@ -21,6 +21,7 @@ class Misil{
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		int mover(vector<NaveEnemiga*> enemigos, int renderizados);
+		int mover(vector<NaveJugador*> jugadores);
 
         int getAlto();
 

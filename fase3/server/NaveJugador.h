@@ -36,6 +36,8 @@ class NaveJugador: public Nave {
 
         void set_modeTest();
 
+        int getVidas();
+
     private:
 
         int alto,ancho;

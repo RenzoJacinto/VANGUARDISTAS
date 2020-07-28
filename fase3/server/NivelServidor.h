@@ -24,6 +24,7 @@ class NivelServidor{
         void setNaves(Server* server, int cant_jugadores);
 
         int obtenerNaveSeguidaRandom(int cant_naves);
+        int obtenerNaveSeguidaPonderada();
 
         static const int TIEMPO_NIVEL_SEGS = 240;
 

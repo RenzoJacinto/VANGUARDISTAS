@@ -43,42 +43,6 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         strcpy(v->descrip, "rend");
         v->id = renderizados+4;
         server->encolar(v);
-        //free(v);
-
-        /*list<Misil*>::iterator pos_m = misiles.begin();
-        if(misiles.size() > 0) std::cout<<"N ESTA VACIA\n";
-        bool r = false;
-        while(pos_m != misiles.end()){
-            std::cout<<"ENTRE\n";
-            bool ok = (*pos_m)->mover(enemigos, renderizados);
-            if(!ok){
-                pos_m = misiles.erase(pos_m);
-                if(pos_m == misiles.end()){
-                    r = true;
-                    if(misiles.size() == 0) std::cout<<"VACIAAAAA\n";
-                    std::cout<<"FIN\n";
-                }
-            } else{
-                velocidades_t* vel = (velocidades_t*)malloc(sizeof(velocidades_t));
-                strcpy(vel->descrip, "shot1");
-                vel->id = (*pos_m)->get_id();
-                vel->VelX = (*pos_m)->getPosX();
-                vel->VelY = (*pos_m)->getPosY();
-                std::cout<<"X: "<<vel->VelX<<"\n";
-                std::cout<<"Y: "<<vel->VelY<<"\n";
-                std::cout<<"ID: "<<vel->id<<"\n";
-                std::cout<<"----------\n";
-                server->encolar(vel);
-            }
-            pos_m++;
-
-        }
-        if(r){
-            std::cout<<"SIZE;: "<<misiles.size()<<"\n";
-            std::cout<<"SALIO\n";
-        }*/
-
-
     }
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     pos->id = -1;
@@ -122,9 +86,10 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                     strcpy(vMisil->descrip, "shot0");
                     vMisil->VelX =enemigos[i]->getPosX()+enemigos[i]->getRadio();
                     vMisil->VelY =enemigos[i]->getPosY();
-                    vMisil->id = 0;
+                    vMisil->id = i+4;
                     server->encolar(vMisil);
                     enemigos[i]->reiniciarDisparo();
+                    //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
                 }
                 pos->posX = enemigos[i]->getPosX();
                 pos->posY = enemigos[i]->getPosY();
@@ -135,11 +100,17 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
             parallax();
             list<Misil*>::iterator pos_m = misiles.begin();
             while(pos_m != misiles.end()){
-                int ok = (*pos_m)->mover(enemigos, renderizados);
+                int ok = -1;
+                if((*pos_m)->get_id() < 3){
+                    ok = (*pos_m)->mover(enemigos, renderizados);
+                } else{
+                    ok = (*pos_m)->mover(jugadores);
+                }
+
                 if(ok == -1){
                     pos_m = misiles.erase(pos_m);
                     //printf("borra misil\n");
-                } else if(ok == 0){
+                } else if(ok == -2){
                     //printf("no impacto\n");
                     strcpy(pos->descrip, "shot1");
                     pos->id = (*pos_m)->get_id();
@@ -150,8 +121,12 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 } else{
                     //printf("impacto\n");
                     pos->id = ok;
-                    pos->posX = enemigos[ok-4]->getVidaActual();
-                    pos->posY = (*pos_m)->get_id() / 10;
+                    if(id > 3){
+                        pos->posX = enemigos[ok-4]->getVidaActual();
+                    } else{
+                        pos->posX = jugadores[ok]->getVidaActual();
+                    }
+                    pos->posY = (*pos_m)->get_id();
                     strcpy(pos->descrip, "hit");
                     server->send_all(pos);
                     pos_m = misiles.erase(pos_m);
@@ -241,5 +216,25 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
 
 int NivelServidor::obtenerNaveSeguidaRandom(int cant_naves){
     return rand() % cant_naves;
+}
+
+int NivelServidor::obtenerNaveSeguidaPonderada(){
+    int cant_jug = jugadores.size();
+    int ponderacion[cant_jug];
+    for(int i=0; i<cant_jug; i++){
+        int score = jugadores[i]->getScore();
+        int vida = jugadores[i]->getVidas();
+
+        ponderacion[i] = score / vida;
+    }
+    int idx = 0;
+    int min_pond = ponderacion[idx];
+    for(int j=1; j<cant_jug; j++){
+        if(ponderacion[j] < min_pond){
+            min_pond = ponderacion[j];
+            idx = j;
+        }
+    }
+    return idx;
 }
 

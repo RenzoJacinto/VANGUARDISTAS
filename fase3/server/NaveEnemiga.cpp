@@ -134,8 +134,7 @@ bool NaveEnemiga::seDisparo(){
     return disparo;
 }
 
-void NaveEnemiga::reiniciarDisparo()
-{
+void NaveEnemiga::reiniciarDisparo(){
     fireRate.iniciar();
 }
 

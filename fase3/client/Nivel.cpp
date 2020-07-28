@@ -169,9 +169,13 @@ void Nivel::procesar(posiciones_t* pos){
     }
     else if(strcmp(pos->descrip, "hit") == 0){
         sounds.playEffect(hitReceiveFX);
-        enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
-        int score = enemigos[pos->id -4]->getScore();
-        if(!enemigos[pos->id -4]->isAlive()) jugadores[pos->posY]->addScore(score);
+        if(pos->id > 3){
+            enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
+            int score = enemigos[pos->id -4]->getScore();
+            if(!enemigos[pos->id -4]->isAlive()) jugadores[pos->posY]->addScore(score);
+        } else{
+            jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
+        }
     }
     else{
         if(pos->id>3){

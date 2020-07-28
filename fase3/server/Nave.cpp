@@ -111,8 +111,7 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
     bool colision = false;
     vector<NaveEnemiga*>::iterator pos;
 
-    for(pos = enemigos.begin();pos != enemigos.end();pos++)
-    {
+    for(pos = enemigos.begin();pos != enemigos.end();pos++){
         colision = checkCollision( jugador , *pos );
         if (colision) break;
     }
@@ -122,6 +121,8 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
 
 
 bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil){
+
+    if(energia_actual <= 0) energia_actual = energia_total;
 
     if(! isAlive()) return false;
     bool ok = false;
@@ -138,7 +139,9 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
     //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
     if(colisionX && colisionY && !mode_test){
         energia_actual -= 50;
-        if(energia_actual <= 0) vidas--;
+        if(energia_actual <= 0){
+            vidas--;
+        }
         ok = true;
     }
 
