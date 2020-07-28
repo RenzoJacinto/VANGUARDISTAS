@@ -44,6 +44,8 @@ class NaveEnemiga: public Nave {
 
 		void reiniciarDisparo();
 
+		void destruirNave();
+
     protected:
 
         const char* imagen;

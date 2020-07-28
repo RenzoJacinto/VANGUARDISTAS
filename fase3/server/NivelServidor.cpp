@@ -207,7 +207,7 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         sprite += std::to_string(enemigo_random);
 
         // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
-        int y = 50 + rand() % (SCREEN_HEIGHT + 1);
+        int y = 90 + rand() % (SCREEN_HEIGHT + 1);
         // SUPONGO EL BORDE DE RESPAWN COMO +/-100
         // CASO ENEMIGOS 1 y 2: sup = 800 + 100
         int x = SCREEN_WIDTH + rand() % 51;

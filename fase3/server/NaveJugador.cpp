@@ -27,7 +27,7 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
     // Mueve la nave a la izquierda o la derecha
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() < 0 ) || ( getPosY() + getAlto() > SCREEN_HEIGHT ) || encontrarEnemigos( this, enemigos ) ){
+    if( ( getPosY() < 70 ) || ( getPosY() + getAlto() > SCREEN_HEIGHT ) || encontrarEnemigos( this, enemigos ) ){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }

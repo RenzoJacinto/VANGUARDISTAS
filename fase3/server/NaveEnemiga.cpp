@@ -46,7 +46,9 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
 
 void NaveEnemiga::mover(int velX, int velY){
 
-    if(!isAlive()) return;
+    if(!isAlive()) {
+    destruirNave();
+    return;}
 
     for(unsigned int i = 0; i < jugadores.size(); ++i){
         if( checkCollision( jugadores[i] , this ) ) return;
@@ -136,3 +138,12 @@ void NaveEnemiga::reiniciarDisparo()
 {
     fireRate.iniciar();
 }
+
+void NaveEnemiga::destruirNave(){
+    radio=0;
+    mPosX=0;
+    mPosY=0;
+    mVelX=0;
+    mVelY=0;
+}
+

@@ -146,8 +146,6 @@ void Nave::renderBoom(){
         int w = dataBoom[ actualFrame/4 ].w;
         int h = dataBoom[ actualFrame/4 ].h;
         textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
-        //printf("XBOOM: %d, YBOOM: %d\n", mPosX, mPosY);
-        SDL_RenderPresent( sdl.getRenderer() );
         actualFrame++;
     }
 
