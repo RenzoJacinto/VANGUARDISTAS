@@ -222,9 +222,10 @@
 	<queue>
 	<pthread.h>
 
-1595906741 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
+1595917170 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
 	"Nave.h"
 	"NaveJugador.h"
+	"Temporizador.h"
 
 1595899932 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.h
 	"Nave.h"
@@ -236,7 +237,7 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1595902040 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
+1595915283 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -328,7 +329,7 @@
 	"NaveEnemiga.h"
 	"global.h"
 
-1595909655 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
+1595915743 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
 1595899932 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
@@ -361,7 +362,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1595910260 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
+1595915283 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"

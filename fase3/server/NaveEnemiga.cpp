@@ -1,5 +1,11 @@
 #include "NaveEnemiga.h"
 
+int current_time_nanoseconds(){
+    struct timespec tm;
+    clock_gettime(CLOCK_REALTIME, &tm);
+    return tm.tv_nsec;
+}
+
 NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     naveSeguida = -1;
     disparo = false;
@@ -10,9 +16,6 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         mensaje = "Se creo el " + sp;
         logger.debug(mensaje.c_str());
     }
-
-    if(sp == "enemigo3" || sp == "enemigo4") desplazamiento = 1;
-    else desplazamiento = -1;
 
     if(sp == "enemigo1" || sp == "enemigo3"){
         alto = 80;
@@ -28,7 +31,7 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         score = 1000;
         energia_actual = 200;
         energia_total = 200;
-        DISTANCIA_DE_COMBATE = 200;
+        DISTANCIA_DE_COMBATE_INICIAL = 500;
     }
 
     vidas = 1;
@@ -82,11 +85,14 @@ int NaveEnemiga::getNaveSeguida(){
     return naveSeguida;
 }
 
-//const int DISTANCIA_DE_COMBATE = 200;
-
 void NaveEnemiga::procesarAccion(NaveJugador* nave){
-    disparo = false;
     int distanciaNave = getDistanciaNave(nave);
+    if (distanciaNave < DISTANCIA_DE_COMBATE_INICIAL){
+        srand(current_time_nanoseconds() * 1000000000);
+        DISTANCIA_DE_COMBATE = 100 + (getRadio() *(rand() % 10));
+        DISTANCIA_DE_COMBATE_INICIAL = 0;
+    }
+    disparo = false;
     int posY = getPosY();
     int navePosY = nave->getPosY();
     if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
@@ -108,8 +114,8 @@ void NaveEnemiga::seguirNave(NaveJugador* nave, int distanciaNave){
         if (nave->getPosX() < getPosX()) mover(-2, 0);
         if (nave->getPosX() > getPosX()) mover(2, 0);
     }else{
-        if (nave->getPosX() < getPosX()) mover(2, 0);
-        if (nave->getPosX() > getPosX()) mover(-2, 0);
+        if (nave->getPosX() < getPosX()) mover(1, 0);
+        if (nave->getPosX() > getPosX()) mover(-1, 0);
     }
 }
 

@@ -51,9 +51,9 @@ class NaveEnemiga: public Nave {
         bool disparo;
 
         int DISTANCIA_DE_COMBATE;
+        int DISTANCIA_DE_COMBATE_INICIAL;
         Temporizador fireRate;
         // izq->der = 1 ; der->izq = -1
-        int desplazamiento;
         char clave[15];
 
         vector<NaveJugador*> jugadores;
