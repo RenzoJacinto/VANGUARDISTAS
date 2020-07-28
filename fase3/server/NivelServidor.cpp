@@ -114,7 +114,17 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
     } else{
         if(id>3){
             for(int i = 0; i < id - 4; i++){
-                enemigos[i]->mover(jugadores[0]);
+                int naveSeguida = enemigos[i]->getNaveSeguida();
+                enemigos[i]->procesarAccion(jugadores[naveSeguida]);
+                bool disparo = enemigos[i]->seDisparo();
+                if (disparo){
+                    velocidades_t* vMisil = (velocidades_t*) malloc(sizeof(velocidades_t));
+                    strcpy(vMisil->descrip, "shot0");
+                    vMisil->VelX =enemigos[i]->getPosX();
+                    vMisil->VelY =enemigos[i]->getPosY();
+                    vMisil->id = 0;
+                    server->encolar(vMisil);
+                }
                 pos->posX = enemigos[i]->getPosX();
                 pos->posY = enemigos[i]->getPosY();
                 pos->id = i+4;
@@ -206,6 +216,10 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
 
         NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
 
+        int naveSeguida = obtenerNaveSeguidaRandom(cant_jugadores);
+        enemigo->setNaveSeguida(naveSeguida);
+        enemigo->setJugadores(jugadores);
+
         enemigos.push_back(enemigo);
 
         posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
@@ -222,5 +236,9 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
     pos->id = -1;
     server->send_all(pos);
     free(pos);
+}
+
+int NivelServidor::obtenerNaveSeguidaRandom(int cant_naves){
+    return rand() % cant_naves;
 }
 

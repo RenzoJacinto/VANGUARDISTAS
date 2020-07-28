@@ -2,6 +2,7 @@
 #define NAVEENEMIGA_H
 
 #include "Nave.h"
+#include "NaveJugador.h"
 
 class NaveJugador;
 
@@ -12,7 +13,7 @@ class NaveEnemiga: public Nave {
         NaveEnemiga(int x, int y, const char* sprite);
 
 		//Mueve la Nave considerando la posicion de la Nave del jugador
-		void mover( NaveJugador* jugador );
+		void mover(int velX, int velY);
 
 		int getRadio();
 
@@ -24,13 +25,33 @@ class NaveEnemiga: public Nave {
 
 		char* getClave();
 
+		void setNaveSeguida(int id);
+
+		int getNaveSeguida();
+
+		void procesarAccion(NaveJugador* nave);
+
+		int getDistanciaNave(NaveJugador* nave);
+
+		void seguirNave(NaveJugador* nave, int distanciaNave);
+
+		void acomodarseEnEjeY(int posY);
+
+		void setJugadores(vector<NaveJugador*> listaJugadores);
+
+		bool seDisparo();
+
     protected:
 
         const char* imagen;
+        int naveSeguida;
+        bool disparo;
 
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];
+
+        vector<NaveJugador*> jugadores;
 
 
         /*const char* sEnemigo1;
