@@ -120,10 +120,11 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 if (disparo){
                     velocidades_t* vMisil = (velocidades_t*) malloc(sizeof(velocidades_t));
                     strcpy(vMisil->descrip, "shot0");
-                    vMisil->VelX =enemigos[i]->getPosX();
+                    vMisil->VelX =enemigos[i]->getPosX()+enemigos[i]->getRadio();
                     vMisil->VelY =enemigos[i]->getPosY();
                     vMisil->id = 0;
                     server->encolar(vMisil);
+                    enemigos[i]->reiniciarDisparo();
                 }
                 pos->posX = enemigos[i]->getPosX();
                 pos->posY = enemigos[i]->getPosY();

@@ -25,7 +25,7 @@ class NivelServidor{
 
         int obtenerNaveSeguidaRandom(int cant_naves);
 
-        static const int TIEMPO_NIVEL_SEGS = 40;
+        static const int TIEMPO_NIVEL_SEGS = 240;
 
     protected:
         vector<NaveEnemiga*> enemigos;

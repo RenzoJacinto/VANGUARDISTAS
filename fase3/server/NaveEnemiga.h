@@ -3,6 +3,7 @@
 
 #include "Nave.h"
 #include "NaveJugador.h"
+#include "Temporizador.h"
 
 class NaveJugador;
 
@@ -41,12 +42,16 @@ class NaveEnemiga: public Nave {
 
 		bool seDisparo();
 
+		void reiniciarDisparo();
+
     protected:
 
         const char* imagen;
         int naveSeguida;
         bool disparo;
 
+        int DISTANCIA_DE_COMBATE;
+        Temporizador fireRate;
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;
         char clave[15];

@@ -20,12 +20,15 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         score = 500;
         energia_actual = 100;
         energia_total = 100;
+        DISTANCIA_DE_COMBATE = 0;
+
     } else{
         alto = 63;
         ancho = 63;
         score = 1000;
         energia_actual = 200;
         energia_total = 200;
+        DISTANCIA_DE_COMBATE = 200;
     }
 
     vidas = 1;
@@ -35,6 +38,7 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     radio=alto/2;
     mensaje = "<<<< SE CARGO LA NAVE " + sp;
     logger.info(mensaje.c_str());
+    fireRate.iniciar();
 }
 
 void NaveEnemiga::mover(int velX, int velY){
@@ -78,18 +82,21 @@ int NaveEnemiga::getNaveSeguida(){
     return naveSeguida;
 }
 
-const int DISTANCIA_DE_COMBATE = 100;
+//const int DISTANCIA_DE_COMBATE = 200;
 
 void NaveEnemiga::procesarAccion(NaveJugador* nave){
     disparo = false;
     int distanciaNave = getDistanciaNave(nave);
     int posY = getPosY();
     int navePosY = nave->getPosY();
-    if (distanciaNave != DISTANCIA_DE_COMBATE || posY != navePosY){
-        if (distanciaNave != DISTANCIA_DE_COMBATE) seguirNave(nave, distanciaNave);
-        if (posY != navePosY) acomodarseEnEjeY(navePosY);
+    if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
+        if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2) seguirNave(nave, distanciaNave);
+        if (abs(posY - navePosY) > 2) acomodarseEnEjeY(navePosY);
     }
-    else disparo = true;
+    else if (fireRate.transcurridoEnSegundos()>2) {
+        disparo = true;
+        //printf("dispara\n");
+    }
 }
 
 int NaveEnemiga::getDistanciaNave(NaveJugador* nave){
@@ -117,4 +124,9 @@ void NaveEnemiga::setJugadores(vector<NaveJugador*> listaJugadores){
 
 bool NaveEnemiga::seDisparo(){
     return disparo;
+}
+
+void NaveEnemiga::reiniciarDisparo()
+{
+    fireRate.iniciar();
 }
