@@ -103,7 +103,6 @@ void NaveEnemiga::procesarAccion(NaveJugador* nave){
     }
     else if (fireRate.transcurridoEnSegundos()>2) {
         disparo = true;
-        //printf("dispara\n");
     }
 }
 

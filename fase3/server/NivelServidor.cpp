@@ -78,6 +78,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
     } else{
         if(id>3){
             for(int i = 0; i < id - 4; i++){
+                enemigos[i]->setJugadores(jugadores);
                 int naveSeguida = enemigos[i]->getNaveSeguida();
                 enemigos[i]->procesarAccion(jugadores[naveSeguida]);
                 bool disparo = enemigos[i]->seDisparo();

@@ -222,12 +222,12 @@
 	<queue>
 	<pthread.h>
 
-1595917170 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
+1595985903 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
 	"Nave.h"
 	"NaveJugador.h"
 	"Temporizador.h"
 
-1595899932 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.h
+1595985903 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.h
 	"Nave.h"
 	"list"
 
@@ -237,14 +237,14 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1595915283 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
+1595985903 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
 	"Server.h"
 	"Misil.h"
 
-1595899932 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Misil.h
+1595985903 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Misil.h
 	"global.h"
 	"NaveEnemiga.h"
 
@@ -320,19 +320,19 @@
 	"Logger.h"
 	"global.h"
 
-1595899932 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Misil.cpp
+1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Misil.cpp
 	"Misil.h"
 
-1595899932 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Nave.cpp
+1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 
-1595915743 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
+1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1595899932 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
+1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
 	"NaveJugador.h"
 
 1595354792 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Nivel1Servidor.cpp
@@ -362,7 +362,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1595915283 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
+1595988654 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
