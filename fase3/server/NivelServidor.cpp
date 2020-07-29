@@ -5,6 +5,7 @@
 #include "NaveJugador.h"
 #include "Nave.h"
 #include <sys/socket.h>
+#include "time_nanoseconds.h"
 
 class Server;
 
@@ -216,6 +217,7 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
 }
 
 int NivelServidor::obtenerNaveSeguidaRandom(int cant_naves){
+    srand(current_time_nanoseconds() * 1000000000);
     return rand() % cant_naves;
 }
 

@@ -1,10 +1,5 @@
 #include "NaveEnemiga.h"
-
-int current_time_nanoseconds(){
-    struct timespec tm;
-    clock_gettime(CLOCK_REALTIME, &tm);
-    return tm.tv_nsec;
-}
+#include "time_nanoseconds.h"
 
 NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     naveSeguida = -1;

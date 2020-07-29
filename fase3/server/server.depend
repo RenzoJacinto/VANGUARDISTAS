@@ -329,8 +329,9 @@
 	"NaveEnemiga.h"
 	"global.h"
 
-1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
+1595990667 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
+	"time_nanoseconds.h"
 
 1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
 	"NaveJugador.h"
@@ -362,7 +363,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1595988654 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
+1595990857 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -370,6 +371,7 @@
 	"NaveJugador.h"
 	"Nave.h"
 	<sys/socket.h>
+	"time_nanoseconds.h"
 
 1595899932 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Server.cpp
 	"Server.h"
@@ -2278,4 +2280,6 @@
 	<sys/socket.h>
 	<arpa/inet.h>
 	<pthread.h>
+
+1595991046 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/time_nanoseconds.h
 
