@@ -11,14 +11,12 @@ class NaveEnemiga: public Nave {
 
     public:
 
-        NaveEnemiga(int x, int y, const char* sprite);
+        NaveEnemiga(int x, int y, const char* sprite, vector<NaveJugador*> jugadores);
 
 		//Mueve la Nave considerando la posicion de la Nave del jugador
 		void mover(int velX, int velY);
 
 		int getRadio();
-
-		const char* getImagen();
 
 		int getAltoImagen();
 
@@ -34,6 +32,8 @@ class NaveEnemiga: public Nave {
 
 		int getDistanciaNave(NaveJugador* nave);
 
+		int getDistanciaNaveConSigno(NaveJugador* nave);
+
 		void seguirNave(NaveJugador* nave, int distanciaNave);
 
 		void acomodarseEnEjeY(int posY);
@@ -46,12 +46,21 @@ class NaveEnemiga: public Nave {
 
 		void destruirNave();
 
-    protected:
+		int obtenerNaveSeguidaRandom(int cant_naves);
 
-        const char* imagen;
+        int obtenerNaveSeguidaPonderada();
+
+        void actualizarSprite();
+
+        char* getImagen();
+
+    protected:
+        char imagenActual[10];
+        char imagenEspejo[10];
         int naveSeguida;
         bool disparo;
 
+        int distanciaActual;
         int DISTANCIA_DE_COMBATE;
         int DISTANCIA_DE_COMBATE_INICIAL;
         Temporizador fireRate;

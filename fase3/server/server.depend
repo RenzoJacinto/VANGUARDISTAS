@@ -222,7 +222,7 @@
 	<queue>
 	<pthread.h>
 
-1595985903 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
+1595996926 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.h
 	"Nave.h"
 	"NaveJugador.h"
 	"Temporizador.h"
@@ -329,11 +329,11 @@
 	"NaveEnemiga.h"
 	"global.h"
 
-1595990667 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
+1595996945 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 	"time_nanoseconds.h"
 
-1595985903 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
+1595993028 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NaveJugador.cpp
 	"NaveJugador.h"
 
 1595354792 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Nivel1Servidor.cpp
@@ -363,7 +363,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1595990857 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
+1595996956 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -2281,5 +2281,5 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1595991046 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/time_nanoseconds.h
+1595993686 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/time_nanoseconds.h
 

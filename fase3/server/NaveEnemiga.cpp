@@ -1,9 +1,11 @@
 #include "NaveEnemiga.h"
 #include "time_nanoseconds.h"
 
-NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
-    naveSeguida = -1;
+NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite, vector<NaveJugador*> jugadores){
+    setJugadores(jugadores);
     disparo = false;
+    naveSeguida = obtenerNaveSeguidaRandom(jugadores.size());
+    distanciaActual = getDistanciaNave(jugadores[naveSeguida]);
     std::string sp(sprite);
     std::string mensaje =  ">>>> CARGANDO LA NAVE " + sp + " ....";
     logger.info(mensaje.c_str());
@@ -11,6 +13,12 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         mensaje = "Se creo el " + sp;
         logger.debug(mensaje.c_str());
     }
+
+    strcpy(imagenActual, sprite);
+    if (sp == "enemigo1") strcpy(imagenEspejo, "enemigo3");
+    else if (sp == "enemigo3") strcpy(imagenEspejo, "enemigo1");
+    else if (sp == "enemigo2") strcpy(imagenEspejo, "enemigo4");
+    else if (sp == "enemigo4") strcpy(imagenEspejo, "enemigo2");
 
     if(sp == "enemigo1" || sp == "enemigo3"){
         alto = 80;
@@ -32,7 +40,7 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     vidas = 1;
 
     //clave[0] = 0;
-    strcpy(clave, sprite);
+    strcpy(clave, imagenActual);
     radio=alto/2;
     mensaje = "<<<< SE CARGO LA NAVE " + sp;
     logger.info(mensaje.c_str());
@@ -58,10 +66,6 @@ int NaveEnemiga::getRadio(){
     return radio;
 }
 
-const char* NaveEnemiga::getImagen(){
-    return imagen;
-}
-
 int NaveEnemiga::getAltoImagen(){
 	return alto;
 }
@@ -83,10 +87,10 @@ int NaveEnemiga::getNaveSeguida(){
 }
 
 void NaveEnemiga::procesarAccion(NaveJugador* nave){
+    actualizarSprite();
     int distanciaNave = getDistanciaNave(nave);
     if (distanciaNave < DISTANCIA_DE_COMBATE_INICIAL){
-        srand(current_time_nanoseconds() * 1000000000);
-        DISTANCIA_DE_COMBATE = 100 + (getRadio() *(rand() % 10));
+        DISTANCIA_DE_COMBATE = 100 + (getRadio() *(randomNumber() % 10));
         DISTANCIA_DE_COMBATE_INICIAL = 0;
     }
     disparo = false;
@@ -103,6 +107,10 @@ void NaveEnemiga::procesarAccion(NaveJugador* nave){
 
 int NaveEnemiga::getDistanciaNave(NaveJugador* nave){
     return abs(nave->getPosX() - getPosX());
+}
+
+int NaveEnemiga::getDistanciaNaveConSigno(NaveJugador* nave){
+    return nave->getPosX() - getPosX();
 }
 
 void NaveEnemiga::seguirNave(NaveJugador* nave, int distanciaNave){
@@ -138,5 +146,45 @@ void NaveEnemiga::destruirNave(){
     mPosY=0;
     mVelX=0;
     mVelY=0;
+}
+
+int NaveEnemiga::obtenerNaveSeguidaRandom(int cant_naves){
+    return randomNumber() % cant_naves;
+}
+
+int NaveEnemiga::obtenerNaveSeguidaPonderada(){
+    int cant_jug = jugadores.size();
+    int ponderacion[cant_jug];
+    for(int i=0; i<cant_jug; i++){
+        int score = jugadores[i]->getScore();
+        int vida = jugadores[i]->getVidas();
+
+        ponderacion[i] = score / vida;
+    }
+    int idx = 0;
+    int min_pond = ponderacion[idx];
+    for(int j=1; j<cant_jug; j++){
+        if(ponderacion[j] < min_pond){
+            min_pond = ponderacion[j];
+            idx = j;
+        }
+    }
+    return idx;
+}
+
+void NaveEnemiga::actualizarSprite(){
+    int distanciaNueva = getDistanciaNaveConSigno(jugadores[naveSeguida]);
+    if (distanciaNueva * distanciaActual < 0){
+        strcpy(clave, imagenEspejo);
+        char imagen[10];
+        strcpy(imagen, imagenActual);
+        strcpy(imagenActual, imagenEspejo);
+        strcpy(imagenEspejo, imagen);
+    }
+    distanciaActual = distanciaNueva;
+}
+
+char* NaveEnemiga::getImagen(){
+    return imagenActual;
 }
 

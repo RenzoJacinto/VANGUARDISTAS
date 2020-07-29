@@ -96,7 +96,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 pos->posX = enemigos[i]->getPosX();
                 pos->posY = enemigos[i]->getPosY();
                 pos->id = i+4;
-                strcpy(pos->descrip, "ASD");
+                strcpy(pos->descrip, enemigos[i]->getImagen());
                 server->send_all(pos);
             }
             parallax();
@@ -180,7 +180,7 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
 
     for(int i = 0; i<cant_enemigos; i++){
         std::string sprite = "enemigo";
-        int enemigo_random = 1 + rand() % 4;
+        int enemigo_random = 1 + randomNumber() % 4;
         sprite += std::to_string(enemigo_random);
 
         // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
@@ -192,11 +192,7 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         // CASO ENEMIGOS 3 y 4: inf = -100
         if(enemigo_random == 4 || enemigo_random == 3) x = -50 + rand() % 51;
 
-        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str());
-
-        int naveSeguida = obtenerNaveSeguidaRandom(cant_jugadores);
-        enemigo->setNaveSeguida(naveSeguida);
-        enemigo->setJugadores(jugadores);
+        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str(), jugadores);
 
         enemigos.push_back(enemigo);
 
@@ -204,7 +200,7 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         pos->posX = x;
         pos->posY = y;
         pos->descrip[0] = 0;
-        strncat(pos->descrip, sprite.c_str(), 14);
+        strncat(pos->descrip, enemigo->getImagen(), 14);
         pos->id = i+4;
         server->send_all(pos);
         free(pos);
@@ -214,30 +210,5 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
     pos->id = -1;
     server->send_all(pos);
     free(pos);
-}
-
-int NivelServidor::obtenerNaveSeguidaRandom(int cant_naves){
-    srand(current_time_nanoseconds() * 1000000000);
-    return rand() % cant_naves;
-}
-
-int NivelServidor::obtenerNaveSeguidaPonderada(){
-    int cant_jug = jugadores.size();
-    int ponderacion[cant_jug];
-    for(int i=0; i<cant_jug; i++){
-        int score = jugadores[i]->getScore();
-        int vida = jugadores[i]->getVidas();
-
-        ponderacion[i] = score / vida;
-    }
-    int idx = 0;
-    int min_pond = ponderacion[idx];
-    for(int j=1; j<cant_jug; j++){
-        if(ponderacion[j] < min_pond){
-            min_pond = ponderacion[j];
-            idx = j;
-        }
-    }
-    return idx;
 }
 

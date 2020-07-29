@@ -11,6 +11,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
 
     score = 0;
 
+    radio = 0;
     vidas = 3;
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
