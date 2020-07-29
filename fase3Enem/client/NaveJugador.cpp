@@ -8,7 +8,7 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
 
     energia_total = 200;
     energia_actual = 200;
-
+    boomInfo = 0;
     score = 0;
     vidas = CANT_VIDAS_JUGADOR;
     id_cliente = id_user;

@@ -119,16 +119,16 @@
 	},
 	"sounds":{
 		"FX":{
-			"shot":"sounds/fxs/shot.wav",
-			"receiveHit":"sounds/fxs/hit_receive.wav",
-			"boom":"sounds/fxs/explocion.wav",
-			"lifeDown":"sounds/fxs/life_down.wav"
+			"shot":"sounds/shot.wav",
+			"receiveHit":"sounds/hit_receive.wav",
+			"boom":"sounds/explocion.wav",
+			"lifeDown":"sounds/life_down.wav"
 		},
 		"music":{
-			"menu":"sounds/musics/menu1.wav",
-			"nivel1":"sounds/musics/nivel1A.wav",
-			"nivel2":"sounds/musics/nivel2A.wav",
-			"nivel3":"sounds/musics/nivel3.wav"
+			"menu":"sounds/menu1.wav",
+			"nivel1":"sounds/nivel1A.wav",
+			"nivel2":"sounds/nivel2A.wav",
+			"nivel3":"sounds/nivel3.wav"
 		}
 	}
 }

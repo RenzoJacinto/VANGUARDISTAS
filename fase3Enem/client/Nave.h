@@ -79,6 +79,8 @@ class Nave{
         //SDL_Rect dataHitReceive[FRAMES_HIT_RECEIVE];
 
         int framesBoom;
+        int frame;
+        int boomInfo;
         //int framesHitReceive;
 
         bool alive;

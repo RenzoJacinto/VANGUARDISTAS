@@ -70,6 +70,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
 
     posiciones_t* pos = create_posicion(id, v->descrip, 0, 0);
 
+    if(strcmp(v->descrip, "none") == 0) return pos;
     if(strcmp(v->descrip, "test") == 0){
         jugadores[id]->set_modeTest();
         server->send_all(pos);
@@ -120,6 +121,8 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 }
             }
             parallax();
+            strcpy(pos->descrip, "bg");
+            server->send_all(pos);
             list<Misil*>::iterator pos_m = misiles.begin();
             while(pos_m != misiles.end()){
                 int ok = -1;
