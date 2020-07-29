@@ -75,6 +75,7 @@
 		<Unit filename="server.cbp" />
 		<Unit filename="server.depend" />
 		<Unit filename="server.layout" />
+		<Unit filename="time_nanoseconds.h" />
 		<Unit filename="typesmsj.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
