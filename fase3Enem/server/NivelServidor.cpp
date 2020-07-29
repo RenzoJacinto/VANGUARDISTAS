@@ -100,6 +100,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                         velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
                         server->encolar(vMisil);
                         enemigos[i]->reiniciarDisparo();
+
                         //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
                     }
                     if(colision_id != -1){
@@ -108,13 +109,14 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                         pos->posX = 0;
                         pos->posY = i;
                         pos->id = colision_id;
+                        server->send_all(pos);
                     } else{
                         pos->posX = enemigos[i]->getPosX();
                         pos->posY = enemigos[i]->getPosY();
                         pos->id = i+4;
                         strcpy(pos->descrip, enemigos[i]->getImagen());
+                        server->send_all(pos);
                     }
-                    server->send_all(pos);
                 }
             }
             parallax();
@@ -155,12 +157,22 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
             }
 
         } else if(strcmp(v->descrip, "off") != 0){
-            jugadores[id]->setVelX(vx);
-            jugadores[id]->setVelY(vy);
-            jugadores[id]->mover(enemigos);
-            pos->posX = jugadores[id]->getPosX();
-            pos->posY = jugadores[id]->getPosY();
-            server->send_all(pos);
+            if(jugadores[id]->isAlive()){
+                jugadores[id]->setVelX(vx);
+                jugadores[id]->setVelY(vy);
+                int colision_id = jugadores[id]->mover(enemigos);
+                if(colision_id != -1){
+                    pos->posX = 0;
+                    pos->posY = colision_id;
+                    pos->id = id;
+                    strcpy(pos->descrip, "colision");
+                    server->send_all(pos);
+                } else {
+                    pos->posX = jugadores[id]->getPosX();
+                    pos->posY = jugadores[id]->getPosY();
+                    server->send_all(pos);
+                }
+            }
         } else if(strcmp(v->descrip, "off") == 0){
             //jugadores[id]->desconectar();
             pos->id = id;

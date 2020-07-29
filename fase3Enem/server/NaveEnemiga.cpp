@@ -15,7 +15,7 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
     setPosY(getPosY()+velY);
 
     for(unsigned int i = 0; i < jugadores.size(); ++i){
-        if( checkCollision( jugadores[i] , this ) ){
+        if( checkCollision( jugadores[i] , this )){
             jugadores[i]->die();
             die();
             return i;
@@ -100,13 +100,13 @@ int NaveEnemiga::obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores){
     for(int i=0; i<cant_jug; i++){
         int score = jugadores[i]->getScore();
         int vida = jugadores[i]->getVidas();
-
-        ponderacion[i] = score / vida;
+        if(vida > 0) ponderacion[i] = score / vida;
+        else ponderacion[i] = -1;
     }
     int idx = 0;
     int min_pond = ponderacion[idx];
     for(int j=1; j<cant_jug; j++){
-        if(ponderacion[j] < min_pond){
+        if(ponderacion[j] < min_pond && ponderacion[j] != -1){
             min_pond = ponderacion[j];
             idx = j;
         }

@@ -79,8 +79,6 @@ bool Nivel::iniciarNivel(Client* client){
         }
 
         velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
-
-
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
         if(! client->sendData(v)){
@@ -89,6 +87,7 @@ bool Nivel::iniciarNivel(Client* client){
             free(v);
             return true;
         }
+        free(v);
 
         while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
@@ -99,10 +98,7 @@ bool Nivel::iniciarNivel(Client* client){
             procesar((posiciones_t*) dato);
         }
 
-        free(v);
-
         //renderizar();
-
     }
     client->finalizar();
     return quit;
@@ -121,7 +117,7 @@ void Nivel::renderizar(int id_nave){
 
         vector<NaveJugador*>::iterator pos;
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
-            (*pos)->renderizar();
+            if((*pos)->isAlive()) (*pos)->renderizar();
             if((*pos)->boomAvailable()){
                 if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
                 (*pos)->renderBoom();
@@ -147,10 +143,14 @@ void Nivel::renderizar(int id_nave){
 void Nivel::procesar(posiciones_t* pos){
 
     if(strcmp(pos->descrip, "colision") == 0){
+        std::cout<<"en: "<<pos->posY<<"\n";
+        std::cout<<"jug: "<<pos->id<<"\n";
+
         jugadores[pos->id]->die();
         int score = enemigos[pos->posY]->getScore();
         jugadores[pos->id]->addScore(score);
         enemigos[pos->posY]->die();
+        return;
     }
 
     if(strcmp(pos->descrip, "test") == 0){
@@ -162,8 +162,7 @@ void Nivel::procesar(posiciones_t* pos){
         if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
-    }
-    else if(strcmp(pos->descrip, "hit") == 0){
+    } else if(strcmp(pos->descrip, "hit") == 0){
         sounds.playEffect(hitReceiveFX);
         if(pos->id > 3){
             enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
@@ -172,8 +171,7 @@ void Nivel::procesar(posiciones_t* pos){
         } else{
             jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
         }
-    }
-    else{
+    } else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-3);
             enemigos[pos->id - 4]->setPosX(pos->posX);

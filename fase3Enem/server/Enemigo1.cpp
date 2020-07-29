@@ -21,7 +21,7 @@ Enemigo1::Enemigo1(int x, int y){
     score = 500;
     energia_actual = 100;
     energia_total = 100;
-    DISTANCIA_DE_COMBATE_INICIAL = 50;
+    DISTANCIA_DE_COMBATE_INICIAL = 250;
 
     vidas = 1;
 
@@ -35,7 +35,7 @@ Enemigo1::Enemigo1(int x, int y){
     fireRate.iniciar();
 }
 
-// Dispara cada 1 segundo de lejos (500 en x), a un jugador al azar
+// Dispara cada 1 segundo de lejos (250 en x), a un jugador al azar
 int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
     int nave_seguida = obtenerNaveSeguidaRandom(jugadores.size());
@@ -44,7 +44,7 @@ int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
     if (distanciaNave < DISTANCIA_DE_COMBATE_INICIAL){
         DISTANCIA_DE_COMBATE = 100 + (getRadio() *(randomNumber() % 10));
-        DISTANCIA_DE_COMBATE_INICIAL = 50;
+        DISTANCIA_DE_COMBATE_INICIAL = 250;
     }
     disparo = false;
     int posY = getPosY();

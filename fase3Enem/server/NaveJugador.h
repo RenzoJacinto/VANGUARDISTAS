@@ -23,7 +23,7 @@ class NaveJugador: public Nave {
 		static const int NAVE_VEL = 5;
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( vector<NaveEnemiga*>  enemigo );
+		int mover( vector<NaveEnemiga*>  enemigo );
 
         int getAlto();
 
@@ -39,7 +39,7 @@ class NaveJugador: public Nave {
 
         int getVidas();
 
-        bool encontrarEnemigos(vector<NaveEnemiga*> enemigos);
+        int encontrarEnemigos(vector<NaveEnemiga*> enemigos);
 
     private:
 

@@ -17,14 +17,11 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
 
-    if(sp == "enemigo1" || sp == "enemigo3")
-    {
+    if(sp == "enemigo1" || sp == "enemigo3"){
         energia_total = 100;
         energia_actual = 100;
         score = 500;
-    }
-    else
-    {
+    } else{
         energia_total = 200;
         energia_actual = 200;
         score = 1000;

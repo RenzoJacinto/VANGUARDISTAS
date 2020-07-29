@@ -186,7 +186,7 @@ void* Client::receiveData(){
         bytes_writen = recv(socket, pos+total_bytes_writen, sizeof(posiciones_t)-total_bytes_writen, MSG_NOSIGNAL);
         total_bytes_writen += bytes_writen;
         if(bytes_writen<=0) {
-            printf("error en el recv CLIENT\n");
+            //printf("error en el recv CLIENT\n");
             free(pos);
             return NULL;
         }
