@@ -89,14 +89,14 @@
 		"enemigo3":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo3.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo1.png",
 			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaTipo1.png"
 		},
 		"enemigo4":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo4.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo1.png",
 			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
 		}
