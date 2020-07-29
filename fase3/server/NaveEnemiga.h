@@ -50,6 +50,8 @@ class NaveEnemiga: public Nave {
 
         int obtenerNaveSeguidaPonderada();
 
+        bool cambioDeLado();
+
         void actualizarSprite();
 
         char* getImagen();

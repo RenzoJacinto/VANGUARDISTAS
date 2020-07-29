@@ -18,7 +18,7 @@ class NaveEnemiga: public Nave {
 
 		int getRadio();
 
-		const char* getImagen();
+		void setImagen(const char* img);
 
 		int getAltoImagen();
 
@@ -31,8 +31,6 @@ class NaveEnemiga: public Nave {
     protected:
 
         int radio;
-
-        const char* imagen;
 
         // izq->der = 1 ; der->izq = -1
         int desplazamiento;

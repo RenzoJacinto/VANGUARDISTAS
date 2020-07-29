@@ -61,8 +61,12 @@ int NaveEnemiga::getRadio(){
     return radio;
 }
 
-const char* NaveEnemiga::getImagen(){
-    return imagen;
+void NaveEnemiga::setImagen(const char* img){
+    if (strcmp(clave, img) != 0){
+        strcpy(clave, img);
+        std::string imagen_json = json.get_sprite_nave("enemigas", img, "nave");
+        gNaveTexture.loadFromFile(imagen_json);
+    }
 }
 
 int NaveEnemiga::getAltoImagen(){

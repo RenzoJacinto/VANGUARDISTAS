@@ -87,7 +87,7 @@ int NaveEnemiga::getNaveSeguida(){
 }
 
 void NaveEnemiga::procesarAccion(NaveJugador* nave){
-    actualizarSprite();
+    if (cambioDeLado()) actualizarSprite();
     int distanciaNave = getDistanciaNave(nave);
     if (distanciaNave < DISTANCIA_DE_COMBATE_INICIAL){
         DISTANCIA_DE_COMBATE = 100 + (getRadio() *(randomNumber() % 10));
@@ -172,19 +172,22 @@ int NaveEnemiga::obtenerNaveSeguidaPonderada(){
     return idx;
 }
 
-void NaveEnemiga::actualizarSprite(){
+bool NaveEnemiga::cambioDeLado(){
     int distanciaNueva = getDistanciaNaveConSigno(jugadores[naveSeguida]);
-    if (distanciaNueva * distanciaActual < 0){
-        strcpy(clave, imagenEspejo);
-        char imagen[10];
-        strcpy(imagen, imagenActual);
-        strcpy(imagenActual, imagenEspejo);
-        strcpy(imagenEspejo, imagen);
-    }
+    int producto = distanciaNueva * distanciaActual;
     distanciaActual = distanciaNueva;
+    return producto < 0;
+}
+
+void NaveEnemiga::actualizarSprite(){
+    char imagen[10];
+    strcpy(imagen, imagenActual);
+    strcpy(imagenActual, imagenEspejo);
+    strcpy(imagenEspejo, imagen);
+    strcpy(clave, imagenActual);
 }
 
 char* NaveEnemiga::getImagen(){
-    return imagenActual;
+    return clave;
 }
 

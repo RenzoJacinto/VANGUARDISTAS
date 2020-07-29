@@ -181,6 +181,7 @@ void Nivel::procesar(posiciones_t* pos){
             aumentarRenderizados(pos->id-3);
             enemigos[pos->id - 4]->setPosX(pos->posX);
             enemigos[pos->id - 4]->setPosY(pos->posY);
+            enemigos[pos->id - 4]->setImagen(pos->descrip);
             if(pos->id-3 == renderizados) parallax();
             return;
         }
