@@ -25,13 +25,13 @@ int Misil::mover(vector<NaveJugador*> jugadores){
     x-=vel;
     if(x < 0) return -1;
     int cant_jug = jugadores.size();
-    printf("colision misil jugador, size: %d\n", cant_jug);
+    //printf("colision misil jugador, size: %d\n", cant_jug);
     for(int i=0; i<cant_jug; i++){
-        printf("colision misil jugador, id: %d\n", jugadores[i]->get_id());
+        //printf("colision misil jugador, id: %d\n", jugadores[i]->get_id());
         if ( jugadores[i]->impacto_misil(x, y, MISIL_WIDTH, MISIL_HEIGHT, damage) ) return i;
-        printf("check ok\n");
+        //printf("check ok\n");
     }
-    printf("check ok\n");
+    //printf("check ok\n");
     return -2;
 }
 

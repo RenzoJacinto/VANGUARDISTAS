@@ -6,8 +6,8 @@ NaveJugador::NaveJugador( int x, int y, int id){
 
     if(crearNave(x, y)) logger.debug("Se creo la nave jugador");
 
-    energia_actual = 200;
-    energia_total = 200;
+    energia_actual = 100;
+    energia_total = 100;
 
     score = 0;
 

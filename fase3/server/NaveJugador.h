@@ -15,7 +15,6 @@ class NaveJugador: public Nave {
         int get_id();
 
         //Las dimensiones de la Nave del Jugador
-        int id_nave;
 		static const int NAVE_WIDTH = 80;
 		static const int NAVE_HEIGHT = 34;
 

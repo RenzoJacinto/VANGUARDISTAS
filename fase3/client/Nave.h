@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <string>
 #include "ManejoDeSDL.h"
+#include "Temporizador.h"
 #include "global.h"
 #include "list"
 
@@ -57,6 +58,10 @@ class Nave{
         void setEnergias(int actual, int total);
 		void setEnergiasReconex(int actual, int total);
 
+		void wait();
+
+		bool crearHiloWait();
+
         static const int FRAMES_BOOM = 6;
         static const int FRAMES_HIT_RECEIVE = 5;
         static const int CANT_VIDAS_JUGADOR = 3;
@@ -82,16 +87,18 @@ class Nave{
         int frame;
         int boomInfoX;
         int boomInfoY;
+        int bX;
+        int bY;
         //int framesHitReceive;
 
         bool alive;
         bool boom;
-
+        bool boomEnded;
         bool mode_test;
+        bool hiloWait;
 
         int energia_actual;
         int energia_total;
-
         int vidas;
 };
 

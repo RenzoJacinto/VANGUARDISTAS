@@ -110,7 +110,8 @@ void Nave::die(){
     if(!mode_test && vidas>0){
         vidas--;
         energia_actual = 0;
-
+        mPosX = 200;
+        mPosY = 100 * (id_nave+1);
         std::cout<<"colision\n";
     }
 }
@@ -134,15 +135,14 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
 
     //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
     if(colisionX && colisionY && !mode_test){
-        printf("impacta misil, danio: %d\n", damage);
         energia_actual -= damage;
-        printf("actualiza vida\n");
+        printf("energia actual: %d\n", energia_actual);
         if(energia_actual <= 0){
             die();
         }
         ok = true;
     }
-    printf("termina\n");
+    //printf("termina\n");
     return ok;
 }
 

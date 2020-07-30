@@ -1,7 +1,9 @@
 #include "NaveEnemiga.h"
 #include "time_nanoseconds.h"
 
-NaveEnemiga::NaveEnemiga(){}
+NaveEnemiga::NaveEnemiga(){
+    id_nave = 0;
+}
 int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){}
 
 int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){

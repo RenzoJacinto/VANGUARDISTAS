@@ -8,6 +8,13 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
+void* hiloWait(void* p)
+{
+    NaveJugador* nave = (NaveJugador*)p;
+    nave->wait();
+    return NULL;
+}
+
 Nivel::Nivel(){
     dataFinNivel.h = 600;
     dataFinNivel.w = 800;
@@ -69,14 +76,14 @@ bool Nivel::iniciarNivel(Client* client){
             jugador1->handleEvent( e, gMusic, &new_misil);
             if(new_misil == MISIL){
                 velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador1->getPosX(), jugador1->getPosY());
-                if(jugador1->boomAvailable()) {
+                if(!jugador1->isAlive()) {
                     strcpy(v_shot->descrip, "none");
                 }
                 client->sendData(v_shot);
                 free(v_shot);
             } else if(new_misil == MODO_TEST){
                 velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
-                if(jugador1->boomAvailable()) {
+                if(!jugador1->isAlive()) {
                     strcpy(v_shot->descrip, "none");
                 }
                 client->sendData(v_shot);
@@ -87,7 +94,7 @@ bool Nivel::iniciarNivel(Client* client){
         velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
-        if(jugador1->boomAvailable()) {
+        if(!jugador1->isAlive()) {
             strcpy(v->descrip, "none");
         }
 
@@ -192,8 +199,12 @@ void Nivel::procesar(posiciones_t* pos){
             return;
         }
         if(strcmp(pos->descrip, "off") != 0){
-            jugadores[pos->id]->setPosX(pos->posX);
-            jugadores[pos->id]->setPosY(pos->posY);
+            if(jugadores[pos->id]->crearHiloWait()) {
+                pthread_t h;
+                pthread_create(&h, NULL, hiloWait, jugadores[pos->id]);
+            }
+            if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosX(pos->posX);
+            if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosY(pos->posY);
             if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
         } else{
             printf("desconectado\n");

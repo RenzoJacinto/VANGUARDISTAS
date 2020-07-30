@@ -2,6 +2,7 @@
 #include "NaveJugador.h"
 #include "NaveEnemiga.h"
 #include "global.h"
+#include "Temporizador.h"
 
 bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     //Initialize the offsets
@@ -13,6 +14,8 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelY = 0;
 
     boom = false;
+    boomEnded = true;
+    hiloWait = false;
     frame = 0;
 
     std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
@@ -141,22 +144,25 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
 
 void Nave::renderBoom(){
 
+    boomEnded = false;
     SDL_Rect* currentClip = &dataBoom[ frame/2 ];
     int w = dataBoom[ frame/2 ].w;
     int h = dataBoom[ frame/2 ].h;
 
-    printf("frame: %d\n", frame);
-    textureBoom.render(mPosX-w/2+boomInfoX, mPosY-h/2+boomInfoY, currentClip );
+    //printf("frame: %d\n", frame);
+    textureBoom.render(bX-w/2+boomInfoX, bY-h/2+boomInfoY, currentClip );
     frame++;
 
     if(frame/2 > 5) {
-        boom = false;
         frame = 0;
+        boom = false;
+        hiloWait = true;
+        energia_actual = 100;
     }
 }
 
 bool Nave::isAlive(){
-    return vidas > 0 && (!boom);
+    return vidas > 0 && (!boom) && boomEnded;
 }
 
 bool Nave::boomAvailable(){
@@ -167,6 +173,8 @@ void Nave::die(){
     if(vidas>0){
         vidas--;
         boom = true;
+        bX = mPosX;
+        bY = mPosY;
     }
 }
 
@@ -226,4 +234,18 @@ void Nave::setEnergias(int actual, int total){
 void Nave::setEnergiasReconex(int actual, int total){
     energia_actual = actual;
     if(energia_actual <= 0) die();
+}
+
+void Nave::wait()
+{
+    hiloWait = false;
+    Temporizador temp;
+    temp.iniciar();
+    while (temp.transcurridoEnSegundos() < 1){}
+    boomEnded = true;
+}
+
+bool Nave::crearHiloWait()
+{
+    return hiloWait;
 }

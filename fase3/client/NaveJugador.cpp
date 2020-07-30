@@ -6,8 +6,8 @@ NaveJugador::NaveJugador( int x, int y, int id, std::string id_user){
 
     if(crearNave(x, y, "jugador", jug.c_str())) logger.debug("Se creo la nave jugador");
 
-    energia_total = 200;
-    energia_actual = 200;
+    energia_total = 100;
+    energia_actual = 100;
     boomInfoX = 40;
     boomInfoY = 17;
     score = 0;

@@ -59,7 +59,7 @@ class Nave{
 		int energia_total;
 		//La velocidad de la Nave
 		int mVelX, mVelY;
-
+        int id_nave;
 		bool mode_test;
 
 		int vidas;

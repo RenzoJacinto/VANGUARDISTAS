@@ -909,7 +909,7 @@
 1596055512 /home/agus/Desktop/taller/fase3/client/NaveEnemiga.h
 	"Nave.h"
 
-1596065182 /home/agus/Desktop/taller/fase3/client/Nave.h
+1596081999 /home/agus/Desktop/taller/fase3/client/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -917,6 +917,7 @@
 	<stdio.h>
 	<string>
 	"ManejoDeSDL.h"
+	"Temporizador.h"
 	"global.h"
 	"list"
 
@@ -1271,10 +1272,10 @@
 1596065182 source:/home/agus/Desktop/taller/fase3/client/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1596065182 source:/home/agus/Desktop/taller/fase3/client/NaveJugador.cpp
+1596077150 source:/home/agus/Desktop/taller/fase3/client/NaveJugador.cpp
 	"NaveJugador.h"
 
-1596059815 source:/home/agus/Desktop/taller/fase3/client/Nivel.cpp
+1596081994 source:/home/agus/Desktop/taller/fase3/client/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -1304,11 +1305,12 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1596065182 source:/home/agus/Desktop/taller/fase3/client/Nave.cpp
+1596082150 source:/home/agus/Desktop/taller/fase3/client/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
+	"Temporizador.h"
 
 1595465949 source:/home/agus/Desktop/taller2/fase3/client/BotonIniciar.cpp
 	"BotonIniciar.h"
@@ -3051,4 +3053,10 @@
 	"ManejoDeSDL.h"
 	"global.h"
 	<SDL2/SDL_ttf.h>
+
+1596055514 /home/agus/Desktop/taller/fase3/client/Temporizador.h
+	<iostream>
+	<chrono>
+	<ctime>
+	<cmath>
 
