@@ -8,31 +8,12 @@
 #include <arpa/inet.h>
 #include <pthread.h>
 
-void* hiloWait(void* p)
-{
-    NaveJugador* nave = (NaveJugador*)p;
-    nave->wait();
-    return NULL;
-}
-
 Nivel::Nivel(){
     dataFinNivel.h = 600;
     dataFinNivel.w = 800;
     dataFinNivel.x = 0;
     dataFinNivel.y = 0;
     renderizados = 1;
-}
-
-void* renderEnemies(void* p){
-    Nivel* niv = (Nivel*)p;
-    niv->renderEnemigos();
-    return NULL;
-}
-
-void* renderBoom(void* p){
-    Nivel* niv = (Nivel*)p;
-    niv->renderBooms();
-    return NULL;
 }
 
 bool Nivel::iniciarNivel(Client* client){
@@ -199,10 +180,7 @@ void Nivel::procesar(posiciones_t* pos){
             return;
         }
         if(strcmp(pos->descrip, "off") != 0){
-            if(jugadores[pos->id]->crearHiloWait()) {
-                pthread_t h;
-                pthread_create(&h, NULL, hiloWait, jugadores[pos->id]);
-            }
+            jugadores[pos->id]->endBoom();
             if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosX(pos->posX);
             if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosY(pos->posY);
             if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();

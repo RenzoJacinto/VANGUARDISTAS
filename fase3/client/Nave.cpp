@@ -15,7 +15,6 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
 
     boom = false;
     boomEnded = true;
-    hiloWait = false;
     frame = 0;
 
     std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
@@ -156,7 +155,7 @@ void Nave::renderBoom(){
     if(frame/2 > 5) {
         frame = 0;
         boom = false;
-        hiloWait = true;
+        temp.iniciar();
         energia_actual = 100;
     }
 }
@@ -236,16 +235,11 @@ void Nave::setEnergiasReconex(int actual, int total){
     if(energia_actual <= 0) die();
 }
 
-void Nave::wait()
+void Nave::endBoom()
 {
-    hiloWait = false;
-    Temporizador temp;
-    temp.iniciar();
-    while (temp.transcurridoEnSegundos() < 1){}
-    boomEnded = true;
-}
-
-bool Nave::crearHiloWait()
-{
-    return hiloWait;
+    if (temp.transcurridoEnSegundos() > 1)
+    {
+        boomEnded = true;
+        temp.finalizar();
+    }
 }

@@ -58,9 +58,7 @@ class Nave{
         void setEnergias(int actual, int total);
 		void setEnergiasReconex(int actual, int total);
 
-		void wait();
-
-		bool crearHiloWait();
+		void endBoom();
 
         static const int FRAMES_BOOM = 6;
         static const int FRAMES_HIT_RECEIVE = 5;
@@ -95,7 +93,7 @@ class Nave{
         bool boom;
         bool boomEnded;
         bool mode_test;
-        bool hiloWait;
+        Temporizador temp;
 
         int energia_actual;
         int energia_total;
