@@ -54,18 +54,22 @@ class Nave{
 
         bool boomAvailable();
 
+        bool renderizo();
+
         void set_animations(const char* tipo, const char* subtipo);
         void setEnergias(int actual, int total);
 		void setEnergiasReconex(int actual, int total);
 
 		void endBoom();
 
+		int getFrame();
+
+		void setVidas(int vida);
+
         static const int FRAMES_BOOM = 6;
         static const int FRAMES_HIT_RECEIVE = 5;
         static const int CANT_VIDAS_JUGADOR = 3;
         static const int CANT_VIDAS_ENEMIGO = 1;
-
-        int get_frameBoom();
 
     protected:
 
@@ -95,6 +99,7 @@ class Nave{
         bool boom;
         bool boomEnded;
         bool mode_test;
+        bool render;
         Temporizador temp;
 
         int energia_actual;

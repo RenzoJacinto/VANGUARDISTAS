@@ -57,14 +57,14 @@ bool Nivel::iniciarNivel(Client* client){
             jugador1->handleEvent( e, gMusic, &new_misil);
             if(new_misil == MISIL){
                 velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador1->getPosX(), jugador1->getPosY());
-                if(!jugador1->isAlive()) {
+                if(!jugador1->isAlive() || !jugador1->renderizo()) {
                     strcpy(v_shot->descrip, "none");
                 }
                 client->sendData(v_shot);
                 free(v_shot);
             } else if(new_misil == MODO_TEST){
                 velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
-                if(!jugador1->isAlive()) {
+                if(!jugador1->isAlive() || !jugador1->renderizo()) {
                     strcpy(v_shot->descrip, "none");
                 }
                 client->sendData(v_shot);
@@ -75,7 +75,7 @@ bool Nivel::iniciarNivel(Client* client){
         velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
-        if(!jugador1->isAlive()) {
+        if(!jugador1->isAlive() || !jugador1->renderizo()) {
             strcpy(v->descrip, "none");
         }
 
@@ -117,11 +117,10 @@ void Nivel::renderizar(int id_nave){
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             if((*pos)->isAlive()) (*pos)->renderizar();
             if((*pos)->boomAvailable()){
+                //if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
+                if((*pos)->getFrame() == 0)sounds.playEffect(explosion);
                 (*pos)->renderBoom();
-                if((*pos)->get_frameBoom() == 0){
-                    if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
-                    sounds.playEffect(explosion);
-                }
+                //if((*pos)->getFrame() == 0)sounds.playEffect(explosion);
             }
         }
 
@@ -131,7 +130,7 @@ void Nivel::renderizar(int id_nave){
 
         for(int i = 0; i < renderizados; i++){
             if(enemigos[i]->boomAvailable()){
-                if(enemigos[i]->get_frameBoom() == 0) sounds.playEffect(explosion);
+                if(enemigos[i]->getFrame() == 0)sounds.playEffect(explosion);
                 enemigos[i]->renderBoom();
             }
         }
@@ -163,13 +162,14 @@ void Nivel::procesar(posiciones_t* pos){
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
     } else if(strcmp(pos->descrip, "hit") == 0){
-        sounds.playEffect(hitReceiveFX);
         if(pos->id > 3){
             enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
             int score = enemigos[pos->id -4]->getScore();
             if(!enemigos[pos->id -4]->isAlive()) jugadores[pos->posY]->addScore(score);
+            else sounds.playEffect(hitReceiveFX);
         } else{
             jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
+            if(jugadores[pos->id]->isAlive())sounds.playEffect(hitReceiveFX);
         }
     }
     else if (strcmp(pos->descrip, "bg") == 0) parallax();

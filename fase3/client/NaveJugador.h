@@ -44,6 +44,8 @@ class NaveJugador: public Nave {
 
         int getScore();
 
+        void setScore(int puntos);
+
         std::string get_name();
         int get_cant_vidas();
 

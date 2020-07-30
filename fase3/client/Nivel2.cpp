@@ -1,6 +1,14 @@
 #include "Nivel2.h"
 #include "global.h"
 
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <iostream>
+#include <cstdlib>
+#include <pthread.h>
+#include <thread>
+
 Nivel2::Nivel2(){}
 
 void Nivel2::cargarNivel(Client* client){
@@ -94,33 +102,33 @@ void Nivel2::parallax(){
 void Nivel2::reconectar(Client* client)
 {
     logger.debug("Recibiendo estado actual del nivel");
-    posiciones_t* pos = (posiciones_t*)client->receiveData();
+    posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetPlaneta1 = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetPlaneta2 = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetAsteroides1 = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetAsteroides2 = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetAsteroides3 = (double) pos->posX;
 
     while(true)
     {
-        pos = (posiciones_t*)client->receiveData();
-        printf("%d\n", pos->id);
-        if(pos->id == -1) {
-            printf("quitea\n");
-            break;
-        }
+        recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
+        if(pos->id == -1) break;
         if(pos->id>3){
-            printf("crea nave enemiga\n");
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
+            enemigo->setEnergiasReconex(pos->energiaActual, 0);
+            enemigo->setVidas(pos->vidas);
             enemigos.push_back(enemigo);
         } else{
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id, client->get_id_user(pos->id));
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
-            printf("crea nave jug\n");
+            nave->setEnergiasReconex(pos->energiaActual, 0);
+            nave->setVidas(pos->vidas);
+            nave->setScore(pos->score);
             jugadores.push_back(nave);
         }
     }

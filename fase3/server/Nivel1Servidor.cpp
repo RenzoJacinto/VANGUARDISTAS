@@ -27,46 +27,52 @@ void Nivel1Servidor::cargarNivel(Server* server, int cant_jugadores){
 }
 void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
     logger.info("Iniciando reconexiones");
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    printf("a\n");
+    posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
     pos->posX = (int)scrollingOffsetBG;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetCity;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)tierraInicial;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetNube1;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetNube2;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
-
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
+    printf("b\n");
     int i = 0;
     vector<NaveJugador*>::iterator posJ;
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++){
         pos->posX = (*posJ)->getPosX();
         pos->posY = (*posJ)->getPosY();
         pos->id = i;
-        pos->descrip[0] = 0;
-        if(server->desconecto(i) && i != id) strncat(pos->descrip, "off", 5);
-        else strncat(pos->descrip, "on", 5);
-
-        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        if(server->desconecto(i) && i != id) strcpy(pos->descrip, "off");
+        else strcpy(pos->descrip, "on");
+        printf("score = %d\n", (*posJ)->getScore());
+        pos->score = (*posJ)->getScore();
+        printf("vidas = %d\n", (*posJ)->getVidas());
+        pos->vidas = (*posJ)->getVidas();
+        printf("energia Actual = %d\n", (*posJ)->getVidaActual());
+        pos->energiaActual = (*posJ)->getVidaActual();
+        send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         i++;
     }
-
+    printf("c\n");
     i = 4;
     vector<NaveEnemiga*>::iterator posE;
     for(posE = enemigos.begin(); posE != enemigos.end(); posE++){
         pos->posX = (*posE)->getPosX();
         pos->posY = (*posE)->getPosY();
         pos->id = i;
-        pos->descrip[0] = 0;
-        strncat(pos->descrip, (*posE)->getClave(), 15);
-
-        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        strcpy(pos->descrip, (*posE)->getClave());
+        pos->vidas = (*posE)->getVidas();
+        pos->energiaActual = (*posE)->getVidaActual();
+        send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         i++;
     }
+    printf("d\n");
     pos->id = -1;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     free(pos);
 }
 

@@ -2,6 +2,14 @@
 #include "global.h"
 #include "Client.h"
 
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+#include <iostream>
+#include <cstdlib>
+#include <pthread.h>
+#include <thread>
+
 class Client;
 
 Nivel1::Nivel1(){}
@@ -102,27 +110,33 @@ void Nivel1::reconectar(Client* client)
 {
 
     logger.debug("Recibiendo estado actual del nivel");
-    posiciones_t* pos = (posiciones_t*)client->receiveData();
+    posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetBG = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetCity = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     tierraInicial = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetNube1 = (double) pos->posX;
-    pos = (posiciones_t*)client->receiveData();
+    recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetNube2 = (double) pos->posX;
 
     while(true)
     {
-        pos = (posiciones_t*)client->receiveData();
+        recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         if(pos->id == -1) break;
         if(pos->id>3){
             NaveEnemiga* enemigo = new NaveEnemiga(pos->posX, pos->posY, pos->descrip);
+            enemigo->setEnergiasReconex(pos->energiaActual, 0);
+            enemigo->setVidas(pos->vidas);
             enemigos.push_back(enemigo);
         } else{
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id, client->get_id_user(pos->id));
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
+            nave->setEnergiasReconex(pos->energiaActual, 0);
+            nave->setVidas(pos->vidas);
+            nave->setScore(pos->score);
             jugadores.push_back(nave);
         }
     }

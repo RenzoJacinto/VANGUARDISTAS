@@ -66,6 +66,8 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 }
 
 void NaveJugador::renderizar(){
+    render = true;
+    //printf("renderizo\n");
 	gNaveTexture.render(mPosX, mPosY);
 
 	int w = NAVE_WIDTH;
@@ -147,4 +149,10 @@ void NaveJugador::set_modeTest(){
     // si no esta activado lo activa y visceversa
     if(! mode_test) mode_test = true;
     else mode_test = false;
+}
+
+void NaveJugador::setScore(int puntos)
+{
+    printf("score = %d\n", puntos);
+    score = puntos;
 }

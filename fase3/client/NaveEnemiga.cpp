@@ -45,7 +45,7 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 }
 
 void NaveEnemiga::renderizar(){
-
+    render = true;
     gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
     int w = getAnchoImagen();
     w = (int) (w * energia_actual / energia_total);

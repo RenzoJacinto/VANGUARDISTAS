@@ -115,6 +115,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                         pos->posX = 0;
                         pos->posY = i;
                         pos->id = colision_id;
+                        jugadores[colision_id]->addScore(enemigos[i]->getScore());
                         server->send_all(pos);
                     } else{
                         pos->posX = enemigos[i]->getPosX();
@@ -159,6 +160,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                     pos->posY = (*pos_m)->get_id();
                     strcpy(pos->descrip, "hit");
                     server->send_all(pos);
+                    if(pos->posX <= 0 && ok > 3) jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
                     pos_m = misiles.erase(pos_m);
                 }
 
@@ -173,6 +175,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                     pos->posX = 0;
                     pos->posY = colision_id;
                     pos->id = id;
+                    jugadores[pos->id]->addScore(enemigos[colision_id]->getScore());
                     strcpy(pos->descrip, "colision");
                     server->send_all(pos);
                 } else {
@@ -267,6 +270,19 @@ posiciones_t* NivelServidor::create_posicion(int id,  const char* descrip, int x
     pos->posY = y;
     strcpy(pos->descrip, descrip);
     pos->id = id;
+
+    return pos;
+}
+
+posicionesR_t* NivelServidor::create_posicionR(int id,  char const* descrip, int x, int y, int puntaje, int vida, int energia){
+    posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
+    pos->posX = x;
+    pos->posY = y;
+    strcpy(pos->descrip, descrip);
+    pos->id = id;
+    pos->score = puntaje;
+    pos->vidas = vida;
+    pos->energiaActual = energia;
 
     return pos;
 }

@@ -174,6 +174,7 @@ void Nave::die(){
         boom = true;
         bX = mPosX;
         bY = mPosY;
+        render = false;
     }
 }
 
@@ -231,17 +232,31 @@ void Nave::setEnergias(int actual, int total){
 }
 
 void Nave::setEnergiasReconex(int actual, int total){
+    printf("energia = %d\n", actual);
     energia_actual = actual;
-    if(energia_actual <= 0) die();
 }
 
-void Nave::endBoom(){
-    if (temp.transcurridoEnSegundos() > 1){
+void Nave::endBoom()
+{
+    if (temp.transcurridoEnSegundos() > 1)
+    {
         boomEnded = true;
         temp.finalizar();
     }
 }
 
-int Nave::get_frameBoom(){
+bool Nave::renderizo()
+{
+    return render;
+}
+
+int Nave::getFrame()
+{
     return frame;
+}
+
+void Nave::setVidas(int vida)
+{
+    printf("vidas = %d\n", vida);
+    vidas = vida;
 }

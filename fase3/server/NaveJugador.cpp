@@ -52,7 +52,8 @@ int NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
     // Mueve la nave a la izquierda o la derecha
     setPosY(getPosY()+getVelY());
-
+    ok = encontrarEnemigos(enemigos);
+    if(ok != -1) return ok;
     if( ( getPosY() < 70 ) || ( getPosY() + getAlto() > SCREEN_HEIGHT)){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
@@ -98,7 +99,8 @@ void NaveJugador::set_modeTest(){
     else mode_test = false;
 }
 
-int NaveJugador::getVidas(){
-    return vidas;
+void NaveJugador::addScore(int puntaje)
+{
+    score += puntaje;
+    printf("score = %d\n", score);
 }
-

@@ -29,17 +29,17 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_jugadores){
 
 void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
     logger.info("Iniciando reconexiones");
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
     pos->posX = (int)scrollingOffsetPlaneta1;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetPlaneta2;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetAsteroides1;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetAsteroides2;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     pos->posX = (int)scrollingOffsetAsteroides3;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
 
     int i = 0;
     vector<NaveJugador*>::iterator posJ;
@@ -47,11 +47,12 @@ void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
         pos->posX = (*posJ)->getPosX();
         pos->posY = (*posJ)->getPosY();
         pos->id = i;
-        pos->descrip[0] = 0;
-        if(server->desconecto(i) && i != id) strncat(pos->descrip, "off", 5);
-        else strncat(pos->descrip, "on", 5);
-
-        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        if(server->desconecto(i) && i != id) strcpy(pos->descrip, "off");
+        else strcpy(pos->descrip, "on");
+        pos->score = (*posJ)->getScore();
+        pos->vidas = (*posJ)->getVidas();
+        pos->energiaActual = (*posJ)->getVidaActual();
+        send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         i++;
     }
 
@@ -62,13 +63,14 @@ void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
         pos->posY = (*posE)->getPosY();
         pos->id = i;
         pos->descrip[0] = 0;
-        strncat(pos->descrip, (*posE)->getClave(), 15);
-
-        send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+        strcpy(pos->descrip, (*posE)->getClave());
+        pos->vidas = (*posE)->getVidas();
+        pos->energiaActual = (*posE)->getVidaActual();
+        send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         i++;
     }
     pos->id = -1;
-    send(server->get_socket(socket_id), pos, sizeof(posiciones_t), MSG_NOSIGNAL);
+    send(server->get_socket(socket_id), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     free(pos);
 }
 

@@ -7,6 +7,16 @@
 
 #include "ColaMultihilo.h"
 
+typedef struct posicionesR {
+    int id;
+    char descrip[15];
+    int posX;
+    int posY;
+    int energiaActual;
+    int vidas;
+    int score;
+} posicionesR_t;
+
 typedef struct posiciones {
     int id;
     char descrip[15];

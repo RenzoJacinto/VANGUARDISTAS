@@ -50,6 +50,8 @@ class Nave{
 
         int get_damage();
 
+        int getVidas();
+
     protected:
 
         //Las coordenadas X e Y de la Nave

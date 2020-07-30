@@ -30,6 +30,7 @@ class NivelServidor{
 
         velocidades_t* create_velocidad(int id,  char const* descrip, int x, int y);
         posiciones_t* create_posicion(int id,  char const* descrip, int x, int y);
+        posicionesR_t* create_posicionR(int id,  char const* descrip, int x, int y, int puntaje, int vida, int energia);
 
     protected:
         vector<NaveEnemiga*> enemigos;
