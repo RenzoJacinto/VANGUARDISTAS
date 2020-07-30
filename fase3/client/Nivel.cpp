@@ -68,30 +68,28 @@ bool Nivel::iniciarNivel(Client* client){
             int new_misil = NONE;
             jugador1->handleEvent( e, gMusic, &new_misil);
             if(new_misil == MISIL){
-                velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
-                v_shot->id = id_nave;
-                strcpy(v_shot->descrip, "shot0");
-                v_shot->VelX = jugador1->getPosX();
-                v_shot->VelY = jugador1->getPosY();
+                velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador1->getPosX(), jugador1->getPosY());
+                if(jugador1->boomAvailable()) {
+                    strcpy(v_shot->descrip, "none");
+                }
                 client->sendData(v_shot);
                 free(v_shot);
             } else if(new_misil == MODO_TEST){
-                velocidades_t* v_shot = (velocidades_t*) malloc(sizeof(velocidades_t));
-                v_shot->id = id_nave;
-                strcpy(v_shot->descrip, "test");
+                velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
+                if(jugador1->boomAvailable()) {
+                    strcpy(v_shot->descrip, "none");
+                }
                 client->sendData(v_shot);
                 free(v_shot);
             }
         }
 
-        velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-        v->id = id_nave;
-        v->descrip[0] = 0;
-        strncat(v->descrip, "on", 5);
-        v->VelX = jugador1->getVelX();
-        v->VelY = jugador1->getVelY();
-
+        velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
+
+        if(jugador1->boomAvailable()) {
+            strcpy(v->descrip, "none");
+        }
 
         if(! client->sendData(v)){
             client->renderServerCaido();
@@ -99,6 +97,7 @@ bool Nivel::iniciarNivel(Client* client){
             free(v);
             return true;
         }
+        free(v);
 
         while(!client->cola_esta_vacia()){
             void* dato = client->desencolar();
@@ -109,10 +108,7 @@ bool Nivel::iniciarNivel(Client* client){
             procesar((posiciones_t*) dato);
         }
 
-        free(v);
-
         //renderizar();
-
     }
     client->finalizar();
     return quit;
@@ -131,7 +127,7 @@ void Nivel::renderizar(int id_nave){
 
         vector<NaveJugador*>::iterator pos;
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
-            (*pos)->renderizar();
+            if((*pos)->isAlive()) (*pos)->renderizar();
             if((*pos)->boomAvailable()){
                 if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
                 (*pos)->renderBoom();
@@ -156,6 +152,17 @@ void Nivel::renderizar(int id_nave){
 
 void Nivel::procesar(posiciones_t* pos){
 
+    if(strcmp(pos->descrip, "colision") == 0){
+        std::cout<<"en: "<<pos->posY<<"\n";
+        std::cout<<"jug: "<<pos->id<<"\n";
+
+        jugadores[pos->id]->die();
+        int score = enemigos[pos->posY]->getScore();
+        jugadores[pos->id]->addScore(score);
+        enemigos[pos->posY]->die();
+        return;
+    }
+
     if(strcmp(pos->descrip, "test") == 0){
         jugadores[pos->id]->set_modeTest();
         return;
@@ -165,8 +172,7 @@ void Nivel::procesar(posiciones_t* pos){
         if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
         Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
         misiles.push_back(misil);
-    }
-    else if(strcmp(pos->descrip, "hit") == 0){
+    } else if(strcmp(pos->descrip, "hit") == 0){
         sounds.playEffect(hitReceiveFX);
         if(pos->id > 3){
             enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
@@ -176,13 +182,13 @@ void Nivel::procesar(posiciones_t* pos){
             jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
         }
     }
+    else if (strcmp(pos->descrip, "bg") == 0) parallax();
     else{
         if(pos->id>3){
             aumentarRenderizados(pos->id-3);
             enemigos[pos->id - 4]->setPosX(pos->posX);
             enemigos[pos->id - 4]->setPosY(pos->posY);
             enemigos[pos->id - 4]->setImagen(pos->descrip);
-            if(pos->id-3 == renderizados) parallax();
             return;
         }
         if(strcmp(pos->descrip, "off") != 0){
@@ -302,6 +308,17 @@ void Nivel::renderPuntajes(){
 
     nameTexture.free();
 }
+
+velocidades_t* Nivel::create_velocidad(int id,  const char* descrip, int x, int y){
+    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+    v->VelX = x;
+    v->VelY = y;
+    strcpy(v->descrip, descrip);
+    v->id = id;
+
+    return v;
+}
+
 
 void Nivel::parallax(){}
 

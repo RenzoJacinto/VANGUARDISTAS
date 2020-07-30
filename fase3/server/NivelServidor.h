@@ -28,6 +28,9 @@ class NivelServidor{
 
         static const int TIEMPO_NIVEL_SEGS = 240;
 
+        velocidades_t* create_velocidad(int id,  char const* descrip, int x, int y);
+        posiciones_t* create_posicion(int id,  char const* descrip, int x, int y);
+
     protected:
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;

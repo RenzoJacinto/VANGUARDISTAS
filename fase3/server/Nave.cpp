@@ -106,21 +106,17 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
     return false;
 }
 
-//En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
-bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemigos ){
-    bool colision = false;
-    vector<NaveEnemiga*>::iterator pos;
+void Nave::die(){
+    if(!mode_test && vidas>0){
+        vidas--;
+        energia_actual = 0;
 
-    for(pos = enemigos.begin();pos != enemigos.end();pos++){
-        colision = checkCollision( jugador , *pos );
-        if (colision) break;
+        std::cout<<"colision\n";
     }
-
-    return colision;
 }
 
 
-bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil){
+bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil, int damage){
 
     if(energia_actual <= 0) energia_actual = energia_total;
 
@@ -138,13 +134,15 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
 
     //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
     if(colisionX && colisionY && !mode_test){
-        energia_actual -= 50;
+        printf("impacta misil, danio: %d\n", damage);
+        energia_actual -= damage;
+        printf("actualiza vida\n");
         if(energia_actual <= 0){
-            vidas--;
+            die();
         }
         ok = true;
     }
-
+    printf("termina\n");
     return ok;
 }
 
@@ -162,5 +160,9 @@ int Nave::getVidaTotal(){
 
 int Nave::getScore(){
     return score;
+}
+
+int Nave::get_damage(){
+    return damage;
 }
 

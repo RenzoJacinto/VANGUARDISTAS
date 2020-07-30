@@ -30,6 +30,7 @@ class Nivel: public Escenario {
         virtual void renderBackground();
         virtual void parallax();
 
+        velocidades_t* create_velocidad(int id, char const* descrip, int x, int y);
 
         void renderPuntajes();
         //static const int TIEMPO_NIVEL_SEGS = 240;

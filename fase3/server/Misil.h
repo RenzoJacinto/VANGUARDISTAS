@@ -8,7 +8,7 @@ class Misil{
 
     public:
 
-        Misil( int x, int y, int id);
+        Misil( int x, int y, int id, int danio);
         int get_id();
 
         //Las dimensiones de la Nave del Jugador
@@ -39,6 +39,8 @@ class Misil{
         int vel;
         int x;
         int y;
+
+        int damage;
 };
 
 #endif

@@ -3,6 +3,10 @@
 #include "Server.h"
 #include "NaveEnemiga.h"
 #include "NaveJugador.h"
+#include "Enemigo1.h"
+#include "Enemigo2.h"
+#include "Enemigo3.h"
+#include "Enemigo4.h"
 #include "Nave.h"
 #include <sys/socket.h>
 #include "time_nanoseconds.h"
@@ -29,6 +33,11 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     //int renderizados = 1;
 
     while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
+
+        /*if(! jugadoresSiguenVivos()){
+            // Enviar GAME OVER
+        }*/
+
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
@@ -37,32 +46,31 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
             //server->send_all(pos);
             free(pos);
         }
+
+
         //printf("encola enemigo\n");
         tiempo_transcurrido = temporizador.transcurridoEnSegundos();
         if(tiempo_transcurrido/renderizados > tiempo_por_enemigos && renderizados<cant_enemigos) renderizados++;
-        velocidades_t* v = (velocidades_t*) malloc(sizeof(velocidades_t));
-        strcpy(v->descrip, "rend");
-        v->id = renderizados+4;
+
+        velocidades_t* v = create_velocidad(renderizados+4, "rend", 0, 0);
         server->encolar(v);
     }
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-    pos->id = -1;
+
+    posiciones_t* pos = create_posicion(-1, "fin", 0, 0);
     server->send_all(pos);
     free(pos);
 
 }
 
 posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
+
     int id = v->id;
     int vx = v->VelX;
     int vy = v->VelY;
-    //printf("SERVER proceso un dato, ID: %d\n", id);
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-    pos->id = id;
-    strcpy(pos->descrip, v->descrip);
-    pos->posX = 0;
-    pos->posY = 0;
 
+    posiciones_t* pos = create_posicion(id, v->descrip, 0, 0);
+
+    if(strcmp(v->descrip, "none") == 0) return pos;
     if(strcmp(v->descrip, "test") == 0){
         jugadores[id]->set_modeTest();
         server->send_all(pos);
@@ -70,36 +78,51 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
     }
 
     if(strcmp(v->descrip, "shot0") == 0){
-        Misil* misil = new Misil(vx, vy, id);
+        int danio = 0;
+        if(id > 3){
+            danio = enemigos[id-4]->get_damage();
+        } else{
+            danio = jugadores[id]->get_damage();
+        }
+        Misil* misil = new Misil(vx, vy, id, danio);
         misiles.push_back(misil);
         pos->posX = vx;
         pos->posY = vy;
-        pos->id = misil->get_id();
         server->send_all(pos);
     } else{
         if(id>3){
             for(int i = 0; i < id - 4; i++){
-                enemigos[i]->setJugadores(jugadores);
-                int naveSeguida = enemigos[i]->getNaveSeguida();
-                enemigos[i]->procesarAccion(jugadores[naveSeguida]);
-                bool disparo = enemigos[i]->seDisparo();
-                if (disparo){
-                    velocidades_t* vMisil = (velocidades_t*) malloc(sizeof(velocidades_t));
-                    strcpy(vMisil->descrip, "shot0");
-                    vMisil->VelX =enemigos[i]->getPosX()+enemigos[i]->getRadio();
-                    vMisil->VelY =enemigos[i]->getPosY();
-                    vMisil->id = i+4;
-                    server->encolar(vMisil);
-                    enemigos[i]->reiniciarDisparo();
-                    //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
+                if(enemigos[i]->isAlive()){
+                    int colision_id = enemigos[i]->procesarAccion(jugadores);
+                    bool disparo = enemigos[i]->seDisparo();
+                    if (disparo){
+                        int xMisil = enemigos[i]->getPosX()-enemigos[i]->getRadio();
+                        int yMisil = enemigos[i]->getPosY();
+                        velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
+                        server->encolar(vMisil);
+                        enemigos[i]->reiniciarDisparo();
+
+                        //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
+                    }
+                    if(colision_id != -1){
+                        //strcpy(pos->descrip, "colision");
+                        strcpy(pos->descrip, "colision");
+                        pos->posX = 0;
+                        pos->posY = i;
+                        pos->id = colision_id;
+                        server->send_all(pos);
+                    } else{
+                        pos->posX = enemigos[i]->getPosX();
+                        pos->posY = enemigos[i]->getPosY();
+                        pos->id = i+4;
+                        strcpy(pos->descrip, enemigos[i]->getImagen());
+                        server->send_all(pos);
+                    }
                 }
-                pos->posX = enemigos[i]->getPosX();
-                pos->posY = enemigos[i]->getPosY();
-                pos->id = i+4;
-                strcpy(pos->descrip, enemigos[i]->getImagen());
-                server->send_all(pos);
             }
             parallax();
+            strcpy(pos->descrip, "bg");
+            server->send_all(pos);
             list<Misil*>::iterator pos_m = misiles.begin();
             while(pos_m != misiles.end()){
                 int ok = -1;
@@ -123,7 +146,7 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
                 } else{
                     //printf("impacto\n");
                     pos->id = ok;
-                    if(id > 3){
+                    if(ok > 3){
                         pos->posX = enemigos[ok-4]->getVidaActual();
                     } else{
                         pos->posX = jugadores[ok]->getVidaActual();
@@ -137,12 +160,22 @@ posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
             }
 
         } else if(strcmp(v->descrip, "off") != 0){
-            jugadores[id]->setVelX(vx);
-            jugadores[id]->setVelY(vy);
-            jugadores[id]->mover(enemigos);
-            pos->posX = jugadores[id]->getPosX();
-            pos->posY = jugadores[id]->getPosY();
-            server->send_all(pos);
+            if(jugadores[id]->isAlive()){
+                jugadores[id]->setVelX(vx);
+                jugadores[id]->setVelY(vy);
+                int colision_id = jugadores[id]->mover(enemigos);
+                if(colision_id != -1){
+                    pos->posX = 0;
+                    pos->posY = colision_id;
+                    pos->id = id;
+                    strcpy(pos->descrip, "colision");
+                    server->send_all(pos);
+                } else {
+                    pos->posX = jugadores[id]->getPosX();
+                    pos->posY = jugadores[id]->getPosY();
+                    server->send_all(pos);
+                }
+            }
         } else if(strcmp(v->descrip, "off") == 0){
             //jugadores[id]->desconectar();
             pos->id = id;
@@ -164,15 +197,13 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         NaveJugador* nave = new NaveJugador(200, 100*(i+1), i);
         jugadores.push_back(nave);
 
-        posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-        pos->id = i;
-        pos->posX = 200;
-        pos->posY = 100*(i+1);
+        char descrip[5];
         if(server->desconecto(i)) {
             printf("nave %d desconectada\n", i);
-            strcpy(pos->descrip, "off");
+            strcpy(descrip, "off");
         }
-        else strcpy(pos->descrip, "on");
+        else strcpy(descrip, "on");
+        posiciones_t* pos = create_posicion(i, descrip, 200, 100*(i+1));
         server->send_all(pos);
         //printf("SERVER: se crea nave jugador, id: %d\n", pos->id);
         free(pos);
@@ -184,24 +215,27 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         sprite += std::to_string(enemigo_random);
 
         // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
-        int y = 90 + rand() % (SCREEN_HEIGHT + 1);
+        int y = 110 + rand() % (SCREEN_HEIGHT - 100 + 1);
         // SUPONGO EL BORDE DE RESPAWN COMO +/-100
         // CASO ENEMIGOS 1 y 2: sup = 800 + 100
-        int x = SCREEN_WIDTH + rand() % 51;
+        int x = SCREEN_WIDTH + 50 + rand() % 51;
 
         // CASO ENEMIGOS 3 y 4: inf = -100
-        if(enemigo_random == 4 || enemigo_random == 3) x = -50 + rand() % 51;
+        if(enemigo_random == 4 || enemigo_random == 3) x = -100 + rand() % 51;
 
-        NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str(), jugadores);
+        NaveEnemiga* enemigo;
+        switch(enemigo_random){
+            case 1: enemigo = new Enemigo1(x,y); break;
+            case 2: enemigo = new Enemigo2(x,y); break;
+            case 3: enemigo = new Enemigo3(x,y); break;
+            case 4: enemigo = new Enemigo4(x,y); break;
+        }
+
+        //NaveEnemiga* enemigo = new NaveEnemiga(x, y, sprite.c_str(), jugadores);
 
         enemigos.push_back(enemigo);
+        posiciones_t* pos = create_posicion(i+4, enemigo->getImagen(), x ,y);
 
-        posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-        pos->posX = x;
-        pos->posY = y;
-        pos->descrip[0] = 0;
-        strncat(pos->descrip, enemigo->getImagen(), 14);
-        pos->id = i+4;
         server->send_all(pos);
         free(pos);
         //printf("se crea nave enemiga\n");
@@ -210,5 +244,25 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
     pos->id = -1;
     server->send_all(pos);
     free(pos);
+}
+
+velocidades_t* NivelServidor::create_velocidad(int id, const char* descrip, int x, int y){
+    velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
+    v->VelX = x;
+    v->VelY = y;
+    strcpy(v->descrip, descrip);
+    v->id = id;
+
+    return v;
+}
+
+posiciones_t* NivelServidor::create_posicion(int id,  const char* descrip, int x, int y){
+    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    pos->posX = x;
+    pos->posY = y;
+    strcpy(pos->descrip, descrip);
+    pos->id = id;
+
+    return pos;
 }
 

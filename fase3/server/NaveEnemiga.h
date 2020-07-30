@@ -11,34 +11,24 @@ class NaveEnemiga: public Nave {
 
     public:
 
-        NaveEnemiga(int x, int y, const char* sprite, vector<NaveJugador*> jugadores);
-
-		//Mueve la Nave considerando la posicion de la Nave del jugador
-		void mover(int velX, int velY);
+        NaveEnemiga();
+        virtual int procesarAccion(vector<NaveJugador*> jugadores);
 
 		int getRadio();
-
 		int getAltoImagen();
-
 		int getAnchoImagen();
-
 		char* getClave();
 
-		void setNaveSeguida(int id);
-
-		int getNaveSeguida();
-
-		void procesarAccion(NaveJugador* nave);
-
+        // Distancias entre naves
+		int getDistanciaNaveEnX(NaveJugador* nave);
+		int getDistanciaNaveEnXConSigno(NaveJugador* nave);
 		int getDistanciaNave(NaveJugador* nave);
 
-		int getDistanciaNaveConSigno(NaveJugador* nave);
-
-		void seguirNave(NaveJugador* nave, int distanciaNave);
-
-		void acomodarseEnEjeY(int posY);
-
-		void setJugadores(vector<NaveJugador*> listaJugadores);
+        //movimientos
+		int seguirNave(NaveJugador* nave, int distanciaNave, vector<NaveJugador*> jugadores);
+		int acomodarseEnEjeY(int posY, vector<NaveJugador*> jugadores);
+		//Mueve la Nave considerando la posicion de la Nave del jugador
+		int mover(int velX, int velY, vector<NaveJugador*> jugadores);
 
 		bool seDisparo();
 
@@ -46,9 +36,10 @@ class NaveEnemiga: public Nave {
 
 		void destruirNave();
 
+        //retorno de ids
 		int obtenerNaveSeguidaRandom(int cant_naves);
-
-        int obtenerNaveSeguidaPonderada();
+        int obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores);
+        int obtenerNaveSeguidaMasCercana(vector<NaveJugador*> jugadores);
 
         bool cambioDeLado();
 
@@ -59,7 +50,6 @@ class NaveEnemiga: public Nave {
     protected:
         char imagenActual[10];
         char imagenEspejo[10];
-        int naveSeguida;
         bool disparo;
 
         int distanciaActual;
@@ -69,13 +59,6 @@ class NaveEnemiga: public Nave {
         // izq->der = 1 ; der->izq = -1
         char clave[15];
 
-        vector<NaveJugador*> jugadores;
-
-
-        /*const char* sEnemigo1;
-        const char* sEnemigo2;
-        const char* sEnemigo3;
-        const char* sEnemigo4;*/
 };
 
 #endif // NAVEENEMIGA_H

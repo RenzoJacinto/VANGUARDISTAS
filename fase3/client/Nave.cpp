@@ -13,6 +13,7 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     mVelY = 0;
 
     boom = false;
+    frame = 0;
 
     std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
     std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
@@ -140,20 +141,22 @@ bool Nave::encontrarEnemigos( NaveJugador* jugador, vector<NaveEnemiga*>  enemig
 
 void Nave::renderBoom(){
 
-    int actualFrame = 0;
-    while(actualFrame/4 < framesBoom){
-        SDL_Rect* currentClip = &dataBoom[ actualFrame/4 ];
-        int w = dataBoom[ actualFrame/4 ].w;
-        int h = dataBoom[ actualFrame/4 ].h;
-        textureBoom.render(mPosX-w/2, mPosY-h/2, currentClip );
-        actualFrame++;
-    }
+    SDL_Rect* currentClip = &dataBoom[ frame/2 ];
+    int w = dataBoom[ frame/2 ].w;
+    int h = dataBoom[ frame/2 ].h;
 
-    boom = false;
+    printf("frame: %d\n", frame);
+    textureBoom.render(mPosX-w/2+boomInfoX, mPosY-h/2+boomInfoY, currentClip );
+    frame++;
+
+    if(frame/2 > 5) {
+        boom = false;
+        frame = 0;
+    }
 }
 
 bool Nave::isAlive(){
-    return vidas > 0;
+    return vidas > 0 && (!boom);
 }
 
 bool Nave::boomAvailable(){
@@ -161,8 +164,10 @@ bool Nave::boomAvailable(){
 }
 
 void Nave::die(){
-    vidas--;
-    boom = true;
+    if(vidas>0){
+        vidas--;
+        boom = true;
+    }
 }
 
 void Nave::set_animations(const char* tipo, const char* subtipo){

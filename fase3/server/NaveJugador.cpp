@@ -11,6 +11,8 @@ NaveJugador::NaveJugador( int x, int y, int id){
 
     score = 0;
 
+    damage = 50;
+
     radio = 0;
     vidas = 3;
     alto = NAVE_HEIGHT;
@@ -20,12 +22,30 @@ NaveJugador::NaveJugador( int x, int y, int id){
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
-void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
+//En caso de encontrar algun enemigo cerca, verifica si se produce colision y en caso negativo devuelve True
+int NaveJugador::encontrarEnemigos(vector<NaveEnemiga*>  enemigos ){
+
+    int id = 0;
+    vector<NaveEnemiga*>::iterator pos;
+    for(pos = enemigos.begin();pos != enemigos.end();pos++){
+        if(checkCollision( this , *pos ) && (*pos)->isAlive()){
+            die();
+            (*pos)->die();
+            return id;
+        }
+        id++;
+    }
+
+    return -1;
+}
+
+int NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 
     // Mueve la nave a la izquierda o la derecha
     setPosX(getPosX()+getVelX());
-
-    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > SCREEN_WIDTH )  ||  encontrarEnemigos( this, enemigos ) ){
+    int ok = encontrarEnemigos(enemigos);
+    if(ok != -1) return ok;
+    if( ( getPosX() < 0 ) || ( getPosX() + getAncho() > SCREEN_WIDTH)){
         // Vuelve a la anterior posicion
         setPosX(getPosX()-getVelX());
     }
@@ -33,10 +53,12 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
     // Mueve la nave a la izquierda o la derecha
     setPosY(getPosY()+getVelY());
 
-    if( ( getPosY() < 70 ) || ( getPosY() + getAlto() > SCREEN_HEIGHT ) || encontrarEnemigos( this, enemigos ) ){
+    if( ( getPosY() < 70 ) || ( getPosY() + getAlto() > SCREEN_HEIGHT)){
         // Vuelve a la anterior posicion
         setPosY(getPosY()-getVelY());
     }
+
+    return ok;
 }
 
 int NaveJugador::getAlto(){

@@ -36,9 +36,7 @@ class Nave{
 
 		bool checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo );
 
-		bool encontrarEnemigos(NaveJugador* jugador, vector<NaveEnemiga*> enemigos);
-
-		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil);
+		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil, int damage);
 
 		bool isAlive();
 
@@ -48,6 +46,9 @@ class Nave{
 
 		int getScore();
 
+        void die();
+
+        int get_damage();
 
     protected:
 
@@ -68,6 +69,8 @@ class Nave{
         int ancho;
 
         int score;
+
+        int damage;
 
 };
 

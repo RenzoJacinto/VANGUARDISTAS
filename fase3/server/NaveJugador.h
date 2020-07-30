@@ -3,8 +3,9 @@
 
 #include "Nave.h"
 #include "list"
+#include "NaveEnemiga.h"
 
-class NaveEnemiga;
+//class NaveEnemiga;
 
 class NaveJugador: public Nave {
 
@@ -22,7 +23,7 @@ class NaveJugador: public Nave {
 		static const int NAVE_VEL = 5;
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
-		void mover( vector<NaveEnemiga*>  enemigo );
+		int mover( vector<NaveEnemiga*>  enemigo );
 
         int getAlto();
 
@@ -38,9 +39,10 @@ class NaveJugador: public Nave {
 
         int getVidas();
 
+        int encontrarEnemigos(vector<NaveEnemiga*> enemigos);
+
     private:
 
-        int alto,ancho;
         bool conectado;
 };
 

@@ -36,6 +36,14 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="ColaMultihilo.h" />
+		<Unit filename="Enemigo1.cpp" />
+		<Unit filename="Enemigo1.h" />
+		<Unit filename="Enemigo2.cpp" />
+		<Unit filename="Enemigo2.h" />
+		<Unit filename="Enemigo3.cpp" />
+		<Unit filename="Enemigo3.h" />
+		<Unit filename="Enemigo4.cpp" />
+		<Unit filename="Enemigo4.h" />
 		<Unit filename="JuegoServidor.cpp" />
 		<Unit filename="JuegoServidor.h" />
 		<Unit filename="Logger.cpp" />
@@ -79,6 +87,8 @@
 		<Unit filename="typesmsj.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
