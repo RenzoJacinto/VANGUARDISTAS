@@ -65,6 +65,8 @@ class Nave{
         static const int CANT_VIDAS_JUGADOR = 3;
         static const int CANT_VIDAS_ENEMIGO = 1;
 
+        int get_frameBoom();
+
     protected:
 
         //Las coordenadas X e Y de la Nave

@@ -117,9 +117,11 @@ void Nivel::renderizar(int id_nave){
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             if((*pos)->isAlive()) (*pos)->renderizar();
             if((*pos)->boomAvailable()){
-                if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
                 (*pos)->renderBoom();
-                sounds.playEffect(explosion);
+                if((*pos)->get_frameBoom() == 0){
+                    if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
+                    sounds.playEffect(explosion);
+                }
             }
         }
 
@@ -129,7 +131,7 @@ void Nivel::renderizar(int id_nave){
 
         for(int i = 0; i < renderizados; i++){
             if(enemigos[i]->boomAvailable()){
-                sounds.playEffect(explosion);
+                if(enemigos[i]->get_frameBoom() == 0) sounds.playEffect(explosion);
                 enemigos[i]->renderBoom();
             }
         }

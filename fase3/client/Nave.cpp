@@ -235,11 +235,13 @@ void Nave::setEnergiasReconex(int actual, int total){
     if(energia_actual <= 0) die();
 }
 
-void Nave::endBoom()
-{
-    if (temp.transcurridoEnSegundos() > 1)
-    {
+void Nave::endBoom(){
+    if (temp.transcurridoEnSegundos() > 1){
         boomEnded = true;
         temp.finalizar();
     }
+}
+
+int Nave::get_frameBoom(){
+    return frame;
 }
