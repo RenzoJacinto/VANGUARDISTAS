@@ -220,7 +220,6 @@ void Nivel::finalizar() {
 
     logger.info("Finalizó el nivel");
     gFinNivel.render(0,0, &dataFinNivel);
-    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     /* Renderizado de puntajes
     int cant_jug = jugadores.size();
@@ -230,8 +229,9 @@ void Nivel::finalizar() {
     }*/
 
     SDL_RenderPresent( sdl.getRenderer() );
-    freeSounds();
+    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
+    freeSounds();
 
     logger.info("Se renderizo el final del nivel");
 }
@@ -246,12 +246,12 @@ void Nivel::renderGameOver() {
 
     sounds.playEffect(gameOverFX);
     gFinNivel.render(0,0, &dataFinNivel);
-    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
     SDL_RenderPresent( sdl.getRenderer() );
+    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     freeSounds();
 
-    logger.info("Se renderizo el final del nivel");
+    logger.info("Se renderizo el final del nivel con GAME OVER");
 }
 
 void Nivel::aumentarRenderizados(int i){
