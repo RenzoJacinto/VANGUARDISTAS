@@ -117,7 +117,8 @@
 	},
 	"puntajes":{
 		"box":"sprites/usuario/puntos/puntajes.png",
-		"life":"sprites/usuario/puntos/vida.png"
+		"life":"sprites/usuario/puntos/vida.png",
+		"corona":"sprites/usuario/puntos/corona.png"
 	},
 	"sounds":{
 		"FX":{

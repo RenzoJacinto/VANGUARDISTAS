@@ -46,6 +46,9 @@ bool TextureW::loadFromRenderedText( std::string textureText, std::string action
 	else if(action == "game"){
         textColor = {128,128,0,255};
         font = sdl.getFontBox();
+	} else if(action == "fin"){
+        textColor = {64,128,128,255};
+        font = sdl.getFontLog();
 	}
 
 

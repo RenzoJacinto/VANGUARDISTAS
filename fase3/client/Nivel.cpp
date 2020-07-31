@@ -29,6 +29,11 @@ bool Nivel::iniciarNivel(Client* client){
     gameOverFX = sounds.loadEffect(json.get_sound("FX", "gameOver").c_str());
     levelUpFX = sounds.loadEffect(json.get_sound("FX", "levelUp").c_str());
 
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+        score_nivel.push_back(0);
+    }
+
     if(! deathUserTexture.loadFromFile(json.get_sprite_menu("deathUser"))){
         logger.error("No se pudo cargar el sprite de game over");
         deathUserTexture.loadFromFile(json.get_imagen_default("escenario"));
@@ -169,6 +174,9 @@ void Nivel::procesar(posiciones_t* pos){
         int score = enemigos[pos->posY]->getScore();
         jugadores[pos->id]->addScore(score);
         enemigos[pos->posY]->die();
+
+        // acumula el score;
+        score_nivel[pos->id] += score;
         return;
     }
 
@@ -185,8 +193,11 @@ void Nivel::procesar(posiciones_t* pos){
         if(pos->id > 3){
             enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
             int score = enemigos[pos->id -4]->getScore();
-            if(!enemigos[pos->id -4]->isAlive()) jugadores[pos->posY]->addScore(score);
-            else sounds.playEffect(hitReceiveFX);
+            if(! enemigos[pos->id - 4]->isAlive()){
+                jugadores[pos->posY]->addScore(score);
+                // acumula el score;
+                score_nivel[pos->id] += score;
+            } else sounds.playEffect(hitReceiveFX);
         } else{
             jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
             if(jugadores[pos->id]->isAlive())sounds.playEffect(hitReceiveFX);
@@ -221,17 +232,55 @@ void Nivel::finalizar() {
     logger.info("Finalizó el nivel");
     gFinNivel.render(0,0, &dataFinNivel);
 
-    /* Renderizado de puntajes
+
+    /*Renderizado de puntajes */
     int cant_jug = jugadores.size();
+
+    std::string names[cant_jug];
     for(int i=0; i<cant_jug; i++){
+        names[i] = jugadores[i]->get_name();
+    }
 
+    //Ordeno ambos arrays, para rankear los users
+    for(int j=0; j<cant_jug; j++){
+        for(int k=j+1; k<cant_jug; k++){
+            if(score_nivel[j] < score_nivel[k]){
+                //swap score
+                int aux_sc = score_nivel[k];
+                score_nivel[k] = score_nivel[j];
+                score_nivel[j] = aux_sc;
 
-    }*/
+                //swap name
+                std::string aux_n = names[k];
+                names[k] = names[j];
+                names[j] = aux_n;
+            }
 
+        }
+
+    }
+
+    TextureW textureKing;
+    if(! textureKing.loadFromFile(json.get_sprite_puntajes("corona"))){
+        logger.error("No se pudo cargar el sprite de la corona");
+        textureKing.loadFromFile(json.get_imagen_default("tiro"));
+    } else logger.debug("Se cargo correctamente el sprite de la corona");
+    textureKing.render(140, 315);
+    textureKing.free();
+
+    TextureW texture;
+    for(int i=0; i<cant_jug; i++){
+        texture.loadFromRenderedText(names[i], "fin");
+        texture.render(186, i*48 + 300);
+
+        texture.loadFromRenderedText("+" + std::to_string(score_nivel[i]), "fin");
+        texture.render(392, i*48 +300);
+    }
     SDL_RenderPresent( sdl.getRenderer() );
     for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     freeSounds();
+    texture.free();
 
     logger.info("Se renderizo el final del nivel");
 }

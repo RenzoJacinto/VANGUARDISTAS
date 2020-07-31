@@ -42,6 +42,8 @@ class Nivel: public Escenario {
 
         int renderizados;
 
+        vector<int> score_nivel;
+
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;
         list<Misil*> misiles;
