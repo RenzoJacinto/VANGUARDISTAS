@@ -169,7 +169,7 @@ bool Nave::boomAvailable(){
 }
 
 void Nave::die(){
-    if(vidas>0){
+    if(!mode_test && vidas>0){
         vidas--;
         boom = true;
         bX = mPosX;

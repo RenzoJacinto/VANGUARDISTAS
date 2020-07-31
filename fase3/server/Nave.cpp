@@ -109,7 +109,7 @@ bool Nave::checkCollision( NaveJugador* jugador, NaveEnemiga* enemigo ){
 void Nave::die(){
     if(!mode_test && vidas>0){
         vidas--;
-        if(vidas != 0) energia_actual = 100;
+        //if(vidas != 0) energia_actual = energia_total;
         mPosX = 200;
         mPosY = 100 * (id_nave+1);
         std::cout<<"colision\n";
