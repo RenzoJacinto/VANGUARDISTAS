@@ -32,11 +32,16 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     float tiempo_por_enemigos = TIEMPO_NIVEL_SEGS/cant_enemigos;
     //int renderizados = 1;
 
+    char fin_nivel[15];
+    strcpy(fin_nivel, "fin");
+
     while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
 
-        /*if(! jugadoresSiguenVivos()){
+        if(jugadoresMuertos()){
             // Enviar GAME OVER
-        }*/
+            strcpy(fin_nivel, "gameOver");
+            break;
+        }
 
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
@@ -56,7 +61,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         server->encolar(v);
     }
 
-    posiciones_t* pos = create_posicion(-1, "fin", 0, 0);
+    posiciones_t* pos = create_posicion(-1, fin_nivel, 0, 0);
     server->send_all(pos);
     free(pos);
 
@@ -285,5 +290,13 @@ posicionesR_t* NivelServidor::create_posicionR(int id,  char const* descrip, int
     pos->energiaActual = energia;
 
     return pos;
+}
+
+bool NivelServidor::jugadoresMuertos(){
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+        if(jugadores[i]->isAlive()) return false;
+    }
+    return true;
 }
 

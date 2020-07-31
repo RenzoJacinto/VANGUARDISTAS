@@ -23,6 +23,9 @@ class Nivel: public Escenario {
         void setNaves(Client* client);
         void renderEnemigos();
         void renderBooms();
+        void renderGameOver();
+
+        void freeSounds();
 
         virtual void cerrar();
         virtual void cargarNivel(Client* client);
@@ -49,12 +52,16 @@ class Nivel: public Escenario {
 
         TextureW puntajesBoxTexture;
         TextureW lifeTexture;
+        TextureW deathUserTexture;
 
         Mix_Music *gMusic;
+
         Mix_Chunk *explosion;
         Mix_Chunk *shotFX;
         Mix_Chunk *hitReceiveFX;
         Mix_Chunk *lifeDownFX;
+        Mix_Chunk *gameOverFX;
+        Mix_Chunk *levelUpFX;
 
 };
 

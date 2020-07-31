@@ -236,27 +236,26 @@ void Nave::setEnergiasReconex(int actual, int total){
     energia_actual = actual;
 }
 
-void Nave::endBoom()
-{
-    if (temp.transcurridoEnSegundos() > 1)
-    {
+void Nave::endBoom(){
+    if (temp.transcurridoEnSegundos() > 1){
         boomEnded = true;
         temp.finalizar();
     }
 }
 
-bool Nave::renderizo()
-{
+bool Nave::renderizo(){
     return render;
 }
 
-int Nave::getFrame()
-{
+int Nave::getFrame(){
     return frame;
 }
 
-void Nave::setVidas(int vida)
-{
+void Nave::setVidas(int vida){
     printf("vidas = %d\n", vida);
     vidas = vida;
+}
+
+int Nave::get_vidas(){
+    return vidas;
 }

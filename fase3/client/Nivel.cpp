@@ -26,7 +26,13 @@ bool Nivel::iniciarNivel(Client* client){
     explosion = sounds.loadEffect(json.get_sound("FX","boom").c_str());
     hitReceiveFX = sounds.loadEffect(json.get_sound("FX","receiveHit").c_str());
     lifeDownFX = sounds.loadEffect(json.get_sound("FX", "lifeDown").c_str());
+    gameOverFX = sounds.loadEffect(json.get_sound("FX", "gameOver").c_str());
+    levelUpFX = sounds.loadEffect(json.get_sound("FX", "levelUp").c_str());
 
+    if(! deathUserTexture.loadFromFile(json.get_sprite_menu("deathUser"))){
+        logger.error("No se pudo cargar el sprite de game over");
+        deathUserTexture.loadFromFile(json.get_imagen_default("escenario"));
+    } else logger.debug("Se cargo el sprite de game over");
 
     sounds.playMusic(gMusic);
 
@@ -72,6 +78,7 @@ bool Nivel::iniciarNivel(Client* client){
             }
         }
 
+
         velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
@@ -91,7 +98,12 @@ bool Nivel::iniciarNivel(Client* client){
             void* dato = client->desencolar();
             posiciones_t* pos = (posiciones_t*) dato;
             if(pos->id == -1){
-                return false;
+                if(strcmp(pos->descrip, "gameOver") == 0){
+                    renderGameOver();
+                    client->finalizar();
+                    return true;
+                } else return false;
+
             }
             procesar((posiciones_t*) dato);
         }
@@ -117,8 +129,11 @@ void Nivel::renderizar(int id_nave){
         for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
             if((*pos)->isAlive()) (*pos)->renderizar();
             if((*pos)->boomAvailable()){
-                //if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
-                if((*pos)->getFrame() == 0)sounds.playEffect(explosion);
+                //
+                if((*pos)->getFrame() == 0){
+                    sounds.playEffect(explosion);
+                    if((*pos)->get_id() == id_nave) sounds.playEffect(lifeDownFX);
+                }
                 (*pos)->renderBoom();
                 //if((*pos)->getFrame() == 0)sounds.playEffect(explosion);
             }
@@ -130,11 +145,16 @@ void Nivel::renderizar(int id_nave){
 
         for(int i = 0; i < renderizados; i++){
             if(enemigos[i]->boomAvailable()){
-                if(enemigos[i]->getFrame() == 0)sounds.playEffect(explosion);
+                if(enemigos[i]->getFrame() == 0) sounds.playEffect(explosion);
                 enemigos[i]->renderBoom();
             }
         }
         //Todo este bloque deberiamos declararlo en otro lado
+
+        if(jugadores[id_nave]->get_vidas() == 0){
+            sounds.playEffect(gameOverFX);
+            deathUserTexture.render(0,0);
+        }
 
         SDL_RenderPresent( sdl.getRenderer() );
 }
@@ -196,14 +216,41 @@ void Nivel::procesar(posiciones_t* pos){
 
 void Nivel::finalizar() {
 
-    sounds.stopMusic();
-    sounds.freeMusic(gMusic);
-
-    sounds.freeEffect(shotFX);
+    sounds.playEffect(levelUpFX);
 
     logger.info("Finalizó el nivel");
     gFinNivel.render(0,0, &dataFinNivel);
+    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
+
+    /* Renderizado de puntajes
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+
+
+    }*/
+
     SDL_RenderPresent( sdl.getRenderer() );
+    freeSounds();
+
+
+    logger.info("Se renderizo el final del nivel");
+}
+
+void Nivel::renderGameOver() {
+
+    logger.info("Finalizó el nivel con GAME OVER");
+    if(! gFinNivel.loadFromFile(json.get_sprite_menu("gameOver"))){
+        logger.error("No se encontro el sprite de game over");
+        gFinNivel.loadFromFile(json.get_imagen_default("escenario"));
+    } else logger.debug("Se cargo el sprite de game over");
+
+    sounds.playEffect(gameOverFX);
+    gFinNivel.render(0,0, &dataFinNivel);
+    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
+    SDL_RenderPresent( sdl.getRenderer() );
+
+    freeSounds();
+
     logger.info("Se renderizo el final del nivel");
 }
 
@@ -308,6 +355,18 @@ velocidades_t* Nivel::create_velocidad(int id,  const char* descrip, int x, int 
     v->id = id;
 
     return v;
+}
+
+void Nivel::freeSounds(){
+    sounds.stopMusic();
+    sounds.freeMusic(gMusic);
+
+    sounds.freeEffect(shotFX);
+    sounds.freeEffect(explosion);
+    sounds.freeEffect(hitReceiveFX);
+    sounds.freeEffect(lifeDownFX);
+    sounds.freeEffect(gameOverFX);
+    sounds.freeEffect(levelUpFX);
 }
 
 

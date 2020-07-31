@@ -65,6 +65,7 @@ class Nave{
 		int getFrame();
 
 		void setVidas(int vida);
+		int get_vidas();
 
         static const int FRAMES_BOOM = 6;
         static const int FRAMES_HIT_RECEIVE = 5;

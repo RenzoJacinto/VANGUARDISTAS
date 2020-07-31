@@ -206,8 +206,8 @@ bool Client::iniciarSesion(){
 
     int size_client = sizeof(credenciales_t);
     credenciales_t* cliente = (credenciales_t*)malloc(size_client);
-    cliente->id[0] = 0;
-    cliente->pass[0] = 0;
+    //cliente->id[0] = 0;
+    //cliente->pass[0] = 0;
 
     velocidades_t* v = (velocidades_t*)malloc(sizeof(velocidades_t));
 
@@ -217,8 +217,6 @@ bool Client::iniciarSesion(){
 
         strcpy(cliente->id,juego->get_id().c_str());
         strcpy(cliente->pass,juego->get_password().c_str());
-
-        id_users.push_back(string(cliente->id));
 
         if(send(socket, cliente, size_client, MSG_NOSIGNAL) < 0){
             logger.error("Error en el envio de la data");
@@ -236,6 +234,7 @@ bool Client::iniciarSesion(){
         printf("recibio credenciales\n");
         std::cout<<v->VelX<<"\n";
         if(v->VelX == LOGIN_CORRECTO && ok){
+            id_users.push_back(string(cliente->id));
             id = v->id;
             juego->renderWaitUsers();
             break;

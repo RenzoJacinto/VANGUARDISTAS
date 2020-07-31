@@ -111,7 +111,9 @@
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
 		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
 		"idNoConectada":"sprites/usuario/menu/idNoConectada.png",
-		"serverCerrado":"sprites/usuario/menu/serverCerrado.png"
+		"serverCerrado":"sprites/usuario/menu/serverCerrado.png",
+		"deathUser":"sprites/usuario/menu/death_user.png",
+		"gameOver":"sprites/usuario/menu/gameOver.png"
 	},
 	"puntajes":{
 		"box":"sprites/usuario/puntos/puntajes.png",
@@ -122,7 +124,9 @@
 			"shot":"sounds/fxs/shot.wav",
 			"receiveHit":"sounds/fxs/hit_receive.wav",
 			"boom":"sounds/fxs/explocion.wav",
-			"lifeDown":"sounds/fxs/life_down.wav"
+			"gameOver":"sounds/fxs/game_over.wav",
+			"lifeDown":"sounds/fxs/life_down.wav",
+			"levelUp":"sounds/fxs/level_complete.wav"
 		},
 		"music":{
 			"menu":"sounds/musics/menu1.wav",

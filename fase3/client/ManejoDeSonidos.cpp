@@ -58,6 +58,7 @@ Mix_Chunk* ManejoDeSonidos::loadEffect(const char* file){
         std::string dir(file);
         std::string msj = "No se pudo cargar el efecto con directorio: " + dir;
 		logger.error(msj.c_str());
+		std::cout<<Mix_GetError()<<"\n";
 	}
 	return effect;
 }
