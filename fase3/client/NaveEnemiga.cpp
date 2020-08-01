@@ -22,6 +22,10 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
         energia_total = 100;
         energia_actual = 100;
         score = 500;
+    } else if(sp == "boss"){
+        energia_total = 1000;
+        energia_actual = 1000;
+        score = 2000;
     } else{
         energia_total = 200;
         energia_actual = 200;

@@ -24,6 +24,12 @@ void Nivel1Servidor::cargarNivel(Server* server, int cant_jugadores){
     anchoNube = 800;
 
     setNaves(server, cant_jugadores);
+
+    // fin set
+    posiciones_t* pos_f = (posiciones_t*)malloc(sizeof(posiciones_t));
+    pos_f->id = -1;
+    server->send_all(pos_f);
+    free(pos_f);
 }
 void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
     logger.info("Iniciando reconexiones");

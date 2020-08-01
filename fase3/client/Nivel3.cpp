@@ -136,8 +136,7 @@ void Nivel3::parallax(){
     if( scrollingOffsetFondo6 < -dataFondo6.w ) scrollingOffsetFondo6 = 0;
 }
 
-void Nivel3::reconectar(Client* client)
-{
+void Nivel3::reconectar(Client* client){
     logger.debug("Recibiendo estado actual del nivel");
     posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
     recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
@@ -155,8 +154,7 @@ void Nivel3::reconectar(Client* client)
     recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
     scrollingOffsetFondo6 = (double) pos->posX;
 
-    while(true)
-    {
+    while(true){
         recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);
         if(pos->id == -1) break;
         if(pos->id>3){

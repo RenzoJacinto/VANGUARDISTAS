@@ -256,10 +256,6 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         free(pos);
         //printf("se crea nave enemiga\n");
     }
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
-    pos->id = -1;
-    server->send_all(pos);
-    free(pos);
 }
 
 velocidades_t* NivelServidor::create_velocidad(int id, const char* descrip, int x, int y){

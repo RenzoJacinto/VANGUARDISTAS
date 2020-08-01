@@ -75,32 +75,30 @@
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo1.png",
 			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaTipo1.png"
 		},
 		"enemigo2":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo2.png",
 			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
 
 		},
 		"enemigo3":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo3.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo1.png",
+			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaTipo1.png"
 		},
 		"enemigo4":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/enemigo4.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo1.png",
-			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
-		},
-		"boss":{
-			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
-			"nave":"sprites/usuario/naves/enemigas/boss.png",
 			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
-			"lifeBox":"sprites/usuario/puntos/barraVidaBoss.png"
+			"receiveHit":"sprites/usuario/naves/enemigas/hit_receiveEnemigo.png",
+			"lifeBox":"sprites/usuario/puntos/barraVidaTipo2.png"
 		}
 	},
     	"menu":{
@@ -113,29 +111,29 @@
 		"waitUsers":"sprites/usuario/menu/waitUsers.png",
 		"juegoLleno":"sprites/usuario/menu/juegoLleno.png",
 		"idNoConectada":"sprites/usuario/menu/idNoConectada.png",
-		"serverCerrado":"sprites/usuario/menu/serverCerrado.png",
-		"deathUser":"sprites/usuario/menu/death_user.png",
-		"gameOver":"sprites/usuario/menu/gameOver.png"
+		"serverCerrado":"sprites/usuario/menu/serverCerrado.png"
 	},
 	"puntajes":{
 		"box":"sprites/usuario/puntos/puntajes.png",
-		"life":"sprites/usuario/puntos/vida.png",
-		"corona":"sprites/usuario/puntos/corona.png"
+		"life":"sprites/usuario/puntos/vida.png"
 	},
 	"sounds":{
 		"FX":{
-			"shot":"sounds/fxs/shot.wav",
-			"receiveHit":"sounds/fxs/hit_receive.wav",
-			"boom":"sounds/fxs/explocion.wav",
-			"gameOver":"sounds/fxs/game_over.wav",
-			"lifeDown":"sounds/fxs/life_down.wav",
-			"levelUp":"sounds/fxs/level_complete.wav"
+			"shot":"sounds/shot.wav",
+			"receiveHit":"sounds/hit_receive.wav",
+			"boom":"sounds/explocion.wav",
+			"lifeDown":"sounds/life_down.wav"
 		},
 		"music":{
-			"menu":"sounds/musics/menu1.wav",
-			"nivel1":"sounds/musics/nivel1A.wav",
-			"nivel2":"sounds/musics/nivel2A.wav",
-			"nivel3":"sounds/musics/nivel3.wav"
+			"menu":"sounds/menu1.wav",
+			"nivel1":"sounds/nivel1A.wav",
+			"nivel2":"sounds/nivel2A.wav",
+			"nivel3":"sounds/nivel3.wav"
 		}
-	}
+	},
+	"default": {
+		"nave": "sprites/default/nave.png",
+		"escenario": "sprites/default/fondo.png"
+	},
+	"error": "errorKey"
 }

@@ -4,6 +4,7 @@
 #include "NaveEnemiga.h"
 #include "NaveJugador.h"
 #include "Temporizador.h"
+#include "Boss.h"
 #include <sys/socket.h>
 
 class Server;
@@ -25,6 +26,19 @@ void Nivel3Servidor::cargarNivel(Server* server, int cant_jugadores){
     anchoBG = 800;
 
     setNaves(server, cant_jugadores);
+    // AGREGO EL BOSS FINAL
+    Boss* boss = new Boss(850, 300);
+    enemigos.push_back(boss);
+    posiciones_t* pos = create_posicion(cant_enemigos+4, boss->getImagen(), 850, 300);
+    server->send_all(pos);
+    free(pos);
+
+
+    // fin set
+    posiciones_t* pos_f = (posiciones_t*)malloc(sizeof(posiciones_t));
+    pos_f->id = -1;
+    server->send_all(pos_f);
+    free(pos_f);
 }
 
 void Nivel3Servidor::iniciar_reconexion(int id, Server* server, int socket_id){

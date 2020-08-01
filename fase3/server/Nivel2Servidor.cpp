@@ -25,6 +25,12 @@ void Nivel2Servidor::cargarNivel(Server* server, int cant_jugadores){
     anchoAst = 872;
 
     setNaves(server, cant_jugadores);
+
+    // fin set
+    posiciones_t* pos_f = (posiciones_t*)malloc(sizeof(posiciones_t));
+    pos_f->id = -1;
+    server->send_all(pos_f);
+    free(pos_f);
 }
 
 void Nivel2Servidor::iniciar_reconexion(int id, Server* server, int socket_id){

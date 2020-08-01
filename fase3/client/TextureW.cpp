@@ -36,7 +36,7 @@ bool TextureW::loadFromFile( std::string path ){
 	return mTexture != NULL;
 }
 
-//#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
+#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
 bool TextureW::loadFromRenderedText( std::string textureText, std::string action){
 	//Get rid of preexisting texture
 	//free();
@@ -74,7 +74,7 @@ bool TextureW::loadFromRenderedText( std::string textureText, std::string action
 	//Return success
 	return mTexture != NULL;
 }
-//#endif
+#endif
 
 void TextureW::free(){
 	if( mTexture != NULL ){

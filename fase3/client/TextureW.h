@@ -20,10 +20,10 @@ class TextureW{
 		// Carga las imagenees con una ruta especifica
 		bool loadFromFile( std::string path );
 
-		//#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
+		#if defined(_SDL_TTF_H) || defined(SDL_TTF_H)
 		//Creates image from font string
 		bool loadFromRenderedText( std::string textureText, std::string action);
-		//#endif
+		#endif
 
 		//Deallocates texture
 		void free();

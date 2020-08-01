@@ -99,7 +99,7 @@
 		"boss":{
 			"boom": "sprites/usuario/naves/enemigas/boomEnemigo.png",
 			"nave":"sprites/usuario/naves/enemigas/boss.png",
-			"shot":"sprites/usuario/naves/enemigas/tiroEnemigo.png",
+			"shot":"sprites/usuario/naves/enemigas/boss1.png",
 			"lifeBox":"sprites/usuario/puntos/barraVidaBoss.png"
 		}
 	},
