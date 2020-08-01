@@ -35,26 +35,27 @@ Enemigo2::Enemigo2(int x, int y){
     fireRate.iniciar();
 }
 
-// Se acerca a 50 de distancia (en x) y dispara cada 1 seg
+// Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
     int nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
     NaveJugador* nave = jugadores[nave_seguida];
-    int distanciaNave = getDistanciaNaveEnX(nave);
 
-    if (distanciaNave < DISTANCIA_DE_COMBATE_INICIAL){
-        DISTANCIA_DE_COMBATE = 100 + (getRadio() *(randomNumber() % 10));
-        DISTANCIA_DE_COMBATE_INICIAL = 500;
-    }
-    disparo = false;
-    int posY = getPosY();
-    int navePosY = nave->getPosY();
+    int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
-        if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2) ok = seguirNave(nave, distanciaNave, jugadores);
-        if (abs(posY - navePosY) > 2) ok = acomodarseEnEjeY(navePosY, jugadores);
-    } else if (fireRate.transcurridoEnSegundos() > 1) {
+    mover(-getRadio() * (randomNumber() % 3), 0, jugadores);
+    if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(getRadio() * (randomNumber() % 3), 0, jugadores);
+
+    int navePosY = nave->getPosY();
+    int delta = navePosY - mPosY;
+
+    if(delta < 0) ok = mover(0, -getRadio() * (randomNumber() % 3), jugadores);
+    else if(delta > 0) ok = mover(0, getRadio() * (randomNumber() % 3), jugadores);
+
+    disparo = false;
+
+    if (fireRate.transcurridoEnSegundos() > 1) {
         disparo = true;
     }
 

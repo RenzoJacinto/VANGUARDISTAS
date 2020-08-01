@@ -92,8 +92,10 @@ void NaveEnemiga::destruirNave(){
     mVelY=0;
 }
 
-int NaveEnemiga::obtenerNaveSeguidaRandom(int cant_naves){
-    return randomNumber() % cant_naves;
+int NaveEnemiga::obtenerNaveSeguidaRandom(vector<NaveJugador*> jugadores, int cant_naves){
+    int nave = randomNumber() % cant_naves;
+    while(! jugadores[nave]->isAlive()) nave = randomNumber() % cant_naves;
+    return nave;
 }
 
 int NaveEnemiga::obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores){
@@ -108,7 +110,7 @@ int NaveEnemiga::obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores){
     int idx = 0;
     int min_pond = ponderacion[idx];
     for(int j=1; j<cant_jug; j++){
-        if(ponderacion[j] < min_pond && ponderacion[j] != -1){
+        if(ponderacion[j] < min_pond && ponderacion[j] != -1 && jugadores[j]->isAlive()){
             min_pond = ponderacion[j];
             idx = j;
         }
@@ -122,7 +124,7 @@ int NaveEnemiga::obtenerNaveSeguidaMasCercana(vector<NaveJugador*> jugadores){
     int cant_jug = jugadores.size();
     for(int i=1; i<cant_jug; i++){
         int dist_new = getDistanciaNave(jugadores[i]);
-        if(min_dist > dist_new){
+        if(min_dist > dist_new && jugadores[i]->isAlive()){
             min_dist = dist_new;
             idx = i;
         }

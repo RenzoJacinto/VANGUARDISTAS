@@ -35,10 +35,13 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     char fin_nivel[15];
     strcpy(fin_nivel, "fin");
 
+    bool over = false;
+
     while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
 
         if(jugadoresMuertos()){
             // Enviar GAME OVER
+            over = true;
             strcpy(fin_nivel, "gameOver");
             break;
         }
@@ -60,7 +63,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         velocidades_t* v = create_velocidad(renderizados+4, "rend", 0, 0);
         server->encolar(v);
     }
-
+    if(over) std::cout<<"GAME OVER!\n";
     posiciones_t* pos = create_posicion(-1, fin_nivel, 0, 0);
     server->send_all(pos);
     free(pos);

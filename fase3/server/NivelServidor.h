@@ -26,7 +26,7 @@ class NivelServidor{
         int obtenerNaveSeguidaRandom(int cant_naves);
         int obtenerNaveSeguidaPonderada();
 
-        static const int TIEMPO_NIVEL_SEGS = 240;
+        static const int TIEMPO_NIVEL_SEGS = 20;
 
         velocidades_t* create_velocidad(int id,  char const* descrip, int x, int y);
         posiciones_t* create_posicion(int id,  char const* descrip, int x, int y);
