@@ -60,6 +60,8 @@ class NaveEnemiga: public Nave {
         // izq->der = 1 ; der->izq = -1
         char clave[15];
 
+        int vel;
+
 };
 
 #endif // NAVEENEMIGA_H

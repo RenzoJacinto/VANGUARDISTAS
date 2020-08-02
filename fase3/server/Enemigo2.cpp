@@ -30,6 +30,8 @@ Enemigo2::Enemigo2(int x, int y){
     strcpy(clave, imagenActual);
     radio=alto/2;
 
+    vel = 7;
+
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO2" ;
     logger.info(mensaje.c_str());
     fireRate.iniciar();
@@ -44,14 +46,14 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    mover(-2 * 1/*(randomNumber() % 3)*/, 0, jugadores);
-    if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(2 * 1/*(randomNumber() % 3)*/, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel + (randomNumber() % (1-vel)), 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(randomNumber() % 2, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -2 * 1/*(randomNumber() % 3)*/, jugadores);
-    else if(delta > 0) ok = mover(0, 2 * 1/*(randomNumber() % 3)*/, jugadores);
+    if(delta < 0) ok = mover(0, -vel + (randomNumber() % (1-vel)), jugadores);
+    else if(delta > 0) ok = mover(0, randomNumber() % (vel+1), jugadores);
 
     disparo = false;
 
