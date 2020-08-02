@@ -40,9 +40,10 @@ class NaveEnemiga: public Nave {
 		int obtenerNaveSeguidaRandom(vector<NaveJugador*> jugadores, int cant_naves);
         int obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores);
         int obtenerNaveSeguidaMasCercana(vector<NaveJugador*> jugadores);
-
+        int naveDerechaCercana(vector<NaveJugador*> jugadores);
         bool cambioDeLado();
 
+        bool onScreen();
         void actualizarSprite();
 
         char* getImagen();

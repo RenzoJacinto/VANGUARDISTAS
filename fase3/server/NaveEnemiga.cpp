@@ -71,8 +71,11 @@ int NaveEnemiga::seguirNave(NaveJugador* nave, int distanciaNave, vector<NaveJug
 
 int NaveEnemiga::acomodarseEnEjeY(int navePosY, vector<NaveJugador*> jugadores){
     int ok = -1;
-    if (getPosY() < navePosY) ok = mover(0, 2, jugadores);
-    else ok = mover(0, -2, jugadores);
+    if (abs(getPosY() - navePosY) > 2)
+    {
+        if (navePosY > mPosY) ok = mover(0, 2, jugadores);
+        else ok = mover(0, -2, jugadores);
+    }
     return ok;
 }
 
@@ -151,3 +154,29 @@ char* NaveEnemiga::getImagen(){
     return clave;
 }
 
+bool NaveEnemiga::onScreen()
+{
+    bool a = mPosY > 0 && mPosY < SCREEN_HEIGHT;
+    bool b = mPosX > 0 && mPosX < SCREEN_WIDTH;
+    return a && b;
+}
+
+int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores)
+{
+    int min_dist = getDistanciaNave(jugadores[0]);
+    int idx = 0;
+    int x = jugadores[0]->getPosX()+80;
+    bool hayNave = x > mPosX-radio;
+    int cant_jug = jugadores.size();
+    for(int i=1; i<cant_jug; i++){
+        int dist_new = getDistanciaNave(jugadores[i]);
+        int x = jugadores[i]->getPosX() + 80;
+        if(x > mPosX-radio && min_dist > dist_new && jugadores[i]->isAlive()){
+            min_dist = dist_new;
+            hayNave = true;
+            idx = i;
+        }
+    }
+    if(!hayNave) return -1;
+    return idx;
+}

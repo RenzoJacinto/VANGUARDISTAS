@@ -44,19 +44,21 @@ int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    mover(-getRadio() * (randomNumber() % 3), 0, jugadores);
-    if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(getRadio() * (randomNumber() % 3), 0, jugadores);
+    mover(-2 * 1/*(randomNumber() % 3)*/, 0, jugadores);
+    if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(2 * 1/*(randomNumber() % 3)*/, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -getRadio() * (randomNumber() % 3), jugadores);
-    else if(delta > 0) ok = mover(0, getRadio() * (randomNumber() % 3), jugadores);
+    if(delta < 0) ok = mover(0, -2 * 1/*(randomNumber() % 3)*/, jugadores);
+    else if(delta > 0) ok = mover(0, 2 * 1/*(randomNumber() % 3)*/, jugadores);
 
     disparo = false;
 
-    if (fireRate.transcurridoEnSegundos() > 1) {
+    if (fireRate.transcurridoEnSegundos() > 3 && onScreen()) {
         disparo = true;
+        fireRate.finalizar();
+        fireRate.iniciar();
     }
 
     return ok;

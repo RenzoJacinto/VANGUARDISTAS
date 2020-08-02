@@ -37,20 +37,45 @@ Enemigo4::Enemigo4(int x, int y){
 
 //intenta chocar al enemigo mas cercano, si le erra se da vuelta y le dispara cada 1 seg
 int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
-    int nave_seguida = obtenerNaveSeguidaMasCercana(jugadores);
-    NaveJugador* nave = jugadores[nave_seguida];
-    int distanciaNave = getDistanciaNaveEnX(nave);
-    int ok = -1;
-    if(-getDistanciaNaveEnXConSigno(nave) > DISTANCIA_DE_COMBATE_INICIAL/2){
-        DISTANCIA_DE_COMBATE = 50 + (getRadio() *(randomNumber() % 10));
+    int nave_seguida = naveDerechaCercana(jugadores);
+    if(nave_seguida == -1)
+    {
+        int a = -1;
+        if(mPosX < 600) a = mover(10, 0, jugadores);
+        if(a != -1) return a;
+        int idx = obtenerNaveSeguidaMasCercana(jugadores);
+        a = acomodarseEnEjeY(jugadores[idx]->getPosY(), jugadores);
+        if(a != -1) return a;
         disparo = false;
-        int posY = getPosY();
-        int navePosY = nave->getPosY();
-        if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
-            if (abs(posY - navePosY) > 2) ok = acomodarseEnEjeY(navePosY, jugadores);
-        } else if (fireRate.transcurridoEnSegundos() > 1) {
+        if(fireRate.transcurridoEnSegundos() > 1 && abs(mPosY - 600) < 5) {
             disparo = true;
+            fireRate.finalizar();
+            fireRate.iniciar();
         }
-    } else ok = seguirNave(nave, distanciaNave, jugadores);
-    return ok;
+        else if(fireRate.transcurridoEnSegundos() > 5)
+        {
+            disparo = true;
+            fireRate.finalizar();
+            fireRate.iniciar();
+        }
+        return a;
+    }
+    else
+    {
+        NaveJugador* nave = jugadores[nave_seguida];
+        int distanciaNave = getDistanciaNaveEnX(nave);
+        int ok = -1;
+        if(-getDistanciaNaveEnXConSigno(nave) > DISTANCIA_DE_COMBATE_INICIAL/2){
+            DISTANCIA_DE_COMBATE = 50 + (getRadio() *(randomNumber() % 10));
+            disparo = false;
+            int posY = getPosY();
+            int navePosY = nave->getPosY();
+            if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
+                if (abs(posY - navePosY) > 2) ok = acomodarseEnEjeY(navePosY, jugadores);
+            } else if (fireRate.transcurridoEnSegundos() > 1) {
+                disparo = true;
+            }
+        } else ok = seguirNave(nave, distanciaNave, jugadores);
+        return ok;
+    }
 }
