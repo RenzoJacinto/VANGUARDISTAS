@@ -35,13 +35,10 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     char fin_nivel[15];
     strcpy(fin_nivel, "fin");
 
-    bool over = false;
-
     while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
 
         if(jugadoresMuertos()){
             // Enviar GAME OVER
-            over = true;
             strcpy(fin_nivel, "gameOver");
             break;
         }
@@ -49,10 +46,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
         while(! server->cola_esta_vacia()){
             void* dato = server->desencolar();
-            posiciones_t* pos = procesar(server, (velocidades_t*)dato);
-            //std::cout<<"ID: "<< pos->id<<"X: "<<pos->posX<<"Y: "<<pos->posY;
-            //server->send_all(pos);
-            free(pos);
+            procesar(server, (velocidades_t*)dato);
         }
 
 
@@ -63,145 +57,22 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         velocidades_t* v = create_velocidad(renderizados+4, "rend", 0, 0);
         server->encolar(v);
     }
-    if(over) std::cout<<"GAME OVER!\n";
     posiciones_t* pos = create_posicion(-1, fin_nivel, 0, 0);
     server->send_all(pos);
     free(pos);
 
 }
 
-posiciones_t* NivelServidor::procesar(Server* server, velocidades_t* v){
+void NivelServidor::procesar(Server* server, velocidades_t* v){
 
-    int id = v->id;
-    int vx = v->VelX;
-    int vy = v->VelY;
-
-    posiciones_t* pos = create_posicion(id, v->descrip, 0, 0);
-
-    if(strcmp(v->descrip, "none") == 0){
-        pos->id = id;
-        pos->posX = jugadores[id]->getPosX();
-        pos->posY = jugadores[id]->getPosY();
-        server->send_all(pos);
-    }
-    if(strcmp(v->descrip, "test") == 0){
-        jugadores[id]->set_modeTest();
-        server->send_all(pos);
-        return pos;
-    }
-
-    if(strcmp(v->descrip, "shot0") == 0){
-        int danio = 0;
-        if(id > 3){
-            danio = enemigos[id-4]->get_damage();
-        } else{
-            danio = jugadores[id]->get_damage();
-        }
-        Misil* misil = new Misil(vx, vy, id, danio);
-        misiles.push_back(misil);
-        pos->posX = vx;
-        pos->posY = vy;
-        server->send_all(pos);
-    } else{
-        if(id>3){
-            for(int i = 0; i < id - 4; i++){
-                if(enemigos[i]->isAlive()){
-                    int colision_id = enemigos[i]->procesarAccion(jugadores);
-                    bool disparo = enemigos[i]->seDisparo();
-                    if (disparo){
-                        int xMisil = enemigos[i]->getPosX()-enemigos[i]->getRadio();
-                        int yMisil = enemigos[i]->getPosY();
-                        velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
-                        server->encolar(vMisil);
-                        enemigos[i]->reiniciarDisparo();
-
-                        //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
-                    }
-                    if(colision_id != -1){
-                        //strcpy(pos->descrip, "colision");
-                        strcpy(pos->descrip, "colision");
-                        pos->posX = 0;
-                        pos->posY = i;
-                        pos->id = colision_id;
-                        jugadores[colision_id]->addScore(enemigos[i]->getScore());
-                        server->send_all(pos);
-                    } else{
-                        pos->posX = enemigos[i]->getPosX();
-                        pos->posY = enemigos[i]->getPosY();
-                        pos->id = i+4;
-                        strcpy(pos->descrip, enemigos[i]->getImagen());
-                        server->send_all(pos);
-                    }
-                }
-            }
-            parallax();
-            strcpy(pos->descrip, "bg");
-            server->send_all(pos);
-            list<Misil*>::iterator pos_m = misiles.begin();
-            while(pos_m != misiles.end()){
-                int ok = -1;
-                if((*pos_m)->get_id() < 3){
-                    ok = (*pos_m)->mover(enemigos, renderizados);
-                } else{
-                    ok = (*pos_m)->mover(jugadores);
-                }
-
-                if(ok == -1){
-                    pos_m = misiles.erase(pos_m);
-                    //printf("borra misil\n");
-                } else if(ok == -2){
-                    //printf("no impacto\n");
-                    strcpy(pos->descrip, "shot1");
-                    pos->id = (*pos_m)->get_id();
-                    pos->posX = (*pos_m)->getPosX();
-                    pos->posY = (*pos_m)->getPosY();
-                    server->send_all(pos);
-                    pos_m++;
-                } else{
-                    //printf("impacto\n");
-                    pos->id = ok;
-                    if(ok > 3){
-                        pos->posX = enemigos[ok-4]->getVidaActual();
-                    } else{
-                        pos->posX = jugadores[ok]->getVidaActual();
-                    }
-                    pos->posY = (*pos_m)->get_id();
-                    strcpy(pos->descrip, "hit");
-                    server->send_all(pos);
-                    if(pos->posX <= 0 && ok > 3) jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
-                    pos_m = misiles.erase(pos_m);
-                }
-
-            }
-
-        } else if(strcmp(v->descrip, "off") != 0){
-            if(jugadores[id]->isAlive()){
-                jugadores[id]->setVelX(vx);
-                jugadores[id]->setVelY(vy);
-                int colision_id = jugadores[id]->mover(enemigos);
-                if(colision_id != -1){
-                    pos->posX = 0;
-                    pos->posY = colision_id;
-                    pos->id = id;
-                    jugadores[pos->id]->addScore(enemigos[colision_id]->getScore());
-                    strcpy(pos->descrip, "colision");
-                    server->send_all(pos);
-                } else {
-                    pos->posX = jugadores[id]->getPosX();
-                    pos->posY = jugadores[id]->getPosY();
-                    server->send_all(pos);
-                }
-            }
-        } else if(strcmp(v->descrip, "off") == 0){
-            //jugadores[id]->desconectar();
-            pos->id = id;
-            strcpy(pos->descrip, "off");
-            server->send_all(pos);
+    recibeNone(server, v);
+    if(recibeModoTest(server,v)) return;
+    if(! recibePrimerDisparo(server,v)){
+        if(! recibeNaveEnemiga(server,v)){
+            if(! recibeNaveJugador(server, v)) recibeJugadorDesconectado(server, v);
         }
     }
-    strcpy(pos->descrip, v->descrip);
     free(v);
-    return pos;
 }
 
 bool NivelServidor::esValidoReconectar(){
@@ -291,6 +162,7 @@ posicionesR_t* NivelServidor::create_posicionR(int id,  char const* descrip, int
     return pos;
 }
 
+// FUNCIONES PARA EL CORTE DE NIVEL
 bool NivelServidor::jugadoresMuertos(){
     int cant_jug = jugadores.size();
     for(int i=0; i<cant_jug; i++){
@@ -298,4 +170,180 @@ bool NivelServidor::jugadoresMuertos(){
     }
     return true;
 }
+
+bool NivelServidor::enemigosMuertos(){
+    for(int i=0; i<renderizados; i++){
+        if(enemigos[i]->isAlive()) return false;
+    }
+    return true;
+
+}
+
+// FUNCIONES PARA EL RECIBIMIENTO DE DATA
+void NivelServidor::recibeNone(Server* server, velocidades_t* v){
+    if(strcmp(v->descrip, "none") == 0){
+        int x = jugadores[v->id]->getPosX();
+        int y = jugadores[v->id]->getPosY();
+        posiciones_t* pos = create_posicion(v->id, "none", x, y);
+        server->send_all(pos);
+        free(pos);
+    }
+}
+
+bool NivelServidor::recibeModoTest(Server* server, velocidades_t* v){
+    bool ok = false;
+    if(strcmp(v->descrip, "test") == 0){
+        posiciones_t* pos = create_posicion(v->id, "test", 0, 0);
+        jugadores[v->id]->set_modeTest();
+        server->send_all(pos);
+        free(pos);
+        ok = true;
+    }
+    return ok;
+}
+
+bool NivelServidor::recibePrimerDisparo(Server* server, velocidades_t* v){
+
+    bool ok = false;
+    if(strcmp(v->descrip, "shot0") == 0){
+        int id = v->id;
+        int vx = v->VelX;
+        int vy = v->VelY;
+        int danio = 0;
+        if(id > 3){
+            danio = enemigos[id-4]->get_damage();
+        } else{
+            danio = jugadores[id]->get_damage();
+        }
+        Misil* misil = new Misil(vx, vy, id, danio);
+        misiles.push_back(misil);
+        posiciones_t* pos = create_posicion(v->id, "shot0", vx, vy);
+        server->send_all(pos);
+        free(pos);
+        ok = true;
+    }
+    return ok;
+}
+
+bool NivelServidor::recibeNaveEnemiga(Server* server, velocidades_t* v){
+    bool ok = false;
+    if(v->id > 3){
+        // mueve enemigos
+        moverEnemigos(server, v);
+
+        //ACTUALIZA EL BG
+        parallax();
+        posiciones_t* pos = create_posicion(v->id, "bg", 0, 0);
+        server->send_all(pos);
+        free(pos);
+
+        //mueve misiles
+        moverMisiles(server, v);
+        ok = true;
+    }
+    return ok;
+}
+
+bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
+    bool ok = false;
+    if(strcmp(v->descrip, "off") != 0){
+        int id = v->id;
+        if(jugadores[id]->isAlive()){
+            jugadores[id]->setVelX(v->VelX);
+            jugadores[id]->setVelY(v->VelY);
+            int colision_id = jugadores[id]->mover(enemigos);
+            if(colision_id != -1){
+                jugadores[id]->addScore(enemigos[colision_id]->getScore());
+                posiciones_t* pos = create_posicion(id, "colision", 0, colision_id);
+                server->send_all(pos);
+                free(pos);
+            } else {
+                int posX = jugadores[id]->getPosX();
+                int posY = jugadores[id]->getPosY();
+                posiciones_t* pos = create_posicion(id, v->descrip, posX, posY);
+                server->send_all(pos);
+                free(pos);
+            }
+        }
+        ok = true;
+    }
+    return ok;
+}
+
+void NivelServidor::recibeJugadorDesconectado(Server* server, velocidades_t* v){
+    if(strcmp(v->descrip, "off") == 0){
+        posiciones_t* pos = create_posicion(v->id, "off", 0, 0);
+        server->send_all(pos);
+        free(pos);
+    }
+}
+
+
+// FUNCIONES AUXILIARES PARA LAS MISMAS
+void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
+    for(int i = 0; i < v->id - 4; i++){
+        if(enemigos[i]->isAlive()){
+            int colision_id = enemigos[i]->procesarAccion(jugadores);
+            bool disparo = enemigos[i]->seDisparo();
+            if (disparo){
+                int xMisil = enemigos[i]->getPosX()-enemigos[i]->getRadio();
+                int yMisil = enemigos[i]->getPosY();
+                velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
+                server->encolar(vMisil);
+                enemigos[i]->reiniciarDisparo();
+                    //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
+            }
+            if(colision_id != -1){
+                posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
+                jugadores[colision_id]->addScore(enemigos[i]->getScore());
+                server->send_all(pos);
+                free(pos);
+            } else{
+                int posX = enemigos[i]->getPosX();
+                int posY = enemigos[i]->getPosY();
+                posiciones_t* pos = create_posicion(i+4, enemigos[i]->getImagen(), posX, posY);
+                server->send_all(pos);
+                free(pos);
+            }
+        }
+    }
+
+}
+
+void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
+    list<Misil*>::iterator pos_m = misiles.begin();
+    while(pos_m != misiles.end()){
+        int ok = -1;
+        if((*pos_m)->get_id() < 3){
+            ok = (*pos_m)->mover(enemigos, renderizados);
+        } else{
+            ok = (*pos_m)->mover(jugadores);
+        }
+
+        if(ok == -1){
+            pos_m = misiles.erase(pos_m);
+            //printf("borra misil\n");
+        } else if(ok == -2){
+            //printf("no impacto\n");
+            int posX = (*pos_m)->getPosX();
+            int posY = (*pos_m)->getPosY();
+            posiciones_t* pos = create_posicion((*pos_m)->get_id(), "shot1", posX, posY);
+            server->send_all(pos);
+            free(pos);
+            pos_m++;
+        } else{
+            //printf("impacto\n");
+            int posX=0;
+            if(ok > 3) posX = enemigos[ok-4]->getVidaActual();
+            else posX = jugadores[ok]->getVidaActual();
+
+            posiciones_t* pos = create_posicion(ok, "hit", posX, (*pos_m)->get_id());
+            server->send_all(pos);
+            if(pos->posX <= 0 && ok > 3) jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
+            pos_m = misiles.erase(pos_m);
+            free(pos);
+        }
+    }
+}
+
 
