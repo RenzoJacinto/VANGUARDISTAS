@@ -35,6 +35,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Boss.cpp" />
+		<Unit filename="Boss.h" />
 		<Unit filename="ColaMultihilo.h" />
 		<Unit filename="Enemigo1.cpp" />
 		<Unit filename="Enemigo1.h" />
