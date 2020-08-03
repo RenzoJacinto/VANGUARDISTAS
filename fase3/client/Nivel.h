@@ -39,6 +39,14 @@ class Nivel: public Escenario {
         void renderPuntajes();
         //static const int TIEMPO_NIVEL_SEGS = 240;
 
+        // FUNCIONES PARA PROCESAR
+        bool recibeColision(posiciones_t* pos);
+        bool recibeModoTest(posiciones_t* pos);
+        bool recibeDisparo(posiciones_t* pos);
+        bool recibeHit(posiciones_t* pos);
+        bool recibeParallax(posiciones_t* pos);
+        void moverNaves(posiciones_t* pos);
+
     protected:
 
         int renderizados;

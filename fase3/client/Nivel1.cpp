@@ -108,8 +108,7 @@ void Nivel1::parallax(){
 
 }
 
-void Nivel1::reconectar(Client* client)
-{
+void Nivel1::reconectar(Client* client){
 
     logger.debug("Recibiendo estado actual del nivel");
     posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));

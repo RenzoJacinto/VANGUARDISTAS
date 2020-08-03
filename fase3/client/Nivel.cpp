@@ -111,6 +111,7 @@ bool Nivel::iniciarNivel(Client* client){
 
             }
             procesar((posiciones_t*) dato);
+            free(dato);
         }
 
         //renderizar();
@@ -168,63 +169,13 @@ void Nivel::renderizar(int id_nave){
 
 void Nivel::procesar(posiciones_t* pos){
 
-    if(strcmp(pos->descrip, "colision") == 0){
-        std::cout<<"en: "<<pos->posY<<"\n";
-        std::cout<<"jug: "<<pos->id<<"\n";
-
-        jugadores[pos->id]->die();
-        int score = enemigos[pos->posY]->getScore();
-        jugadores[pos->id]->addScore(score);
-        enemigos[pos->posY]->die();
-
-        // acumula el score;
-        score_nivel[pos->id] += score;
-        return;
-    }
-
-    if(strcmp(pos->descrip, "test") == 0){
-        jugadores[pos->id]->set_modeTest();
-        return;
-    }
-
-    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
-        if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
-        Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
-        misiles.push_back(misil);
-    } else if(strcmp(pos->descrip, "hit") == 0){
-        if(pos->id > 3){
-            enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
-            int score = enemigos[pos->id -4]->getScore();
-            if(! enemigos[pos->id - 4]->isAlive()){
-                jugadores[pos->posY]->addScore(score);
-                // acumula el score;
-                score_nivel[pos->id] += score;
-            } else sounds.playEffect(hitReceiveFX);
-        } else{
-            jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
-            if(jugadores[pos->id]->isAlive())sounds.playEffect(hitReceiveFX);
+    if(recibeColision(pos)) return;
+    if(recibeModoTest(pos)) return;
+    if(! recibeDisparo(pos)){
+        if(! recibeHit(pos)){
+            if(! recibeParallax(pos)) moverNaves(pos);
         }
     }
-    else if (strcmp(pos->descrip, "bg") == 0) parallax();
-    else{
-        if(pos->id>3){
-            aumentarRenderizados(pos->id-3);
-            enemigos[pos->id - 4]->setPosX(pos->posX);
-            enemigos[pos->id - 4]->setPosY(pos->posY);
-            enemigos[pos->id - 4]->setImagen(pos->descrip);
-            return;
-        }
-        if(strcmp(pos->descrip, "off") != 0){
-            jugadores[pos->id]->endBoom();
-            if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosX(pos->posX);
-            if(jugadores[pos->id]->isAlive()) jugadores[pos->id]->setPosY(pos->posY);
-            if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
-        } else{
-            printf("desconectado\n");
-            jugadores[pos->id]->desconectar();
-        }
-    }
-    free(pos);
 }
 
 void Nivel::finalizar() {
@@ -420,13 +371,104 @@ void Nivel::freeSounds(){
     sounds.freeEffect(levelUpFX);
 }
 
-void Nivel::borrarNaves()
-{
+void Nivel::borrarNaves(){
     vector<NaveJugador*>::iterator posJ;
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) delete((*posJ));
     vector<NaveEnemiga*>::iterator posE;
     for(posE = enemigos.begin(); posE != enemigos.end(); posE++) delete((*posE));
 }
+
+// FUNCIONES DE RECIBIMIENTO DE DATA (PROCESAR)
+bool Nivel::recibeColision(posiciones_t* pos){
+    bool ok = false;
+    if(strcmp(pos->descrip, "colision") == 0){
+        std::cout<<"en: "<<pos->posY<<"\n";
+        std::cout<<"jug: "<<pos->id<<"\n";
+
+        jugadores[pos->id]->die();
+        int score = enemigos[pos->posY]->getScore();
+        jugadores[pos->id]->addScore(score);
+        enemigos[pos->posY]->die();
+
+        // acumula el score;
+        score_nivel[pos->id] += score;
+        ok = true;
+    }
+    return ok;
+}
+
+bool Nivel::recibeModoTest(posiciones_t* pos){
+    bool ok = false;
+    if(strcmp(pos->descrip, "test") == 0){
+        jugadores[pos->id]->set_modeTest();
+        ok = true;
+    }
+    return ok;
+}
+
+bool Nivel::recibeDisparo(posiciones_t* pos){
+    bool ok = false;
+    if(strcmp(pos->descrip, "shot0") == 0 || strcmp(pos->descrip, "shot1") == 0){
+        if(strcmp(pos->descrip, "shot0") == 0) sounds.playEffect(shotFX);
+        Misil* misil = new Misil(pos->posX, pos->posY, pos->id);
+        misiles.push_back(misil);
+        ok = true;
+    }
+    return ok;
+}
+
+bool Nivel::recibeHit(posiciones_t* pos){
+    bool ok = false;
+    if(strcmp(pos->descrip, "hit") == 0){
+        if(pos->id > 3){
+            enemigos[pos->id - 4]->setEnergias(pos->posX, pos->posY);
+            int score = enemigos[pos->id -4]->getScore();
+            if(! enemigos[pos->id - 4]->isAlive()){
+                jugadores[pos->posY]->addScore(score);
+                // acumula el score;
+                score_nivel[pos->id] += score;
+            } else sounds.playEffect(hitReceiveFX);
+        } else{
+            jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
+            if(jugadores[pos->id]->isAlive())sounds.playEffect(hitReceiveFX);
+        }
+        ok = true;
+    }
+    return ok;
+}
+
+bool Nivel::recibeParallax(posiciones_t* pos){
+    bool ok = false;
+    if(strcmp(pos->descrip, "bg") == 0){
+        parallax();
+        ok = true;
+    }
+    return ok;
+}
+
+void Nivel::moverNaves(posiciones_t* pos){
+    // es enemigo
+    if(pos->id>3){
+        aumentarRenderizados(pos->id-3);
+        enemigos[pos->id - 4]->setPosX(pos->posX);
+        enemigos[pos->id - 4]->setPosY(pos->posY);
+        enemigos[pos->id - 4]->setImagen(pos->descrip);
+        return;
+    }
+    if(strcmp(pos->descrip, "off") != 0){
+        jugadores[pos->id]->endBoom();
+        if(jugadores[pos->id]->isAlive()){
+            jugadores[pos->id]->setPosX(pos->posX);
+            jugadores[pos->id]->setPosY(pos->posY);
+        }
+        if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
+    } else{
+        printf("desconectado\n");
+        jugadores[pos->id]->desconectar();
+    }
+}
+
+
 void Nivel::parallax(){}
 
 void Nivel::cerrar(){}
