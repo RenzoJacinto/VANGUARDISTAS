@@ -58,7 +58,7 @@ void Nivel2::cargarNivel(Client* client){
     dataAsteroides3.x = 0;
     dataAsteroides3.y = 0;
 
-     logger.info("<<<< SE CARGO EL NIVEL 2");
+    logger.info("<<<< SE CARGO EL NIVEL 2");
 }
 
 void Nivel2::cerrar(){

@@ -44,19 +44,21 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    mover(-getRadio() * (randomNumber() % 2), 0, jugadores);
-    if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(getRadio() * (randomNumber() % 2), 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel + (randomNumber() % (1-vel)), 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(randomNumber() % 2, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -getRadio() * (randomNumber() % 2), jugadores);
-    else if(delta > 0) ok = mover(0, getRadio() * (randomNumber() % 2), jugadores);
+    if(delta < 0) ok = mover(0, -vel + (randomNumber() % (1-vel)), jugadores);
+    else if(delta > 0) ok = mover(0, randomNumber() % (vel+1), jugadores);
 
     disparo = false;
 
-    if (fireRate.transcurridoEnSegundos() > 1) {
+    if (fireRate.transcurridoEnSegundos() > 0.85 && onScreen() && nave->isAlive()) {
         disparo = true;
+        fireRate.finalizar();
+        fireRate.iniciar();
     }
 
     return ok;

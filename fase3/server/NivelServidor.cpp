@@ -35,7 +35,10 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     char fin_nivel[15];
     strcpy(fin_nivel, "fin");
 
-    while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
+    death_enemies = 0;
+
+    //while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
+    while( enemigosSiganVivos() ) {
 
         if(jugadoresMuertos()){
             // Enviar GAME OVER
@@ -190,12 +193,8 @@ bool NivelServidor::jugadoresMuertos(){
     return true;
 }
 
-bool NivelServidor::enemigosMuertos(){
-    for(int i=0; i<renderizados; i++){
-        if(enemigos[i]->isAlive()) return false;
-    }
-    return true;
-
+bool NivelServidor::enemigosSiganVivos(){
+    return death_enemies != cant_enemigos;
 }
 
 // FUNCIONES PARA EL RECIBIMIENTO DE DATA
@@ -274,6 +273,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
             int colision_id = jugadores[id]->mover(enemigos);
             if(colision_id != -1){
                 jugadores[id]->addScore(enemigos[colision_id]->getScore());
+                death_enemies++;
                 posiciones_t* pos = create_posicion(id, "colision", 0, colision_id);
                 server->send_all(pos);
                 free(pos);
@@ -315,6 +315,7 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
             if(colision_id != -1){
                 posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
                 jugadores[colision_id]->addScore(enemigos[i]->getScore());
+                death_enemies++;
                 server->send_all(pos);
                 free(pos);
             } else{
@@ -362,7 +363,10 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
 
             posiciones_t* pos = create_posicion(ok, "hit", posX, (*pos_m)->get_id());
             server->send_all(pos);
-            if(pos->posX <= 0 && ok > 3) jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
+            if(pos->posX <= 0 && ok > 3) {
+                jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
+                death_enemies++;
+            }
             pos_m = misiles.erase(pos_m);
             free(pos);
         }

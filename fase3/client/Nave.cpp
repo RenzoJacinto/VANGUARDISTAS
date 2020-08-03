@@ -20,6 +20,8 @@ bool Nave::crearNave( int x, int y, const char* tipo, const char* subtipo ){
     std::string imagen = json.get_sprite_nave(tipo, subtipo, "nave");
     std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
 
+    if(strcmp("boss",subtipo) == 0) std::cout<<"ES BOSS:\n";
+
     if(!gNaveTexture.loadFromFile(imagen)){
         logger.error(mensaje.c_str());
         imagen = json.get_imagen_default("nave");

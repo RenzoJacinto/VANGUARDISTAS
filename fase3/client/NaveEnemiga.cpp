@@ -15,6 +15,7 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     boomInfoY = 0;
     vidas = CANT_VIDAS_ENEMIGO;
     turret = false;
+
     if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
 
@@ -50,13 +51,27 @@ void NaveEnemiga::mover( NaveJugador* jugador ){
 
 void NaveEnemiga::renderizar(){
     render = true;
+
+    int x_ener = mPosX-getRadio()+5;
+    int y_ener = mPosY+getRadio()+6;
+
+    int x_box = x_ener;
+    int y_box = y_ener;
+
+    if(strcmp(clave, "boss") == 0){
+        x_ener = 220;
+        y_ener = 545;
+        x_box = 0;
+        y_box = 0;
+    }
+
     gNaveTexture.render(getPosX() - getRadio(), getPosY() - getRadio());
     int w = getAnchoImagen();
     w = (int) (w * energia_actual / energia_total);
-    SDL_Rect vida = { mPosX-getRadio()+5, mPosY+getRadio()+6, w, 10 };
+    SDL_Rect vida = { x_ener, y_ener, w, 10 };
     SDL_SetRenderDrawColor( sdl.getRenderer(), 0x00, 0xFF, 0x00, 0xFF );
     SDL_RenderFillRect( sdl.getRenderer(), &vida );
-    textureVida.render(mPosX-getRadio()+5, mPosY+getRadio()+6);
+    textureVida.render(x_box, y_box);
 }
 
 int NaveEnemiga::getRadio(){

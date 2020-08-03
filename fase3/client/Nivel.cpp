@@ -49,6 +49,9 @@ bool Nivel::iniciarNivel(Client* client){
     if(! puntajesBoxTexture.loadFromFile(json.get_sprite_puntajes("box")))
         logger.error("No se pudo cargar la textura de los puntajes");
 
+    SDL_PumpEvents();
+    SDL_FlushEvent(SDL_KEYDOWN);
+    SDL_FlushEvent(SDL_KEYUP);
 
     while( usuarioNoRequieraSalir(quit) ){
 

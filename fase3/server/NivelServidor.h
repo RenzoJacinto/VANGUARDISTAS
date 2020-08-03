@@ -36,7 +36,7 @@ class NivelServidor{
 
         // FUNCIONES PARA EL CORTE DE NIVEL
         bool jugadoresMuertos();
-        bool enemigosMuertos();
+        bool enemigosSiganVivos();
 
         // FUNCIONES PARA EL RECIBIMIENTO DE DATA
         void recibeNone(Server* server, velocidades_t* v);
@@ -63,6 +63,8 @@ class NivelServidor{
         int cant_enemigos;
         int tiempo_transcurrido;
         int renderizados;
+
+        int death_enemies;
 };
 
 #endif
