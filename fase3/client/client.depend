@@ -3386,7 +3386,7 @@
 	"Menu.h"
 	"Nivel.h"
 
-1596437749 /home/agus/Desktop/taller3/fase3/client/NaveJugador.h
+1596490764 /home/agus/Desktop/taller3/fase3/client/NaveJugador.h
 	"Nave.h"
 	"list"
 	"Misil.h"
@@ -3522,7 +3522,7 @@
 1596438467 source:/home/agus/Desktop/taller3/fase3/client/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1596437749 source:/home/agus/Desktop/taller3/fase3/client/NaveJugador.cpp
+1596490765 source:/home/agus/Desktop/taller3/fase3/client/NaveJugador.cpp
 	"NaveJugador.h"
 
 1596437749 source:/home/agus/Desktop/taller3/fase3/client/Nivel1.cpp
@@ -3537,7 +3537,7 @@
 	<pthread.h>
 	<thread>
 
-1596437749 source:/home/agus/Desktop/taller3/fase3/client/Nivel2.cpp
+1596490764 source:/home/agus/Desktop/taller3/fase3/client/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 	<sys/socket.h>
@@ -3548,7 +3548,7 @@
 	<pthread.h>
 	<thread>
 
-1596437749 source:/home/agus/Desktop/taller3/fase3/client/Nivel3.cpp
+1596490765 source:/home/agus/Desktop/taller3/fase3/client/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
 	<sys/socket.h>
@@ -3565,7 +3565,7 @@
 	"global.h"
 	<SDL2/SDL_ttf.h>
 
-1596438304 source:/home/agus/Desktop/taller3/fase3/client/Nivel.cpp
+1596491783 source:/home/agus/Desktop/taller3/fase3/client/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"

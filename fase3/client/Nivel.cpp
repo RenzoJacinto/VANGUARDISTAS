@@ -171,7 +171,7 @@ void Nivel::finalizar() {
 
     /*Renderizado de puntajes */
     int cant_jug = jugadores.size();
-
+    for(int i = 0; i<cant_jug; i++) score_nivel[i] = jugadores[i]->getScore();
     std::string names[cant_jug];
     for(int i=0; i<cant_jug; i++){
         names[i] = jugadores[i]->get_name();

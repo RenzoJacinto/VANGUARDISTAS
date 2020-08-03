@@ -104,3 +104,7 @@ void NaveJugador::addScore(int puntaje)
     score += puntaje;
     printf("score = %d\n", score);
 }
+
+void NaveJugador::setVidas(int num){
+    vidas = num;
+}

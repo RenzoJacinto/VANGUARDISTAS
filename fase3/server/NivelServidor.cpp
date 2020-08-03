@@ -61,6 +61,12 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     server->send_all(pos);
     free(pos);
 
+    vector<NaveJugador*>::iterator posJ;
+    for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++){
+        vidas.push_back((*posJ)->getVidas());
+        scores.push_back((*posJ)->getScore());
+    }
+
 }
 
 void NivelServidor::procesar(Server* server, velocidades_t* v){
@@ -127,6 +133,19 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         free(pos);
         //printf("se crea nave enemiga\n");
     }
+}
+
+void NivelServidor::setScoresVidas(vector<int> vidas, vector<int> scores, int cant_jugadores, Server* server){
+    for(int i = 0; i<cant_jugadores; i++){
+        posiciones_t* pos = create_posicion(i, "data", vidas[i] ,scores[i]);
+        jugadores[i]->addScore(scores[i]);
+        jugadores[i]->setVidas(vidas[i]);
+        server->send_all(pos);
+        free(pos);
+    }
+    posiciones_t* pos = create_posicion(-1, "a", 0, 0);
+    server->send_all(pos);
+    free(pos);
 }
 
 velocidades_t* NivelServidor::create_velocidad(int id, const char* descrip, int x, int y){
@@ -357,4 +376,14 @@ void NivelServidor::cerrar()
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) free((*posJ));
     vector<NaveEnemiga*>::iterator posE;
     for(posE = enemigos.begin(); posE != enemigos.end(); posE++) free((*posE));
+}
+
+vector<int> NivelServidor::getVidas()
+{
+    return vidas;
+}
+
+vector<int> NivelServidor::getScores()
+{
+    return scores;
 }

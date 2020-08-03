@@ -18,6 +18,15 @@ void Nivel2::cargarNivel(Client* client){
 
     setNaves(client);
 
+    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    while(true){
+        pos = (posiciones_t*)client->receiveData();
+        //printf("recibe nave, ID: %d\n", pos->id);
+        if(pos->id == -1) break;
+        jugadores[pos->id]->addScore(pos->posY);
+        jugadores[pos->id]->setVidas(pos->posX);
+    }
+    free(pos);
     cargarImagen("nivel2", "mapaBG", &gBGTexture);
     cargarImagen("nivel2", "planeta1", &gPlaneta1Texture);
     cargarImagen("nivel2", "planeta2", &gPlaneta2Texture);

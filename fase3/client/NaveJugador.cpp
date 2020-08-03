@@ -156,3 +156,7 @@ void NaveJugador::setScore(int puntos)
     printf("score = %d\n", puntos);
     score = puntos;
 }
+
+void NaveJugador::setVidas(int num){
+    vidas = num;
+}

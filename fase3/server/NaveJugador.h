@@ -37,7 +37,7 @@ class NaveJugador: public Nave {
         void set_modeTest();
 
         void addScore(int puntaje);
-
+        void setVidas(int num);
         int encontrarEnemigos(vector<NaveEnemiga*> enemigos);
 
     private:
