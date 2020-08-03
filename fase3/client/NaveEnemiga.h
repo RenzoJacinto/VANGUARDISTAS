@@ -28,6 +28,9 @@ class NaveEnemiga: public Nave {
 
         int getScore();
 
+        void setTurret();
+        void quitTurret();
+
     protected:
 
         int radio;
@@ -36,6 +39,7 @@ class NaveEnemiga: public Nave {
         int desplazamiento;
         char clave[15];
         int score;
+        bool turret;
         const char* sEnemigo1;
         const char* sEnemigo2;
         const char* sEnemigo3;

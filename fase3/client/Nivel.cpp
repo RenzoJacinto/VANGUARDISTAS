@@ -435,7 +435,8 @@ void Nivel::moverNaves(posiciones_t* pos){
         aumentarRenderizados(pos->id-3);
         enemigos[pos->id - 4]->setPosX(pos->posX);
         enemigos[pos->id - 4]->setPosY(pos->posY);
-        enemigos[pos->id - 4]->setImagen(pos->descrip);
+        if(strcmp(pos->descrip, "turret") == 0) enemigos[pos->id - 4]->setTurret();
+        else enemigos[pos->id - 4]->quitTurret();
         return;
     }
     if(strcmp(pos->descrip, "off") != 0){

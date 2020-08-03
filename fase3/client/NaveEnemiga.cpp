@@ -14,7 +14,7 @@ NaveEnemiga::NaveEnemiga(int x, int y, const char* sprite){
     boomInfoX = 0;
     boomInfoY = 0;
     vidas = CANT_VIDAS_ENEMIGO;
-
+    turret = false;
     if(strcmp(sprite, "enemigo3")==0 || strcmp(sprite, "enemigo4")==0) desplazamiento = 1;
     else desplazamiento = -1;
 
@@ -86,4 +86,64 @@ char* NaveEnemiga::getClave(){
 int NaveEnemiga::getScore()
 {
     return score;
+}
+
+void NaveEnemiga::setTurret()
+{
+    if(!turret)
+    {
+        turret = true;
+        gNaveTexture.free();
+        if(strcmp(clave, "enemigo3") == 0)
+        {
+            std::string imagen = json.get_sprite_nave("enemigas", "enemigo1", "nave");
+            std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
+
+            if(!gNaveTexture.loadFromFile(imagen)){
+                logger.error(mensaje.c_str());
+                imagen = json.get_imagen_default("nave");
+                gNaveTexture.loadFromFile(imagen.c_str());
+            }
+        }
+        else{
+            std::string imagen = json.get_sprite_nave("enemigas", "enemigo2", "nave");
+            std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
+
+            if(!gNaveTexture.loadFromFile(imagen)){
+                logger.error(mensaje.c_str());
+                imagen = json.get_imagen_default("nave");
+                gNaveTexture.loadFromFile(imagen.c_str());
+            }
+        }
+    }
+}
+
+void NaveEnemiga::quitTurret()
+{
+    if(turret)
+    {
+        turret = false;
+        gNaveTexture.free();
+        if(strcmp(clave, "enemigo3") == 0)
+        {
+            std::string imagen = json.get_sprite_nave("enemigas", "enemigo3", "nave");
+            std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
+
+            if(!gNaveTexture.loadFromFile(imagen)){
+                logger.error(mensaje.c_str());
+                imagen = json.get_imagen_default("nave");
+                gNaveTexture.loadFromFile(imagen.c_str());
+            }
+        }
+        else{
+            std::string imagen = json.get_sprite_nave("enemigas", "enemigo4", "nave");
+            std::string mensaje = "La imagen (" + imagen + ") no fue encontrada, se carga la imagen que muestra el error";
+
+            if(!gNaveTexture.loadFromFile(imagen)){
+                logger.error(mensaje.c_str());
+                imagen = json.get_imagen_default("nave");
+                gNaveTexture.loadFromFile(imagen.c_str());
+            }
+        }
+    }
 }

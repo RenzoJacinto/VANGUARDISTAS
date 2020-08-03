@@ -3,8 +3,7 @@
 Enemigo3::Enemigo3(int x, int y){
 
     disparo = false;
-    turret = false;
-    spriteChanged = false;
+
     std::string mensaje =  ">>>> CARGANDO LA NAVE ENEMIGO3 ....";
     logger.info(mensaje.c_str());
 
@@ -42,32 +41,49 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
     {
         int a = -1;
         if(mPosX < 600) a = mover(10, 0, jugadores);
+        else if(!turret) turret = true;
         if(a != -1) return a;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
-        a = acomodarseEnEjeY(jugadores[idx]->getPosY(), jugadores);
+        NaveJugador* nave = jugadores[idx];
+        int vy = 0;
+        if (abs(nave->getPosX() + 80 - mPosX) < radio){
+            if (nave->getPosY() > mPosY ) vy = 2;
+            else vy = -2;
+        }
+        else if (abs(nave->getPosY() - mPosY) > 5) {
+            if (nave->getPosY() > mPosY ) vy = 5;
+            else vy = -5;
+        }
+        a = mover(0, vy, jugadores);
         if(a != -1) return a;
         disparo = false;
-        if(fireRate.transcurridoEnSegundos() > 1 && abs(mPosY - 600) < 5) {
+        if(fireRate.transcurridoEnSegundos() > 2 && nave->isAlive() && turret) {
             disparo = true;
-            fireRate.finalizar();
-            fireRate.iniciar();
-        }
-        else if(fireRate.transcurridoEnSegundos() > 5)
-        {
-            disparo = true;
-            fireRate.finalizar();
-            fireRate.iniciar();
         }
         return a;
     }
     else
     {
+        if(turret) turret = false;
         NaveJugador* nave = jugadores[nave_seguida];
-        int distanciaNave = getDistanciaNaveEnX(nave);
+        int vx = 0;
+        int vy = 0;
         int ok = -1;
-        int distY = abs(nave->getPosY() - mPosY);
-        if(distY < distanciaNave) ok = seguirNave(nave, distanciaNave, jugadores);
-        else ok = acomodarseEnEjeY(nave->getPosY(), jugadores);
+        if( getDistanciaNaveEnX(nave) > 100) vx = 5;
+        else if ( getDistanciaNaveEnX(nave) > 5) vx = 2;
+        if(abs(nave->getPosY() - mPosY) > 100) {
+            if (nave->getPosY() > mPosY ) vy = 5;
+            else vy = -5;
+        }
+        else if (abs(nave->getPosY() - mPosY) > 5) {
+            if (nave->getPosY() > mPosY ) vy = 2;
+            else vy = -2;
+        }
+        ok = mover(vx, vy, jugadores);
+        disparo = false;
+        if(fireRate.transcurridoEnSegundos() > 3 && onScreen()) {
+            disparo = true;
+        }
         return ok;
     }
 }

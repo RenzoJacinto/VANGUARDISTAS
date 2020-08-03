@@ -3,8 +3,9 @@
 
 NaveEnemiga::NaveEnemiga(){
     id_nave = 0;
+    turret = false;
 }
-int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){}
+int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){return -1;}
 
 int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
 
@@ -84,6 +85,7 @@ bool NaveEnemiga::seDisparo(){
 }
 
 void NaveEnemiga::reiniciarDisparo(){
+    fireRate.finalizar();
     fireRate.iniciar();
 }
 
@@ -179,4 +181,9 @@ int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores)
     }
     if(!hayNave) return -1;
     return idx;
+}
+
+bool NaveEnemiga::isTurret()
+{
+    return turret;
 }

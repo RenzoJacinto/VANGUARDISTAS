@@ -42,7 +42,7 @@ class NaveEnemiga: public Nave {
         int obtenerNaveSeguidaMasCercana(vector<NaveJugador*> jugadores);
         int naveDerechaCercana(vector<NaveJugador*> jugadores);
         bool cambioDeLado();
-
+        bool isTurret();
         bool onScreen();
         void actualizarSprite();
 
@@ -59,7 +59,7 @@ class NaveEnemiga: public Nave {
         Temporizador fireRate;
         // izq->der = 1 ; der->izq = -1
         char clave[15];
-
+        bool turret;
         int vel;
 
 };

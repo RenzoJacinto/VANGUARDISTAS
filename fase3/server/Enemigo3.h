@@ -10,14 +10,6 @@ class Enemigo3: public NaveEnemiga {
         Enemigo3(int x, int y);
 
 		int procesarAccion(vector<NaveJugador*> jugadores);
-        bool isTurret();
-		bool cambioSprite();
-		void setTurret();
-		void quitTurret();
-
-    private:
-        bool turret;
-        bool spriteChanged;
 };
 
 #endif // NAVEENEMIGA_H

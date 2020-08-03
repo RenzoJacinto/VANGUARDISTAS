@@ -42,40 +42,44 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
     {
         int a = -1;
         if(mPosX < 600) a = mover(10, 0, jugadores);
+        else turret = true;
         if(a != -1) return a;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
-        a = acomodarseEnEjeY(jugadores[idx]->getPosY(), jugadores);
+        NaveJugador* nave = jugadores[idx];
+        int vy = 0;
+        if (abs(nave->getPosX() + 80 - mPosX) < radio){
+            if (nave->getPosY() > mPosY ) vy = 2;
+            else vy = -2;
+        }
+        if (abs(nave->getPosY() - mPosY) > 5) {
+            if (nave->getPosY() > mPosY ) vy = 5;
+            else vy = -5;
+        }
+        a = mover(0, vy, jugadores);
         if(a != -1) return a;
         disparo = false;
-        if(fireRate.transcurridoEnSegundos() > 1 && abs(mPosY - 600) < 5) {
+        if(fireRate.transcurridoEnSegundos() > 3 && nave->isAlive() && turret) {
             disparo = true;
-            fireRate.finalizar();
-            fireRate.iniciar();
-        }
-        else if(fireRate.transcurridoEnSegundos() > 5)
-        {
-            disparo = true;
-            fireRate.finalizar();
-            fireRate.iniciar();
         }
         return a;
     }
     else
     {
+        disparo = false;
+        turret = false;
         NaveJugador* nave = jugadores[nave_seguida];
-        int distanciaNave = getDistanciaNaveEnX(nave);
-        int ok = -1;
-        if(-getDistanciaNaveEnXConSigno(nave) > DISTANCIA_DE_COMBATE_INICIAL/2){
-            DISTANCIA_DE_COMBATE = 50 + (getRadio() *(randomNumber() % 10));
-            disparo = false;
-            int posY = getPosY();
-            int navePosY = nave->getPosY();
-            if (abs(distanciaNave - DISTANCIA_DE_COMBATE) > 2 || abs(posY - navePosY) > 2){
-                if (abs(posY - navePosY) > 2) ok = acomodarseEnEjeY(navePosY, jugadores);
-            } else if (fireRate.transcurridoEnSegundos() > 1) {
-                disparo = true;
-            }
-        } else ok = seguirNave(nave, distanciaNave, jugadores);
-        return ok;
+        int vx = 0;
+        int vy = 0;
+        if( getDistanciaNaveEnX(nave) > 100) vx = 5;
+        else if ( getDistanciaNaveEnX(nave) > 5) vx = 2;
+        if(abs(nave->getPosY() - mPosY) > 100) {
+            if (nave->getPosY() > mPosY ) vy = 5;
+            else vy = -5;
+        }
+        else if (abs(nave->getPosY() - mPosY) > 5) {
+            if (nave->getPosY() > mPosY ) vy = 2;
+            else vy = -2;
+        }
+        return mover(vx, vy, jugadores);
     }
 }

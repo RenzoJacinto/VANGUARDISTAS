@@ -292,7 +292,6 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
                 velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
                 server->encolar(vMisil);
                 enemigos[i]->reiniciarDisparo();
-                    //enemigos[i]->setNaveSeguida(obtenerNaveSeguidaPonderada());
             }
             if(colision_id != -1){
                 posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
@@ -302,7 +301,9 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
             } else{
                 int posX = enemigos[i]->getPosX();
                 int posY = enemigos[i]->getPosY();
-                posiciones_t* pos = create_posicion(i+4, enemigos[i]->getImagen(), posX, posY);
+                posiciones_t* pos;
+                if(enemigos[i]->isTurret()) pos = create_posicion(i+4, "turret", posX, posY);
+                else pos = create_posicion(i+4, "ASD", posX, posY);
                 server->send_all(pos);
                 free(pos);
             }
