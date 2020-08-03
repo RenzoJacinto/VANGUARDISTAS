@@ -49,9 +49,6 @@ bool Nivel::iniciarNivel(Client* client){
     if(! puntajesBoxTexture.loadFromFile(json.get_sprite_puntajes("box")))
         logger.error("No se pudo cargar la textura de los puntajes");
 
-    int MODO_TEST = -1;
-    int MISIL = 0;
-    int NONE = 1;
 
     while( usuarioNoRequieraSalir(quit) ){
 
@@ -66,21 +63,7 @@ bool Nivel::iniciarNivel(Client* client){
             if( eventoEsSalir() ) quit = true;
             int new_misil = NONE;
             jugador1->handleEvent( e, gMusic, &new_misil);
-            if(new_misil == MISIL){
-                velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador1->getPosX(), jugador1->getPosY());
-                if(!jugador1->isAlive() || !jugador1->renderizo()) {
-                    strcpy(v_shot->descrip, "none");
-                }
-                client->sendData(v_shot);
-                free(v_shot);
-            } else if(new_misil == MODO_TEST){
-                velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
-                if(!jugador1->isAlive() || !jugador1->renderizo()) {
-                    strcpy(v_shot->descrip, "none");
-                }
-                client->sendData(v_shot);
-                free(v_shot);
-            }
+            enviarTecleo(new_misil, jugador1, client, id_nave);
         }
 
 
@@ -468,6 +451,25 @@ void Nivel::moverNaves(posiciones_t* pos){
     }
 }
 
+
+// FUNCIONES AUX PARA ENVIO ANTE TECLEO
+void Nivel::enviarTecleo(int new_misil, NaveJugador* jugador, Client* client, int id_nave){
+    if(new_misil == MISIL){
+        velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador->getPosX(), jugador->getPosY());
+        if(!jugador->isAlive() || !jugador->renderizo()) {
+            strcpy(v_shot->descrip, "none");
+        }
+        client->sendData(v_shot);
+        free(v_shot);
+    } else if(new_misil == MODO_TEST){
+        velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
+        if(!jugador->isAlive() || !jugador->renderizo()) {
+            strcpy(v_shot->descrip, "none");
+        }
+        client->sendData(v_shot);
+        free(v_shot);
+    }
+}
 
 void Nivel::parallax(){}
 

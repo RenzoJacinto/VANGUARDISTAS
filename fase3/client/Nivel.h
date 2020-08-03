@@ -47,6 +47,14 @@ class Nivel: public Escenario {
         bool recibeParallax(posiciones_t* pos);
         void moverNaves(posiciones_t* pos);
 
+        // FUNCIONES AUX ENVIAR TECLEO
+        void enviarTecleo(int tecleo, NaveJugador* jugador, Client* client, int id_nave);
+
+        // tecleos
+        static const int MODO_TEST = -1;
+        static const int MISIL = 0;
+        static const int NONE = 1;
+
     protected:
 
         int renderizados;
