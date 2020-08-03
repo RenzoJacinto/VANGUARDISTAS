@@ -21,7 +21,7 @@ class Nave{
 
         //Se inicializa la Nave en esas coordenadas
 		bool crearNave( int x, int y, const char* tipo, const char* subtipo);
-
+        ~Nave();
 		void cerrarNave();
 
 		int getPosX();

@@ -249,6 +249,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
     if(strcmp(v->descrip, "off") != 0){
         int id = v->id;
         if(jugadores[id]->isAlive()){
+            if(v->VelX == 0 && v->VelY == 0) return true;
             jugadores[id]->setVelX(v->VelX);
             jugadores[id]->setVelY(v->VelY);
             int colision_id = jugadores[id]->mover(enemigos);
@@ -321,7 +322,9 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
         }
 
         if(ok == -1){
+            Misil* misil = (*pos_m);
             pos_m = misiles.erase(pos_m);
+            delete(misil);
             //printf("borra misil\n");
         } else if(ok == -2){
             //printf("no impacto\n");
@@ -347,3 +350,10 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
 }
 
 
+void NivelServidor::cerrar()
+{
+    vector<NaveJugador*>::iterator posJ;
+    for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) free((*posJ));
+    vector<NaveEnemiga*>::iterator posE;
+    for(posE = enemigos.begin(); posE != enemigos.end(); posE++) free((*posE));
+}

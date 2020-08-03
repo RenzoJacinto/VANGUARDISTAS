@@ -15,6 +15,7 @@ class Nivel: public Escenario {
     public:
 
         Nivel();
+        void borrarNaves();
         bool iniciarNivel(Client* client);
         void procesar(posiciones_t* pos);
         void finalizar();

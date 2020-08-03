@@ -1333,11 +1333,11 @@
 	"global.h"
 	"Temporizador.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/BotonIniciar.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/BotonIniciar.cpp
 	"BotonIniciar.h"
 	"ManejoDeNiveles.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/BotonIniciar.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/BotonIniciar.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -1346,7 +1346,7 @@
 	<string>
 	"TextureW.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/TextureW.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/TextureW.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -1354,11 +1354,11 @@
 	<stdio.h>
 	<string>
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ManejoDeNiveles.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ManejoDeNiveles.h
 	<list>
 	"Nivel.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Nivel.h
+1596422998 /home/agus/Desktop/taller2/fase3/client/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
@@ -1366,10 +1366,10 @@
 	"Client.h"
 	"Misil.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/NaveEnemiga.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/NaveEnemiga.h
 	"Nave.h"
 
-1596087362 /home/agus/Desktop/taller2/fase3/client/Nave.h
+1596422946 /home/agus/Desktop/taller2/fase3/client/Nave.h
 	<SDL2/SDL.h>
 	<SDL2/SDL_image.h>
 	<SDL2/SDL_ttf.h>
@@ -1381,10 +1381,10 @@
 	"global.h"
 	"list"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ManejoDeSDL.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ManejoDeSDL.h
 	"TextureW.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/global.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/global.h
 	"ManejoDeSDL.h"
 	"ManejoDeLog.h"
 	"ManejoDeJson.h"
@@ -1392,20 +1392,20 @@
 	<pthread.h>
 	"typesmsj.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ManejoDeLog.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ManejoDeLog.h
 	"Logger.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Logger.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Logger.h
 	<iostream>
 	<fstream>
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ManejoDeJson.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ManejoDeJson.h
 	<iostream>
 	<fstream>
 	<string>
 	"json.hpp"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/json.hpp
+1596404152 /home/agus/Desktop/taller2/fase3/client/json.hpp
 	<algorithm>
 	<cassert>
 	<ciso646>
@@ -1573,28 +1573,28 @@
 	<limits>
 	<type_traits>
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ManejoDeSonidos.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ManejoDeSonidos.h
 	"ManejoDeSDL.h"
 
-1596087362 /home/agus/Desktop/taller2/fase3/client/typesmsj.h
+1596404155 /home/agus/Desktop/taller2/fase3/client/typesmsj.h
 	<string>
 	<time.h>
 	<ctime>
 	"ColaMultihilo.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/ColaMultihilo.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/ColaMultihilo.h
 	<queue>
 	<pthread.h>
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Escenario.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Escenario.h
 	<SDL2/SDL.h>
 	"TextureW.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Client.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Client.h
 	"JuegoCliente.h"
 	"typesmsj.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/JuegoCliente.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/JuegoCliente.h
 	"Client.h"
 	"Escenario.h"
 	"Nave.h"
@@ -1603,20 +1603,20 @@
 	"Menu.h"
 	"Nivel.h"
 
-1596087362 /home/agus/Desktop/taller2/fase3/client/NaveJugador.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/NaveJugador.h
 	"Nave.h"
 	"list"
 	"Misil.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Misil.h
+1596419699 /home/agus/Desktop/taller2/fase3/client/Misil.h
 	"global.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Menu.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Menu.h
 	"Escenario.h"
 	"TextureW.h"
 	"BotonIniciar.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/Client.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Client.cpp
 	"Client.h"
 	"global.h"
 	"ColaMultihilo.h"
@@ -1629,11 +1629,11 @@
 	<pthread.h>
 	<thread>
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/Escenario.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Escenario.cpp
 	"Escenario.h"
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/JuegoCliente.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/JuegoCliente.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -1644,22 +1644,22 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Nivel1.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Nivel1.h
 	"Nivel.h"
 	"TextureW.h"
 	"Client.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Nivel2.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Nivel2.h
 	"Nivel.h"
 	"TextureW.h"
 	"Client.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/Nivel3.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Nivel3.h
 	"Nivel.h"
 	"TextureW.h"
 	"Client.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/Logger.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Logger.cpp
 	"Logger.h"
 	<iostream>
 	<fstream>
@@ -1668,36 +1668,36 @@
 	<time.h>
 	<math.h>
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/LoggerDebug.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/LoggerDebug.cpp
 	"LoggerDebug.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/LoggerDebug.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/LoggerDebug.h
 	"Logger.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/LoggerError.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/LoggerError.cpp
 	"LoggerError.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/LoggerError.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/LoggerError.h
 	"Logger.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/LoggerInfo.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/LoggerInfo.cpp
 	"LoggerInfo.h"
 
-1596055512 /home/agus/Desktop/taller2/fase3/client/LoggerInfo.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/LoggerInfo.h
 	"Logger.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/main.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/main.cpp
 	"global.h"
 	"Menu.h"
 	"Client.h"
 	"ManejoDeNiveles.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeJson.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeJson.cpp
 	"ManejoDeJson.h"
 	<stdio.h>
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeLog.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeLog.cpp
 	"ManejoDeLog.h"
 	<string>
 	"LoggerError.h"
@@ -1706,7 +1706,7 @@
 	"Logger.h"
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeNiveles.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeNiveles.cpp
 	"ManejoDeNiveles.h"
 	<string>
 	<time.h>
@@ -1715,34 +1715,34 @@
 	"Nivel2.h"
 	"Nivel3.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeSDL.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeSDL.cpp
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeSonidos.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/ManejoDeSonidos.cpp
 	"ManejoDeSonidos.h"
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/Menu.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Menu.cpp
 	"Menu.h"
 	"global.h"
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/Misil.cpp
+1596419700 source:/home/agus/Desktop/taller2/fase3/client/Misil.cpp
 	"Misil.h"
 
-1596088279 source:/home/agus/Desktop/taller2/fase3/client/Nave.cpp
+1596422946 source:/home/agus/Desktop/taller2/fase3/client/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 	"Temporizador.h"
 
-1596083406 source:/home/agus/Desktop/taller2/fase3/client/NaveEnemiga.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1596088397 source:/home/agus/Desktop/taller2/fase3/client/NaveJugador.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/NaveJugador.cpp
 	"NaveJugador.h"
 
-1596084320 source:/home/agus/Desktop/taller2/fase3/client/Nivel.cpp
+1596418391 source:/home/agus/Desktop/taller2/fase3/client/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"
@@ -1753,7 +1753,7 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1596087556 source:/home/agus/Desktop/taller2/fase3/client/Nivel1.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Nivel1.cpp
 	"Nivel1.h"
 	"global.h"
 	"Client.h"
@@ -1765,7 +1765,7 @@
 	<pthread.h>
 	<thread>
 
-1596092603 source:/home/agus/Desktop/taller2/fase3/client/Nivel2.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Nivel2.cpp
 	"Nivel2.h"
 	"global.h"
 	<sys/socket.h>
@@ -1776,7 +1776,7 @@
 	<pthread.h>
 	<thread>
 
-1596092603 source:/home/agus/Desktop/taller2/fase3/client/Nivel3.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/Nivel3.cpp
 	"Nivel3.h"
 	"global.h"
 	<sys/socket.h>
@@ -1787,7 +1787,7 @@
 	<pthread.h>
 	<thread>
 
-1596055512 source:/home/agus/Desktop/taller2/fase3/client/TextureW.cpp
+1596404152 source:/home/agus/Desktop/taller2/fase3/client/TextureW.cpp
 	"TextureW.h"
 	"ManejoDeSDL.h"
 	"global.h"
@@ -3104,7 +3104,7 @@
 	<ctime>
 	<cmath>
 
-1596055514 /home/agus/Desktop/taller2/fase3/client/Temporizador.h
+1596404152 /home/agus/Desktop/taller2/fase3/client/Temporizador.h
 	<iostream>
 	<chrono>
 	<ctime>

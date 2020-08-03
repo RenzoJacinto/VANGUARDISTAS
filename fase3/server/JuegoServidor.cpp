@@ -35,6 +35,7 @@ void JuegoServidor::iniciarJuego(Server* server, int t_niv){
         server->cerrar_hilos_recibir();
 
         server->vaciar_cola();
+        (*nivel)->cerrar();
         printf("termino el nivel %d\n", nivel_actual);
         std::string msg = "Finalizo el nivel "+std::to_string(nivel_actual);
         logger.info(msg.c_str());

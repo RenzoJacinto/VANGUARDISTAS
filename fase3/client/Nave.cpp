@@ -259,3 +259,10 @@ void Nave::setVidas(int vida){
 int Nave::get_vidas(){
     return vidas;
 }
+
+Nave::~Nave()
+{
+    gNaveTexture.free();
+    textureBoom.free();
+    textureVida.free();
+}

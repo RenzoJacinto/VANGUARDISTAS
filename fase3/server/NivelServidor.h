@@ -20,6 +20,7 @@ class NivelServidor{
         virtual void cargarNivel(Server* server, int cant_jugadores);
         virtual void iniciar_reconexion(int id, Server* server, int socket_id);
         virtual void parallax();
+        void cerrar();
 
         void setNaves(Server* server, int cant_jugadores);
 

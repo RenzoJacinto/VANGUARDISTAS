@@ -57,3 +57,7 @@ int Misil::getVel(){
     return vel;
 }
 
+Misil::~Misil()
+{
+    misilTexture.free();
+}

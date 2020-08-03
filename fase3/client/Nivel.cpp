@@ -124,7 +124,9 @@ void Nivel::renderizar(int id_nave){
         while(pos_m != misiles.end()){
             //(*pos_m)->mover();
             (*pos_m)->renderizar();
+            Misil* misil = (*pos_m);
             pos_m = misiles.erase(pos_m);
+            delete(misil);
         }
         //std::cout<<"SIZE: "<<misiles.size()<<"\n";
 
@@ -418,7 +420,13 @@ void Nivel::freeSounds(){
     sounds.freeEffect(levelUpFX);
 }
 
-
+void Nivel::borrarNaves()
+{
+    vector<NaveJugador*>::iterator posJ;
+    for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) delete((*posJ));
+    vector<NaveEnemiga*>::iterator posE;
+    for(posE = enemigos.begin(); posE != enemigos.end(); posE++) delete((*posE));
+}
 void Nivel::parallax(){}
 
 void Nivel::cerrar(){}

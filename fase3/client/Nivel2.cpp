@@ -62,6 +62,7 @@ void Nivel2::cerrar(){
 
 
 	gFinNivel.free();
+	borrarNaves();
 }
 
 void Nivel2::renderBackground(){

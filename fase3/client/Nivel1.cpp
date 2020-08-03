@@ -67,6 +67,8 @@ void Nivel1::cerrar(){
 	gNube2.free();
 
 	gFinNivel.free();
+
+	borrarNaves();
 }
 
 void Nivel1::renderBackground(){

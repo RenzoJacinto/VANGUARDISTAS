@@ -86,6 +86,7 @@ void Nivel3::cerrar(){
 	gFondo6Texture.free();
 
 	gFinNivel.free();
+	borrarNaves();
 }
 
 void Nivel3::renderBackground(){
