@@ -24,6 +24,7 @@ Boss::Boss(int x, int y){
     DISTANCIA_DE_COMBATE_INICIAL = 500;
 
     vidas = 1;
+    vel = 1;
 
     damage = 35;
 
@@ -38,7 +39,7 @@ Boss::Boss(int x, int y){
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Boss::procesarAccion(vector<NaveJugador*> jugadores){
 
-    int nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);

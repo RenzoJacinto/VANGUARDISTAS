@@ -169,7 +169,7 @@ int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores)
     int min_dist = getDistanciaNave(jugadores[0]);
     int idx = 0;
     int x = jugadores[0]->getPosX()+80;
-    bool hayNave = x > mPosX-radio;
+    bool hayNave = (x > mPosX-radio) && jugadores[0]->isAlive();
     int cant_jug = jugadores.size();
     for(int i=1; i<cant_jug; i++){
         int dist_new = getDistanciaNave(jugadores[i]);

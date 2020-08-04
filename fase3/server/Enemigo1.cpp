@@ -30,7 +30,7 @@ Enemigo1::Enemigo1(int x, int y){
 
     damage = 15;
 
-    vel = 9;
+    vel = 3;
 
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO1" ;
     logger.info(mensaje.c_str());
@@ -40,7 +40,7 @@ Enemigo1::Enemigo1(int x, int y){
 // Dispara cada 1 segundo de lejos (250 en x), a un jugador al azar
 int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
@@ -54,8 +54,8 @@ int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -vel, jugadores);
-    else if(delta > 0) ok = mover(0, vel, jugadores);
+    if(delta < -vel) ok = mover(0, -vel, jugadores);
+    else if(delta > vel) ok = mover(0, vel, jugadores);
 
     disparo = false;
 

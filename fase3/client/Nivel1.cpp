@@ -92,18 +92,18 @@ void Nivel1::renderBackground(){
 
 void Nivel1::parallax(){
 
-    tierraInicial -= 0.2;
+    tierraInicial -= 0.05;
 
-    scrollingOffsetBG -= 0.5;
+    scrollingOffsetBG -= 0.075;
     if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
-	scrollingOffsetCity -= 5;
+	scrollingOffsetCity -= 3;
     if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
 
-    scrollingOffsetNube1 -= 8;
+    scrollingOffsetNube1 -= 5;
     if( scrollingOffsetNube1 < -dataNube1.w ) scrollingOffsetNube1 = 0;
 
-    scrollingOffsetNube2 -= 10;
+    scrollingOffsetNube2 -= 7;
     if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
 
 }

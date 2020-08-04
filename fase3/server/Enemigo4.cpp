@@ -48,12 +48,12 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
         NaveJugador* nave = jugadores[idx];
         int vy = 0;
         if (abs(nave->getPosX() + 80 - mPosX) < radio){
-            if (nave->getPosY() > mPosY ) vy = 2;
-            else vy = -2;
+            if (nave->getPosY() > mPosY ) vy = 1;
+            else vy = -3;
         }
         if (abs(nave->getPosY() - mPosY) > 5) {
-            if (nave->getPosY() > mPosY ) vy = 5;
-            else vy = -5;
+            if (nave->getPosY() > mPosY ) vy = 3;
+            else vy = -1;
         }
         a = mover(0, vy, jugadores);
         if(a != -1) return a;
@@ -70,15 +70,15 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
         NaveJugador* nave = jugadores[nave_seguida];
         int vx = 0;
         int vy = 0;
-        if( getDistanciaNaveEnX(nave) > 250) vx = 5;
-        else if ( getDistanciaNaveEnX(nave) > 5) vx = 2;
+        if( getDistanciaNaveEnX(nave) > 250) vx = 3;
+        else if ( getDistanciaNaveEnX(nave) > 5) vx = 1;
         if(abs(nave->getPosY() - mPosY) > 250) {
-            if (nave->getPosY() > mPosY ) vy = 5;
-            else vy = -5;
+            if (nave->getPosY() > mPosY ) vy = 3;
+            else vy = -3;
         }
         else if (abs(nave->getPosY() - mPosY) > 5) {
-            if (nave->getPosY() > mPosY ) vy = 2;
-            else vy = -2;
+            if (nave->getPosY() > mPosY ) vy = 1;
+            else vy = -1;
         }
         return mover(vx, vy, jugadores);
     }

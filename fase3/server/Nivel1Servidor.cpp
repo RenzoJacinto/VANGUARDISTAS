@@ -17,7 +17,7 @@ void Nivel1Servidor::cargarNivel(Server* server, int cant_jugadores){
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
     tierraInicial = 700;
-    scrollingOffsetNube1 = 120;
+    scrollingOffsetNube1 = 60;
     scrollingOffsetNube2 = 0;
 
     anchoBG = 2048;

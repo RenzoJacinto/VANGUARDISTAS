@@ -30,7 +30,7 @@ Enemigo2::Enemigo2(int x, int y){
     strcpy(clave, imagenActual);
     radio=alto/2;
 
-    vel = 7;
+    vel = 2;
 
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO2" ;
     logger.info(mensaje.c_str());
@@ -40,7 +40,7 @@ Enemigo2::Enemigo2(int x, int y){
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1) nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
@@ -52,8 +52,8 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -vel, jugadores);
-    else if(delta > 0) ok = mover(0, vel, jugadores);
+    if(delta < -vel) ok = mover(0, -vel, jugadores);
+    else if(delta > vel) ok = mover(0, vel, jugadores);
 
     disparo = false;
 
