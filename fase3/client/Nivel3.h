@@ -11,7 +11,7 @@ class Nivel3: public Nivel{
 
     public:
         Nivel3();
-        void cargarNivel(Client* client);
+        bool cargarNivel(Client* client);
         void cerrar();
         void renderBackground();
         void reconectar(Client* client);

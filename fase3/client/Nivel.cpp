@@ -222,7 +222,7 @@ void Nivel::finalizar() {
         texture.render(387 + x_sc + 10, i*48 +300);
     }
     SDL_RenderPresent( sdl.getRenderer() );
-    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
+    //for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     freeSounds();
     texture.free();
@@ -254,10 +254,11 @@ void Nivel::aumentarRenderizados(int i){
     pthread_mutex_unlock(&mutex);
 }
 
-void Nivel::setNaves(Client* client){
+bool Nivel::setNaves(Client* client){
     posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
     while(true){
         pos = (posiciones_t*)client->receiveData();
+        if(!pos) return false;
         printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
         if(pos->id>3){
@@ -273,6 +274,7 @@ void Nivel::setNaves(Client* client){
             jugadores.push_back(nave);
         }
     }
+    return true;
 }
 
 void Nivel::renderEnemigos(){
@@ -499,7 +501,7 @@ void Nivel::parallax(){}
 
 void Nivel::cerrar(){}
 
-void Nivel::cargarNivel(Client* client){}
+bool Nivel::cargarNivel(Client* client){}
 
 void Nivel::renderBackground(){}
 

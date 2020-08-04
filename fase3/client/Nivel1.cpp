@@ -14,13 +14,13 @@ class Client;
 
 Nivel1::Nivel1(){}
 
-void Nivel1::cargarNivel(Client* client){
+bool Nivel1::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 1 ....");
 
     gMusic = sounds.loadMusic(json.get_sound("music", "nivel1").c_str());
 
-    setNaves(client);
+    if(!setNaves(client)) return false;
 
     cargarImagen("nivel1", "mapaBG", &gBGTexture);
     cargarImagen("nivel1", "ciudad", &gCiudadTexture);
@@ -57,6 +57,7 @@ void Nivel1::cargarNivel(Client* client){
     dataNube2.y = 0;
 
     logger.info("<<<< SE CARGO EL NIVEL 1");
+    return true;
 }
 
 void Nivel1::cerrar(){

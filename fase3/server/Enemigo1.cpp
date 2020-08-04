@@ -40,7 +40,9 @@ Enemigo1::Enemigo1(int x, int y){
 // Dispara cada 1 segundo de lejos (250 en x), a un jugador al azar
 int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    if(nave_seguida == -1) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    if(!jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);

@@ -21,7 +21,7 @@ class Nivel: public Escenario {
         void finalizar();
         void renderizar(int id_nave);
         void aumentarRenderizados(int i);
-        void setNaves(Client* client);
+        bool setNaves(Client* client);
         void renderEnemigos();
         void renderBooms();
         void renderGameOver();
@@ -29,7 +29,7 @@ class Nivel: public Escenario {
         void freeSounds();
 
         virtual void cerrar();
-        virtual void cargarNivel(Client* client);
+        virtual bool cargarNivel(Client* client);
         virtual void reconectar(Client* client);
         virtual void renderBackground();
         virtual void parallax();

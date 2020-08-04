@@ -11,17 +11,18 @@
 
 Nivel3::Nivel3(){}
 
-void Nivel3::cargarNivel(Client* client){
+bool Nivel3::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 3 ....");
 
     gMusic = sounds.loadMusic(json.get_sound("music", "nivel3").c_str());
 
-    setNaves(client);
+    if(!setNaves(client)) return false;
 
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    posiciones_t* pos;
     while(true){
         pos = (posiciones_t*)client->receiveData();
+        if(!pos) return false;
         //printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
         if(strcmp(pos->descrip, "test") == 0) jugadores[pos->id]->set_modeTest();
@@ -86,6 +87,7 @@ void Nivel3::cargarNivel(Client* client){
     dataFondo6.y = 0;
 
      logger.info("<<<< SE CARGO EL NIVEL 3");
+     return true;
 }
 
 void Nivel3::cerrar(){

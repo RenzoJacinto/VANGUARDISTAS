@@ -40,7 +40,7 @@ Enemigo2::Enemigo2(int x, int y){
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
@@ -48,6 +48,8 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
     int ok = -1;
     if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
     else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio() ) ok = mover(2, 0, jugadores);
+
+    if(ok != -1) return ok;
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
@@ -57,6 +59,7 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
     disparo = false;
 
+    if(ok != -1) return ok;
     if (fireRate.transcurridoEnSegundos() > 3 && onScreen() && nave->isAlive()) {
         disparo = true;
     }

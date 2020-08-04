@@ -332,13 +332,13 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
                 enemigos[i]->reiniciarDisparo();
             }
             if(colision_id != -1){
+                printf("colision enemigo\n");
                 int score = enemigos[i]->getScore();
                 posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
                 jugadores[colision_id]->addScore(score);
                 death_enemies++;
                 server->send_all(pos);
                 free(pos);
-
                 score_nivel[colision_id] += score;
             } else{
                 int posX = enemigos[i]->getPosX();

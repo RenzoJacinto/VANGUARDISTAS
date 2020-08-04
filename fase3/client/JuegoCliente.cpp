@@ -35,7 +35,11 @@ void JuegoCliente::init_menu(){
 
 void JuegoCliente::iniciarJuego(Client* client, int nivel){
     for(int i = nivel; i<3;i++){
-        niveles[i]->cargarNivel(client);
+        if(!niveles[i]->cargarNivel(client)){
+            client->renderServerCaido();
+            logger.error("El servidor esta caido, terminando la ejecucion...");
+            return;
+        };
         client->crear_hilo_recibir();
         if(niveles[i]->iniciarNivel(client)) {
             niveles[i]->cerrar();

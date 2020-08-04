@@ -11,16 +11,17 @@
 
 Nivel2::Nivel2(){}
 
-void Nivel2::cargarNivel(Client* client){
+bool Nivel2::cargarNivel(Client* client){
 
     logger.info(">>>> CARGANDO EL NIVEL 2 ....");
     gMusic = sounds.loadMusic(json.get_sound("music", "nivel2").c_str());
 
-    setNaves(client);
+    if(!setNaves(client)) return false;
 
-    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    posiciones_t* pos;
     while(true){
         pos = (posiciones_t*)client->receiveData();
+        if(!pos) return false;
         //printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
         if(strcmp(pos->descrip, "test") == 0) jugadores[pos->id]->set_modeTest();
@@ -63,6 +64,7 @@ void Nivel2::cargarNivel(Client* client){
     dataAsteroides3.y = 0;
 
     logger.info("<<<< SE CARGO EL NIVEL 2");
+    return true;
 }
 
 void Nivel2::cerrar(){
