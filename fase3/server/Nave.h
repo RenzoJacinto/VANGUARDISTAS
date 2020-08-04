@@ -52,6 +52,8 @@ class Nave{
 
         int getVidas();
 
+        int getRadio();
+
     protected:
 
         //Las coordenadas X e Y de la Nave

@@ -27,7 +27,7 @@ class NivelServidor{
         int obtenerNaveSeguidaRandom(int cant_naves);
         int obtenerNaveSeguidaPonderada();
 
-        static const int TIEMPO_NIVEL_SEGS = 30;
+        static const int TIEMPO_NIVEL_SEGS = 25;
 
         // FUNCIONES PARA EL ENVIO DE DATA Y RECIBIMIENTO
         velocidades_t* create_velocidad(int id,  char const* descrip, int x, int y);
@@ -45,13 +45,16 @@ class NivelServidor{
         bool recibeNaveEnemiga(Server* server, velocidades_t* v);
         bool recibeNaveJugador(Server* server, velocidades_t* v);
         void recibeJugadorDesconectado(Server* server, velocidades_t* v);
-        void setScoresVidas(vector<int> vidas, vector<int> scores, int cant_jugadores, Server* server);
+        void setScoresVidas(vector<int> vidas, vector<int> scores, vector<bool> modeTests, int cant_jugadores, Server* server);
         vector<int> getScores();
         vector<int> getVidas();
+        vector<bool> get_modeTests();
 
         // FUNCIONES AUXILIARES DE LAS MISMAS
         void moverEnemigos(Server* server, velocidades_t* v);
         void moverMisiles(Server* server, velocidades_t* v);
+
+        void enviar_scores(Server* server);
 
     protected:
         vector<NaveEnemiga*> enemigos;
@@ -65,6 +68,9 @@ class NivelServidor{
         int renderizados;
 
         int death_enemies;
+
+        vector<int> score_nivel;
+        vector<bool> mode_tests;
 };
 
 #endif

@@ -166,7 +166,10 @@ int Nave::get_damage(){
     return damage;
 }
 
-int Nave::getVidas()
-{
+int Nave::getVidas(){
     return vidas;
+}
+
+int Nave::getRadio(){
+    return radio;
 }

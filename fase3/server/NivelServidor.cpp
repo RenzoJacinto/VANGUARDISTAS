@@ -37,6 +37,11 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
 
     death_enemies = 0;
 
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+        score_nivel.push_back(0);
+    }
+
     //while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
     while( enemigosSiganVivos() ) {
 
@@ -68,8 +73,10 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++){
         vidas.push_back((*posJ)->getVidas());
         scores.push_back((*posJ)->getScore());
+        mode_tests.push_back((*posJ)->inModeTest());
     }
 
+    enviar_scores(server);
 }
 
 void NivelServidor::procesar(Server* server, velocidades_t* v){
@@ -85,7 +92,7 @@ void NivelServidor::procesar(Server* server, velocidades_t* v){
 }
 
 bool NivelServidor::esValidoReconectar(){
-    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0 || cant_enemigos - death_enemies > 3;
+    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0;
 }
 
 void NivelServidor::setNaves(Server* server, int cant_jugadores){
@@ -138,12 +145,21 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
     }
 }
 
-void NivelServidor::setScoresVidas(vector<int> vidas, vector<int> scores, int cant_jugadores, Server* server){
+void NivelServidor::setScoresVidas(vector<int> vidas, vector<int> scores, vector<bool> modeTests, int cant_jugadores, Server* server){
     for(int i = 0; i<cant_jugadores; i++){
         posiciones_t* pos = create_posicion(i, "data", vidas[i] ,scores[i]);
         jugadores[i]->addScore(scores[i]);
         jugadores[i]->setVidas(vidas[i]);
         server->send_all(pos);
+
+        if(modeTests[i]){
+            pos->id = i;
+            strcpy(pos->descrip, "test");
+            pos->posX = 0;
+            pos->posY = 0;
+            jugadores[i]->set_modeTest();
+            server->send_all(pos);
+        }
         free(pos);
     }
     posiciones_t* pos = create_posicion(-1, "a", 0, 0);
@@ -272,11 +288,14 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
             jugadores[id]->setVelY(v->VelY);
             int colision_id = jugadores[id]->mover(enemigos);
             if(colision_id != -1){
-                jugadores[id]->addScore(enemigos[colision_id]->getScore());
+                int score = enemigos[colision_id]->getScore();
+                jugadores[id]->addScore(score);
                 death_enemies++;
                 posiciones_t* pos = create_posicion(id, "colision", 0, colision_id);
                 server->send_all(pos);
                 free(pos);
+
+                score_nivel[id] += score;
             } else {
                 int posX = jugadores[id]->getPosX();
                 int posY = jugadores[id]->getPosY();
@@ -313,11 +332,14 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
                 enemigos[i]->reiniciarDisparo();
             }
             if(colision_id != -1){
+                int score = enemigos[i]->getScore();
                 posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
-                jugadores[colision_id]->addScore(enemigos[i]->getScore());
+                jugadores[colision_id]->addScore(score);
                 death_enemies++;
                 server->send_all(pos);
                 free(pos);
+
+                score_nivel[colision_id] += score;
             } else{
                 int posX = enemigos[i]->getPosX();
                 int posY = enemigos[i]->getPosY();
@@ -364,8 +386,11 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
             posiciones_t* pos = create_posicion(ok, "hit", posX, (*pos_m)->get_id());
             server->send_all(pos);
             if(pos->posX <= 0 && ok > 3) {
-                jugadores[pos->posY]->addScore(enemigos[ok-4]->getScore());
+                int score = enemigos[ok-4]->getScore();
+                jugadores[pos->posY]->addScore(score);
                 death_enemies++;
+
+                score_nivel[pos->posY] += score;
             }
             pos_m = misiles.erase(pos_m);
             free(pos);
@@ -373,21 +398,33 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
     }
 }
 
-
-void NivelServidor::cerrar()
-{
+void NivelServidor::cerrar(){
     vector<NaveJugador*>::iterator posJ;
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) free((*posJ));
     vector<NaveEnemiga*>::iterator posE;
     for(posE = enemigos.begin(); posE != enemigos.end(); posE++) free((*posE));
 }
 
-vector<int> NivelServidor::getVidas()
-{
+vector<int> NivelServidor::getVidas(){
     return vidas;
 }
 
-vector<int> NivelServidor::getScores()
-{
+vector<int> NivelServidor::getScores(){
     return scores;
+}
+
+vector<bool> NivelServidor::get_modeTests(){
+    return mode_tests;
+}
+
+void NivelServidor::enviar_scores(Server* server){
+    int cant_jugadores = jugadores.size();
+    for(int i = 0; i<cant_jugadores; i++){
+        posiciones_t* pos = create_posicion(i, "score", score_nivel[i], 0);
+        server->send_all(pos);
+        free(pos);
+    }
+    posiciones_t* pos = create_posicion(-1, "a", 0, 0);
+    server->send_all(pos);
+    free(pos);
 }

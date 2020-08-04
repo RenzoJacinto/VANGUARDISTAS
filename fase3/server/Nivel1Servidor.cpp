@@ -17,7 +17,7 @@ void Nivel1Servidor::cargarNivel(Server* server, int cant_jugadores){
     scrollingOffsetBG = 0;
     scrollingOffsetCity = 0;
     tierraInicial = 700;
-    scrollingOffsetNube1 = 60;
+    scrollingOffsetNube1 = 120;
     scrollingOffsetNube2 = 0;
 
     anchoBG = 2048;
@@ -85,15 +85,15 @@ void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
 void Nivel1Servidor::parallax(){
    tierraInicial -= 0.2;
 
-    scrollingOffsetBG -= 0.075;
+    scrollingOffsetBG -= 0.5;
     if( scrollingOffsetBG < -anchoBG ) scrollingOffsetBG = 0;
 
-	scrollingOffsetCity -= 3;
+	scrollingOffsetCity -= 5;
     if( scrollingOffsetCity < -anchoBG ) scrollingOffsetCity = 0;
 
-    scrollingOffsetNube1 -= 5;
+    scrollingOffsetNube1 -= 8;
     if( scrollingOffsetNube1 < -anchoNube ) scrollingOffsetNube1 = 0;
 
-    scrollingOffsetNube2 -= 7;
+    scrollingOffsetNube2 -= 10;
     if( scrollingOffsetNube2 < -anchoNube ) scrollingOffsetNube2 = 0;
 }

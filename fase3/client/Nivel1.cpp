@@ -92,24 +92,24 @@ void Nivel1::renderBackground(){
 
 void Nivel1::parallax(){
 
-    tierraInicial -= 0.05;
+    tierraInicial -= 0.2;
 
-    scrollingOffsetBG -= 0.075;
+    scrollingOffsetBG -= 0.5;
     if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
-	scrollingOffsetCity -= 3;
+	scrollingOffsetCity -= 5;
     if( scrollingOffsetCity < -dataCiudad.w ) scrollingOffsetCity = 0;
 
-    scrollingOffsetNube1 -= 5;
+    scrollingOffsetNube1 -= 8;
     if( scrollingOffsetNube1 < -dataNube1.w ) scrollingOffsetNube1 = 0;
 
-    scrollingOffsetNube2 -= 7;
+    scrollingOffsetNube2 -= 10;
     if( scrollingOffsetNube2 < -dataNube2.w ) scrollingOffsetNube2 = 0;
 
 }
 
 void Nivel1::reconectar(Client* client){
-    printf("arranca reconexion\n");
+
     logger.debug("Recibiendo estado actual del nivel");
     posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
     recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);

@@ -85,12 +85,12 @@ void Nivel2Servidor::parallax(){
 
     scrollingOffsetPlaneta1 -= 0.20;
 
-	scrollingOffsetAsteroides1 -= 5;
+	scrollingOffsetAsteroides1 -= 10;
     if( scrollingOffsetAsteroides1 < -anchoBG ) scrollingOffsetAsteroides1 = 0;
 
-    scrollingOffsetAsteroides2 -= 3;
+    scrollingOffsetAsteroides2 -= 5;
     if( scrollingOffsetAsteroides2 < -anchoAst ) scrollingOffsetAsteroides2 = 0;
 
-    scrollingOffsetAsteroides3 -= 2;
+    scrollingOffsetAsteroides3 -= 2.5;
     if( scrollingOffsetAsteroides3 < -anchoAst ) scrollingOffsetAsteroides3 = 0;
 }

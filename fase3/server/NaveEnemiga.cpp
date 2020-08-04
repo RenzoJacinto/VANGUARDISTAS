@@ -4,8 +4,8 @@
 NaveEnemiga::NaveEnemiga(){
     id_nave = 0;
     turret = false;
-    nave_seguida = -1;
 }
+
 int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){return -1;}
 
 int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
@@ -19,7 +19,7 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
     setPosY(getPosY()+velY);
 
     for(unsigned int i = 0; i < jugadores.size(); ++i){
-        if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive()){
+        if( checkCollision( jugadores[i] , this )){
             jugadores[i]->die();
             die();
             return i;
@@ -28,10 +28,6 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
 
 
     return -1;
-}
-
-int NaveEnemiga::getRadio(){
-    return radio;
 }
 
 int NaveEnemiga::getAltoImagen(){
@@ -51,7 +47,11 @@ int NaveEnemiga::getDistanciaNave(NaveJugador* nave){
 }
 
 int NaveEnemiga::getDistanciaNaveEnX(NaveJugador* nave){
-    return abs(nave->getPosX() - getPosX());
+    int jug_dx = nave->getRadio();
+    int en_dx = getRadio();
+    if(getDistanciaNaveEnXConSigno(nave) < 0) en_dx = (-1) * en_dx;
+
+    return abs(nave->getPosX() + jug_dx - getPosX() - en_dx);
 }
 
 int NaveEnemiga::getDistanciaNaveEnXConSigno(NaveJugador* nave){
@@ -157,19 +157,17 @@ char* NaveEnemiga::getImagen(){
     return clave;
 }
 
-bool NaveEnemiga::onScreen()
-{
+bool NaveEnemiga::onScreen(){
     bool a = mPosY > 0 && mPosY < SCREEN_HEIGHT;
     bool b = mPosX > 0 && mPosX < SCREEN_WIDTH;
     return a && b;
 }
 
-int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores)
-{
+int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores){
     int min_dist = getDistanciaNave(jugadores[0]);
     int idx = 0;
     int x = jugadores[0]->getPosX()+80;
-    bool hayNave = (x > mPosX-radio) && jugadores[0]->isAlive();
+    bool hayNave = x > mPosX-radio && jugadores[0]->isAlive();
     int cant_jug = jugadores.size();
     for(int i=1; i<cant_jug; i++){
         int dist_new = getDistanciaNave(jugadores[i]);
@@ -184,7 +182,6 @@ int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores)
     return idx;
 }
 
-bool NaveEnemiga::isTurret()
-{
+bool NaveEnemiga::isTurret(){
     return turret;
 }

@@ -160,3 +160,7 @@ void NaveJugador::setScore(int puntos)
 void NaveJugador::setVidas(int num){
     vidas = num;
 }
+
+bool NaveJugador::inModeTest(){
+    return mode_test;
+}

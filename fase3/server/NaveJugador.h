@@ -40,6 +40,8 @@ class NaveJugador: public Nave {
         void setVidas(int num);
         int encontrarEnemigos(vector<NaveEnemiga*> enemigos);
 
+        bool inModeTest();
+
     private:
 
         bool conectado;

@@ -108,3 +108,7 @@ void NaveJugador::addScore(int puntaje)
 void NaveJugador::setVidas(int num){
     vidas = num;
 }
+
+bool NaveJugador::inModeTest(){
+    return mode_test;
+}

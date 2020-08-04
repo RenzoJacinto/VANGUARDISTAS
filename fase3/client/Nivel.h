@@ -50,6 +50,8 @@ class Nivel: public Escenario {
         // FUNCIONES AUX ENVIAR TECLEO
         void enviarTecleo(int tecleo, NaveJugador* jugador, Client* client, int id_nave);
 
+        void recibeScoresDelNivel(Client* client);
+
         // tecleos
         static const int MODO_TEST = -1;
         static const int MISIL = 0;

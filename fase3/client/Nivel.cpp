@@ -29,11 +29,6 @@ bool Nivel::iniciarNivel(Client* client){
     gameOverFX = sounds.loadEffect(json.get_sound("FX", "gameOver").c_str());
     levelUpFX = sounds.loadEffect(json.get_sound("FX", "levelUp").c_str());
 
-    int cant_jug = jugadores.size();
-    for(int i=0; i<cant_jug; i++){
-        score_nivel.push_back(0);
-    }
-
     if(! deathUserTexture.loadFromFile(json.get_sprite_menu("deathUser"))){
         logger.error("No se pudo cargar el sprite de game over");
         deathUserTexture.loadFromFile(json.get_imagen_default("escenario"));
@@ -93,7 +88,10 @@ bool Nivel::iniciarNivel(Client* client){
                     renderGameOver();
                     client->finalizar();
                     return true;
-                } else return false;
+                } else{
+                    recibeScoresDelNivel(client);
+                    return false;
+                }
 
             }
             procesar((posiciones_t*) dato);
@@ -102,6 +100,7 @@ bool Nivel::iniciarNivel(Client* client){
 
         //renderizar();
     }
+
     client->finalizar();
     return quit;
 }
@@ -174,10 +173,12 @@ void Nivel::finalizar() {
 
     /*Renderizado de puntajes */
     int cant_jug = jugadores.size();
-    for(int i = 0; i<cant_jug; i++) score_nivel[i] = jugadores[i]->getScore();
+
+    int score_nivel_ant[cant_jug];
     std::string names[cant_jug];
     for(int i=0; i<cant_jug; i++){
         names[i] = jugadores[i]->get_name();
+        score_nivel_ant[i] = jugadores[i]->getScore() - score_nivel[i];
     }
 
     //Ordeno ambos arrays, para rankear los users
@@ -212,8 +213,13 @@ void Nivel::finalizar() {
         texture.loadFromRenderedText(names[i], "fin");
         texture.render(186, i*48 + 300);
 
-        texture.loadFromRenderedText("+" + std::to_string(score_nivel[i]), "fin");
-        texture.render(392, i*48 +300);
+        texture.loadFromRenderedText(std::to_string(score_nivel_ant[i]), "fin");
+        texture.render(387, i*48 +300);
+
+        int x_sc = texture.getWidth();
+
+        texture.loadFromRenderedText("+" + std::to_string(score_nivel[i]), "log");
+        texture.render(387 + x_sc + 10, i*48 +300);
     }
     SDL_RenderPresent( sdl.getRenderer() );
     for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
@@ -377,7 +383,7 @@ bool Nivel::recibeColision(posiciones_t* pos){
         enemigos[pos->posY]->die();
 
         // acumula el score;
-        score_nivel[pos->id] += score;
+        //score_nivel[pos->id] += score;
         ok = true;
     }
     return ok;
@@ -412,7 +418,7 @@ bool Nivel::recibeHit(posiciones_t* pos){
             if(! enemigos[pos->id - 4]->isAlive()){
                 jugadores[pos->posY]->addScore(score);
                 // acumula el score;
-                score_nivel[pos->id] += score;
+                //score_nivel[pos->id] += score;
             } else sounds.playEffect(hitReceiveFX);
         } else{
             jugadores[pos->id]->setEnergias(pos->posX, pos->posY);
@@ -455,6 +461,20 @@ void Nivel::moverNaves(posiciones_t* pos){
     }
 }
 
+void Nivel::recibeScoresDelNivel(Client* client){
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++){
+        score_nivel.push_back(0);
+    }
+    posiciones_t* pos = (posiciones_t*)malloc(sizeof(posiciones_t));
+    while(true){
+        pos = (posiciones_t*)client->receiveData();
+        //printf("recibe nave, ID: %d\n", pos->id);
+        if(pos->id == -1) break;
+        score_nivel[pos->id] = pos->posX;
+    }
+    free(pos);
+}
 
 // FUNCIONES AUX PARA ENVIO ANTE TECLEO
 void Nivel::enviarTecleo(int new_misil, NaveJugador* jugador, Client* client, int id_nave){

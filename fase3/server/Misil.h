@@ -17,7 +17,7 @@ class Misil{
 		static const int MISIL_HEIGHT = 20;
 
 		//Velocidad de la Nave del Jugador
-		static const int MISIL_VEL = 7;
+		static const int MISIL_VEL = 15;
 
 		//Mueve la Nave considerando la posicion de la Nave enemiga
 		int mover(vector<NaveEnemiga*> enemigos, int renderizados);

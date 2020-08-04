@@ -23,9 +23,13 @@ void Nivel2::cargarNivel(Client* client){
         pos = (posiciones_t*)client->receiveData();
         //printf("recibe nave, ID: %d\n", pos->id);
         if(pos->id == -1) break;
-        jugadores[pos->id]->addScore(pos->posY);
-        jugadores[pos->id]->setVidas(pos->posX);
+        if(strcmp(pos->descrip, "test") == 0) jugadores[pos->id]->set_modeTest();
+        else{
+            jugadores[pos->id]->addScore(pos->posY);
+            jugadores[pos->id]->setVidas(pos->posX);
+        }
     }
+
     free(pos);
     cargarImagen("nivel2", "mapaBG", &gBGTexture);
     cargarImagen("nivel2", "planeta1", &gPlaneta1Texture);
@@ -99,13 +103,13 @@ void Nivel2::parallax(){
 
     scrollingOffsetPlaneta1 -= 0.20;
 
-	scrollingOffsetAsteroides1 -= 5;
+	scrollingOffsetAsteroides1 -= 10;
     if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
 
-    scrollingOffsetAsteroides2 -= 3;
+    scrollingOffsetAsteroides2 -= 5;
     if( scrollingOffsetAsteroides2 < -dataAsteroides2.w ) scrollingOffsetAsteroides2 = 0;
 
-    scrollingOffsetAsteroides3 -= 2;
+    scrollingOffsetAsteroides3 -= 2.5;
     if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
 }
 

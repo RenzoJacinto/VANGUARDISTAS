@@ -105,21 +105,21 @@ void Nivel3Servidor::parallax(){
     scrollingOffsetBG -= 0.1;
     if( scrollingOffsetBG < -anchoBG ) scrollingOffsetBG = 250;
 
-    scrollingOffsetFondo1 -= 8;
+    scrollingOffsetFondo1 -= 15;
     if( scrollingOffsetFondo1 < -anchoBG ) scrollingOffsetFondo1 = 0;
 
-    scrollingOffsetFondo2 -= 17;
+    scrollingOffsetFondo2 -= 13.5;
     if( scrollingOffsetFondo2 < -anchoBG ) scrollingOffsetFondo2 = 0;
 
-    scrollingOffsetFondo3 -= 6;
+    scrollingOffsetFondo3 -= 12;
     if( scrollingOffsetFondo3 < -anchoBG ) scrollingOffsetFondo3 = 0;
 
-    scrollingOffsetFondo4 -= 5;
+    scrollingOffsetFondo4 -= 10.5;
     if( scrollingOffsetFondo4 < -anchoBG ) scrollingOffsetFondo4 = 0;
 
-    scrollingOffsetFondo5 -= 4;
+    scrollingOffsetFondo5 -= 9;
     if( scrollingOffsetFondo5 < -anchoBG ) scrollingOffsetFondo5 = 0;
 
-    scrollingOffsetFondo6 -= 3;
+    scrollingOffsetFondo6 -= 7.5;
     if( scrollingOffsetFondo6 < -anchoBG ) scrollingOffsetFondo6 = 0;
 }
