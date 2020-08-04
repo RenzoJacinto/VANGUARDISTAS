@@ -62,6 +62,10 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
     if(ok != -1) return ok;
     if (fireRate.transcurridoEnSegundos() > 3 && onScreen() && nave->isAlive()) {
         disparo = true;
+        misil_posX = mPosX - getRadio();
+        misil_posY = mPosY;
+        fireRate.finalizar();
+        fireRate.iniciar();
     }
 
     return ok;

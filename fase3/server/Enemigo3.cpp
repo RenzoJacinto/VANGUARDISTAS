@@ -37,8 +37,7 @@ Enemigo3::Enemigo3(int x, int y){
 // intenta chocar al enemigo mas cercano
 int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
     int nave_seguida = naveDerechaCercana(jugadores);
-    if(nave_seguida == -1)
-    {
+    if(nave_seguida == -1){
         int a = -1;
         if(mPosX < 600) a = mover(3, 0, jugadores);
         else if(!turret) turret = true;
@@ -49,8 +48,7 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         if (abs(nave->getPosX() + 80 - mPosX) < radio){
             if (nave->getPosY() > mPosY ) vy = 1;
             else vy = -1;
-        }
-        else if (abs(nave->getPosY() - mPosY) > 5) {
+        } else if (abs(nave->getPosY() - mPosY) > 5) {
             if (nave->getPosY() > mPosY ) vy = 3;
             else vy = -3;
         }
@@ -59,11 +57,13 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         disparo = false;
         if(fireRate.transcurridoEnSegundos() > 2 && nave->isAlive() && turret) {
             disparo = true;
+            misil_posX = mPosX - getRadio();
+            misil_posY = mPosY;
+            fireRate.finalizar();
+            fireRate.iniciar();
         }
         return a;
-    }
-    else
-    {
+    } else{
         if(turret) turret = false;
         NaveJugador* nave = jugadores[nave_seguida];
         int vx = 0;
@@ -74,16 +74,10 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         if(abs(nave->getPosY() - mPosY) > 250) {
             if (nave->getPosY() > mPosY ) vy = 3;
             else vy = -3;
-        }
-        else if (abs(nave->getPosY() - mPosY) > 1) {
+        } else if (abs(nave->getPosY() - mPosY) > 1) {
             if (nave->getPosY() > mPosY ) vy = 1;
             else vy = -1;
         }
-        ok = mover(vx, vy, jugadores);
-        disparo = false;
-        if(fireRate.transcurridoEnSegundos() > 3 && onScreen()) {
-            disparo = true;
-        }
-        return ok;
+        return mover(vx, vy, jugadores);
     }
 }

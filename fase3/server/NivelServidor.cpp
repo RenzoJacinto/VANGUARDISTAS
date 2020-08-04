@@ -325,8 +325,10 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
             int colision_id = enemigos[i]->procesarAccion(jugadores);
             bool disparo = enemigos[i]->seDisparo();
             if (disparo){
-                int xMisil = enemigos[i]->getPosX()-enemigos[i]->getRadio();
-                int yMisil = enemigos[i]->getPosY();
+                /*int xMisil = enemigos[i]->getPosX()-enemigos[i]->getRadio();
+                int yMisil = enemigos[i]->getPosY();*/
+                int xMisil = enemigos[i]->get_posX_misil();
+                int yMisil = enemigos[i]->get_posY_misil();
                 velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
                 server->encolar(vMisil);
                 enemigos[i]->reiniciarDisparo();

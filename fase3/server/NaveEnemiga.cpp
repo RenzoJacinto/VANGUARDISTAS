@@ -187,3 +187,12 @@ int NaveEnemiga::naveDerechaCercana(vector<NaveJugador*> jugadores){
 bool NaveEnemiga::isTurret(){
     return turret;
 }
+
+
+int NaveEnemiga::get_posX_misil(){
+    return misil_posX;
+}
+
+int NaveEnemiga::get_posY_misil(){
+    return misil_posY;
+}

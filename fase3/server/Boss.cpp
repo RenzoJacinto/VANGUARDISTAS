@@ -58,6 +58,8 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
 
     if (fireRate.transcurridoEnSegundos() > 0.85 && onScreen() && nave->isAlive()) {
         disparo = true;
+        misil_posX = mPosX - getRadio();
+        misil_posY = mPosY - (getRadio()/2) + randomNumber() % (getRadio() + 1);
         fireRate.finalizar();
         fireRate.iniciar();
     }

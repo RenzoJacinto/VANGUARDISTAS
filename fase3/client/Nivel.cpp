@@ -190,6 +190,11 @@ void Nivel::finalizar() {
                 score_nivel[k] = score_nivel[j];
                 score_nivel[j] = aux_sc;
 
+                //swap score nivel ant
+                int aux_sc_ant = score_nivel_ant[k];
+                score_nivel_ant[k] = score_nivel_ant[j];
+                score_nivel_ant[j] = aux_sc_ant;
+
                 //swap name
                 std::string aux_n = names[k];
                 names[k] = names[j];

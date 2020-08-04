@@ -47,6 +47,9 @@ class NaveEnemiga: public Nave {
 
         char* getImagen();
 
+        int get_posX_misil();
+        int get_posY_misil();
+
     protected:
         char imagenActual[10];
         char imagenEspejo[10];
@@ -61,6 +64,9 @@ class NaveEnemiga: public Nave {
         char clave[15];
         bool turret;
         int vel;
+
+        int misil_posX;
+        int misil_posY;
 
 };
 

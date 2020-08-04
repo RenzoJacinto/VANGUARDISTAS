@@ -134,11 +134,13 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
     bool colisionY = (c || d);
 
     //printf("XM: %d, YM: %d, XN: %d - %d, YN: %d - %d\n", x_misil, y_misil, mPosX, mPosX+ancho, mPosY, mPosY+alto);
-    if(colisionX && colisionY && !mode_test){
-        energia_actual -= damage;
-        printf("energia actual: %d\n", energia_actual);
-        if(energia_actual <= 0){
-            die();
+    if(colisionX && colisionY){
+        if(!mode_test){
+            energia_actual -= damage;
+            printf("energia actual: %d\n", energia_actual);
+            if(energia_actual <= 0){
+                die();
+            }
         }
         ok = true;
     }
