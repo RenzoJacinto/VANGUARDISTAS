@@ -109,7 +109,7 @@ void Nivel1::parallax(){
 }
 
 void Nivel1::reconectar(Client* client){
-
+    printf("arranca reconexion\n");
     logger.debug("Recibiendo estado actual del nivel");
     posicionesR_t* pos = (posicionesR_t*)malloc(sizeof(posicionesR_t));
     recv(client->get_socket(), pos, sizeof(posicionesR_t), MSG_NOSIGNAL);

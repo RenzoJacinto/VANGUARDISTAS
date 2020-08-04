@@ -69,9 +69,9 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         int vx = 0;
         int vy = 0;
         int ok = -1;
-        if( getDistanciaNaveEnX(nave) > 100) vx = 5;
+        if( getDistanciaNaveEnX(nave) > 250) vx = 5;
         else if ( getDistanciaNaveEnX(nave) > 5) vx = 2;
-        if(abs(nave->getPosY() - mPosY) > 100) {
+        if(abs(nave->getPosY() - mPosY) > 250) {
             if (nave->getPosY() > mPosY ) vy = 5;
             else vy = -5;
         }

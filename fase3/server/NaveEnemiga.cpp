@@ -18,7 +18,7 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
     setPosY(getPosY()+velY);
 
     for(unsigned int i = 0; i < jugadores.size(); ++i){
-        if( checkCollision( jugadores[i] , this )){
+        if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive()){
             jugadores[i]->die();
             die();
             return i;

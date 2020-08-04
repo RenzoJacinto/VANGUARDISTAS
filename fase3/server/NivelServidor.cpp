@@ -85,7 +85,7 @@ void NivelServidor::procesar(Server* server, velocidades_t* v){
 }
 
 bool NivelServidor::esValidoReconectar(){
-    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0;
+    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0 || cant_enemigos - death_enemies > 3;
 }
 
 void NivelServidor::setNaves(Server* server, int cant_jugadores){
