@@ -316,9 +316,9 @@ void Nivel::renderPuntajes(){
     for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
         int id = (*pos)->get_id();
         if(id == 0 || id == 3){
-            x_name = id * 600 + 36;
-            x_life = id * 600 + 25;
-            x_score = id * 600 + 75;
+            x_name = id * 200 + 36;
+            x_life = id * 200 + 25;
+            x_score = id * 200 + 75;
         } else{
             x_name = id*200 + 38;
             x_life = id*200 + 27;
