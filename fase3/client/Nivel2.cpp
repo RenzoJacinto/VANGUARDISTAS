@@ -105,13 +105,13 @@ void Nivel2::parallax(){
 
     scrollingOffsetPlaneta1 -= 0.20;
 
-	scrollingOffsetAsteroides1 -= 10;
+	scrollingOffsetAsteroides1 -= 5;
     if( scrollingOffsetAsteroides1 < -dataAsteroides1.w ) scrollingOffsetAsteroides1 = 0;
 
-    scrollingOffsetAsteroides2 -= 5;
+    scrollingOffsetAsteroides2 -= 3;
     if( scrollingOffsetAsteroides2 < -dataAsteroides2.w ) scrollingOffsetAsteroides2 = 0;
 
-    scrollingOffsetAsteroides3 -= 2.5;
+    scrollingOffsetAsteroides3 -= 2;
     if( scrollingOffsetAsteroides3 < -dataAsteroides3.w ) scrollingOffsetAsteroides3 = 0;
 }
 

@@ -332,8 +332,6 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
                 velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
                 server->encolar(vMisil);
                 bool disparoTriple = enemigos[i]->getDisparoTriple();
-                if(disparoTriple)printf("triple true\n");
-                else printf("triple false\n");
                 if (disparoTriple){
                     velocidades_t* vMisil2 = create_velocidad(i+4, "shot0", xMisil, yMisil + 100);
                     server->encolar(vMisil2);

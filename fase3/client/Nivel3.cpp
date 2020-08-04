@@ -132,22 +132,22 @@ void Nivel3::parallax(){
     scrollingOffsetBG -= 0.1;
     if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 250;
 
-    scrollingOffsetFondo1 -= 15;
+    scrollingOffsetFondo1 -= 8;
     if( scrollingOffsetFondo1 < -dataFondo1.w ) scrollingOffsetFondo1 = 0;
 
-    scrollingOffsetFondo2 -= 13.5;
+    scrollingOffsetFondo2 -= 7;
     if( scrollingOffsetFondo2 < -dataFondo2.w ) scrollingOffsetFondo2 = 0;
 
-    scrollingOffsetFondo3 -= 12;
+    scrollingOffsetFondo3 -= 6;
     if( scrollingOffsetFondo3 < -dataFondo3.w ) scrollingOffsetFondo3 = 0;
 
-    scrollingOffsetFondo4 -= 10.5;
+    scrollingOffsetFondo4 -= 5;
     if( scrollingOffsetFondo4 < -dataFondo4.w ) scrollingOffsetFondo4 = 0;
 
-    scrollingOffsetFondo5 -= 9;
+    scrollingOffsetFondo5 -= 4;
     if( scrollingOffsetFondo5 < -dataFondo5.w ) scrollingOffsetFondo5 = 0;
 
-    scrollingOffsetFondo6 -= 7.5;
+    scrollingOffsetFondo6 -= 3;
     if( scrollingOffsetFondo6 < -dataFondo6.w ) scrollingOffsetFondo6 = 0;
 }
 

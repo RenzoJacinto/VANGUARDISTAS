@@ -83,17 +83,17 @@ void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
 }
 
 void Nivel1Servidor::parallax(){
-   tierraInicial -= 0.2;
+   tierraInicial -= 0.05;
 
-    scrollingOffsetBG -= 0.5;
+    scrollingOffsetBG -= 0.075;
     if( scrollingOffsetBG < -anchoBG ) scrollingOffsetBG = 0;
 
-	scrollingOffsetCity -= 5;
+	scrollingOffsetCity -= 1;
     if( scrollingOffsetCity < -anchoBG ) scrollingOffsetCity = 0;
 
-    scrollingOffsetNube1 -= 8;
+    scrollingOffsetNube1 -= 3;
     if( scrollingOffsetNube1 < -anchoNube ) scrollingOffsetNube1 = 0;
 
-    scrollingOffsetNube2 -= 10;
+    scrollingOffsetNube2 -= 5;
     if( scrollingOffsetNube2 < -anchoNube ) scrollingOffsetNube2 = 0;
 }
