@@ -30,7 +30,7 @@ Enemigo1::Enemigo1(int x, int y){
 
     damage = 15;
 
-    vel = 3;
+    vel = 1.2;
 
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO1" ;
     logger.info(mensaje.c_str());
@@ -46,8 +46,8 @@ int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel, 0, jugadores);
-    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(2, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio() ) ok = mover(2, 0, jugadores);
 
     if (ok != -1) return ok;
 

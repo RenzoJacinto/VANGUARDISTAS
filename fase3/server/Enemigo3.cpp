@@ -40,7 +40,7 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
     if(nave_seguida == -1)
     {
         int a = -1;
-        if(mPosX < 600) a = mover(10, 0, jugadores);
+        if(mPosX < 600) a = mover(3, 0, jugadores);
         else if(!turret) turret = true;
         if(a != -1) return a;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);

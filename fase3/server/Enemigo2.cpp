@@ -30,7 +30,7 @@ Enemigo2::Enemigo2(int x, int y){
     strcpy(clave, imagenActual);
     radio=alto/2;
 
-    vel = 2;
+    vel = 1;
 
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO2" ;
     logger.info(mensaje.c_str());
@@ -46,8 +46,8 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel, 0, jugadores);
-    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(2, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio() ) ok = mover(2, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;

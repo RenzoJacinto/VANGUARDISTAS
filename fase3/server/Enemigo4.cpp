@@ -41,7 +41,7 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
     if(nave_seguida == -1)
     {
         int a = -1;
-        if(mPosX < 600) a = mover(10, 0, jugadores);
+        if(mPosX < 600) a = mover(3, 0, jugadores);
         else turret = true;
         if(a != -1) return a;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
@@ -49,11 +49,11 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
         int vy = 0;
         if (abs(nave->getPosX() + 80 - mPosX) < radio){
             if (nave->getPosY() > mPosY ) vy = 1;
-            else vy = -3;
+            else vy = -1;
         }
         if (abs(nave->getPosY() - mPosY) > 5) {
             if (nave->getPosY() > mPosY ) vy = 3;
-            else vy = -1;
+            else vy = -3;
         }
         a = mover(0, vy, jugadores);
         if(a != -1) return a;
