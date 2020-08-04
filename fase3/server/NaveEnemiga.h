@@ -51,6 +51,7 @@ class NaveEnemiga: public Nave {
         char imagenActual[10];
         char imagenEspejo[10];
         bool disparo;
+        int nave_seguida;
 
         int distanciaActual;
         int DISTANCIA_DE_COMBATE;

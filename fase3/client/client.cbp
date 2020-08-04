@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="25.10.98.43 8080" />
+				<Option parameters="127.0.0.1 8080" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -93,6 +93,8 @@
 		<Unit filename="typesmsj.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
+			<code_completion />
+			<debugger />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
