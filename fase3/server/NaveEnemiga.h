@@ -48,18 +48,22 @@ class NaveEnemiga: public Nave {
         char* getImagen();
 
         int get_posX_misil();
-        int get_posY_misil();
+        int get_posY_misil();\
+
+        bool getDisparoTriple();
 
     protected:
         char imagenActual[10];
         char imagenEspejo[10];
         bool disparo;
         int nave_seguida;
+        bool disparoTriple;
 
         int distanciaActual;
         int DISTANCIA_DE_COMBATE;
         int DISTANCIA_DE_COMBATE_INICIAL;
         Temporizador fireRate;
+        Temporizador searchRate;
         // izq->der = 1 ; der->izq = -1
         char clave[15];
         bool turret;

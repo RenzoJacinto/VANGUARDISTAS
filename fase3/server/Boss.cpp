@@ -21,7 +21,7 @@ Boss::Boss(int x, int y){
     score = 2000;
     energia_actual = 1000;
     energia_total = 1000;
-    DISTANCIA_DE_COMBATE_INICIAL = 500;
+    DISTANCIA_DE_COMBATE_INICIAL = 300;
 
     vidas = 1;
     vel = 1;
@@ -34,19 +34,25 @@ Boss::Boss(int x, int y){
     mensaje = "<<<< SE CARGO EL BOSS FINAL" ;
     logger.info(mensaje.c_str());
     fireRate.iniciar();
+    searchRate.iniciar();
 }
 
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Boss::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    if (searchRate.transcurridoEnSegundos() > 5){
+        nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+        searchRate.finalizar();
+        searchRate.iniciar();
+    }
+
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel, 0, jugadores);
-    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(vel, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL  || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio()) ok = mover(vel, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
@@ -57,9 +63,13 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
     disparo = false;
 
     if (fireRate.transcurridoEnSegundos() > 0.85 && onScreen() && nave->isAlive()) {
+        int rd = randomNumber() % 10;
+        if (rd < 5) disparoTriple = true;
+        if (rd >= 5) disparoTriple = false;
         disparo = true;
         misil_posX = mPosX - getRadio();
-        misil_posY = mPosY - (getRadio()/2) + randomNumber() % (getRadio() + 1);
+        if(disparoTriple) misil_posY = mPosY; //- (getRadio()/2) + randomNumber() % (getRadio() + 1);
+        else misil_posY = mPosY - (getRadio()/2) + randomNumber() % (getRadio() + 1);
         fireRate.finalizar();
         fireRate.iniciar();
     }

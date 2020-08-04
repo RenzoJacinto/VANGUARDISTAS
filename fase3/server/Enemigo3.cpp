@@ -12,6 +12,8 @@ Enemigo3::Enemigo3(int x, int y){
         logger.debug(mensaje.c_str());
     }
 
+    disparoTriple = false;
+
     strcpy(imagenActual, "enemigo3");
     strcpy(imagenEspejo, "enemigo1");
 

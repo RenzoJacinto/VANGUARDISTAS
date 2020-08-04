@@ -23,7 +23,8 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
     for(unsigned int i = 0; i < jugadores.size(); ++i){
         if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive() ){
             jugadores[i]->die();
-            die();
+            printf("imagen del boss: %s\n", imagenActual);
+            if (strcmp(imagenActual, "boss") != 0) die();
             return i;
         }
     }
@@ -195,4 +196,8 @@ int NaveEnemiga::get_posX_misil(){
 
 int NaveEnemiga::get_posY_misil(){
     return misil_posY;
+}
+
+bool NaveEnemiga::getDisparoTriple(){
+    return disparoTriple;
 }

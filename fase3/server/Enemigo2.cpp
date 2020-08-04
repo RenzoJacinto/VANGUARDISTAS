@@ -35,15 +35,22 @@ Enemigo2::Enemigo2(int x, int y){
     mensaje = "<<<< SE CARGO LA NAVE ENEMIGO2" ;
     logger.info(mensaje.c_str());
     fireRate.iniciar();
+    searchRate.iniciar();
 }
 
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive() || searchRate.transcurridoEnSegundos() > 10){
+        nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+        searchRate.finalizar();
+        searchRate.iniciar();
+    }
+
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
+    disparoTriple = false;
 
     int ok = -1;
     if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);

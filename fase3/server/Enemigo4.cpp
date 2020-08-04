@@ -13,6 +13,8 @@ Enemigo4::Enemigo4(int x, int y){
         logger.debug(mensaje.c_str());
     }
 
+    disparoTriple = false;
+
     strcpy(imagenActual, "enemigo4");
     strcpy(imagenEspejo, "enemigo2");
 

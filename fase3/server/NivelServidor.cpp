@@ -331,7 +331,16 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
                 int yMisil = enemigos[i]->get_posY_misil();
                 velocidades_t* vMisil = create_velocidad(i+4, "shot0", xMisil, yMisil);
                 server->encolar(vMisil);
-                enemigos[i]->reiniciarDisparo();
+                bool disparoTriple = enemigos[i]->getDisparoTriple();
+                if(disparoTriple)printf("triple true\n");
+                else printf("triple false\n");
+                if (disparoTriple){
+                    velocidades_t* vMisil2 = create_velocidad(i+4, "shot0", xMisil, yMisil + 100);
+                    server->encolar(vMisil2);
+                    velocidades_t* vMisil3 = create_velocidad(i+4, "shot0", xMisil, yMisil - 100);
+                    server->encolar(vMisil3);
+                }
+                //enemigos[i]->reiniciarDisparo();
             }
             if(colision_id != -1){
                 printf("colision enemigo\n");
@@ -360,7 +369,7 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
     list<Misil*>::iterator pos_m = misiles.begin();
     while(pos_m != misiles.end()){
         int ok = -1;
-        if((*pos_m)->get_id() < 3){
+        if((*pos_m)->get_id() <= 3){
             ok = (*pos_m)->mover(enemigos, renderizados);
         } else{
             ok = (*pos_m)->mover(jugadores);
