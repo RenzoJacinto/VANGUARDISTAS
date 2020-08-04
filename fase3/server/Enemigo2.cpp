@@ -40,20 +40,20 @@ Enemigo2::Enemigo2(int x, int y){
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
-    int nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
+    if(nave_seguida == -1) nave_seguida = obtenerNaveSeguidaPonderada(jugadores);
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel + (randomNumber() % (1-vel)), 0, jugadores);
-    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(randomNumber() % 2, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL) ok = mover(-vel, 0, jugadores);
+    else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL ) ok = mover(2, 0, jugadores);
 
     int navePosY = nave->getPosY();
     int delta = navePosY - mPosY;
 
-    if(delta < 0) ok = mover(0, -vel + (randomNumber() % (1-vel)), jugadores);
-    else if(delta > 0) ok = mover(0, randomNumber() % (vel+1), jugadores);
+    if(delta < 0) ok = mover(0, -vel, jugadores);
+    else if(delta > 0) ok = mover(0, vel, jugadores);
 
     disparo = false;
 

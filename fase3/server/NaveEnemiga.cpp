@@ -4,6 +4,7 @@
 NaveEnemiga::NaveEnemiga(){
     id_nave = 0;
     turret = false;
+    nave_seguida = -1;
 }
 int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){return -1;}
 
