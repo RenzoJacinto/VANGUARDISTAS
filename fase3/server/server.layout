@@ -2,39 +2,69 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Misil.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Boss.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="284" topLine="0" />
+			<Cursor1 position="55" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Nave.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Enemigo4.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="708" topLine="30" />
+			<Cursor1 position="920" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Nivel1Servidor.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="typesmsj.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="459" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="time_nanoseconds.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="214" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Misil.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Misil.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="502" topLine="23" />
 		</Cursor>
 	</File>
-	<File name="Server.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Nivel2Servidor.cpp" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3197" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="Enemigo3.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1826" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="Server.cpp" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5946" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="Misil.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="284" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Nave.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="708" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="Server.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1890" topLine="38" />
+		</Cursor>
+	</File>
+	<File name="Nivel3Servidor.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="515" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="NivelServidor.cpp" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1992" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="Temporizador.h" open="1" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="794" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="NaveEnemiga.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="922" topLine="29" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -42,44 +72,19 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Enemigo3.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="202" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Nave.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3932" topLine="168" />
-		</Cursor>
-	</File>
-	<File name="NaveJugador.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1723" topLine="48" />
-		</Cursor>
-	</File>
-	<File name="Temporizador.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="794" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="JuegoServidor.cpp" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="JuegoServidor.cpp" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1431" topLine="26" />
 		</Cursor>
 	</File>
-	<File name="Enemigo3.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Nivel1Servidor.cpp" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1826" topLine="30" />
+			<Cursor1 position="3344" topLine="62" />
 		</Cursor>
 	</File>
-	<File name="Enemigo1.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="time_nanoseconds.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1984" topLine="60" />
-		</Cursor>
-	</File>
-	<File name="Nivel1Servidor.cpp" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3344" topLine="78" />
+			<Cursor1 position="214" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Enemigo4.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,64 +92,59 @@
 			<Cursor1 position="202" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Boss.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Nave.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3932" topLine="164" />
+		</Cursor>
+	</File>
+	<File name="Boss.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1389" topLine="41" />
 		</Cursor>
 	</File>
-	<File name="NaveEnemiga.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="NivelServidor.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="922" topLine="29" />
+			<Cursor1 position="793" topLine="8" />
 		</Cursor>
 	</File>
-	<File name="Boss.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Nivel1Servidor.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="55" topLine="0" />
+			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Nivel2Servidor.cpp" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="NaveJugador.cpp" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3197" topLine="58" />
+			<Cursor1 position="1723" topLine="48" />
 		</Cursor>
 	</File>
-	<File name="NivelServidor.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="NaveEnemiga.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1025" topLine="63" />
+			<Cursor1 position="440" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="Enemigo2.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Enemigo2.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2167" topLine="48" />
+			<Cursor1 position="432" topLine="9" />
 		</Cursor>
 	</File>
-	<File name="Enemigo4.cpp" open="1" top="1" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Enemigo3.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="920" topLine="0" />
+			<Cursor1 position="202" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Server.cpp" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="typesmsj.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5946" topLine="186" />
+			<Cursor1 position="459" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="NaveJugador.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="NaveJugador.h" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="658" topLine="13" />
 		</Cursor>
 	</File>
-	<File name="Nivel3Servidor.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Enemigo1.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="515" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="NivelServidor.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="794" topLine="8" />
-		</Cursor>
-	</File>
-	<File name="NaveEnemiga.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="440" topLine="12" />
+			<Cursor1 position="1260" topLine="12" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

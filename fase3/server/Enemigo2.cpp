@@ -17,18 +17,19 @@ Enemigo2::Enemigo2(int x, int y){
     strcpy(imagenEspejo, "enemigo4");
 
     alto = 63;
+    radio=alto/2;
     ancho = 63;
     score = 1000;
     energia_actual = 200;
     energia_total = 200;
-    DISTANCIA_DE_COMBATE_INICIAL = 500;
+    DISTANCIA_DE_COMBATE_INICIAL = 50 + (getRadio() * 2 * ((randomNumber() % 6)+ 1));
+    printf("%d\n", DISTANCIA_DE_COMBATE_INICIAL);
 
     vidas = 1;
 
     damage = 25;
 
     strcpy(clave, imagenActual);
-    radio=alto/2;
 
     vel = 1;
 

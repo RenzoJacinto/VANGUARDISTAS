@@ -132,13 +132,13 @@ void NivelServidor::setNaves(Server* server, int cant_jugadores){
         sprite += std::to_string(enemigo_random);
 
         // Obtencion de la posicion pos = inf + rand()%(sup+1-inf)
-        int y = 110 + rand() % (SCREEN_HEIGHT - 100 + 1);
+        int y = 110 + randomNumber() % (SCREEN_HEIGHT - 200 + 1);
         // SUPONGO EL BORDE DE RESPAWN COMO +/-100
         // CASO ENEMIGOS 1 y 2: sup = 800 + 100
-        int x = SCREEN_WIDTH + 50 + rand() % 51;
+        int x = SCREEN_WIDTH + 100 + randomNumber() % 51;
 
         // CASO ENEMIGOS 3 y 4: inf = -100
-        if(enemigo_random == 4 || enemigo_random == 3) x = -100 + rand() % 51;
+        if(enemigo_random == 4 || enemigo_random == 3) x = -100 + randomNumber() % 51;
 
         NaveEnemiga* enemigo;
         switch(enemigo_random){
@@ -219,7 +219,6 @@ bool NivelServidor::jugadoresMuertos(){
     int cant_jug = jugadores.size();
     for(int i=0; i<cant_jug; i++){
         if(jugadores[i]->isAlive()) {
-            printf("vive el %d\n", i);
             return false;
         }
     }
