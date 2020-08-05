@@ -16,6 +16,7 @@ class Server;
 NivelServidor::NivelServidor(){
     tiempo_transcurrido = 0;
     renderizados = 1;
+    validoReconectar = true;
 }
 
 void NivelServidor::cargarNivel(Server* server, int cant_jugadores){}
@@ -24,7 +25,7 @@ void NivelServidor::parallax(){}
 
 void NivelServidor::iniciar_reconexion(int id, Server* server, int socket_id){}
 
-void NivelServidor::iniciarNivel(Server* server, int t_niv){
+bool NivelServidor::iniciarNivel(Server* server, int t_niv){
     //Inicializo el temporizador. La duracion de cada nivel podriamos tomarla del archivo Json
     Temporizador temporizador;
     temporizador.iniciar();
@@ -41,16 +42,22 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     for(int i=0; i<cant_jug; i++){
         score_nivel.push_back(0);
     }
+
     Temporizador finNiv;
+    bool empezoCount = false;
     //while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
     while( enemigosSiganVivos() || finNiv.transcurridoEnSegundos() <= 5) {
 
-        if(enemigosSiganVivos()) finNiv.iniciar();
+        if(!enemigosSiganVivos() && !empezoCount) {
+            finNiv.iniciar();
+            empezoCount = true;
+            validoReconectar = false;
+        }
 
         if(jugadoresMuertos()){
             // Enviar GAME OVER
             strcpy(fin_nivel, "gameOver");
-            break;
+            return false;
         }
 
         //if(server->cola_esta_vacia()) std::cout<<"ESTA VACIA LA COLA\n";
@@ -67,6 +74,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
         velocidades_t* v = create_velocidad(renderizados+4, "rend", 0, 0);
         server->encolar(v);
     }
+
     posiciones_t* pos = create_posicion(-1, fin_nivel, 0, 0);
     server->send_all(pos);
     free(pos);
@@ -79,6 +87,7 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     }
 
     enviar_scores(server);
+    return true;
 }
 
 void NivelServidor::procesar(Server* server, velocidades_t* v){
@@ -94,7 +103,7 @@ void NivelServidor::procesar(Server* server, velocidades_t* v){
 }
 
 bool NivelServidor::esValidoReconectar(){
-    return TIEMPO_NIVEL_SEGS - tiempo_transcurrido > 0;
+    return validoReconectar;
 }
 
 void NivelServidor::setNaves(Server* server, int cant_jugadores){
@@ -333,6 +342,7 @@ void NivelServidor::recibeJugadorDesconectado(Server* server, velocidades_t* v){
 // FUNCIONES AUXILIARES PARA LAS MISMAS
 void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
     for(int i = 0; i < v->id - 4; i++){
+        if(tiempo_transcurrido < 5) break;
         if(enemigos[i]->esBoss() && cant_enemigos - death_enemies > 1) continue;
         if(enemigos[i]->isAlive()){
             int colision_id = enemigos[i]->procesarAccion(jugadores);

@@ -41,7 +41,7 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
     int nave_seguida = naveDerechaCercana(jugadores);
     if(nave_seguida == -1){
         int a = -1;
-        if(mPosX < 600) a = mover(3, 0, jugadores);
+        if(mPosX < 600) a = mover(15, 0, jugadores);
         else if(!turret) turret = true;
         if(a != -1) return a;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
@@ -66,11 +66,11 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         }
         return a;
     } else{
-        if(turret) turret = false;
+        turret = false;
+        printf("nave seguida = %d", nave_seguida);
         NaveJugador* nave = jugadores[nave_seguida];
         int vx = 0;
         int vy = 0;
-        int ok = -1;
         if( getDistanciaNaveEnX(nave) > 250) vx = 3;
         else vx = 1;
         if(abs(nave->getPosY() - mPosY) > 250) {

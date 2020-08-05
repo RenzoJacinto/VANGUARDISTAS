@@ -351,6 +351,7 @@ void Nivel::renderPuntajes(){
     }
 
     nameTexture.free();
+    scoreTexture.free();
 }
 
 velocidades_t* Nivel::create_velocidad(int id,  const char* descrip, int x, int y){

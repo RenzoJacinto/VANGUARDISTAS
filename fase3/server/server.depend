@@ -767,7 +767,7 @@
 	<arpa/inet.h>
 	<pthread.h>
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/JuegoServidor.cpp
+1596602714 source:/home/agus/Desktop/taller/fase3/server/JuegoServidor.cpp
 	"JuegoServidor.h"
 	"Server.h"
 	"Nave.h"
@@ -1006,7 +1006,7 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1596590421 /home/agus/Desktop/taller/fase3/server/NivelServidor.h
+1596603728 /home/agus/Desktop/taller/fase3/server/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -1092,7 +1092,7 @@
 1596590421 source:/home/agus/Desktop/taller/fase3/server/Misil.cpp
 	"Misil.h"
 
-1596596931 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
+1596601562 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
@@ -1133,7 +1133,7 @@
 	"Boss.h"
 	<sys/socket.h>
 
-1596596499 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
+1596603728 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -1147,7 +1147,7 @@
 	<sys/socket.h>
 	"time_nanoseconds.h"
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/Server.cpp
+1596603182 source:/home/agus/Desktop/taller/fase3/server/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"
@@ -2323,13 +2323,13 @@
 1596590421 /home/agus/Desktop/taller/fase3/server/Enemigo2.h
 	"NaveEnemiga.h"
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/Enemigo3.cpp
+1596604483 source:/home/agus/Desktop/taller/fase3/server/Enemigo3.cpp
 	"Enemigo3.h"
 
 1596590421 /home/agus/Desktop/taller/fase3/server/Enemigo3.h
 	"NaveEnemiga.h"
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/Enemigo4.cpp
+1596604483 source:/home/agus/Desktop/taller/fase3/server/Enemigo4.cpp
 	"Enemigo4.h"
 	"time_nanoseconds.h"
 

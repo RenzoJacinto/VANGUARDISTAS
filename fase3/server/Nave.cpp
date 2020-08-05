@@ -177,9 +177,13 @@ int Nave::getRadio(){
 }
 
 void Nave::desconectar(){
+    printf("desconecto\n");
     isOn = false;
 }
 
 void Nave::conectar(){
-    isOn = true;
+    if(!isOn){
+        isOn = true;
+        printf("conecto\n");
+    }
 }

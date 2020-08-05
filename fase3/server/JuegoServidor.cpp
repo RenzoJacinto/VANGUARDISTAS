@@ -33,7 +33,7 @@ void JuegoServidor::iniciarJuego(Server* server, int t_niv){
         if(nivel_actual!=0) (*nivel)->setScoresVidas(vidas, scores, modeTests, server->getMaxUsers(), server);
         server->crear_hilos_recibir();
 
-        (*nivel)->iniciarNivel(server, t_niv);
+        bool seguir = (*nivel)->iniciarNivel(server, t_niv);
 
         server->cerrar_hilos_recibir();
 
@@ -42,6 +42,7 @@ void JuegoServidor::iniciarJuego(Server* server, int t_niv){
         printf("termino el nivel %d\n", nivel_actual);
         std::string msg = "Finalizo el nivel "+std::to_string(nivel_actual);
         logger.info(msg.c_str());
+        if(!seguir) break;
         for(int i = time(NULL) + 10; time(NULL) != i; time(NULL));
         nivel_actual++;
         vidas = (*nivel)->getVidas();

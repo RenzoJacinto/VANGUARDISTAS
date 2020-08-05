@@ -1,8 +1,8 @@
 {
 	"log": 3,
-	"users": 2,
+	"users": 1,
     	"stages":{
-        	"nivel1": 1,
+        	"nivel1": 10,
            	"nivel2": 1,
 	    	"nivel3": 1
     	}

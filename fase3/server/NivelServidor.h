@@ -14,7 +14,7 @@ class NivelServidor{
     public:
 
         NivelServidor();
-        void iniciarNivel(Server* server, int t_niv);
+        bool iniciarNivel(Server* server, int t_niv);
         void procesar(Server* server, velocidades_t* v);
         bool esValidoReconectar();
         virtual void cargarNivel(Server* server, int cant_jugadores);
@@ -66,7 +66,7 @@ class NivelServidor{
         int cant_enemigos;
         int tiempo_transcurrido;
         int renderizados;
-
+        bool validoReconectar;
         int death_enemies;
 
         vector<int> score_nivel;

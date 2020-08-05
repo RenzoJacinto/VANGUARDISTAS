@@ -186,20 +186,21 @@ void Server::reconectar_cliente(int i){
     for(int j=0; j<max_users; j++){
         if(j != i){
             credenciales_t* id = (credenciales_t*)malloc(sizeof(credenciales_t));
-            strcpy(id->id, usuario_per_socket.at(j).c_str());
-            std::string id_int = std::to_string(j);
+            std::string nombre = usuario_per_socket.at(j);
+            strcpy(id->id, nombre.c_str());
+            std::string id_int = std::to_string(usuarios_ingresados.at(nombre));
             strcpy(id->pass, id_int.c_str());
             send(client_socket, id, sizeof(credenciales_t), MSG_NOSIGNAL);
             free(id);
         }
-
     }
     credenciales_t* corte_envio_users = (credenciales_t*)malloc(sizeof(credenciales_t));
     strcpy(corte_envio_users->pass, "corte");
     send(client_socket, corte_envio_users, sizeof(credenciales_t), MSG_NOSIGNAL);
     free(corte_envio_users);
-
+    printf("espera\n");
     while(!juego->esValidoReconectar()){}
+    printf("es valido\n");
     v->descrip[0] = 0;
     strncat(v->descrip, "off", 5);
     int aux = v->id;
@@ -218,6 +219,7 @@ void Server::reconectar_cliente(int i){
     desc_usuarios[v->id] = false;
     free(v);
     //recibir_encolar(i);
+    printf("finalizo reconexion\n");
 }
 
 bool Server::iniciar(){
@@ -279,8 +281,9 @@ bool Server::iniciar(){
         for(int j=0; j<max_users; j++){
             if(j != i){
                 credenciales_t* id = (credenciales_t*)malloc(sizeof(credenciales_t));
-                strcpy(id->id, usuario_per_socket.at(j).c_str());
-                std::string id_int = std::to_string(j);
+                std::string nombre = usuario_per_socket.at(j);
+                strcpy(id->id, nombre.c_str());
+                std::string id_int = std::to_string(usuarios_ingresados.at(nombre));
                 strcpy(id->pass, id_int.c_str());
                 send(client_socket, id, sizeof(credenciales_t), MSG_NOSIGNAL);
                 free(id);
