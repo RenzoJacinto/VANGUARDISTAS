@@ -56,6 +56,8 @@ class NivelServidor{
 
         void enviar_scores(Server* server);
 
+        void desconectarUser(int id);
+
     protected:
         vector<NaveEnemiga*> enemigos;
         vector<NaveJugador*> jugadores;

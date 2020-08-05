@@ -379,6 +379,7 @@ void* Server::receiveData(int socket){
             std::string msg = "Se desconecto el cliente "+std::to_string(socket)+", usuario "+user;
             logger.info(msg.c_str());
             int id = usuarios_ingresados.at(user);
+            juego->desconectarUser(id);
             v->id = id;
             v->descrip[0] = 0;
             strncat(v->descrip, "off", 5);

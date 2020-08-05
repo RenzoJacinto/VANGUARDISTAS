@@ -62,3 +62,7 @@ bool JuegoServidor::esValidoReconectar(){
 int JuegoServidor::get_nivel_actual(){
     return nivel_actual;
 }
+
+void JuegoServidor::desconectarUser(int id){
+    niveles[nivel_actual]->desconectarUser(id);
+}

@@ -472,3 +472,7 @@ void NivelServidor::enviar_scores(Server* server){
     server->send_all(pos);
     free(pos);
 }
+
+void NivelServidor::desconectarUser(int id){
+    jugadores[id]->desconectar();
+}

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1596609935 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/JuegoServidor.cpp
+1596663945 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/JuegoServidor.cpp
 	"JuegoServidor.h"
 	"Server.h"
 	"Nave.h"
@@ -12,7 +12,7 @@
 	"Temporizador.h"
 	<sys/socket.h>
 
-1596312612 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/JuegoServidor.h
+1596663915 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/JuegoServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -238,7 +238,7 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1596661792 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
+1596663968 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -365,7 +365,7 @@
 	"Boss.h"
 	<sys/socket.h>
 
-1596662252 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
+1596664024 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -379,7 +379,7 @@
 	<sys/socket.h>
 	"time_nanoseconds.h"
 
-1596609935 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Server.cpp
+1596663862 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"

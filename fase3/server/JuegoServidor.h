@@ -19,6 +19,7 @@ class JuegoServidor{
         void iniciar_reconexion(int id, Server* server, int socket_id);
         bool esValidoReconectar();
         int get_nivel_actual();
+        void desconectarUser(int id);
 
     private:
 
