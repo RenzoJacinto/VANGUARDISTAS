@@ -23,7 +23,8 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
 
     setPosX(getPosX()+velX);
     setPosY(getPosY()+velY);
-
+    if(mPosY - radio < 70) mPosY -= velY;
+    if(mPosY + radio > 600) mPosY -= velY;
     for(unsigned int i = 0; i < jugadores.size(); ++i){
         if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive() ){
             mPosY -= velY;

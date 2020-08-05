@@ -1006,7 +1006,7 @@
 	"JuegoServidor.h"
 	<unistd.h>
 
-1596653714 /home/agus/Desktop/taller/fase3/server/NivelServidor.h
+1596661302 /home/agus/Desktop/taller/fase3/server/NivelServidor.h
 	"Nave.h"
 	"NaveEnemiga.h"
 	"NaveJugador.h"
@@ -1098,7 +1098,7 @@
 	"NaveEnemiga.h"
 	"global.h"
 
-1596653714 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
+1596660044 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 	"time_nanoseconds.h"
 
@@ -2316,7 +2316,7 @@
 
 1596653715 /home/agus/Desktop/taller/fase3/server/time_nanoseconds.h
 
-1596653714 source:/home/agus/Desktop/taller/fase3/server/Enemigo2.cpp
+1596660258 source:/home/agus/Desktop/taller/fase3/server/Enemigo2.cpp
 	"Enemigo2.h"
 	"time_nanoseconds.h"
 

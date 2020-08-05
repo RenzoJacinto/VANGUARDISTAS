@@ -41,13 +41,13 @@ Enemigo1::Enemigo1(int x, int y){
 // Dispara cada 1 segundo de lejos (250 en x), a un jugador al azar
 int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive() || searchRate.transcurridoEnSegundos() > 10){
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive() || searchRate.transcurridoEnSegundos() > 5){
         nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
         searchRate.finalizar();
         searchRate.iniciar();
     }
 
-    if(!jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+    //if(!jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
 
     NaveJugador* nave = jugadores[nave_seguida];
     disparoTriple = false;
@@ -70,7 +70,7 @@ int Enemigo1::procesarAccion(vector<NaveJugador*> jugadores){
 
     if (ok != -1) return ok;
 
-    if (fireRate.transcurridoEnSegundos() > 3 && onScreen() && nave->isAlive()) {
+    if (fireRate.transcurridoEnSegundos() > 3 && onScreen()) {
         disparo = true;
         misil_posX = mPosX - getRadio();
         misil_posY = mPosY;

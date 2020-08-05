@@ -41,10 +41,10 @@ Enemigo4::Enemigo4(int x, int y){
 int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
     int nave_seguida = naveDerechaCercana(jugadores);
     if(nave_seguida == -1){
-        int a = -1;
-        if(mPosX < 600) a = mover(3, 0, jugadores);
+        int ok = -1;
+        if(mPosX < 600) ok = mover(3, 0, jugadores);
         else turret = true;
-        if(a != -1) return a;
+        if(ok != -1) return ok;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
         NaveJugador* nave = jugadores[idx];
         int vy = 0;
@@ -55,8 +55,8 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
             if (nave->getPosY() > mPosY ) vy = 3;
             else vy = -3;
         }
-        a = mover(0, vy, jugadores);
-        if(a != -1) return a;
+        ok = mover(0, vy, jugadores);
+        if(ok != -1) return ok;
         disparo = false;
         if(fireRate.transcurridoEnSegundos() > 3 && nave->isAlive() && turret) {
             disparo = true;
@@ -65,7 +65,7 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
             fireRate.finalizar();
             fireRate.iniciar();
         }
-        return a;
+        return ok;
     } else{
         disparo = false;
         turret = false;

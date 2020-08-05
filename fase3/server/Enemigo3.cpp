@@ -40,10 +40,10 @@ Enemigo3::Enemigo3(int x, int y){
 int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
     int nave_seguida = naveDerechaCercana(jugadores);
     if(nave_seguida == -1){
-        int a = -1;
-        if(mPosX < 600) a = mover(15, 0, jugadores);
+        int ok = -1;
+        if(mPosX < 600) ok = mover(15, 0, jugadores);
         else if(!turret) turret = true;
-        if(a != -1) return a;
+        if(ok != -1) return ok;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
         NaveJugador* nave = jugadores[idx];
         int vy = 0;
@@ -54,8 +54,8 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
             if (nave->getPosY() > mPosY ) vy = 3;
             else vy = -3;
         }
-        a = mover(0, vy, jugadores);
-        if(a != -1) return a;
+        ok = mover(0, vy, jugadores);
+        if(ok != -1) return ok;
         disparo = false;
         if(fireRate.transcurridoEnSegundos() > 2 && nave->isAlive() && turret) {
             disparo = true;
@@ -64,7 +64,7 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
             fireRate.finalizar();
             fireRate.iniciar();
         }
-        return a;
+        return ok;
     } else{
         turret = false;
         //printf("nave seguida = %d", nave_seguida);
