@@ -19,7 +19,7 @@ Nivel::Nivel(){
 
 bool Nivel::iniciarNivel(Client* client){
     bool quit = false;
-    printf("intenta gettear nave %d\n", client->get_id());
+    //printf("intenta gettear nave %d\n", client->get_id());
 
     NaveJugador* jugador1 = jugadores[client->get_id()];
 
@@ -101,7 +101,9 @@ bool Nivel::iniciarNivel(Client* client){
 
         //renderizar();
     }
-
+    lifeTexture.free();
+    puntajesBoxTexture.free();
+    delete(jugador1);
     client->finalizar();
     return quit;
 }
@@ -223,19 +225,23 @@ void Nivel::finalizar() {
         texture.loadFromRenderedText(names[i], "fin");
         texture.render(186, i*48 + 300);
 
+        texture.free();
+
         texture.loadFromRenderedText(std::to_string(score_nivel_ant[i]), "fin");
         texture.render(387, i*48 +300);
 
+        texture.free();
         int x_sc = texture.getWidth();
 
         texture.loadFromRenderedText("+" + std::to_string(score_nivel[i]), "log");
         texture.render(387 + x_sc + 10, i*48 +300);
+
+        texture.free();
     }
     SDL_RenderPresent( sdl.getRenderer() );
     for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     freeSounds();
-    texture.free();
 
     logger.info("Se renderizo el final del nivel");
 }
@@ -343,6 +349,8 @@ void Nivel::renderPuntajes(){
             nameTexture.render(x_name + center, y_name);
             scoreTexture.render(x_score + center, y_score);
         }
+        nameTexture.free();
+        scoreTexture.free();
 
         int cant_vidas = (*pos)->get_cant_vidas();
         for(int i=0; i<cant_vidas; i++){
@@ -350,8 +358,9 @@ void Nivel::renderPuntajes(){
         }
     }
 
-    nameTexture.free();
-    scoreTexture.free();
+    //nameTexture.free();
+    //scoreTexture.free();
+    //lifeTexture.free();
 }
 
 velocidades_t* Nivel::create_velocidad(int id,  const char* descrip, int x, int y){

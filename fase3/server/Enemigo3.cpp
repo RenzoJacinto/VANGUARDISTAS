@@ -67,7 +67,7 @@ int Enemigo3::procesarAccion(vector<NaveJugador*> jugadores){
         return a;
     } else{
         turret = false;
-        printf("nave seguida = %d", nave_seguida);
+        //printf("nave seguida = %d", nave_seguida);
         NaveJugador* nave = jugadores[nave_seguida];
         int vx = 0;
         int vy = 0;

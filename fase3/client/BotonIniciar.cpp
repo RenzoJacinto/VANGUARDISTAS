@@ -24,7 +24,12 @@ bool BotonIniciar::handleEvent( SDL_Event& e , Mix_Music* gMusic){
 		}
 
         // CUANDO SE APRETA ENTER (QUEDAN LOS ESTADOS FINALES DE ID Y PASS)
-        if( e.key.keysym.sym == SDLK_RETURN) return false;
+        if( e.key.keysym.sym == SDLK_RETURN){
+            gNoneSelect.free();
+            gSelectName.free();
+            gSelectPass.free();
+            return false;
+        }
 
     } else if( e.type == SDL_TEXTINPUT ){
         if( !( SDL_GetModState() & KMOD_CTRL && ( e.text.text[ 0 ] == 'c' || e.text.text[ 0 ] == 'C' || e.text.text[ 0 ] == 'v' || e.text.text[ 0 ] == 'V' ) ) ){
@@ -59,6 +64,9 @@ bool BotonIniciar::handleEvent( SDL_Event& e , Mix_Music* gMusic){
 
     if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
     if(pass != "") gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
+
+    gId.free();
+    gPass.free();
 
     return true;
 }

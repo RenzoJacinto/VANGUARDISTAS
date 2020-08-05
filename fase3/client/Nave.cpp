@@ -262,8 +262,8 @@ int Nave::get_vidas(){
     return vidas;
 }
 
-Nave::~Nave()
-{
+Nave::~Nave(){
+    std::cout<<"ENTRA\n";
     gNaveTexture.free();
     textureBoom.free();
     textureVida.free();

@@ -89,6 +89,7 @@ void NaveJugador::renderizar(){
         textureTest.loadFromRenderedText("<Test>", "box");
         int x_test = NAVE_WIDTH - textureTest.getWidth();
         textureTest.render(mPosX + x_test/2 , mPosY - NAVE_HEIGHT/2 - 1 );
+
     }
     user.free();
 }
