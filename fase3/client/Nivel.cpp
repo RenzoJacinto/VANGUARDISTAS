@@ -164,6 +164,8 @@ void Nivel::procesar(posiciones_t* pos){
 }
 
 void Nivel::finalizar() {
+    /*sounds.pauseMusic(gMusic);
+    sounds.pauseEffects();*/
 
     sounds.playEffect(levelUpFX);
 
@@ -227,7 +229,7 @@ void Nivel::finalizar() {
         texture.render(387 + x_sc + 10, i*48 +300);
     }
     SDL_RenderPresent( sdl.getRenderer() );
-    //for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
+    for(int i = time(NULL) + 5; time(NULL) != i; time(NULL));
 
     freeSounds();
     texture.free();

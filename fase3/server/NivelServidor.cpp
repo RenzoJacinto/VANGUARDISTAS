@@ -41,9 +41,11 @@ void NivelServidor::iniciarNivel(Server* server, int t_niv){
     for(int i=0; i<cant_jug; i++){
         score_nivel.push_back(0);
     }
-
+    Temporizador finNiv;
     //while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
-    while( enemigosSiganVivos() ) {
+    while( enemigosSiganVivos() || finNiv.transcurridoEnSegundos() <= 5) {
+
+        if(enemigosSiganVivos()) finNiv.iniciar();
 
         if(jugadoresMuertos()){
             // Enviar GAME OVER
@@ -329,6 +331,7 @@ void NivelServidor::recibeJugadorDesconectado(Server* server, velocidades_t* v){
 // FUNCIONES AUXILIARES PARA LAS MISMAS
 void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
     for(int i = 0; i < v->id - 4; i++){
+        if(enemigos[i]->esBoss() && cant_enemigos - death_enemies > 1) continue;
         if(enemigos[i]->isAlive()){
             int colision_id = enemigos[i]->procesarAccion(jugadores);
             bool disparo = enemigos[i]->seDisparo();

@@ -34,7 +34,7 @@ class NaveEnemiga: public Nave {
 		void reiniciarDisparo();
 
 		void destruirNave();
-
+        bool esBoss();
         //retorno de ids
 		int obtenerNaveSeguidaRandom(vector<NaveJugador*> jugadores, int cant_naves);
         int obtenerNaveSeguidaPonderada(vector<NaveJugador*> jugadores);

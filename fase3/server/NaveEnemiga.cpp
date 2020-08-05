@@ -10,6 +10,10 @@ NaveEnemiga::NaveEnemiga(){
 
 int NaveEnemiga::procesarAccion(vector<NaveJugador*> jugadores){}
 
+bool NaveEnemiga::esBoss(){
+    return (strcmp(imagenActual, "boss") == 0);
+}
+
 int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
 
     /*if(!isAlive()){
@@ -22,6 +26,8 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
 
     for(unsigned int i = 0; i < jugadores.size(); ++i){
         if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive() ){
+            mPosY -= velY;
+            mPosX -= velX;
             jugadores[i]->die();
             if (strcmp(imagenActual, "boss") != 0) die();
             return i;

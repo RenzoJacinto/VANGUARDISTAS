@@ -29,6 +29,8 @@ int NaveJugador::encontrarEnemigos(vector<NaveEnemiga*>  enemigos ){
     vector<NaveEnemiga*>::iterator pos;
     for(pos = enemigos.begin();pos != enemigos.end();pos++){
         if(checkCollision( this , *pos ) && (*pos)->isAlive()){
+            mPosX -= mVelX;
+            mPosY -= mVelY;
             die();
             int enemigo = -2;
             if(strcmp((*pos)->getClave(), "boss") != 0){

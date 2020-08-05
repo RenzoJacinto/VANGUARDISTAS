@@ -27,9 +27,9 @@ void Nivel3Servidor::cargarNivel(Server* server, int cant_jugadores){
 
     setNaves(server, cant_jugadores);
     // AGREGO EL BOSS FINAL
-    Boss* boss = new Boss(850, 300);
+    Boss* boss = new Boss(1000, 300);
     enemigos.push_back(boss);
-    posiciones_t* pos = create_posicion(cant_enemigos+4, boss->getImagen(), 850, 300);
+    posiciones_t* pos = create_posicion(cant_enemigos+4, boss->getImagen(), 1000, 300);
     cant_enemigos++;
     server->send_all(pos);
     free(pos);

@@ -51,7 +51,7 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL  || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
+    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL  || mPosX + getRadio() > 800) ok = mover(-3, 0, jugadores);
     else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio()) ok = mover(vel, 0, jugadores);
 
     int navePosY = nave->getPosY();
@@ -62,7 +62,7 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
 
     disparo = false;
 
-    if (fireRate.transcurridoEnSegundos() > 0.85 && onScreen() && nave->isAlive()) {
+    if (fireRate.transcurridoEnSegundos() > 1.5 && onScreen() && nave->isAlive()) {
         int rd = randomNumber() % 10;
         if (rd < 4) disparoTriple = true;
         if (rd >= 5) disparoTriple = false;
