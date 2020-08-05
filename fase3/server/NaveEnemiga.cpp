@@ -23,7 +23,6 @@ int NaveEnemiga::mover(int velX, int velY, vector<NaveJugador*> jugadores){
     for(unsigned int i = 0; i < jugadores.size(); ++i){
         if( checkCollision( jugadores[i] , this ) && jugadores[i]->isAlive() ){
             jugadores[i]->die();
-            printf("imagen del boss: %s\n", imagenActual);
             if (strcmp(imagenActual, "boss") != 0) die();
             return i;
         }

@@ -30,8 +30,12 @@ int NaveJugador::encontrarEnemigos(vector<NaveEnemiga*>  enemigos ){
     for(pos = enemigos.begin();pos != enemigos.end();pos++){
         if(checkCollision( this , *pos ) && (*pos)->isAlive()){
             die();
-            (*pos)->die();
-            return id;
+            int enemigo = -2;
+            if(strcmp((*pos)->getClave(), "boss") != 0){
+                (*pos)->die();
+                enemigo = id;
+            }
+            return enemigo;
         }
         id++;
     }

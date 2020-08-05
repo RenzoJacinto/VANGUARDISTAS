@@ -287,21 +287,29 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
             jugadores[id]->setVelX(v->VelX);
             jugadores[id]->setVelY(v->VelY);
             int colision_id = jugadores[id]->mover(enemigos);
-            if(colision_id != -1){
-                int score = enemigos[colision_id]->getScore();
-                jugadores[id]->addScore(score);
-                death_enemies++;
+
+            if(colision_id == -2){
                 posiciones_t* pos = create_posicion(id, "colision", 0, colision_id);
                 server->send_all(pos);
                 free(pos);
+            } else{
 
-                score_nivel[id] += score;
-            } else {
-                int posX = jugadores[id]->getPosX();
-                int posY = jugadores[id]->getPosY();
-                posiciones_t* pos = create_posicion(id, v->descrip, posX, posY);
-                server->send_all(pos);
-                free(pos);
+                if(colision_id != -1){
+                    int score = enemigos[colision_id]->getScore();
+                    jugadores[id]->addScore(score);
+                    death_enemies++;
+                    posiciones_t* pos = create_posicion(id, "colision", 0, colision_id);
+                    server->send_all(pos);
+                    free(pos);
+
+                    score_nivel[id] += score;
+                } else {
+                    int posX = jugadores[id]->getPosX();
+                    int posY = jugadores[id]->getPosY();
+                    posiciones_t* pos = create_posicion(id, v->descrip, posX, posY);
+                    server->send_all(pos);
+                    free(pos);
+                }
             }
         }
         ok = true;
@@ -342,13 +350,17 @@ void NivelServidor::moverEnemigos(Server* server, velocidades_t* v){
             }
             if(colision_id != -1){
                 printf("colision enemigo\n");
-                int score = enemigos[i]->getScore();
-                posiciones_t* pos = create_posicion(colision_id, "colision", 0, i);
-                jugadores[colision_id]->addScore(score);
-                death_enemies++;
+                int enemie = -2;
+                if(strcmp(enemigos[i]->getClave(), "boss") != 0){
+                    int score = enemigos[i]->getScore();
+                    death_enemies++;
+                    jugadores[colision_id]->addScore(score);
+                    score_nivel[colision_id] += score;
+                    enemie = i;
+                }
+                posiciones_t* pos = create_posicion(colision_id, "colision", 0, enemie);
                 server->send_all(pos);
                 free(pos);
-                score_nivel[colision_id] += score;
             } else{
                 int posX = enemigos[i]->getPosX();
                 int posY = enemigos[i]->getPosY();

@@ -385,9 +385,11 @@ bool Nivel::recibeColision(posiciones_t* pos){
         std::cout<<"jug: "<<pos->id<<"\n";
 
         jugadores[pos->id]->die();
-        int score = enemigos[pos->posY]->getScore();
-        jugadores[pos->id]->addScore(score);
-        enemigos[pos->posY]->die();
+        if(pos->posY != -2){
+            int score = enemigos[pos->posY]->getScore();
+            jugadores[pos->id]->addScore(score);
+            enemigos[pos->posY]->die();
+        }
 
         // acumula el score;
         //score_nivel[pos->id] += score;
