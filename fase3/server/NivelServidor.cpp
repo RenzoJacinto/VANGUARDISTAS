@@ -57,6 +57,9 @@ bool NivelServidor::iniciarNivel(Server* server, int t_niv){
         if(jugadoresMuertos()){
             // Enviar GAME OVER
             strcpy(fin_nivel, "gameOver");
+            posiciones_t* pos = create_posicion(-1, fin_nivel, 0, 0);
+            server->send_all(pos);
+            free(pos);
             return false;
         }
 
@@ -215,7 +218,10 @@ posicionesR_t* NivelServidor::create_posicionR(int id,  char const* descrip, int
 bool NivelServidor::jugadoresMuertos(){
     int cant_jug = jugadores.size();
     for(int i=0; i<cant_jug; i++){
-        if(jugadores[i]->isAlive()) return false;
+        if(jugadores[i]->isAlive()) {
+            printf("vive el %d\n", i);
+            return false;
+        }
     }
     return true;
 }
@@ -227,6 +233,7 @@ bool NivelServidor::enemigosSiganVivos(){
 // FUNCIONES PARA EL RECIBIMIENTO DE DATA
 void NivelServidor::recibeNone(Server* server, velocidades_t* v){
     if(strcmp(v->descrip, "none") == 0){
+        printf("recibe none]\n");
         //jugadores[v->id]->startWaiting();
         int x = jugadores[v->id]->getPosX();
         int y = jugadores[v->id]->getPosY();
@@ -297,7 +304,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
         jugadores[id]->conectar();
         //jugadores[id]->stopWaiting();
         if(jugadores[id]->isAlive()){
-            if(v->VelX == 0 && v->VelY == 0) return true;
+            //if(v->VelX == 0 && v->VelY == 0) return true;
             jugadores[id]->setVelX(v->VelX);
             jugadores[id]->setVelY(v->VelY);
             int colision_id = jugadores[id]->mover(enemigos);

@@ -69,9 +69,9 @@ bool Nivel::iniciarNivel(Client* client){
         velocidades_t* v = create_velocidad(id_nave, "on", jugador1->getVelX(), jugador1->getVelY());
         //printf("CLIENT ID: %d vel: %d - %d\n", v->id, v -> VelX, v->VelY);
 
-        if(!jugador1->isAlive() || !jugador1->renderizo()) {
-            strcpy(v->descrip, "none");
-        }
+        //if(!jugador1->isAlive() || !jugador1->renderizo()) {
+        //    strcpy(v->descrip, "none");
+        //}
 
         if(! client->sendData(v)){
             client->renderServerCaido();
@@ -101,9 +101,9 @@ bool Nivel::iniciarNivel(Client* client){
 
         //renderizar();
     }
-    lifeTexture.free();
-    puntajesBoxTexture.free();
-    delete(jugador1);
+    //lifeTexture.free();
+    //puntajesBoxTexture.free();
+    //delete(jugador1);
     client->finalizar();
     return quit;
 }
@@ -473,11 +473,9 @@ void Nivel::moverNaves(posiciones_t* pos){
         return;
     }
     if(strcmp(pos->descrip, "off") != 0){
-        jugadores[pos->id]->endBoom();
-        if(jugadores[pos->id]->isAlive()){
-            jugadores[pos->id]->setPosX(pos->posX);
-            jugadores[pos->id]->setPosY(pos->posY);
-        }
+        //jugadores[pos->id]->endBoom();
+        jugadores[pos->id]->setPosX(pos->posX);
+        jugadores[pos->id]->setPosY(pos->posY);
         if(!jugadores[pos->id]->isOn()) jugadores[pos->id]->conectar();
     } else{
         printf("desconectado\n");
@@ -504,16 +502,16 @@ void Nivel::recibeScoresDelNivel(Client* client){
 void Nivel::enviarTecleo(int new_misil, NaveJugador* jugador, Client* client, int id_nave){
     if(new_misil == MISIL){
         velocidades_t* v_shot = create_velocidad(id_nave, "shot0", jugador->getPosX(), jugador->getPosY());
-        if(!jugador->isAlive() || !jugador->renderizo()) {
-            strcpy(v_shot->descrip, "none");
-        }
+        //if(!jugador->isAlive() || !jugador->renderizo()) {
+        //    strcpy(v_shot->descrip, "none");
+        //}
         client->sendData(v_shot);
         free(v_shot);
     } else if(new_misil == MODO_TEST){
         velocidades_t* v_shot = create_velocidad(id_nave, "test", 0, 0);
-        if(!jugador->isAlive() || !jugador->renderizo()) {
-            strcpy(v_shot->descrip, "none");
-        }
+        //if(!jugador->isAlive() || !jugador->renderizo()) {
+        //    strcpy(v_shot->descrip, "none");
+        //}
         client->sendData(v_shot);
         free(v_shot);
     }

@@ -150,7 +150,7 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
 }
 
 bool Nave::isAlive(){
-    return (vidas > 0 && isOn) //&& !isWaiting();
+    return (vidas > 0 && isOn); //&& !isWaiting();
 }
 
 int Nave::getVidaActual(){

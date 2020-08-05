@@ -66,7 +66,7 @@ void NaveJugador::mover( vector<NaveEnemiga*> enemigos ){
 }
 
 void NaveJugador::renderizar(){
-    render = true;
+    //render = true;
     //printf("renderizo\n");
 	gNaveTexture.render(mPosX, mPosY);
 

@@ -163,7 +163,7 @@ void Nave::renderBoom(){
 }
 
 bool Nave::isAlive(){
-    return vidas > 0 && (!boom) && boomEnded;
+    return vidas > 0;// && (!boom); //&& boomEnded;
 }
 
 bool Nave::boomAvailable(){
@@ -176,7 +176,7 @@ void Nave::die(){
         boom = true;
         bX = mPosX;
         bY = mPosY;
-        render = false;
+        //render = false;
     }
 }
 
