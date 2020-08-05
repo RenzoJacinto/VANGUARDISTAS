@@ -18,7 +18,7 @@ NaveJugador::NaveJugador( int x, int y, int id){
     alto = NAVE_HEIGHT;
     ancho = NAVE_WIDTH;
     id_nave = id;
-    conectado = true;
+    //conectado = true;
     logger.info("<<<< SE CARGO LA NAVE JUGADOR");
 }
 
@@ -79,7 +79,7 @@ int NaveJugador::get_id(){
     return id_nave;
 }
 
-void NaveJugador::desconectar(){
+/*void NaveJugador::desconectar(){
     conectado = false;
     std::string msj = "Se desconectó la nave con id: ";
     std::string id = std::to_string(id_nave);
@@ -97,7 +97,7 @@ void NaveJugador::conectar(){
     std::string id = std::to_string(id_nave);
     msj = msj + id;
     logger.info(msj.c_str());
-}
+}*/
 
 void NaveJugador::set_modeTest(){
     // si no esta activado lo activa y visceversa

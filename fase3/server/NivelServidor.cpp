@@ -284,6 +284,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
     bool ok = false;
     if(strcmp(v->descrip, "off") != 0){
         int id = v->id;
+        jugadores[id]->conectar();
         if(jugadores[id]->isAlive()){
             if(v->VelX == 0 && v->VelY == 0) return true;
             jugadores[id]->setVelX(v->VelX);
@@ -322,6 +323,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
 void NivelServidor::recibeJugadorDesconectado(Server* server, velocidades_t* v){
     if(strcmp(v->descrip, "off") == 0){
         posiciones_t* pos = create_posicion(v->id, "off", 0, 0);
+        jugadores[v->id]->desconectar();
         server->send_all(pos);
         free(pos);
     }

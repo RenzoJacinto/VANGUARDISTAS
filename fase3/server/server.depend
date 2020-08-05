@@ -787,7 +787,7 @@
 	"Server.h"
 	"NivelServidor.h"
 
-1596590421 /home/agus/Desktop/taller/fase3/server/Nave.h
+1596596541 /home/agus/Desktop/taller/fase3/server/Nave.h
 	<stdio.h>
 	<string>
 	"global.h"
@@ -995,7 +995,7 @@
 	"NaveJugador.h"
 	"Temporizador.h"
 
-1596590421 /home/agus/Desktop/taller/fase3/server/NaveJugador.h
+1596596990 /home/agus/Desktop/taller/fase3/server/NaveJugador.h
 	"Nave.h"
 	"list"
 	"NaveEnemiga.h"
@@ -1092,17 +1092,17 @@
 1596590421 source:/home/agus/Desktop/taller/fase3/server/Misil.cpp
 	"Misil.h"
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
+1596596931 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 
-1596592327 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
+1596596498 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 	"time_nanoseconds.h"
 
-1596590516 source:/home/agus/Desktop/taller/fase3/server/NaveJugador.cpp
+1596597026 source:/home/agus/Desktop/taller/fase3/server/NaveJugador.cpp
 	"NaveJugador.h"
 
 1596590421 source:/home/agus/Desktop/taller/fase3/server/Nivel1Servidor.cpp
@@ -1133,7 +1133,7 @@
 	"Boss.h"
 	<sys/socket.h>
 
-1596592327 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
+1596596499 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -2366,7 +2366,7 @@
 1596580484 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Boss.h
 	"NaveEnemiga.h"
 
-1596590421 source:/home/agus/Desktop/taller/fase3/server/Boss.cpp
+1596592804 source:/home/agus/Desktop/taller/fase3/server/Boss.cpp
 	"Boss.h"
 	"time_nanoseconds.h"
 

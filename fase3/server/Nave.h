@@ -39,7 +39,8 @@ class Nave{
 		bool impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_misil, int damage);
 
 		bool isAlive();
-
+        void desconectar();
+        void conectar();
 		int getVidaActual();
 
 		int getVidaTotal();
@@ -67,7 +68,7 @@ class Nave{
 		bool mode_test;
 
 		int vidas;
-
+        bool isOn;
         int radio;
         int alto;
         int ancho;

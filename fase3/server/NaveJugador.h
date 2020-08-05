@@ -28,11 +28,11 @@ class NaveJugador: public Nave {
 
         int getAncho();
 
-        void desconectar();
+        //void desconectar();
 
-        bool isOn();
+        //bool isOn();
 
-        void conectar();
+        //void conectar();
 
         void set_modeTest();
 
@@ -44,7 +44,7 @@ class NaveJugador: public Nave {
 
     private:
 
-        bool conectado;
+        //bool conectado;
 };
 
 #endif // NAVEJUGADOR_H

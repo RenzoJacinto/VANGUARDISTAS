@@ -13,7 +13,7 @@ bool Nave::crearNave( int x, int y){
     mVelY = 0;
 
     mode_test = false;
-
+    isOn = true;
     return true;
 }
 
@@ -149,7 +149,7 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
 }
 
 bool Nave::isAlive(){
-    return vidas > 0;
+    return vidas > 0 && isOn;
 }
 
 int Nave::getVidaActual(){
@@ -174,4 +174,12 @@ int Nave::getVidas(){
 
 int Nave::getRadio(){
     return radio;
+}
+
+void Nave::desconectar(){
+    isOn = false;
+}
+
+void Nave::conectar(){
+    isOn = true;
 }

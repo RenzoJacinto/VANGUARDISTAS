@@ -168,9 +168,8 @@ void Nivel::procesar(posiciones_t* pos){
 }
 
 void Nivel::finalizar() {
-    /*sounds.pauseMusic(gMusic);
-    sounds.pauseEffects();*/
 
+    sounds.stopMusic();
     sounds.playEffect(levelUpFX);
 
     logger.info("Finalizó el nivel");
@@ -248,7 +247,7 @@ void Nivel::renderGameOver() {
         logger.error("No se encontro el sprite de game over");
         gFinNivel.loadFromFile(json.get_imagen_default("escenario"));
     } else logger.debug("Se cargo el sprite de game over");
-
+    sounds.stopMusic();
     sounds.playEffect(gameOverFX);
     gFinNivel.render(0,0, &dataFinNivel);
     SDL_RenderPresent( sdl.getRenderer() );
@@ -365,7 +364,7 @@ velocidades_t* Nivel::create_velocidad(int id,  const char* descrip, int x, int 
 }
 
 void Nivel::freeSounds(){
-    sounds.stopMusic();
+    //sounds.stopMusic();
     sounds.freeMusic(gMusic);
 
     sounds.freeEffect(shotFX);
