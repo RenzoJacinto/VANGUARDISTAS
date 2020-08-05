@@ -130,7 +130,7 @@ void Nivel3::renderBackground(){
 void Nivel3::parallax(){
 
     scrollingOffsetBG -= 0.1;
-    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 250;
+    if( scrollingOffsetBG < -gBGTexture.getWidth() ) scrollingOffsetBG = 0;
 
     scrollingOffsetFondo1 -= 8;
     if( scrollingOffsetFondo1 < -dataFondo1.w ) scrollingOffsetFondo1 = 0;
@@ -180,6 +180,7 @@ void Nivel3::reconectar(Client* client){
         } else{
             NaveJugador* nave = new NaveJugador(pos->posX, pos->posY, pos->id, client->get_id_user(pos->id));
             if(strcmp(pos->descrip, "off")==0) nave->desconectar();
+            else if (strcmp(pos->descrip, "test") == 0) nave->set_modeTest();
             nave->setEnergiasReconex(pos->energiaActual, 0);
             nave->setVidas(pos->vidas);
             nave->setScore(pos->score);

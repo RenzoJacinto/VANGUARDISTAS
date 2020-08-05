@@ -230,8 +230,8 @@ void Nivel::finalizar() {
         texture.loadFromRenderedText(std::to_string(score_nivel_ant[i]), "fin");
         texture.render(387, i*48 +300);
 
-        texture.free();
         int x_sc = texture.getWidth();
+        texture.free();
 
         texture.loadFromRenderedText("+" + std::to_string(score_nivel[i]), "log");
         texture.render(387 + x_sc + 10, i*48 +300);

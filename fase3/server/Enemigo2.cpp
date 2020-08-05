@@ -47,6 +47,8 @@ int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
         searchRate.iniciar();
     }
 
+    if(!jugadores[nave_seguida]->isAlive()) nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
+
     NaveJugador* nave = jugadores[nave_seguida];
 
     int distanciaNaveX = getDistanciaNaveEnX(nave);

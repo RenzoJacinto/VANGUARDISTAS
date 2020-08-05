@@ -51,7 +51,8 @@ int Boss::procesarAccion(vector<NaveJugador*> jugadores){
     int distanciaNaveX = getDistanciaNaveEnX(nave);
 
     int ok = -1;
-    if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL  || mPosX + getRadio() > 800) ok = mover(-3, 0, jugadores);
+    if (!onScreen()) ok = mover(-vel, 0, jugadores);
+    else if(distanciaNaveX > DISTANCIA_DE_COMBATE_INICIAL  || mPosX + getRadio() > 800) ok = mover(-vel, 0, jugadores);
     else if(distanciaNaveX < DISTANCIA_DE_COMBATE_INICIAL && mPosX < 800 - getRadio()) ok = mover(vel, 0, jugadores);
 
     int navePosY = nave->getPosY();

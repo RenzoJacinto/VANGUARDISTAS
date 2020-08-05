@@ -55,6 +55,12 @@ class Nave{
 
         int getRadio();
 
+        bool isWaiting();
+
+        void startWaiting();
+
+        void stopWaiting();
+
     protected:
 
         //Las coordenadas X e Y de la Nave
@@ -66,6 +72,7 @@ class Nave{
 		int mVelX, mVelY;
         int id_nave;
 		bool mode_test;
+        bool wait;
 
 		int vidas;
         bool isOn;

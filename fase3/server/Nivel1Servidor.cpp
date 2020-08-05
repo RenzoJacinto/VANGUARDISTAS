@@ -53,6 +53,7 @@ void Nivel1Servidor::iniciar_reconexion(int id, Server* server, int socket_id){
         pos->posY = (*posJ)->getPosY();
         pos->id = i;
         if(server->desconecto(i) && i != id) strcpy(pos->descrip, "off");
+        else if ((*posJ)->inModeTest()) strcpy(pos->descrip, "test");
         else strcpy(pos->descrip, "on");
         printf("score = %d\n", (*posJ)->getScore());
         pos->score = (*posJ)->getScore();

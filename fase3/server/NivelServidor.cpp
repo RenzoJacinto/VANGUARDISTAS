@@ -227,6 +227,7 @@ bool NivelServidor::enemigosSiganVivos(){
 // FUNCIONES PARA EL RECIBIMIENTO DE DATA
 void NivelServidor::recibeNone(Server* server, velocidades_t* v){
     if(strcmp(v->descrip, "none") == 0){
+        //jugadores[v->id]->startWaiting();
         int x = jugadores[v->id]->getPosX();
         int y = jugadores[v->id]->getPosY();
         posiciones_t* pos = create_posicion(v->id, "none", x, y);
@@ -294,6 +295,7 @@ bool NivelServidor::recibeNaveJugador(Server* server, velocidades_t* v){
     if(strcmp(v->descrip, "off") != 0){
         int id = v->id;
         jugadores[id]->conectar();
+        //jugadores[id]->stopWaiting();
         if(jugadores[id]->isAlive()){
             if(v->VelX == 0 && v->VelY == 0) return true;
             jugadores[id]->setVelX(v->VelX);

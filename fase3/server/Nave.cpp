@@ -114,6 +114,7 @@ void Nave::die(){
         mPosY = 100 * (id_nave+1);
         std::cout<<"colision\n";
     }
+    startWaiting();
 }
 
 
@@ -149,7 +150,7 @@ bool Nave::impacto_misil(int x_misil, int y_misil, int ancho_misil, int alto_mis
 }
 
 bool Nave::isAlive(){
-    return vidas > 0 && isOn;
+    return (vidas > 0 && isOn) //&& !isWaiting();
 }
 
 int Nave::getVidaActual(){
@@ -186,4 +187,16 @@ void Nave::conectar(){
         isOn = true;
         printf("conecto\n");
     }
+}
+
+bool Nave::isWaiting(){
+    return wait;
+}
+
+void Nave::startWaiting(){
+    wait = true;
+}
+
+void Nave::stopWaiting(){
+    wait = false;
 }
