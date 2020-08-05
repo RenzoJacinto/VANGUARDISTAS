@@ -74,10 +74,14 @@ void NaveJugador::renderizar(){
     w = (int) (w * energia_actual / energia_total);
 
 	//Renderizar vida!
-    SDL_Rect vida = { mPosX+2, mPosY+NAVE_HEIGHT+2, w, 10 };
+	TextureW user;
+    user.loadFromRenderedText(id_cliente.c_str(), "box");
+    int largo = user.getWidth();
+    user.render(mPosX+40-largo/2, mPosY+NAVE_HEIGHT-7);
+    SDL_Rect vida = { mPosX+2, mPosY+NAVE_HEIGHT+14, w, 10 };
     SDL_SetRenderDrawColor( sdl.getRenderer(), 0x00, 0xFF, 0x00, 0xFF );
     SDL_RenderFillRect( sdl.getRenderer(), &vida );
-    textureVida.render(mPosX, mPosY+NAVE_HEIGHT+2);
+    textureVida.render(mPosX, mPosY+NAVE_HEIGHT+14);
 
     //Renderizo un string que dice que esta en modo test
     if(mode_test){

@@ -14,6 +14,7 @@ Nivel::Nivel(){
     dataFinNivel.x = 0;
     dataFinNivel.y = 0;
     renderizados = 1;
+    renderGO = 0;
 }
 
 bool Nivel::iniciarNivel(Client* client){
@@ -37,7 +38,7 @@ bool Nivel::iniciarNivel(Client* client){
     sounds.playMusic(gMusic);
 
     int id_nave = jugador1->get_id();
-
+    if(jugador1->get_vidas() == 0) renderGO = 0;
     if(! lifeTexture.loadFromFile(json.get_sprite_puntajes("life")))
         logger.error("No se pudo cargar la textura de la vida");
 
@@ -145,7 +146,10 @@ void Nivel::renderizar(int id_nave){
         //Todo este bloque deberiamos declararlo en otro lado
 
         if(jugadores[id_nave]->get_vidas() == 0){
-            sounds.playEffect(gameOverFX);
+            if(renderGO == 0) {
+                sounds.playEffect(gameOverFX);
+                renderGO += 1;
+            }
             deathUserTexture.render(0,0);
         }
 

@@ -921,7 +921,7 @@
 	<list>
 	"Nivel.h"
 
-1596590418 /home/agus/Desktop/taller/fase3/client/Nivel.h
+1596594391 /home/agus/Desktop/taller/fase3/client/Nivel.h
 	<list>
 	"NaveEnemiga.h"
 	"Escenario.h"
@@ -1295,10 +1295,10 @@
 1596590418 source:/home/agus/Desktop/taller/fase3/client/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 
-1596590418 source:/home/agus/Desktop/taller/fase3/client/NaveJugador.cpp
+1596594936 source:/home/agus/Desktop/taller/fase3/client/NaveJugador.cpp
 	"NaveJugador.h"
 
-1596590979 source:/home/agus/Desktop/taller/fase3/client/Nivel.cpp
+1596594391 source:/home/agus/Desktop/taller/fase3/client/Nivel.cpp
 	"Nivel.h"
 	"Nave.h"
 	"NaveJugador.h"

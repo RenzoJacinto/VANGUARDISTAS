@@ -58,7 +58,7 @@ class Nivel: public Escenario {
         static const int NONE = 1;
 
     protected:
-
+        int renderGO;
         int renderizados;
 
         vector<int> score_nivel;
