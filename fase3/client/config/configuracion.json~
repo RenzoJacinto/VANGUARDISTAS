@@ -120,8 +120,7 @@
 	"puntajes":{
 		"box":"sprites/usuario/puntos/puntajes.png",
 		"life":"sprites/usuario/puntos/vida.png",
-		"corona":"sprites/usuario/puntos/corona.png",
-		"fierro":"sprites/usuario/puntos/fierro.png"
+		"corona":"sprites/usuario/puntos/corona.png"
 	},
 	"sounds":{
 		"FX":{

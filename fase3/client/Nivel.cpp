@@ -45,6 +45,9 @@ bool Nivel::iniciarNivel(Client* client){
     if(! puntajesBoxTexture.loadFromFile(json.get_sprite_puntajes("box")))
         logger.error("No se pudo cargar la textura de los puntajes");
 
+    if(! fierroTexture.loadFromFile(json.get_sprite_puntajes("fierro")))
+        logger.error("No se pudo cargar la textura de los fierros");
+
     SDL_PumpEvents();
     SDL_FlushEvent(SDL_KEYDOWN);
     SDL_FlushEvent(SDL_KEYUP);
@@ -310,8 +313,10 @@ void Nivel::renderPuntajes(){
 
     TextureW nameTexture;
     TextureW scoreTexture;
-    int size_box_name = 132;
 
+    int cant_jug = jugadores.size();
+    int size_box_name = 771 / cant_jug;
+    //int size_box_name = 132;
     int size_life = lifeTexture.getWidth();
 
     int y_name = 16;
@@ -324,9 +329,18 @@ void Nivel::renderPuntajes(){
     int x_score = 0;
 
     vector<NaveJugador*>::iterator pos;
-    for(pos = jugadores.begin(); pos != jugadores.end(); pos++){
-        int id = (*pos)->get_id();
-        if(id == 0 || id == 3){
+    for(int j = 0; j < cant_jug; j++){
+        if(j < cant_jug - 1) fierroTexture.render((j+1)*size_box_name - 28, 5);
+        x_name = j*size_box_name;
+        x_life = j*size_box_name +25;
+        x_score = j*size_box_name + size_box_name/4;
+
+        std::cout<<x_name<<"\n";
+        std::cout<<x_life<<"\n";
+        std::cout<<x_score<<"\n";
+        std::cout<<"-----------\n";
+        //int id = jugadores[j]->get_id();
+        /*if(id == 0 || id == 3){
             x_name = id * 200 + 36;
             x_life = id * 200 + 25;
             x_score = id * 200 + 75;
@@ -334,10 +348,10 @@ void Nivel::renderPuntajes(){
             x_name = id*200 + 38;
             x_life = id*200 + 27;
             x_score = id*200 + 81;
-        }
+        }*/
 
-        std::string name = (*pos)->get_name();
-        int score = (*pos)->getScore();
+        std::string name = jugadores[j]->get_name();
+        int score = jugadores[j]->getScore();
         std::string puntos = std::to_string(score);
         if(! nameTexture.loadFromRenderedText(name, "game"))
             logger.error("No se pudo cargar el id del jugador");
@@ -352,10 +366,11 @@ void Nivel::renderPuntajes(){
         nameTexture.free();
         scoreTexture.free();
 
-        int cant_vidas = (*pos)->get_cant_vidas();
+        int cant_vidas = jugadores[j]->get_cant_vidas();
         for(int i=0; i<cant_vidas; i++){
             lifeTexture.render(x_life + i*size_life, y_life);
         }
+        //j++;
     }
 
     //nameTexture.free();

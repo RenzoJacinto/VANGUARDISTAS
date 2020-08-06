@@ -74,6 +74,7 @@ class Nivel: public Escenario {
         TextureW puntajesBoxTexture;
         TextureW lifeTexture;
         TextureW deathUserTexture;
+        TextureW fierroTexture;
 
         Mix_Music *gMusic;
 

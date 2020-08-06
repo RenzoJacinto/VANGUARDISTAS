@@ -63,10 +63,7 @@ bool BotonIniciar::handleEvent( SDL_Event& e , Mix_Music* gMusic){
     }
 
     if(id != "") gId.render(INIT_X_TEXT_NAME, Y_MEDIO_TEXT);
-    if(pass != "") gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
-
-    gId.free();
-    gPass.free();
+    if(pass != "")  gPass.render(INIT_X_TEXT_PASS, Y_MEDIO_TEXT);
 
     return true;
 }
