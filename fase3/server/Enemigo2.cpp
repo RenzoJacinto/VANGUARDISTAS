@@ -42,7 +42,7 @@ Enemigo2::Enemigo2(int x, int y){
 // Se acerca a 500 de distancia (en x) y dispara cada 1 seg
 int Enemigo2::procesarAccion(vector<NaveJugador*> jugadores){
 
-    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive() || searchRate.transcurridoEnSegundos() > 10){
+    if(nave_seguida == -1 || !jugadores[nave_seguida]->isAlive() || searchRate.transcurridoEnSegundos() > 5){
         nave_seguida = obtenerNaveSeguidaRandom(jugadores, jugadores.size());
         searchRate.finalizar();
         searchRate.iniciar();

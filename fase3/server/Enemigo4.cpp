@@ -42,7 +42,7 @@ int Enemigo4::procesarAccion(vector<NaveJugador*> jugadores){
     int nave_seguida = naveDerechaCercana(jugadores);
     if(nave_seguida == -1){
         int ok = -1;
-        if(mPosX < 600) ok = mover(3, 0, jugadores);
+        if(mPosX < 600) ok = mover(5, 0, jugadores);
         else turret = true;
         if(ok != -1) return ok;
         int idx = obtenerNaveSeguidaMasCercana(jugadores);
