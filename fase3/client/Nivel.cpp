@@ -315,7 +315,7 @@ void Nivel::renderPuntajes(){
     TextureW scoreTexture;
 
     int cant_jug = jugadores.size();
-    int size_box_name = 771 / cant_jug;
+    int size_box_name = 800 / cant_jug;
     //int size_box_name = 132;
     int size_life = lifeTexture.getWidth();
 
