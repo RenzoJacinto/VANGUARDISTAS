@@ -1,6 +1,8 @@
 #include "Enemigo1.h"
 #include "time_nanoseconds.h"
 
+Enemigo1::~Enemigo1(){}
+
 Enemigo1::Enemigo1(int x, int y){
 
     disparo = false;

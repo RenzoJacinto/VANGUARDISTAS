@@ -6,7 +6,7 @@
 class Enemigo3: public NaveEnemiga {
 
     public:
-
+        ~Enemigo3();
         Enemigo3(int x, int y);
 
 		int procesarAccion(vector<NaveJugador*> jugadores);

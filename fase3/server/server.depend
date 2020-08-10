@@ -990,7 +990,7 @@
 	<queue>
 	<pthread.h>
 
-1597099913 /home/agus/Desktop/taller/fase3/server/NaveEnemiga.h
+1597101606 /home/agus/Desktop/taller/fase3/server/NaveEnemiga.h
 	"Nave.h"
 	"NaveJugador.h"
 	"Temporizador.h"
@@ -1038,7 +1038,7 @@
 	"NaveJugador.h"
 	"Server.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Temporizador.h
+1597101659 /home/agus/Desktop/taller/fase3/server/Temporizador.h
 	<iostream>
 	<chrono>
 	<ctime>
@@ -2307,33 +2307,33 @@
 
 1596312613 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/time_nanoseconds.h
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Enemigo1.cpp
+1597101606 source:/home/agus/Desktop/taller/fase3/server/Enemigo1.cpp
 	"Enemigo1.h"
 	"time_nanoseconds.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Enemigo1.h
+1597101606 /home/agus/Desktop/taller/fase3/server/Enemigo1.h
 	"NaveEnemiga.h"
 
 1597096358 /home/agus/Desktop/taller/fase3/server/time_nanoseconds.h
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Enemigo2.cpp
+1597101605 source:/home/agus/Desktop/taller/fase3/server/Enemigo2.cpp
 	"Enemigo2.h"
 	"time_nanoseconds.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Enemigo2.h
+1597101606 /home/agus/Desktop/taller/fase3/server/Enemigo2.h
 	"NaveEnemiga.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Enemigo3.cpp
+1597101606 source:/home/agus/Desktop/taller/fase3/server/Enemigo3.cpp
 	"Enemigo3.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Enemigo3.h
+1597101606 /home/agus/Desktop/taller/fase3/server/Enemigo3.h
 	"NaveEnemiga.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Enemigo4.cpp
+1597101606 source:/home/agus/Desktop/taller/fase3/server/Enemigo4.cpp
 	"Enemigo4.h"
 	"time_nanoseconds.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Enemigo4.h
+1597101606 /home/agus/Desktop/taller/fase3/server/Enemigo4.h
 	"NaveEnemiga.h"
 
 1596663142 source:/home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Enemigo1.cpp
@@ -2366,11 +2366,11 @@
 1596580484 /home/renzo/Documents/GitHub/VANGUARDISTAS/fase3/server/Boss.h
 	"NaveEnemiga.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Boss.cpp
+1597101606 source:/home/agus/Desktop/taller/fase3/server/Boss.cpp
 	"Boss.h"
 	"time_nanoseconds.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Boss.h
+1597101606 /home/agus/Desktop/taller/fase3/server/Boss.h
 	"NaveEnemiga.h"
 
 1596404155 source:/home/agus/Desktop/taller2/fase3/server/Boss.cpp

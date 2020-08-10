@@ -1,6 +1,8 @@
 #include "Boss.h"
 #include "time_nanoseconds.h"
 
+Boss::~Boss(){}
+
 Boss::Boss(int x, int y){
 
     disparo = false;
