@@ -436,7 +436,9 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
 
                 score_nivel[pos->posY] += score;
             }
+            Misil* misil = (*pos_m);
             pos_m = misiles.erase(pos_m);
+            delete(misil);
             free(pos);
         }
     }
@@ -447,6 +449,8 @@ void NivelServidor::cerrar(){
     for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) free((*posJ));
     vector<NaveEnemiga*>::iterator posE;
     for(posE = enemigos.begin(); posE != enemigos.end(); posE++) free((*posE));
+    list<Misil*>::iterator pos_m;
+    for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++) delete((*pos_m));
 }
 
 vector<int> NivelServidor::getVidas(){
