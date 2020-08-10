@@ -3,6 +3,8 @@
 #include "NaveEnemiga.h"
 #include "global.h"
 
+Nave::~Nave(){}
+
 bool Nave::crearNave( int x, int y){
     //Initialize the offsets
     mPosX = x;

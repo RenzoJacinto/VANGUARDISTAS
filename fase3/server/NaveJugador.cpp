@@ -1,5 +1,7 @@
 #include "NaveJugador.h"
 
+NaveJugador::~NaveJugador(){}
+
 NaveJugador::NaveJugador( int x, int y, int id){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");
     std::string jug = "jugador"+std::to_string(id);

@@ -1,6 +1,8 @@
 #include "NaveEnemiga.h"
 #include "time_nanoseconds.h"
 
+NaveEnemiga::~NaveEnemiga(){}
+
 NaveEnemiga::NaveEnemiga(){
     id_nave = 0;
     turret = false;

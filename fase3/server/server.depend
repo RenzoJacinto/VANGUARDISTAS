@@ -787,7 +787,7 @@
 	"Server.h"
 	"NivelServidor.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Nave.h
+1597100149 /home/agus/Desktop/taller/fase3/server/Nave.h
 	<stdio.h>
 	<string>
 	"global.h"
@@ -990,12 +990,12 @@
 	<queue>
 	<pthread.h>
 
-1597096358 /home/agus/Desktop/taller/fase3/server/NaveEnemiga.h
+1597099913 /home/agus/Desktop/taller/fase3/server/NaveEnemiga.h
 	"Nave.h"
 	"NaveJugador.h"
 	"Temporizador.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/NaveJugador.h
+1597099914 /home/agus/Desktop/taller/fase3/server/NaveJugador.h
 	"Nave.h"
 	"list"
 	"NaveEnemiga.h"
@@ -1013,7 +1013,7 @@
 	"Server.h"
 	"Misil.h"
 
-1597096358 /home/agus/Desktop/taller/fase3/server/Misil.h
+1597099913 /home/agus/Desktop/taller/fase3/server/Misil.h
 	"global.h"
 	"NaveEnemiga.h"
 
@@ -1089,20 +1089,20 @@
 	"Logger.h"
 	"global.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Misil.cpp
+1597099914 source:/home/agus/Desktop/taller/fase3/server/Misil.cpp
 	"Misil.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
+1597100072 source:/home/agus/Desktop/taller/fase3/server/Nave.cpp
 	"Nave.h"
 	"NaveJugador.h"
 	"NaveEnemiga.h"
 	"global.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
+1597099914 source:/home/agus/Desktop/taller/fase3/server/NaveEnemiga.cpp
 	"NaveEnemiga.h"
 	"time_nanoseconds.h"
 
-1597096358 source:/home/agus/Desktop/taller/fase3/server/NaveJugador.cpp
+1597099914 source:/home/agus/Desktop/taller/fase3/server/NaveJugador.cpp
 	"NaveJugador.h"
 
 1597096358 source:/home/agus/Desktop/taller/fase3/server/Nivel1Servidor.cpp
@@ -1133,7 +1133,7 @@
 	"Boss.h"
 	<sys/socket.h>
 
-1596659092 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
+1597099914 source:/home/agus/Desktop/taller/fase3/server/NivelServidor.cpp
 	"NivelServidor.h"
 	"Temporizador.h"
 	"Server.h"
@@ -1147,7 +1147,7 @@
 	<sys/socket.h>
 	"time_nanoseconds.h"
 
-1596653714 source:/home/agus/Desktop/taller/fase3/server/Server.cpp
+1597096358 source:/home/agus/Desktop/taller/fase3/server/Server.cpp
 	"Server.h"
 	"global.h"
 	"JuegoServidor.h"

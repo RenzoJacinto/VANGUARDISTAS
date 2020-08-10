@@ -12,6 +12,7 @@ class NaveEnemiga: public Nave {
     public:
 
         NaveEnemiga();
+        ~NaveEnemiga();
         virtual int procesarAccion(vector<NaveJugador*> jugadores);
 
 		int getAltoImagen();

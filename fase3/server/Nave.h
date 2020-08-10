@@ -16,6 +16,8 @@ class Nave{
         //Se inicializa la Nave en esas coordenadas
 		bool crearNave( int x, int y);
 
+		virtual ~Nave();
+
 		int getPosX();
 
 		void setPosX(int n);

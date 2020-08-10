@@ -12,6 +12,7 @@ class NaveJugador: public Nave {
     public:
 
         NaveJugador( int x, int y, int id);
+        ~NaveJugador();
         int get_id();
 
         //Las dimensiones de la Nave del Jugador
