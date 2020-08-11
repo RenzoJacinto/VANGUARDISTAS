@@ -1,7 +1,25 @@
 #include "NaveEnemiga.h"
 #include "time_nanoseconds.h"
 
-NaveEnemiga::~NaveEnemiga(){}
+NaveEnemiga::~NaveEnemiga(){
+    std::cout<<"BORRO ENEMIGO!!\n";
+    energia_actual = 0;
+    energia_total = 0;
+    score = 0;
+    damage = 0;
+    radio = 0;
+    vidas = 0;
+    alto = 0;
+    ancho = 0;
+    id_nave = 0;
+
+    mPosX = 0;
+    mPosY = 0;
+
+   //Initialize the velocity
+    mVelX = 0;
+    mVelY = 0;
+}
 
 NaveEnemiga::NaveEnemiga(){
     id_nave = 0;

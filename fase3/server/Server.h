@@ -44,7 +44,8 @@ class Server{
         void reconectar_cliente(int i);
         void conectar(int i);
         int getMaxUsers();
-        void crear_hilos_recibir();
+
+        void crear_hilos_recibir(int nivel);
         void cerrar_hilos_recibir();
         void vaciar_cola();
         void rechazar_conexiones();

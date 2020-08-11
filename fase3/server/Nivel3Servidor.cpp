@@ -124,3 +124,4 @@ void Nivel3Servidor::parallax(){
     scrollingOffsetFondo6 -= 3;
     if( scrollingOffsetFondo6 < -anchoBG ) scrollingOffsetFondo6 = 0;
 }
+

@@ -604,13 +604,13 @@ int Server::getMaxUsers(){
     return max_users;
 }
 
-void Server::crear_hilos_recibir(){
+void Server::crear_hilos_recibir(int nivel){
     logger.debug("Se crean los hilos que se usaran para recibir los mensajes de los clientes en paralelo");
     for(int i = 0; i<max_users; i++){
         hilosServer_t* data = (hilosServer_t*)malloc(sizeof(hilosServer_t));
         data->server = this;
         data->i = i;
-        if(!desc[i]) pthread_create(&clientes[i], NULL, encolar_procesar, data);
+        if(!desc[i] && nivel == 0) pthread_create(&clientes[i], NULL, encolar_procesar, data);
     }
     logger.debug("Hilos creados correctamente");
 }

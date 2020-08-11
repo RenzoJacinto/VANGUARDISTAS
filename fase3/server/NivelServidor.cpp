@@ -45,8 +45,8 @@ bool NivelServidor::iniciarNivel(Server* server, int t_niv){
 
     Temporizador finNiv;
     bool empezoCount = false;
-    //while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
-    while( enemigosSiganVivos() || finNiv.transcurridoEnSegundos() <= 5) {
+    while( tiempo_transcurrido < TIEMPO_NIVEL_SEGS ) {
+    //while( enemigosSiganVivos() || finNiv.transcurridoEnSegundos() <= 5) {
 
         if(!enemigosSiganVivos() && !empezoCount) {
             finNiv.iniciar();
@@ -445,12 +445,45 @@ void NivelServidor::moverMisiles(Server* server, velocidades_t* v){
 }
 
 void NivelServidor::cerrar(){
-    vector<NaveJugador*>::iterator posJ;
-    for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) delete((*posJ));
-    vector<NaveEnemiga*>::iterator posE;
-    for(posE = enemigos.begin(); posE != enemigos.end(); posE++) delete((*posE));
+    std::cout<<"CIERRA\n";
+    //vector<NaveJugador*>::iterator posJ;
+    //for(posJ = jugadores.begin(); posJ != jugadores.end(); posJ++) {
+    int cant_jug = jugadores.size();
+    for(int i=0; i<cant_jug; i++) {
+        //NaveJugador* jug = *posJ;
+        delete(jugadores[i]);
+    }
+    std::cout<<"SIZE JUG: "<<sizeof(NaveJugador)<<"\n";
+    //vector<NaveEnemiga*>::iterator posE;
+    //for(posE = enemigos.begin(); posE != enemigos.end(); posE++){
+    for(int i=0; i<cant_enemigos; i++) {
+        //NaveEnemiga* e = *posE;
+        delete(enemigos[i]);
+    }
+    std::cout<<"SIZE EN: "<<sizeof(NaveEnemiga)<<"\n";
     list<Misil*>::iterator pos_m;
-    for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++) delete((*pos_m));
+    for(pos_m = misiles.begin(); pos_m != misiles.end(); pos_m++){
+        Misil* m = *pos_m;
+        delete(m);
+    }
+    std::cout<<"SIZE MIS: "<<sizeof(Misil)<<"\n";
+
+
+    //std::cout<<"SIZE VECTOR: "<<sizeof(std::vector<NaveJugador)<<"\n";
+    std::cout<<"CAPAC VECTOR JUG: "<<jugadores.capacity()<<"\n";
+    std::cout<<"CAPAC VECTOR EN: "<<enemigos.capacity()<<"\n";
+    std::cout<<"SIZE VECTOR MIS: "<<sizeof(misiles)<<"\n";
+
+    jugadores.clear();
+    vector<NaveJugador*>(jugadores).swap(jugadores);
+    std::cout<<"SIZE VECTOR JUG CLEAR: "<<jugadores.size()<<"\t CAPACIDAT: "<<jugadores.capacity()<<"\n";
+    enemigos.clear();
+    vector<NaveEnemiga*>(enemigos).swap(enemigos);
+    std::cout<<"SIZE VECTOR EN CLEAR: "<<enemigos.size()<<"\t CAPACIDAT: "<<enemigos.capacity()<<"\n";
+    misiles.clear();
+    std::cout<<"SIZE VECTOR MIS CLEAR: "<<misiles.size()<<"\n";
+    //misiles.shrink_to_fit();
+
 }
 
 vector<int> NivelServidor::getVidas(){

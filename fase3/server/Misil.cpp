@@ -1,6 +1,8 @@
 #include "Misil.h"
 
-Misil::~Misil(){}
+Misil::~Misil(){
+    std::cout<<"BORRO MISIL!!\n";
+}
 
 Misil::Misil( int x_parm, int y_parm, int id_parm, int danio){
     alto = MISIL_HEIGHT;

@@ -31,11 +31,11 @@ void JuegoServidor::iniciarJuego(Server* server, int t_niv){
 
         (*nivel)->cargarNivel(server, server->getMaxUsers());
         if(nivel_actual!=0) (*nivel)->setScoresVidas(vidas, scores, modeTests, server->getMaxUsers(), server);
-        server->crear_hilos_recibir();
+        server->crear_hilos_recibir(nivel_actual);
 
         bool seguir = (*nivel)->iniciarNivel(server, t_niv);
 
-        server->cerrar_hilos_recibir();
+        //server->cerrar_hilos_recibir();
 
         server->vaciar_cola();
         (*nivel)->cerrar();
@@ -48,6 +48,9 @@ void JuegoServidor::iniciarJuego(Server* server, int t_niv){
         vidas = (*nivel)->getVidas();
         scores = (*nivel)->getScores();
         modeTests = (*nivel)->get_modeTests();
+
+        NivelServidor* nv = *nivel;
+        free(nv);
     }
 }
 

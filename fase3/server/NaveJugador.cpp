@@ -1,6 +1,24 @@
 #include "NaveJugador.h"
 
-NaveJugador::~NaveJugador(){}
+NaveJugador::~NaveJugador(){
+    std::cout<<"BORRO JUG!!\n";
+
+    energia_actual = 0;
+    energia_total = 0;
+    score = 0;
+    damage = 0;
+    radio = 0;
+    vidas = 0;
+    alto = 0;
+    ancho = 0;
+    id_nave = 0;
+
+    mPosX = 0;
+    mPosY = 0;
+
+    mVelX = 0;
+    mVelY = 0;
+}
 
 NaveJugador::NaveJugador( int x, int y, int id){
     logger.info(">>>> CARGANDO LA NAVE JUGADOR ....");

@@ -14,6 +14,7 @@ class NivelServidor{
     public:
 
         NivelServidor();
+
         bool iniciarNivel(Server* server, int t_niv);
         void procesar(Server* server, velocidades_t* v);
         bool esValidoReconectar();
@@ -63,7 +64,7 @@ class NivelServidor{
         vector<NaveJugador*> jugadores;
         vector<int> scores;
         vector<int> vidas;
-        vector<posiciones_t*> pos_iniciales;
+        //vector<posiciones_t*> pos_iniciales;
         list<Misil*> misiles;
         int cant_enemigos;
         int tiempo_transcurrido;
